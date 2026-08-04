@@ -2,7 +2,6 @@
 \file       events-msg-register-events-archives.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

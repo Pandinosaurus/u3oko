@@ -3,7 +3,6 @@
 \file       rgb2l.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -63,7 +62,7 @@ class CRgb2LAlg final : public IOptimAlg
 #endif
     default:
       U3_XLOG_WARN ("cpu extension" + VTOLOG (U3_CAST_UINT32_FORCE (iinfo.ext_)));
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::convert::l_vs_rgb::rgb24_to_l_alu);
       break;
     }

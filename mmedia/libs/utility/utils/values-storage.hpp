@@ -3,7 +3,6 @@
 \file       values-storage.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 \brief      Объявление хранилища значений
 */
 
@@ -62,11 +61,13 @@ class ValuesStorage final
 
   friend class boost::serialization::access;
 
+#if (U3_USE_BOOST_SERIALIZTION)
   template< class Archive >
   void
   serialize (Archive& arh, const std::uint32_t /* file_version */)
   {
     arh& BOOST_SERIALIZATION_NVP (raw_vals_);
   }
+#endif
 };
 }   // namespace libs::utility::utils

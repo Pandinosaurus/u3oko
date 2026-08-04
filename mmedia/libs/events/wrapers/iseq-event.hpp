@@ -3,7 +3,6 @@
 \file       iseq-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 
 namespace libs::events
@@ -61,4 +60,4 @@ class ISeqEvent : public IWrapBaseEvent
 };
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::ISeqEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::ISeqEvent);

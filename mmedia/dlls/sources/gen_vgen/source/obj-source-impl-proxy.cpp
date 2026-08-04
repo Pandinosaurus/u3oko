@@ -2,7 +2,6 @@
 \file       obj-source-impl-proxy.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.05.2017
-\project    u3_gen_vgen
 */
 #include "gen-vgen-includes_int.hpp"
 #include "mmedia/libs/proxy/proxy/gen-vgen-proxy.hpp"
@@ -29,7 +28,7 @@ void
 ObjSourceImplProxy::init (const std::string& impl_name)
 {
   clear ();
-  U3_CHECK (!impl_name.empty (), "empty impl name for capture");
+  U3_THROW_IF (!impl_name.empty (), "empty impl name for capture");
   const std::string path      = ::libs::iproperties::appl_paths::get_current_lib_folder ();
   const std::string full_path = ::libs::utility::files::make_path (path, ::libs::utility::dlls::decorate_dll_name (impl_name));
 
@@ -46,9 +45,9 @@ ObjSourceImplProxy::init (const std::string& impl_name)
     impl_dll_, ::libs::utility::dlls::make_func_name_lib (impl_name, gen_lib::consts::name_free_funct));
 #endif
 
-  U3_CHECK (func_get_ && func_free_, "get funct");
-  U3_CHECK (func_get_ (&impl_), "create impl");
-  U3_CHECK (impl_, "create func return empty impl");
+  U3_THROW_IF (func_get_ && func_free_, "get funct");
+  U3_THROW_IF (func_get_ (&impl_), "create impl");
+  U3_THROW_IF (impl_, "create func return empty impl");
   impl_->init ();
 }
 
@@ -71,7 +70,7 @@ ObjSourceImplProxy::clear ()
 auto
 ObjSourceImplProxy::get_source_impl () -> gen_lib::ISourceImpl::raw_ptr
 {
-  // U3_CHECK_NT (impl_, "return empty source impl" + TOLOG (impl_dll_.location ().string ()));
+  // U3_TEST (impl_, "return empty source impl" + TOLOG (impl_dll_.location ().string ()));
   return impl_;
 }
 

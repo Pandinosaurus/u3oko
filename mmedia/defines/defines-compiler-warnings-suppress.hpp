@@ -3,7 +3,6 @@
 \file       defines-compiler-warnings-suppress.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       04.04.2026
-\project    u3_defines
 */
 
 #ifdef U3_COMPILER_MSC

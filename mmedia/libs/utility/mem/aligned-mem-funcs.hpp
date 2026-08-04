@@ -3,7 +3,6 @@
 \file       aligned-mem-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 namespace libs::utility::mem::consts
 {
@@ -250,7 +249,7 @@ align_value (const TType& val, const TType& align, const bool expand = true)
     align64< TType > (ret, expand);
     break;
   default:
-    U3_ASSERT_SIGNAL ("invalid align" + VTOLOG (align));
+    U3_ASSERT_THROW ("invalid align" + VTOLOG (align));
     break;
   }
   return ret;

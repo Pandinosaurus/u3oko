@@ -3,7 +3,6 @@
 \file       libs-bufs-syn.hpp
 \date       09.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_bufs
 */
 
 namespace libs::bufs::syn

@@ -2,9 +2,8 @@
 \file       caller-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_optim_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
 #include "libs-optims-optim-mcalls-includes_int.hpp"
@@ -19,7 +18,7 @@ std::atomic< std::uint32_t > CallerImpl::impl_counter_ = 0;
 CallerImpl::CallerImpl ()
 {
   lock_type lock (mtx_);
-  U3_CHECK (impl_counter_ >= 0 && impl_counter_ <= 1, VTOLOG (impl_counter_));
+  U3_THROW_IF (impl_counter_ >= 0 && impl_counter_ <= 1, VTOLOG (impl_counter_));
   ++impl_counter_;
   max_threads_ = 1;
   create_threads ();
@@ -28,11 +27,11 @@ CallerImpl::CallerImpl ()
 
 CallerImpl::~CallerImpl ()
 {
-  U3_XLOG_DBG ("CallerImpl::~CallerImpl::---->");
+  U3_XLOG_DBG ("CallerImpl::~CallerImpl:---->");
   lock_type lock (mtx_);
   --impl_counter_;
   stop_and_wait_threads ();
-  U3_XLOG_DBG ("CallerImpl::~CallerImpl::<----");
+  U3_XLOG_DBG ("CallerImpl::~CallerImpl:<----");
 }
 
 
@@ -200,7 +199,7 @@ CallerImpl::mthreads_call_int (
     call.params_ = info.params_;
   }
 
-  U3_CHECK (info.dsts_.size () || info.srcs_.size (), "useless call without data" + VTOLOG (info.dsts_.size ()) + VTOLOG (info.srcs_.size ()));
+  U3_THROW_IF (info.dsts_.size () || info.srcs_.size (), "useless call without data" + VTOLOG (info.dsts_.size ()) + VTOLOG (info.srcs_.size ()));
 
   std::uint32_t thread_per_height   = 0;
   std::uint32_t selected_src_height = 0;
@@ -275,7 +274,7 @@ CallerImpl::mthreads_call_int (
       for (const io::ProxyBuf& cbuf : info.dsts_)
       {
         io::ProxyBuf new_add = cbuf;
-        U3_CHECK (new_add.buf (), "new add buf empty");
+        U3_THROW_IF (new_add.buf (), "new add buf empty");
         if (new_add.buf ())
         {
           const std::uint32_t macro_height      = new_add.height_ / funct.dst_align_.ay_;
@@ -318,7 +317,7 @@ CallerImpl::mthreads_call_int (
 void
 CallerImpl::stop_and_wait_threads ()
 {
-  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads::---->");
+  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads:---->");
   try
   {
     MTFuncInfo    fake_funct;
@@ -353,14 +352,14 @@ CallerImpl::stop_and_wait_threads ()
   }
 
   max_threads_ = 0;
-  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads::<----");
+  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads:<----");
 }
 
 
 void
 CallerImpl::create_threads ()
 {
-  U3_XLOG_DBG ("CallerImpl::create_threads::---->");
+  U3_XLOG_DBG ("CallerImpl::create_threads:---->");
   sinfo_.bstart_       = std::make_unique< MTFuncSharedInfo::barier_type > (max_threads_ + 1);
   sinfo_.exit_request_ = false;
 
@@ -378,7 +377,7 @@ CallerImpl::create_threads ()
   }
 
   U3_ASSERT (threads_.size () == max_threads_);
-  U3_XLOG_DBG ("CallerImpl::create_threads::<----");
+  U3_XLOG_DBG ("CallerImpl::create_threads:<----");
 }
 
 

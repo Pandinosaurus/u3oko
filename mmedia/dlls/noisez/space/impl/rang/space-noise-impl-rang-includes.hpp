@@ -3,7 +3,6 @@
 \file       space-noise-impl-rang-includes.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_time_noisez
 */
 #include "process-alg-info.hpp"
 #include "ialg-impl.hpp"

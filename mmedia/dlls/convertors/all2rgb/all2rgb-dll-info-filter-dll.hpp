@@ -3,7 +3,6 @@
 \file       all2rgb-dll-info-filter-dll.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_all2rgb
 */
 
 namespace dlls::convertors::all2rgb

@@ -2,9 +2,8 @@
 \file       buf-event-vec2image1.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../events-base-includes_int.hpp"
 #include "buf-event-vec2image1.hpp"
 
@@ -32,8 +31,8 @@ EventBufsVec2Image1::EventBufsVec2Image1 (const ::libs::events::buf::EventBufs& 
 void
 EventBufsVec2Image1::check_int ()
 {
-  U3_CHECK (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "size block invalid");
-  U3_CHECK (mul_koeff_vec_ > 0, "mul koeff less 0");
+  U3_THROW_IF (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "size block invalid");
+  U3_THROW_IF (mul_koeff_vec_ > 0, "mul koeff less 0");
 }
 
 
@@ -48,7 +47,7 @@ EventBufsVec2Image1::correct_int ()
   mul_koeff_vec_ = std::max< std::int32_t > (0, mul_koeff_vec_);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 EventBufsVec2Image1::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -57,7 +56,7 @@ EventBufsVec2Image1::serialize (Archive& arh, const std::uint32_t /* file_versio
   arh& BOOST_SERIALIZATION_NVP (size_block_);
   arh& BOOST_SERIALIZATION_NVP (mul_koeff_vec_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const EventBufsVec2Image1& src)
@@ -89,5 +88,5 @@ tag_invoke (::boost::json::value_to_tag< EventBufsVec2Image1 >, const ::boost::j
 }
 }   // namespace libs::events_base::props::videos::generic::vec2image
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::vec2image::EventBufsVec2Image1);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::vec2image::EventBufsVec2Image1);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::vec2image::EventBufsVec2Image1);

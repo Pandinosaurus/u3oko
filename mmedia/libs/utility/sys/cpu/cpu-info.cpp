@@ -2,7 +2,6 @@
 \file       cpu-info.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../utility-lib-includes_int.hpp"
 #include "x86/x86_cpu.hpp"
@@ -37,9 +36,9 @@ CpuInfo::CpuInfo ()
   std::ranges::copy (std::ranges::reverse_view (ext_cpu_ranged_), back_inserter (all_ext_));
 
 #ifdef U3_CPU_X86
-  U3_CHECK (x86::get_all_info_cpu (exts_), "get info cpu");
+  U3_THROW_IF (x86::get_all_info_cpu (exts_), "get info cpu");
 #elif defined(U3_CPU_ARM)
-  U3_CHECK (arm::get_all_info_cpu (exts_), "failde get info cpu");
+  U3_THROW_IF (arm::get_all_info_cpu (exts_), "failde get info cpu");
 #else
 #  error "unknow cpu"
 #endif
@@ -90,7 +89,7 @@ CpuInfo::is_less (const CpuExts& op1, const CpuExts& op2) const -> bool
     }
   }
 
-  U3_ASSERT_SIGNAL_NT ("failed");
+  U3_MARK ("failed");
   return false;
 }
 

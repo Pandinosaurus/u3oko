@@ -3,7 +3,6 @@
 \file       defines-boost-lib.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 */
 #ifndef BOOST_ALLOW_DEPRECATED_HEADERS
 #  define BOOST_ALLOW_DEPRECATED_HEADERS

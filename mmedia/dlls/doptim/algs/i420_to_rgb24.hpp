@@ -3,7 +3,6 @@
 \file       i420_to_rgb24.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -65,7 +64,7 @@ class I420ToRgb24Alg final : public IOptimAlg
       break;
 #  endif
     default:
-      U3_ASSERT_SIGNAL_NT ("libs.optim.convert.i420_rgb24 alu");
+      U3_MARK ("libs.optim.convert.i420_rgb24 alu");
       sel_.set (libs::optim::convert::i420_rgb24::alu);
       break;
     }

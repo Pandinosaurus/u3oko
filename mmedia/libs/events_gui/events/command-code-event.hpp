@@ -3,7 +3,6 @@
 \file       command-code-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::events
@@ -56,4 +55,4 @@ class CommandCodeEvent : public BaseGUIEvent
 };
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::CommandCodeEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::CommandCodeEvent);

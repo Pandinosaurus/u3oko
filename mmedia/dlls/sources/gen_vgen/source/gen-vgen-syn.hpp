@@ -3,7 +3,6 @@
 \file       gen-vgen-syn.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       02.03.2026
-\project    u3_gen_vgen
 */
 
 namespace dlls::sources::gen_vgen::syn

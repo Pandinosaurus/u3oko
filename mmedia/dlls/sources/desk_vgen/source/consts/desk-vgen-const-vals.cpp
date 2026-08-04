@@ -2,7 +2,6 @@
 \file       desk-vgen-const-vals.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.08.2024
-\project    u3_desk_vgen
 */
 #include "../desk-vgen-includes_int.hpp"
 #include "desk-vgen-const-vals.hpp"

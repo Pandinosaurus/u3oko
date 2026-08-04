@@ -3,7 +3,6 @@
 \file       block-mem-allocator-proxy.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_mems
 */
 extern "C" BOOST_SYMBOL_EXPORT utils::mems::IBlockMemAllocator::raw_ptr create_mem_impl ();
 

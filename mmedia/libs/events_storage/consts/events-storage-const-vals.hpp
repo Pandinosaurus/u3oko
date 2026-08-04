@@ -3,7 +3,6 @@
 \file       events-storage-const-vals.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.07.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage::consts

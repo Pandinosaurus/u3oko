@@ -3,7 +3,6 @@
 \file       timed-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base
@@ -59,4 +58,4 @@ class TimedEvent : virtual public events_base::UserIdEvent
 };
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::TimedEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::TimedEvent);

@@ -3,7 +3,6 @@
 \file       get_sorted_files_func.hpp
 \date       05.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_lib_helpers
 */
 
 namespace libs::utility::files

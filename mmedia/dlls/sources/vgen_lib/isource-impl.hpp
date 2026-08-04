@@ -3,7 +3,6 @@
 \file       isource-impl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.06.2016
-\project    u3_vgen_lib
 */
 
 namespace dlls::sources::gen_lib

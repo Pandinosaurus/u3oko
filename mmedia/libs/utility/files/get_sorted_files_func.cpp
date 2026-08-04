@@ -2,7 +2,6 @@
 \file       get_sorted_files_func.cpp
 \date       05.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_lib_helpers
 */
 #include "../utility-lib-includes_int.hpp"
 #include "libs-helpers-files-includes.hpp"
@@ -35,8 +34,8 @@ get_sort_by_time_folders (const std::string& path2sessions) -> std::vector< std:
     const std::size_t           time = ::boost::filesystem::creation_time (path, error);
     // const std::size_t           time = ::boost::filesystem::last_write_time (path, error);
 
-    U3_ASSERT_NT (!error, error.to_string ());
-    U3_ASSERT_NT (time, VTOLOG (time));
+    U3_ASSERT_SOFT (!error, error.to_string ());
+    U3_ASSERT_SOFT (time, VTOLOG (time));
 
     sort_files.insert ({ time, file.name_ });
   }

@@ -2,7 +2,6 @@
 \file       event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "events-base-includes_int.hpp"
 #include "event.hpp"
@@ -31,7 +30,7 @@ str2event_state (const std::string& str) -> ::libs::events::PropertyUsings
     }
   }
 
-  U3_ASSERT_SIGNAL ("failed");
+  U3_ASSERT_THROW ("failed");
   return ::libs::events::PropertyUsings::disabled;
 }
 
@@ -72,18 +71,18 @@ Event::clone_int (const ::libs::events::Deeps& deep) const -> ::libs::events::IE
 void
 Event::load_json_int (const ::boost::json::object& obj)
 {
-  U3_XLOG_DBG ("Event::load_json_int::---->" + TOLOG (boost::json::serialize (obj)));
+  U3_XLOG_DBG ("Event::load_json_int:---->" + TOLOG (boost::json::serialize (obj)));
   // gextp_json_ = ::libs::utility::json::get_string (obj.at ("gextp_json"));
-  U3_XLOG_DBG ("Event::load_json_int::<----");
+  U3_XLOG_DBG ("Event::load_json_int:<----");
 }
 
 
 void
 Event::save_json_int (::boost::json::object& obj) const
 {
-  U3_XLOG_DBG ("Event::save_json_int::---->" + TOLOG (boost::json::serialize (obj)));
+  U3_XLOG_DBG ("Event::save_json_int:---->" + TOLOG (boost::json::serialize (obj)));
   // obj["gextp_json"] = ::libs::utility::json::to_string (gextp_json_);
-  U3_XLOG_DBG ("Event::save_json_int::<----");
+  U3_XLOG_DBG ("Event::save_json_int:<----");
 }
 
 
@@ -95,7 +94,7 @@ Event::copy_int (const IEvent::craw_ptr src)
   gextp_json_ = dsrc->gextp_json_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 Event::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -103,7 +102,8 @@ Event::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& U3_BOOST_SERIALIZE_MAKE_NVP ("olibsoeventsoIEvent", ::libs::events::IEvent);
   arh& BOOST_SERIALIZATION_NVP (gextp_json_);
 }
+#endif
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::Event);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::Event);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::Event);

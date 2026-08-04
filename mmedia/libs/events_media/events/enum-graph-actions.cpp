@@ -2,7 +2,6 @@
 \file       enum-graph-actions.cpp
 \date       22.02.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

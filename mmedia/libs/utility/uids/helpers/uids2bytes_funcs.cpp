@@ -2,7 +2,6 @@
 \file       uids2bytes_funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 \brief      Функции для получения количества байт и размерности от формата данных
 */
 #include "../../utility-lib-includes_int.hpp"

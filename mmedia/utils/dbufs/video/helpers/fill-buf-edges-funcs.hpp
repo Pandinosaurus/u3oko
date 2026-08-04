@@ -3,7 +3,6 @@
 \file       fill-buf-edges-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_dbufs
 \brief      Объявление вспомогательных функции подгтовки буфера к операции свертка
 */
 
@@ -15,9 +14,9 @@ namespace utils::dbufs::video::helpers
 inline void
 fill_edges (IVideoBuf::raw_ptr buf)
 {
-  U3_CHECK (buf, "empty buf");
-  U3_CHECK (buf->get_flag (BufFlags::convolution_support), "- operation topb_convolution_buf not support");
-  U3_CHECK (buf->get_flag (BufFlags::convolution_data), "- data not support convlution");
+  U3_THROW_IF (buf, "empty buf");
+  U3_THROW_IF (buf->get_flag (BufFlags::convolution_support), "- operation topb_convolution_buf not support");
+  U3_THROW_IF (buf->get_flag (BufFlags::convolution_data), "- data not support convlution");
 
   const auto    buf_width  = buf->get_dim_var (Dims::width);
   const auto    buf_height = buf->get_dim_var (Dims::height);

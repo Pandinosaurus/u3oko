@@ -3,7 +3,6 @@
 \file       type-gradient.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       28.05.2022
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::gradient

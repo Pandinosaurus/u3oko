@@ -3,7 +3,6 @@
 \file       vcodec-gen-includes.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcodec_gen
 */
 #include "mmedia/dlls/codecs/codec_funcs/codec-funcs-includes.hpp"
 #include "mmedia/dlls/codecs/codec_funcs/bitgen/codec-funcs-bitgen-includes.hpp"

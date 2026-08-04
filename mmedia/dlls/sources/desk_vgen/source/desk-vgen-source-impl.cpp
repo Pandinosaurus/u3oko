@@ -2,7 +2,6 @@
 \file       desk-vgen-source-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.06.2016
-\project    u3_desk_vgen
 */
 #include "desk-vgen-includes_int.hpp"
 #include "desk-vgen-source-impl.hpp"
@@ -86,7 +85,7 @@ SourceImpl::get_raw_data_int (
         ::libs::utility::uids::minor::id_val::rgb24,
         utils::dbufs::video::DimChecks::disable));
 
-    U3_CHECK (rgb_buf_->get_size () >= capinfo.size_dest_data_, "buf too small");
+    U3_THROW_IF (rgb_buf_->get_size () >= capinfo.size_dest_data_, "buf too small");
     ::libs::utility::mem::mem_copy_raw (rgb_buf_->get (), buf->get_buf (), capinfo.size_dest_data_);
     buf->set_flag (::utils::dbufs::BufFlags::empty, false);
     buf->set_mem_var (::utils::dbufs::MemVars::size_data, capinfo.size_dest_data_);

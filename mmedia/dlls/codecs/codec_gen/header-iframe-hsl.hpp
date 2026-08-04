@@ -3,7 +3,6 @@
 \file       header-iframe-hsl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_codec_gen
 */
 
 namespace dlls::codecs::codec_gen
@@ -22,7 +21,7 @@ struct HeaderIFrameHSL final {
   {
     base_part_.reset ();
 
-    cinfo_.reset ();
+    props_.reset ();
 
     base_part_.size_  = sizeof (HeaderIFrameHSL);
     base_part_.style_ = Frames::iframe;
@@ -50,6 +49,6 @@ struct HeaderIFrameHSL final {
   BaseHeaderFrame         base_part_;                   //< Базовая (плоская) часть
   std::uint32_t           off_lhs_[3]  = { 0, 0, 0 };   //< смещение независимо сжатых потоков HSL
   std::uint32_t           size_lhs_[3] = { 0, 0, 0 };   //< размер независимо сжатых потоков HSL
-  syn::VideoCodecFlatProp cinfo_;                       //< установки кодека, используемые для данного кадра (и дальнешей последовательности кадров, зависящих от данного)
+  syn::VideoCodecFlatProp props_;                       //< установки кодека, используемые для данного кадра (и дальнешей последовательности кадров, зависящих от данного)
 };
 }   // namespace dlls::codecs::codec_gen

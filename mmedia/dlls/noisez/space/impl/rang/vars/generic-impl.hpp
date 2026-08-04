@@ -3,7 +3,6 @@
 \file       generic-impl.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_filter_space
 */
 
 namespace dlls::noisez::space::impl::rang::vars
@@ -51,7 +50,7 @@ class GenericImpl : public IAlgImpl
     U3_MARK_UNUSED const auto app_half_size_core   = app_cond ? half_cond_size_core : half_size_core;
     U3_MARK_UNUSED const auto app_count_core_vals  = app_cond ? count_cond_core_vals : count_core_vals;
 
-    U3_CHECK (app_rang < app_size_core * app_size_core, VTOLOG (app_rang) + VTOLOG (app_size_core));
+    U3_THROW_IF (app_rang < app_size_core * app_size_core, VTOLOG (app_rang) + VTOLOG (app_size_core));
 
     for (std::uint32_t indxy = 0; indxy < height; ++indxy)
     {

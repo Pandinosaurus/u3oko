@@ -2,7 +2,6 @@
 \file       ilinks-property.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       02.03.2022
-\project    u3_properties_libs
 */
 // REFACTOR include
 #include "../../libs-properties-includes_int.hpp"

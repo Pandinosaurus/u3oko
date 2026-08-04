@@ -3,7 +3,6 @@
 \file       expand-times-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 \brief      Объявление типа для хранения и передачи статистики по затраченному времени
 */
 
@@ -89,4 +88,4 @@ class ExpandTimesEvent : public RuntimeEvent
 };
 }   // namespace libs::events_base::runtime::state
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::state::ExpandTimesEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::state::ExpandTimesEvent);

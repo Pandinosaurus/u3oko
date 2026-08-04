@@ -3,7 +3,6 @@
 \file       gen-vgen-proxy.hpp
 \date       17.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_proxy_libs
 */
 #include "mmedia/dlls/sources/vgen_lib/gen-lib-const-vals.hpp"
 

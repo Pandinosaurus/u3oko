@@ -2,7 +2,6 @@
 \file       uyvy_y16_alu.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       28.03.2016
-\project    u3_optim_gen_convert
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

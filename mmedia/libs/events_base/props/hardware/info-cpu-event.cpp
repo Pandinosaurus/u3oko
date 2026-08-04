@@ -2,7 +2,6 @@
 \file       info-cpu-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "info-cpu-event.hpp"
@@ -112,7 +111,7 @@ InfoCPUEvent::copy_int (const IEvent::craw_ptr src)
   count_cpu_ = dsrc->count_cpu_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InfoCPUEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -122,7 +121,8 @@ InfoCPUEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (simd_);
   arh& BOOST_SERIALIZATION_NVP (count_cpu_);
 }
+#endif
 }   // namespace libs::events_base::props::hardware
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::hardware::InfoCPUEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::hardware::InfoCPUEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::hardware::InfoCPUEvent);

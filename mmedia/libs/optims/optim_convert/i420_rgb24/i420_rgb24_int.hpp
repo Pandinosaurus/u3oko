@@ -3,7 +3,6 @@
 \file       i420_rgb24_int.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       30.07.2018
-\project    u3_optim_gen_convert
 */
 
 namespace libs::optim::convert::i420_rgb24

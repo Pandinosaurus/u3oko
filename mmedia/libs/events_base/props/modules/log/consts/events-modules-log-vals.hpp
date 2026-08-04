@@ -3,7 +3,6 @@
 \file       events-modules-log-vals.hpp
 \date       14.09.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::modules::log::consts

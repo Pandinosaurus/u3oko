@@ -3,7 +3,6 @@
 \file       xlib-handlers-types.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       17.05.2022
-\project    u3_desk_vgen
 */
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
 // #if defined(U3_OS_GNU_LINUX) || defined(U3_OS_RASPBERRY) || defined(U3_OS_ORANGE_PI)

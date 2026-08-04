@@ -3,7 +3,6 @@
 \file       morph-operator.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.07.2018
-\project    u3_vgen_mops_lib
 */
 
 namespace dlls::gens::vgen_mops::lib::helpers

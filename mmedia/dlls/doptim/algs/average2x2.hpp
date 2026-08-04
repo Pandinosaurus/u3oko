@@ -3,7 +3,6 @@
 \file       average2x2.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 // EAI-REMOVE old shit
 namespace dlls::doptim::impl::algs
@@ -62,7 +61,7 @@ class CAverage2x2Alg final : public IOptimAlg
       break;
 #  endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::filter::jam::aver1_2x2_alu);
       break;
     }

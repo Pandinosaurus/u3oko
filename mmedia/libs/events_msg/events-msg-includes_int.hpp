@@ -3,7 +3,6 @@
 \file       events-msg-includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "mmedia/libs/ilink/consts/libs-ilink-const-vals.hpp"
 #include "mmedia/libs/events/includes.hpp"

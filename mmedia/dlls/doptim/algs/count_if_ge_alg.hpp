@@ -3,7 +3,6 @@
 \file       count_if_ge_alg.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -60,7 +59,7 @@ class CCountIfGEAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::statistics::count_if_ge::alu);
       break;
     }

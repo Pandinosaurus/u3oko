@@ -2,7 +2,6 @@
 \file       enum-morph-ops.cpp
 \date       08.03.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "enum-morph-ops.hpp"
@@ -23,7 +22,7 @@ str2type_morph_op (const std::string& val) -> MorphOps
   auto finger = vals.find (val);
   if (vals.end () == finger)
   {
-    U3_ASSERT_SIGNAL_NT ("failed find morph type");
+    U3_MARK ("failed find morph type");
     finger = vals.find ("skip");
   }
   return finger->second;
@@ -44,7 +43,7 @@ to_string (const MorphOps& val) -> const std::string&
   auto finger = vals.find (val);
   if (vals.end () == finger)
   {
-    U3_ASSERT_SIGNAL_NT ("failed find name morph type");
+    U3_MARK ("failed find name morph type");
     finger = vals.find (MorphOps::empty);
   }
   return finger->second;

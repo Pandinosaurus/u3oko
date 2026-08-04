@@ -2,7 +2,6 @@
 \file       appls-u3oko-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3oko
 \brief      Центральный модуль системы видеонаблюдения u3oko
 */
 #include "appls-u3oko-includes_int.hpp"
@@ -30,9 +29,9 @@ extern "C" BOOST_SYMBOL_EXPORT void
 delete_impl_appl_u3oko (::libs::link::appl::IApplication::raw_ptr appl)
 {
   std::scoped_lock (g_sinc);
-  U3_ASSERT_NT (appl, PTR_TOLOG (appl));
-  U3_ASSERT_NT (appl == g_appl, PTR_TOLOG (appl));
-  U3_ASSERT_NT (g_appl, PTR_TOLOG (g_appl));
+  U3_ASSERT_SOFT (appl, PTR_TOLOG (appl));
+  U3_ASSERT_SOFT (appl == g_appl, PTR_TOLOG (appl));
+  U3_ASSERT_SOFT (g_appl, PTR_TOLOG (g_appl));
 
   if (counter_refs_ <= 1)
   {

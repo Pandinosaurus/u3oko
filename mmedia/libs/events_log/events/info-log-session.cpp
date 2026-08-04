@@ -2,7 +2,6 @@
 \file       info-log-session.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.05.2022
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -17,7 +16,7 @@ InfoLogSession::InfoLogSession (id_session_type session_id, std::uint64_t size_s
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InfoLogSession::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -25,7 +24,7 @@ InfoLogSession::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (session_id_);
   arh& BOOST_SERIALIZATION_NVP (size_session_data_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const InfoLogSession& src)
@@ -47,5 +46,5 @@ tag_invoke (::boost::json::value_to_tag< InfoLogSession >, const ::boost::json::
 }
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogSession);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogSession);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::InfoLogSession);

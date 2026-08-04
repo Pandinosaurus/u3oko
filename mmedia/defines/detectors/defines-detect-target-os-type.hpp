@@ -3,7 +3,6 @@
 \file       defines-detect-target-os-type.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 \brief      Файл с идентификаторами ОС, под которые компилируется проект
 */
 

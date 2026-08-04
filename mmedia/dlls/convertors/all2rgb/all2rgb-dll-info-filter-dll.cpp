@@ -2,7 +2,6 @@
 \file       all2rgb-dll-info-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.05.2017
-\project    u3_all2rgb
 */
 #include "all2rgb-dll-includes_int.hpp"
 #include "all2rgb-dll-info-filter-dll.hpp"

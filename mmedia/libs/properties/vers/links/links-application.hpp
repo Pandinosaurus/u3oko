@@ -3,7 +3,6 @@
 \file       links-application.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_properties_libs
 */
 
 namespace libs::properties::vers::links::mids
@@ -120,7 +119,7 @@ struct LinksApplication final {
   {
     std::scoped_lock lock (threadsan_mtx_);
     auto             finger = module_links_.find (key);
-    U3_CHECK_NT (finger != module_links_.end (), "failed get link to module" + TOLOG (to_string (key)) + PTR_TOLOG (this));
+    U3_TEST (finger != module_links_.end (), "failed get link to module" + TOLOG (to_string (key)) + PTR_TOLOG (this));
     return finger != module_links_.end () ? finger->second : TTLinkPtr ();
   }
 
@@ -136,7 +135,7 @@ struct LinksApplication final {
   {
     std::scoped_lock lock (threadsan_mtx_);
     auto             finger = module_links_.find (key);
-    U3_CHECK_NT (finger != module_links_.end (), "failed get link to module" + TOLOG (to_string (key)) + PTR_TOLOG (this));
+    U3_TEST (finger != module_links_.end (), "failed get link to module" + TOLOG (to_string (key)) + PTR_TOLOG (this));
     if (finger != module_links_.end ())
     {
       finger->second.reset ();

@@ -2,9 +2,8 @@
 \file       idata-source-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       31.01.2022
-\project    u3_gen_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "gen-vgen-includes_int.hpp"
 #include "gen-vgen-info-filter-dll.hpp"
 #include "idata-source-impl.hpp"

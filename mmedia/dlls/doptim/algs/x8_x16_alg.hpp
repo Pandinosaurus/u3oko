@@ -3,7 +3,6 @@
 \file       x8_x16_alg.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -62,7 +61,7 @@ class CX8_X16Alg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::convert::x8_x16::alu);
       break;
     }

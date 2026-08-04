@@ -3,9 +3,9 @@
 \file       time-stream.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.07.2018
-\project    u3_events_storage
 */
 
+#if (U3_USE_BOOST_SERIALIZTION)
 namespace boost::archive
 {
 template< class Archive, typename clock >
@@ -36,7 +36,7 @@ serialize (Archive& arh, std::chrono::time_point< clock >& tpc, unsigned version
   boost::serialization::split_free (arh, tpc, version);
 }
 }   // namespace boost::archive
-
+#endif
 
 namespace libs::events_storage
 {
@@ -72,4 +72,4 @@ void        tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs
 TimeStream  tag_invoke (::boost::json::value_to_tag< TimeStream >, const ::boost::json::value& jvs);
 }   // namespace libs::events_storage
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_storage::TimeStream);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_storage::TimeStream);

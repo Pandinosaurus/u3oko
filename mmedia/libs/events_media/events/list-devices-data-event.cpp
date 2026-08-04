@@ -2,7 +2,6 @@
 \file       list-devices-data-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -23,7 +22,7 @@ DataSourceInfo::DataSourceInfo (
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 DataSourceInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -33,7 +32,7 @@ DataSourceInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (max_count_);
   arh& BOOST_SERIALIZATION_NVP (number_);
 }
-
+#endif
 
 ListDevicesDataEvent::ListDevicesDataEvent (
   const Acessor&    ph,
@@ -94,7 +93,7 @@ void
 ListDevicesDataEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "ListDevicesDataEvent::load_json_int::not support");
+  U3_ASSERT_SOFT (0, "ListDevicesDataEvent::load_json_int::not support");
 }
 
 
@@ -131,7 +130,7 @@ ListDevicesDataEvent::copy_int (const IEvent::craw_ptr src)
   dlls_devices_     = dsrc->dlls_devices_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ListDevicesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -142,10 +141,11 @@ ListDevicesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_versi
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::DataSourceInfo);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::DataSourceInfo);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::DataSourceInfo);
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ListDevicesDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ListDevicesDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::ListDevicesDataEvent);

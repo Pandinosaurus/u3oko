@@ -3,7 +3,6 @@
 \file       copy2dlib-helper-func.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_detect_face
 */
 
 namespace dlls::detectors::detect_face::helpers

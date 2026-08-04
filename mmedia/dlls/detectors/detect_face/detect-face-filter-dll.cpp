@@ -2,7 +2,6 @@
 \file       detect-face-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_detect_face
 */
 #include "detect-face-includes_int.hpp"
 #include "detect-face-info-filter-dll.hpp"
@@ -165,7 +164,7 @@ Filter::save_buf2file (
   std::int32_t            quality,
   syn::IVideoBuf::raw_ptr psrc)
 {
-  U3_CHECK (quality >= 0 && quality <= 100, "check quality");
+  U3_THROW_IF (quality >= 0 && quality <= 100, "check quality");
 
   const syn::ProxyBuf lsrc (temp_buf_.get (), "temp_buf dlls::detectors::detect_face");
   const std::uint8_t* cur_buf    = utils::dbufs::video::helpers::get_const_data (temp_buf_.get ());

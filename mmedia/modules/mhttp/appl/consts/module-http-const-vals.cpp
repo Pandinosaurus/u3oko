@@ -2,7 +2,6 @@
 \file       module-http-const-vals.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mhttp
 */
 #include "../../module-http-includes_int.hpp"
 #include "module-http-const-vals.hpp"

@@ -3,7 +3,6 @@
 \file       get-users-list.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.06.2026
-\project    u3_events_user
 */
 
 namespace libs::events_user::events
@@ -59,4 +58,4 @@ class GetUsersList : public BaseUserEvent
 };
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::GetUsersList);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::GetUsersList);

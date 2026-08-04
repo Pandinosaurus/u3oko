@@ -2,7 +2,6 @@
 \file       interf-base-id-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       19.07.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "interf-base-id-event.hpp"
@@ -52,7 +51,7 @@ InterfBaseIdEvent::copy_int (const IEvent::craw_ptr src)
   impl_ = dsrc->impl_;
 }
 
-#ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InterfBaseIdEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -66,6 +65,6 @@ InterfBaseIdEvent::serialize (Archive& arh, const std::uint32_t /* file_version 
 }   // namespace libs::events_base::runtime::interf
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::InterfBaseIdEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::InterfBaseIdEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::interf::InterfBaseIdEvent);
 #endif

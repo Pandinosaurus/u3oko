@@ -2,7 +2,6 @@
 \file       get-data-graphs-events-msg.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       05.06.2022
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -51,7 +50,7 @@ void
 GetDataGraphsEventsMsg::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "GetDataGraphsEventsMsg::load_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "GetDataGraphsEventsMsg::load_json_int:: wtf???");
 }
 
 
@@ -71,7 +70,7 @@ GetDataGraphsEventsMsg::copy_int (const IEvent::craw_ptr src)
   data_graph_ids_ = dsrc->data_graph_ids_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 GetDataGraphsEventsMsg::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -81,7 +80,8 @@ GetDataGraphsEventsMsg::serialize (Archive& arh, const std::uint32_t /* file_ver
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::GetDataGraphsEventsMsg);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::GetDataGraphsEventsMsg);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_msg::events::GetDataGraphsEventsMsg);

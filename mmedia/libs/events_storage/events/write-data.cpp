@@ -2,7 +2,6 @@
 \file       write-data.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.07.2018
-\project    u3_events_storage
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -68,7 +67,7 @@ WriteData::copy_int (const IEvent::craw_ptr src)
   buf_       = dsrc->buf_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 WriteData::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -79,7 +78,8 @@ WriteData::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_storage::events::WriteData);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_storage::events::WriteData);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_storage::events::WriteData);

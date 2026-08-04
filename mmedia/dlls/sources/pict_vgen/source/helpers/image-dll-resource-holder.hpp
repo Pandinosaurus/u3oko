@@ -3,7 +3,6 @@
 \file       image-dll-resource-holder.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.05.2022
-\project    u3_pict_vgen
 */
 
 namespace dlls::sources::pict_vgen::helpers
@@ -80,7 +79,7 @@ class ResourceHolder final
   TTRes*
   operator* ()
   {
-    U3_CHECK (val_, "operator*");
+    U3_THROW_IF (val_, "operator*");
     return val_;
   }
 

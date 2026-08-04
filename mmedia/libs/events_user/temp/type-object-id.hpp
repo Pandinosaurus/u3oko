@@ -4,7 +4,6 @@
 \file       type-object-id.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.08.2018
-\project    u3_events_user
 */
 
 namespace libs::events_user
@@ -37,7 +36,7 @@ void         tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jv
 TypeObjectId tag_invoke (::boost::json::value_to_tag< TypeObjectId >, const ::boost::json::value& jvs);
 }   // namespace libs::events_user
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_user::TypeObjectId);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_user::TypeObjectId);
 
 namespace boost
 {

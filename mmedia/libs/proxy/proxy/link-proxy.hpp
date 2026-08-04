@@ -3,7 +3,6 @@
 \file       link-proxy.hpp
 \date       17.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_proxy_libs
 */
 #include "mmedia/libs/link/appl/iapplication-proxy.hpp"
 

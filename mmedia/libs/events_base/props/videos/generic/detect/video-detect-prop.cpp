@@ -2,9 +2,8 @@
 \file       video-detect-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../events-base-includes_int.hpp"
 #include "video-detect-prop.hpp"
 
@@ -104,7 +103,7 @@ VideoDetectProp::self_correct_int ()
   ::libs::utility::utils::check_bound< std::int32_t > (time_after_last_move_, 1, 60);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoDetectProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -127,7 +126,8 @@ VideoDetectProp::serialize (Archive& arh, const std::uint32_t /* file_version */
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::detect
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::detect::VideoDetectProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::detect::VideoDetectProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::detect::VideoDetectProp);

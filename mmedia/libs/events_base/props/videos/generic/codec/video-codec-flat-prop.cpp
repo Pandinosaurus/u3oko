@@ -2,7 +2,6 @@
 \file       video-codec-flat-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-codec-flat-prop.hpp"

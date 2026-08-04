@@ -3,7 +3,6 @@
 \file       frame-done.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::video
@@ -51,4 +50,4 @@ class FrameDone : public RuntimeEvent
 };
 }   // namespace libs::events_base::runtime::video
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::video::FrameDone);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::video::FrameDone);

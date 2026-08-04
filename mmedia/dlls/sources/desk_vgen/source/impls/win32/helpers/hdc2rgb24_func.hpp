@@ -1,7 +1,7 @@
 #pragma once
 /**
 \file     hdc2rgb24_func.hpp
-\brief    function for convert anybody hdc to rgb24, if needed buf relloc from ::base_funcs::mem::arealloc
+\brief    function for convert anybody hdc to rgb24, if needed buf relloc from ::base_funcs::mem::u3realloc
 \author   Erashov Anton erashov2026@proton.me
 \date     26.07.2016
 */
@@ -36,13 +36,13 @@ struct Hdc2BmpCallInfo final {
   {
     if (!source_hdc_ || !active_dest_buf_ || !stride_dest_)
     {
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       return false;
     }
 
     if ((dest_count_bits_ != 16) && (dest_count_bits_ != 24) && (dest_count_bits_ != 32))
     {
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       return false;
     }
     return true;

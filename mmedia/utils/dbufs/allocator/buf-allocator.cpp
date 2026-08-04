@@ -2,7 +2,6 @@
 \file       buf-allocator.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_dbufs
 */
 #include "../dbufs-includes_int.hpp"
 #include "buf-allocator.hpp"
@@ -48,7 +47,7 @@ BufAllocator::create (IBufAllocator::size_buf_type size) -> utils::dbufs::video:
     if (size)
     {
       // пользователю важен размер буфера
-      const auto raw_buf = buf->getraw_buf ();
+      const auto raw_buf = buf->get_block ();
       if (raw_buf)
       {
         const auto  sizeraw_buf = raw_buf->get_capacity ();
@@ -80,12 +79,12 @@ void
 BufAllocator::clear ()
 {
   lock_type lock (mtx_);
-  U3_XLOG_DEV ("BufAllocator::clear::---->" + VTOLOG (bufs_.size ()));
+  U3_XLOG_DEV ("BufAllocator::clear:---->" + VTOLOG (bufs_.size ()));
   U3_XLOG_DEV (TOLOG (dump_state_int ()));
 
   for (utils::dbufs::video::IVideoBuf::ptr& buf : bufs_)
   {
-    U3_CHECK_NT (buf.use_count () <= 1, PTR_TOLOG (buf.get ()) + VTOLOG (buf.use_count ()));
+    U3_TEST (buf.use_count () <= 1, PTR_TOLOG (buf.get ()) + VTOLOG (buf.use_count ()));
     buf->set_flag (::utils::dbufs::BufFlags::empty, true);
     buf.reset ();
   }
@@ -93,7 +92,7 @@ BufAllocator::clear ()
   bufs_.clear ();
   counter_alloc_bufs_ = 0;
   counter_reuse_bufs_ = 0;
-  U3_XLOG_DEV ("BufAllocator::clear::<----");
+  U3_XLOG_DEV ("BufAllocator::clear:<----");
 }
 
 

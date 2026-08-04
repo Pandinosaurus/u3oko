@@ -3,7 +3,6 @@
 \file       median-time-filter-prop.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::noises::time::ext::consts
@@ -81,4 +80,4 @@ class MedianTimeFilterProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::videos::noises::time::ext
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::time::ext::MedianTimeFilterProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::time::ext::MedianTimeFilterProp);

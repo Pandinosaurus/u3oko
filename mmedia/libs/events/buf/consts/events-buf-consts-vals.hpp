@@ -3,7 +3,6 @@
 \file       events-buf-consts-vals.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.09.2018
-\project    mevents
 */
 
 namespace libs::events::buf::consts

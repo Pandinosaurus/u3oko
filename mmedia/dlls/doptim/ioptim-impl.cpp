@@ -2,7 +2,6 @@
 \file       ioptim-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_doptim_dll
 */
 #include "doptim-includes_int.hpp"
 #include "ioptim-alg.hpp"

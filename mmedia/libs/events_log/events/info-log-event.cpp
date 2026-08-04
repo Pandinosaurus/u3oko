@@ -2,7 +2,6 @@
 \file       info-log-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -62,7 +61,7 @@ InfoLogEvent::text (const LogTexts& type) const -> std::string
   case LogTexts::level:
     return to_string (appl_.msg_state_);
   case LogTexts::unknown:
-    U3_ASSERT_NT (0, "???");
+    U3_ASSERT_SOFT (0, "???");
     return "?od";
   }
   return "?od";
@@ -73,7 +72,7 @@ void
 InfoLogEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "InfoLogEvent::load_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "InfoLogEvent::load_json_int:: wtf???");
 }
 
 
@@ -81,7 +80,7 @@ void
 InfoLogEvent::save_json_int (::boost::json::object& obj) const
 {
   super::save_json_int (obj);
-  U3_ASSERT_NT (0, "InfoLogEvent::save_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "InfoLogEvent::save_json_int:: wtf???");
 }
 
 
@@ -103,7 +102,7 @@ InfoLogEvent::copy_int (const IEvent::craw_ptr src)
   time_ = dsrc->time_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InfoLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -115,7 +114,8 @@ InfoLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::InfoLogEvent);

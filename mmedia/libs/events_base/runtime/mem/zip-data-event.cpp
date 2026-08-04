@@ -2,7 +2,6 @@
 \file       zip-data-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "zip-data-event.hpp"
@@ -150,6 +149,7 @@ ZipDataEvent::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ZipDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -162,7 +162,8 @@ ZipDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::mem
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::mem::ZipDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::mem::ZipDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::mem::ZipDataEvent);

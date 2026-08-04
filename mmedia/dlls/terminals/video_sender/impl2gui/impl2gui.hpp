@@ -3,7 +3,6 @@
 \file       impl2gui.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.08.2018
-\project    u3_video_sender_dll
 */
 
 namespace dlls::terminals::video_sender::impl2gui

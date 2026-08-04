@@ -2,7 +2,6 @@
 \file       info-log-session-fragment.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       22.02.2022
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -11,6 +10,7 @@
 
 namespace libs::events_log::events
 {
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InfoLogSessionFragment::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -19,7 +19,7 @@ InfoLogSessionFragment::serialize (Archive& arh, const std::uint32_t /* file_ver
   arh& BOOST_SERIALIZATION_NVP (off_);
   arh& BOOST_SERIALIZATION_NVP (size_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const InfoLogSessionFragment& src)
@@ -43,5 +43,5 @@ tag_invoke (::boost::json::value_to_tag< InfoLogSessionFragment >, const ::boost
 }
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogSessionFragment);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::InfoLogSessionFragment);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::InfoLogSessionFragment);

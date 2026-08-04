@@ -3,7 +3,6 @@
 \file       handler-gdi-obj.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       12.05.2022
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::platforms::win32
@@ -100,14 +99,14 @@ class HandlerCompatibleDC
     hdc_ (nullptr),
     original_bitmap_ (nullptr)
   {
-    U3_CHECK_WIN32_STATE (hdc_ = CreateCompatibleDC (hdc), "CreateCompatibleDC");
+    U3_THROW_IF_WIN32_STATE (hdc_ = CreateCompatibleDC (hdc), "CreateCompatibleDC");
   }
 
   ~HandlerCompatibleDC ()
   {
     if (hdc_ && original_bitmap_)
     {
-      U3_CHECK_WIN32_CALL_NT (SelectObject (hdc_, original_bitmap_), "SelectObject for original bitmap");
+      U3_THROW_IF_WIN32_CALL_NT (SelectObject (hdc_, original_bitmap_), "SelectObject for original bitmap");
     }
 
     safe_delete_gdi_object (hdc_);
@@ -118,7 +117,7 @@ class HandlerCompatibleDC
   {
     if (nullptr == original_bitmap_)
     {
-      U3_CHECK_WIN32_STATE (original_bitmap_ = ::libs::utility::casts::static_cast_helper< HBITMAP > (SelectObject (hdc_, obj)), "SelectObject");
+      U3_THROW_IF_WIN32_STATE (original_bitmap_ = ::libs::utility::casts::static_cast_helper< HBITMAP > (SelectObject (hdc_, obj)), "SelectObject");
     }
     return original_bitmap_;
   }

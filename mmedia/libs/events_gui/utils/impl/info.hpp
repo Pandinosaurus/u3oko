@@ -3,18 +3,13 @@
 \file       info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::utils::impl
 {
 struct Info {
   public:
-  Info ()
-  {
-    reset ();
-  }
+  Info () = default;
 
   bool
   self_test () const
@@ -29,12 +24,13 @@ struct Info {
     height_ = 0;
   }
 
-  std::int32_t width_;    //<
-  std::int32_t height_;   //<
+  std::int32_t width_ { 0 };    //<
+  std::int32_t height_ { 0 };   //<
 
   private:
   friend class boost::serialization::access;
 
+#if (U3_USE_BOOST_SERIALIZTION)
   template< class Archive >
   void
   serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -42,5 +38,6 @@ struct Info {
     arh& BOOST_SERIALIZATION_NVP (width_);
     arh& BOOST_SERIALIZATION_NVP (height_);
   }
+#endif
 };
 }   // namespace libs::events_gui::utils::impl

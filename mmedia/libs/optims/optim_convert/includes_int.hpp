@@ -3,7 +3,6 @@
 \file       includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_optim_gen_convert
 */
 #include "mmedia/libs/optims/optim/io/libs-optims-optim-io-includes.hpp"
 #include "mmedia/libs/ilink/consts/libs-ilink-const-vals.hpp"

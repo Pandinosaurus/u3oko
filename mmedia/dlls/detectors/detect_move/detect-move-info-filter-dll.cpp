@@ -2,9 +2,8 @@
 \file       detect-move-info-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_detect_move
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "detect-move-includes_int.hpp"
 #include "detect-move-info-filter-dll.hpp"
 #include "detect-move-filter-dll.hpp"

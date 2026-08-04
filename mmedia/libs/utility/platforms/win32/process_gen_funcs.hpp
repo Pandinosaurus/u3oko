@@ -3,7 +3,6 @@
 \file       process_gen_funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       07.11.2016
-\project    u3_helpers_lib
 \brief      Функции для работы с процессами в win32
 */
 
@@ -14,7 +13,7 @@ add_process_privilage ()
 {
   HANDLE htk = 0;
 
-  U3_CHECK (OpenProcessToken (GetCurrentProcess (), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &htk), "open process token");
+  U3_THROW_IF (OpenProcessToken (GetCurrentProcess (), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &htk), "open process token");
   U3_ASSERT (htk);
 
   bool         res        = true;
@@ -32,7 +31,7 @@ add_process_privilage ()
 
     if (!LookupPrivilegeValue (0, text_ids[indx1], &tkp.Privileges[0].Luid))
     {
-      U3_ASSERT_SIGNAL ("failed");
+      U3_ASSERT_THROW ("failed");
       res = false;
       continue;
     }
@@ -42,7 +41,7 @@ add_process_privilage ()
 
     if (!AdjustTokenPrivileges (htk, false, &tkp, 0, ::libs::utility::casts::reinterpret_cast_helper< PTOKEN_PRIVILEGES > (0), 0))
     {
-      U3_ASSERT_SIGNAL ("failed");
+      U3_ASSERT_THROW ("failed");
       res = false;
       continue;
     }
@@ -50,6 +49,6 @@ add_process_privilage ()
 
   CloseHandle (htk);
   htk = 0;
-  U3_CHECK_WIN32_STATE (res, "CloseHandle");
+  U3_THROW_IF_WIN32_STATE (res, "CloseHandle");
 }
 }   // namespace libs::utility::platforms::win32

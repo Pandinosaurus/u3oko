@@ -2,7 +2,6 @@
 \file       property-log-module-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../events-base-includes_int.hpp"
 #include "property-log-module-event.hpp"
@@ -119,6 +118,7 @@ PropertyLogModuleEvent::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 PropertyLogModuleEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -127,7 +127,8 @@ PropertyLogModuleEvent::serialize (Archive& arh, const std::uint32_t /* file_ver
   arh& BOOST_SERIALIZATION_NVP (vals_);
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::modules::log
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::log::PropertyLogModuleEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::log::PropertyLogModuleEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::modules::log::PropertyLogModuleEvent);

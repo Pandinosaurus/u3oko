@@ -2,7 +2,6 @@
 \file       sys-info-impl-mac.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.02.2022
-\project    u3_helpers_lib
 */
 #include "../../../utility-lib-includes_int.hpp"
 #include "sys-info-impl.hpp"
@@ -15,7 +14,7 @@ get_os_info ()
 {
   std::string ret;
   std::string type_os = "unknown";
-  U3_ASSERT_SIGNAL ("failed");
+  U3_ASSERT_THROW ("failed");
   return ret;
 }
 
@@ -24,7 +23,7 @@ get_mem_info ()
 {
   std::string        ret;
   const std::int32_t b2mb = 1024 * 1024;
-  U3_ASSERT_SIGNAL ("failed");
+  U3_ASSERT_THROW ("failed");
   return ret;
 }
 
@@ -32,7 +31,7 @@ inline std::string
 get_display_info ()
 {
   std::string ret;
-  U3_ASSERT_SIGNAL ("failed");
+  U3_ASSERT_THROW ("failed");
   return ret;
 }
 
@@ -66,7 +65,7 @@ SysInfoImpl::get (const HardwareType& type) const
     break;
 #  endif
   default:
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     break;
   }
   return ret;

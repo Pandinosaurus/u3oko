@@ -2,7 +2,6 @@
 \file       x86_cpu.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../../utility-lib-includes_int.hpp"
 #include "x86_cpu.hpp"
@@ -243,7 +242,7 @@ auto
 get_all_info_cpu (SupportExtensionCPU& ret) -> bool
 {
   ret.reset ();
-  U3_CHECK_NT (get_exts_cpu (ret), "get_all_info_cpu");
+  U3_TEST (get_exts_cpu (ret), "get_all_info_cpu");
 
   ret.id_cpu_ = get_text_about_cpu ();
   return true;

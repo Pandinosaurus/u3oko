@@ -2,7 +2,6 @@
 \file       path_funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 \brief      Функции для работы с файлами и директориями
 */
 #include "../utility-lib-includes_int.hpp"
@@ -27,7 +26,7 @@ namespace libs::utility::files
 auto
 make_short_path (const std::string& path) -> std::string
 {
-  U3_CHECK (!path.empty (), "empty path");
+  U3_THROW_IF (!path.empty (), "empty path");
 
 #ifdef U3_OS_WIN32_DESKTOP
   const auto req_size = GetShortPathNameA (path.c_str (), nullptr, 0);

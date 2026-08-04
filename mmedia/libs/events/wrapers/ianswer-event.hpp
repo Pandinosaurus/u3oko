@@ -3,7 +3,6 @@
 \file       ianswer-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 
 namespace libs::events
@@ -52,4 +51,4 @@ class IAnswerEvent : public IWrapBaseEvent
 };
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::IAnswerEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::IAnswerEvent);

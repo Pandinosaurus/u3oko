@@ -3,7 +3,6 @@
 \file       v4l2-vgen-includes_int.hpp
 \date       20.02.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_v4l2_vgen
 */
 #include "../../dlls-includes_int.hpp"
 

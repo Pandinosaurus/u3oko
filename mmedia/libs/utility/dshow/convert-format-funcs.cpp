@@ -2,7 +2,6 @@
 \file       convert-format-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2018
-\project    u3_dshow_vgen
 */
 #include "../utility-lib-includes_int.hpp"
 #include "convert-format-funcs.hpp"

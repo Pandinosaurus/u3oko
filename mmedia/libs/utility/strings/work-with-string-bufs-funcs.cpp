@@ -2,9 +2,8 @@
 \file       work-with-string-bufs-funcs.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../utility-lib-includes_int.hpp"
 #include "work-with-string-bufs-funcs.hpp"
 

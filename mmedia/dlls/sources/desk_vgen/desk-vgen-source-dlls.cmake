@@ -4,7 +4,7 @@
 # file        desk-vgen-source-dlls.cmake
 
 if(NOT U3_DBG_COMPILE_AT_BEGIN_EXTLIBS)
-  if(${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_LINUX} OR ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_RASPBERRY})
+  if(${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_LINUX} OR ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_RASPBERRY} OR ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_ORANGE_PI})
     #include( "./build/cmake/libs/libscreencapture-wayland/u3-libscreencapture-wayland-lib.cmake" )
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(SYSTEMD REQUIRED libsystemd)
@@ -39,7 +39,9 @@ u3_add_target_dylib(
   #sdbus-cpp-lib
   ${SYSTEMD_LIBRARIES}
   DEPEND_TARGETS
+  #wlscreencapture-util
   dbufs-dll)
+  
 
 #if ( ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_LINUX} OR ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_RASPBERRY} OR ${U3_SYSTEM_NAME} STREQUAL ${U3_SYSTEM_NAME_ORANGE_PI})
 #    wlscreencapture-lib

@@ -3,7 +3,6 @@
 \file       defines-helper-http-log-calls.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.06.2022
-\project    mlog
 */
 
 #ifndef U3_LOG_HTTP_DEV
@@ -63,7 +62,7 @@
 #endif
 
 #ifndef U3_LOG_HTTP_DBG
-#  ifdef U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+#  ifdef U3_DBG_LOG_LEVEL_ENABLE
 #    define U3_LOG_HTTP_DBG(u3def_info)                                                                                                                  \
       {                                                                                                                                                  \
         modules::mlog::ToLog { libs::properties::vers::links::mids::http2appl, ::libs::events_base::props::modules::log::LogLevels::debug }(u3def_info); \

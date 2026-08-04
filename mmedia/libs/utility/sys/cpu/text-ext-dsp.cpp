@@ -2,7 +2,6 @@
 \file       text-ext-dsp.cpp
 \date       02.06.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "../../utility-lib-includes_int.hpp"
 #include "text-ext-dsp.hpp"
@@ -34,7 +33,7 @@ TextExtDsp::get_text (const DspExts& val) const -> std::string
 
   if (it == val2txt_.end ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return std::string ("???");
   }
 
@@ -51,7 +50,7 @@ TextExtDsp::get_val (const std::string& txt) const -> DspExts
 
   if (it == txt2val_.end ())
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return DspExts::usual;
   }
   return it->second;

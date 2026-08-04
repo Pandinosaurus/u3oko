@@ -2,7 +2,6 @@
 \file       cuuid.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "cuuid.hpp"
@@ -112,14 +111,14 @@ operator!= (const cuuid& lph, const cuuid& rph) -> bool
   return lph == rph ? false : true;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 cuuid::serialize (Archive& arh, const std::uint32_t /* file_version */)
 {
   arh& BOOST_SERIALIZATION_NVP (id_);
 }
-
+#endif
 
 auto
 to_string (const cuuid& val) -> std::string
@@ -144,5 +143,5 @@ cuuid_to_buf (const cuuid& val, std::uint8_t buf[16])
 }
 }   // namespace libs::utility::utils
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::utility::utils::cuuid);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::utility::utils::cuuid);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::utility::utils::cuuid);

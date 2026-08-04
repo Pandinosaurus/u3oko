@@ -2,7 +2,6 @@
 \file       text-ext-cpu.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "../../utility-lib-includes_int.hpp"
 #include "text-ext-cpu.hpp"
@@ -47,7 +46,7 @@ TextExtCpu::get_text (const CpuExts& val) const -> std::string
 
   if (it == val2txt_.end ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return std::string ("???");
   }
 
@@ -63,7 +62,7 @@ TextExtCpu::get_val (const std::string& txt) const -> CpuExts
   auto it = txt2val_.find (txt);
   if (it == txt2val_.end ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return CpuExts::usual;
   }
   return it->second;

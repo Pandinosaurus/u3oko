@@ -3,7 +3,6 @@
 \file       block-mem-allocator.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_mems
 */
 
 namespace utils::mems::impl
@@ -15,7 +14,7 @@ class BlockMemAllocator final : public IBlockMemAllocator
   public:
   //  IBlockMemAllocator overrides
   virtual auto alloc (const size_type& size) -> syn::IBlockMem::ptr override;
-  virtual auto dump_memory_status () -> std::string override;
+  virtual auto get_memory_status () -> std::string override;
 
   private:
   //  friends

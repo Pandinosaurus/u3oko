@@ -4,7 +4,6 @@
 \brief      FOURCC constans
 \author     Erashov Anton erashov2026@proton.me
 \date       26.02.2026
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::uids::helpers

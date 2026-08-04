@@ -2,7 +2,6 @@
 \file       change-state-sub-sys-log-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -94,7 +93,7 @@ ChangeStateSubSysLogEvent::copy_int (const IEvent::craw_ptr src)
   start_ = dsrc->start_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ChangeStateSubSysLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -104,7 +103,8 @@ ChangeStateSubSysLogEvent::serialize (Archive& arh, const std::uint32_t /* file_
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::ChangeStateSubSysLogEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::ChangeStateSubSysLogEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::ChangeStateSubSysLogEvent);

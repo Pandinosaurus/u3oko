@@ -3,7 +3,6 @@
 \file       desk-vgen-const-vals.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.08.2024
-\project    u3_desk_vgen
 */
 
 namespace dlls::sources::desk_vgen::consts::param_keys

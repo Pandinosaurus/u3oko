@@ -3,7 +3,6 @@
 \file       check-bounds-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::utils
@@ -17,7 +16,7 @@ check_float (float* val, float def_val = 0.0F)
   //  if its SNAN, QNAN or denorm reset to 0.0F
   if (!res)
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     *val = def_val;
   }
 }

@@ -3,7 +3,6 @@
 \brief      Filter for correct image
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vcorrect_vdd
 */
 #include "vcorrect-includes_int.hpp"
 #include "vcorrect-info-filter-dll.hpp"

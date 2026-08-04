@@ -3,7 +3,6 @@
 \file       boost-lib-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_includes
 */
 // NOLINTBEGIN
 
@@ -41,30 +40,32 @@
 #include <boost/utility/string_view.hpp>
 #include <boost/json.hpp>
 
+#if (U3_USE_BOOST_SERIALIZTION)
 // #include <boost/archive/text_iarchive.hpp>
 // #include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/binary_iarchive.hpp>
-#include <boost/archive/binary_oarchive.hpp>
-#include <boost/archive/xml_iarchive.hpp>
-#include <boost/archive/xml_oarchive.hpp>
-#include <boost/archive/tmpdir.hpp>
+#  include <boost/archive/binary_iarchive.hpp>
+#  include <boost/archive/binary_oarchive.hpp>
+#  include <boost/archive/xml_iarchive.hpp>
+#  include <boost/archive/xml_oarchive.hpp>
+#  include <boost/archive/tmpdir.hpp>
 
-#include <boost/serialization/binary_object.hpp>
-#include <boost/serialization/serialization.hpp>
-#include <boost/serialization/access.hpp>
-#include <boost/serialization/nvp.hpp>
-#include <boost/serialization/split_free.hpp>
-#include <boost/serialization/shared_ptr_132.hpp>
-#include <boost/serialization/shared_ptr.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/list.hpp>
-#include <boost/serialization/map.hpp>
-#include <boost/serialization/set.hpp>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/unordered_map.hpp>
-#include <boost/serialization/unordered_set.hpp>
+#  include <boost/serialization/binary_object.hpp>
+#  include <boost/serialization/serialization.hpp>
+#  include <boost/serialization/access.hpp>
+#  include <boost/serialization/nvp.hpp>
+#  include <boost/serialization/split_free.hpp>
+#  include <boost/serialization/shared_ptr_132.hpp>
+#  include <boost/serialization/shared_ptr.hpp>
+#  include <boost/serialization/string.hpp>
+#  include <boost/serialization/export.hpp>
+#  include <boost/serialization/vector.hpp>
+#  include <boost/serialization/list.hpp>
+#  include <boost/serialization/map.hpp>
+#  include <boost/serialization/set.hpp>
+#  include <boost/serialization/array.hpp>
+#  include <boost/serialization/unordered_map.hpp>
+#  include <boost/serialization/unordered_set.hpp>
+#endif
 
 #include <boost/interprocess/sync/scoped_lock.hpp>
 #include <boost/interprocess/sync/named_mutex.hpp>

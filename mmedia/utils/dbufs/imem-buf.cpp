@@ -2,7 +2,6 @@
 \file       imem-buf.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.08.2018
-\project    u3_dbufs
 */
 #include "dbufs-includes_int.hpp"
 #include "imem-buf.hpp"
@@ -10,7 +9,7 @@
 namespace utils::dbufs
 {
 void
-IMemBuf::ialloc (const mem_var_type& size)
+IMemBuf::resize (const mem_var_type& size)
 {
   if (!raw_block_)
   {
@@ -18,7 +17,7 @@ IMemBuf::ialloc (const mem_var_type& size)
     raw_block_ = _imem->alloc (size);
   }
 
-  U3_CHECK (raw_block_, "get empty raw_block_");
+  U3_THROW_IF (raw_block_, "get empty raw_block_");
   if (raw_block_->get_capacity () < size)
   {
     raw_block_->resize (size);
@@ -42,12 +41,12 @@ IMemBuf::set_mem_var_int (const MemVars& type, mem_var_type val)
   case MemVars::size_data:
     if (val > 0)
     {
-      U3_CHECK (val || raw_block_, "try set size_data to empty raw_block_");
-      U3_CHECK (val <= raw_block_->get_capacity (), VTOLOG (val) + VTOLOG (raw_block_->get_capacity ()));
+      U3_THROW_IF (val || raw_block_, "try set size_data to empty raw_block_");
+      U3_THROW_IF (val <= raw_block_->get_capacity (), VTOLOG (val) + VTOLOG (raw_block_->get_capacity ()));
     }
     break;
   case MemVars::offset_data:
-    U3_CHECK (val < (*this)[MemVars::size_buf] || 0 == val, "offset large size" + VTOLOG (val) + VTOLOG ((*this)[MemVars::size_buf]));
+    U3_THROW_IF (val < (*this)[MemVars::size_buf] || 0 == val, "offset large size" + VTOLOG (val) + VTOLOG ((*this)[MemVars::size_buf]));
     break;
   case MemVars::size_buf:
     U3_XLOG_ERROR ("try set size_buf" + VTOLOG (val));
@@ -105,7 +104,7 @@ IMemBuf::clone_int (IBuf::craw_ptr isrc, float percent)
   mem_vars_[MemVars::size_buf]    = (*src)[MemVars::size_buf];
   mem_vars_[MemVars::size_data]   = (*src)[MemVars::size_data];
 
-  ialloc ((*src)[MemVars::size_buf]);
+  resize ((*src)[MemVars::size_buf]);
 
   if (percent <= 0.0F)
   {

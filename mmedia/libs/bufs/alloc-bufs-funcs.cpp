@@ -2,7 +2,6 @@
 \file       alloc-bufs-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.03.2022
-\project    u3_bufs
 */
 #include "libs-bufs-includes_int.hpp"
 #include "alloc-bufs-funcs.hpp"

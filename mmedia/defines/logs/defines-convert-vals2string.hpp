@@ -3,7 +3,6 @@
 \file       defines-convert-vals2string.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       25.02.2022
-\project    u3_defines
 */
 
 #ifndef TOLOG

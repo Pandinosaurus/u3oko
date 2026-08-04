@@ -3,7 +3,6 @@
 \file       conv_mod_5x5.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -59,7 +58,7 @@ class CConvMod5x5Alg final : public IOptimAlg
 #endif
       break;
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::conv::base::c5x5::mod_alu);
       break;
     }

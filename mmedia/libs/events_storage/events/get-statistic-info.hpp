@@ -3,7 +3,6 @@
 \file       get-statistic-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.07.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage::events
@@ -55,4 +54,4 @@ class GetStatisticInfo : public BaseStorageEvent
 };
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::GetStatisticInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::GetStatisticInfo);

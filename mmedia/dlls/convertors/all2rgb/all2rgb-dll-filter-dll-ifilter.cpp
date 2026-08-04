@@ -2,9 +2,8 @@
 \file       all2rgb-dll-filter-dll-ifilter.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_all2rgb
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "all2rgb-dll-includes_int.hpp"
 #include "all2rgb-dll-info-filter-dll.hpp"
 #include "all2rgb-dll-filter-dll.hpp"

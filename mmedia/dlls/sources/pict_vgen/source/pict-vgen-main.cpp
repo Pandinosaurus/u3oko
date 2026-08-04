@@ -2,7 +2,6 @@
 \file       pict-vgen-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.06.2016
-\project    u3_pict_vgen
 */
 #define STB_IMAGE_IMPLEMENTATION
 #define STB_IMAGE_RESIZE_IMPLEMENTATION

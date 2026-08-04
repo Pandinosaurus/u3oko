@@ -3,7 +3,6 @@
 \file       enum-subs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       30.07.2018
-\project    u3_dbufs
 */
 
 namespace utils::dbufs::video

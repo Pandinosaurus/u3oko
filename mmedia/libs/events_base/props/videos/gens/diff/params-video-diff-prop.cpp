@@ -2,7 +2,6 @@
 \file       params-video-diff-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "params-video-diff-prop.hpp"
@@ -30,7 +29,7 @@ ParamsVideoDiffProp::self_test () const -> bool
   return true;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ParamsVideoDiffProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -39,11 +38,12 @@ ParamsVideoDiffProp::serialize (Archive& arh, const std::uint32_t /* file_versio
   arh& BOOST_SERIALIZATION_NVP (bound_filling_);
   arh& BOOST_SERIALIZATION_NVP (val_filling_);
 }
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const ParamsVideoDiffProp& src)
 {
-  U3_ASSERT_NT (0, "???");
+  U3_ASSERT_SOFT (0, "???");
 }
 
 
@@ -51,10 +51,10 @@ auto
 tag_invoke (::boost::json::value_to_tag< ParamsVideoDiffProp >, const ::boost::json::value& jvs) -> ParamsVideoDiffProp
 {
   ParamsVideoDiffProp ret;
-  U3_ASSERT_NT (0, "???");
+  U3_ASSERT_SOFT (0, "???");
   return ret;
 }
 }   // namespace libs::events_base::props::videos::gens::diff
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::gens::diff::ParamsVideoDiffProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::gens::diff::ParamsVideoDiffProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::gens::diff::ParamsVideoDiffProp);

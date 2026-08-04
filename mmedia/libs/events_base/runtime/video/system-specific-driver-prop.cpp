@@ -2,7 +2,6 @@
 \file       system-specific-driver-prop.cpp
 \date       08.06.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "system-specific-driver-prop.hpp"
@@ -54,7 +53,7 @@ SystemSpecificDriverProp::copy_int (const IEvent::craw_ptr src)
   show_system_page_ = dsrc->show_system_page_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 SystemSpecificDriverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -64,7 +63,8 @@ SystemSpecificDriverProp::serialize (Archive& arh, const std::uint32_t /* file_v
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::video
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::video::SystemSpecificDriverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::video::SystemSpecificDriverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::video::SystemSpecificDriverProp);

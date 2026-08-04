@@ -3,7 +3,6 @@
 \file       node-id.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_core_lib
 */
 
 namespace libs::core::graph
@@ -49,7 +48,7 @@ NodeID      tag_invoke (::boost::json::value_to_tag< NodeID >, const ::boost::js
 std::string get_ext_graph_node_id (const NodeID&);
 }   // namespace libs::core::graph
 
-BOOST_CLASS_EXPORT_KEY (::libs::core::graph::NodeID);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::core::graph::NodeID);
 
 namespace boost
 {

@@ -2,7 +2,6 @@
 \file       gen-vgen-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_gen_vgen
 */
 #include "gen-vgen-includes_int.hpp"
 #include "gen-vgen-info-filter-dll.hpp"

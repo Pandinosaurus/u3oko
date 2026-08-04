@@ -3,7 +3,6 @@
 \file       enum-graph-actions.hpp
 \date       14.09.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 
 namespace libs::events_media::events

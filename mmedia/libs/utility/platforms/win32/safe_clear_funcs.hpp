@@ -3,7 +3,6 @@
 \file       safe_clear_funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include <Unknwn.h>
 
@@ -57,7 +56,7 @@ close (HANDLE& h)
     return;
   }
 
-  U3_CHECK_WIN32_CALL_NT (CloseHandle (h), "close handle");
+  U3_THROW_IF_WIN32_CALL_NT (CloseHandle (h), "close handle");
   h = 0;
 }
 }   // namespace libs::utility::platforms::win32

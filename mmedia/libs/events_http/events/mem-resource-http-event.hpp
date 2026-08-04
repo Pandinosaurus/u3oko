@@ -3,7 +3,6 @@
 \file       mem-resource-http-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.04.2018
-\project    u3_events_http
 */
 
 namespace libs::events_http::events
@@ -66,4 +65,4 @@ class MemResourceHttpEvent : public BaseHttpEvent
 };
 }   // namespace libs::events_http::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::MemResourceHttpEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::MemResourceHttpEvent);

@@ -2,7 +2,6 @@
 \file       video-est-motion-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-est-motion-prop.hpp"
@@ -55,7 +54,7 @@ VideoEstMotionProp::copy_int (const IEvent::craw_ptr src)
   bufs_ = dsrc->bufs_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoEstMotionProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -65,7 +64,8 @@ VideoEstMotionProp::serialize (Archive& arh, const std::uint32_t /* file_version
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::motion_est
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::motion_est::VideoEstMotionProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::motion_est::VideoEstMotionProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::motion_est::VideoEstMotionProp);

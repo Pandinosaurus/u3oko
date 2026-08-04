@@ -2,7 +2,6 @@
 \file       node-graph-info.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -52,7 +51,7 @@ NodeGraphInfo::get_name_dll () const -> const std::string&
   return name_dll_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 NodeGraphInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -60,7 +59,7 @@ NodeGraphInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (id_);
   arh& BOOST_SERIALIZATION_NVP (name_dll_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const NodeGraphInfo& src)
@@ -83,5 +82,5 @@ tag_invoke (::boost::json::value_to_tag< NodeGraphInfo >, const ::boost::json::v
 }
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::NodeGraphInfo);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::NodeGraphInfo);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::NodeGraphInfo);

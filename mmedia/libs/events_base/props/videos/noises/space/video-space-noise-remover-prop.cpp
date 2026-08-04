@@ -2,7 +2,6 @@
 \file       video-space-noise-remover-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-space-noise-remover-prop.hpp"
@@ -68,7 +67,7 @@ VideoSpaceNoiseRemoverProp::self_correct_int ()
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoSpaceNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -80,7 +79,8 @@ VideoSpaceNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::noises::space
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::VideoSpaceNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::VideoSpaceNoiseRemoverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::space::VideoSpaceNoiseRemoverProp);

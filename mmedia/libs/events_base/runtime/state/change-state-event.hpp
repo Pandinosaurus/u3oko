@@ -3,7 +3,6 @@
 \file       change-state-event.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::state
@@ -58,4 +57,4 @@ class ChangeStateProcessEvent final : public RuntimeEvent
 };
 }   // namespace libs::events_base::runtime::state
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::state::ChangeStateProcessEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::state::ChangeStateProcessEvent);

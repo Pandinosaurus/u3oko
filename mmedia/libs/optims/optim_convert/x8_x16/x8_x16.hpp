@@ -3,7 +3,6 @@
 \file       x8_x16.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_optim_gen_convert
 */
 
 namespace libs::optim::convert::x8_x16

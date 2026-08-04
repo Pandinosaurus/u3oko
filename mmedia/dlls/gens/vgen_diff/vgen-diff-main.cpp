@@ -2,7 +2,6 @@
 \file       vgen-diff-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vgen_diff
 */
 #include "vgen-diff-includes_int.hpp"
 #include "vgen-diff-info-filter-dll.hpp"

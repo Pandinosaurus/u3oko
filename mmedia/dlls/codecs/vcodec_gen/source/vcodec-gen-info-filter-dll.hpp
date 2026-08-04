@@ -3,7 +3,6 @@
 \file       vcodec-gen-info-filter-dll.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vcodec_gen
 */
 
 namespace dlls::codecs::vcodec_gen

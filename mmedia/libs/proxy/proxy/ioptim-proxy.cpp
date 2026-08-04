@@ -2,7 +2,6 @@
 \file       ioptim-proxy.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.04.2022
-\project    u3_proxy_libs
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

@@ -3,7 +3,6 @@
 \file       iapplication-proxy.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.05.2017
-\project    u3_link
 */
 
 namespace libs::link::appl

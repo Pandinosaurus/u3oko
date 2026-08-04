@@ -2,7 +2,6 @@
 \file       bufs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.05.2016
-\project    u3_bufs
 */
 #include "libs-bufs-includes_int.hpp"
 #include "bufs.hpp"
@@ -90,7 +89,7 @@ Bufs::swap (Bufs& src) noexcept
 {
   if (this == &src)
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return;
   }
 
@@ -106,7 +105,7 @@ Bufs::clone (const Bufs& src)
 {
   if (&src == this)
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return;
   }
 
@@ -122,7 +121,7 @@ Bufs::clone (const Bufs& src)
       continue;
     }
 
-    dchild = ibuf->impl ()->create (schild.second->getraw_buf () ? schild.second->getraw_buf ()->get_size () : 0);
+    dchild = ibuf->impl ()->create (schild.second->get_block () ? schild.second->get_block ()->get_size () : 0);
     dchild->clone (schild.second.get (), 100.0F);
   }
 

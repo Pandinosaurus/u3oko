@@ -3,7 +3,6 @@
 \file       base-id-prop.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       18.07.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::base_id
@@ -20,7 +19,7 @@ class BaseIdProp final : virtual public events_base::Event
 
   public:
   // ext types
-  using buf2module_infos_type = std::list< Buff2ModuleInfo >;
+  using buf_infos_type = std::list< Buff2ModuleInfo >;
 
   U3_ADD_POINTERS_TO_SELF (BaseIdProp)
   U3_ADD_MAKE_SHARED_THIS (BaseIdProp)
@@ -37,8 +36,8 @@ class BaseIdProp final : virtual public events_base::Event
     return ret;
   }
 
-  source_name_type      source_name_;   //< Имя источника-объекта (камеры, микрофон etc)
-  buf2module_infos_type buf2modules_;   //< Информация о маршрутизации данных от этого источника
+  source_name_type source_name_;   //< Имя источника-объекта (камеры, микрофон etc)
+  buf_infos_type   buf2modules_;   //< Информация о маршрутизации данных от этого источника
 
   protected:
   // IEvent overrides
@@ -61,4 +60,4 @@ class BaseIdProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::base_id
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::base_id::BaseIdProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::base_id::BaseIdProp);

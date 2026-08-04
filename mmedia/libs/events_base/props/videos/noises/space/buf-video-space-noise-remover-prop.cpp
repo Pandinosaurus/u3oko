@@ -2,7 +2,6 @@
 \file       buf-video-space-noise-remover-prop.cpp
 \date       01.04.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "buf-video-space-noise-remover-prop.hpp"
@@ -55,6 +54,7 @@ BuffVideoSpaceNoiseRemoverProp::copy_int (const IEvent::craw_ptr src)
 }
 #endif
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BuffVideoSpaceNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -62,7 +62,7 @@ BuffVideoSpaceNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* 
   arh& U3_BOOST_SERIALIZE_MAKE_NVP ("olibsoeventsobufoEventBufs", super);
   arh& BOOST_SERIALIZATION_NVP (impl_info_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const BuffVideoSpaceNoiseRemoverProp& src)
@@ -98,5 +98,5 @@ tag_invoke (::boost::json::value_to_tag< BuffVideoSpaceNoiseRemoverProp >, const
 }
 }   // namespace libs::events_base::props::videos::noises::space
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::BuffVideoSpaceNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::BuffVideoSpaceNoiseRemoverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::space::BuffVideoSpaceNoiseRemoverProp);

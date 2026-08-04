@@ -2,7 +2,6 @@
 \file       thread-priority-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.05.2022
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "priorities-enum.hpp"

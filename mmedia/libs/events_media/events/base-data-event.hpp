@@ -3,7 +3,6 @@
 \file       base-data-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_media
 \brief      Объявление базового класса события модуля обработки данных
 */
 
@@ -56,4 +55,4 @@ class BaseDataEvent : public ::libs::events_base::Event
 };
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::BaseDataEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::BaseDataEvent);

@@ -3,7 +3,6 @@
 \file       defines-detect-compiler-type.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 \brief      Выводим определение компилятора системы
 */
 

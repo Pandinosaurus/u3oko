@@ -3,7 +3,6 @@
 \file       module-log-includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mlog
 */
 #include "../modules-includes_int.hpp"
 #include "module-log-includes.hpp"

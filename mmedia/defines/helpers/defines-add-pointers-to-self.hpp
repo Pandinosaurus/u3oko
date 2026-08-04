@@ -3,7 +3,6 @@
 \file       defines-add-pointers-to-self.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 \brief      Объявление макроса для декларирования типов-указателей на объекты  заданного типа
 */
 

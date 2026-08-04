@@ -3,7 +3,6 @@
 \file       wrapper-http-event.hpp
 \date       21.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_storage
 */
 
 namespace libs::events_storage::events
@@ -60,4 +59,4 @@ class WrapperStorageEvent : public BaseStorageEvent
 };
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::WrapperStorageEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::WrapperStorageEvent);

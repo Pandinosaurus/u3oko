@@ -3,7 +3,6 @@
 \file       ievent.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mevents
 */
 
 namespace dlls::devents::impl
@@ -123,5 +122,7 @@ deep_clone (typename EventType::craw_ptr src, const Deeps& deep)
 }
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::IEvent);
-BOOST_CLASS_TRACKING (::libs::events::IEvent, boost::serialization::track_always);
+#if (U3_USE_BOOST_SERIALIZTION)
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::IEvent);
+U3_BOOST_CLASS_TRACKING (::libs::events::IEvent, boost::serialization::track_always);
+#endif

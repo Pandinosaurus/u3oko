@@ -2,7 +2,6 @@
 \file       impl2gui.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.08.2018
-\project    u3_video_sender_dll
 */
 #include "../video-sender-includes_int.hpp"
 #include "impl2gui.hpp"
@@ -40,8 +39,8 @@ Impl2Gui::fill_frame (const syn::TransformInfo& info, void* pmem) -> bool
     auto*      header = ::libs::utility::casts::reinterpret_cast_helper< ::modules::mgui::appl::io::VideoIO* > (pmem);
     const auto bbuf   = (**info.ibuf_)[utils::dbufs::video::consts::offs::lit];
 
-    U3_CHECK (header, "empty header video frame");
-    // U3_CHECK( header->check(), "check header video frame" );
+    U3_THROW_IF (header, "empty header video frame");
+    // U3_THROW_IF( header->check(), "check header video frame" );
 
     header->reset ();
     ++header->in_.counter_;
@@ -111,7 +110,7 @@ Impl2Gui::send_frame (
 {
   if (U3_MARK_UNUSED auto imem = helper->get_imem ())
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
     if (finfo_.last_hmem_.check ())
     {
@@ -156,16 +155,16 @@ Impl2Gui::send_frame (
 
     if (finfo_.last_hmem_.check () && finfo_.last_hmem_.size_ < size_mem)
     {
-      U3_CHECK (helper->mem_free (finfo_.last_hmem_), "free mem");
+      U3_THROW_IF (helper->mem_free (finfo_.last_hmem_), "free mem");
     }
 
     if (!finfo_.last_hmem_.check ())
     {
-      U3_CHECK (helper->mem_alloc (size_mem, finfo_.last_hmem_), "alloc mem for send to gui");
+      U3_THROW_IF (helper->mem_alloc (size_mem, finfo_.last_hmem_), "alloc mem for send to gui");
     }
 
     U3_ASSERT (finfo_.last_hmem_.check ());
-    U3_CHECK (helper->mem_atomic_call (finfo_.last_hmem_, FillFrameHelper (this, info)), "call mem_atomic_call");
+    U3_THROW_IF (helper->mem_atomic_call (finfo_.last_hmem_, FillFrameHelper (this, info)), "call mem_atomic_call");
 
     helper->s1end_msg (BaseGUIEvent::ptr (
       new ::libs::events_gui::events::MemBlockEvent (finfo_.last_hmem_, finfo_.rprops_->get_id ())));

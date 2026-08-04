@@ -3,7 +3,6 @@
 \file       events-buf-info.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::motion_est
@@ -50,4 +49,4 @@ void               tag_invoke (::boost::json::value_from_tag, ::boost::json::val
 EventBufsMotionEst tag_invoke (::boost::json::value_to_tag< EventBufsMotionEst >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::videos::generic::motion_est
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::motion_est::EventBufsMotionEst);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::motion_est::EventBufsMotionEst);

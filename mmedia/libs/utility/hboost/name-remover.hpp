@@ -3,7 +3,6 @@
 \file       name-remover.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.03.2016
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::hboost

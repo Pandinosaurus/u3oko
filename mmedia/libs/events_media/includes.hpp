@@ -3,7 +3,6 @@
 \file       includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.05.2017
-\project    u3_events_media
 */
 #include "events/base-data-event.hpp"
 #include "events/enum-graph-actions.hpp"

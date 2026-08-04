@@ -3,7 +3,6 @@
 \file       process-alg-info.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_filter_space
 */
 
 namespace dlls::noisez::space::impl::rang
@@ -28,7 +27,7 @@ struct ProcessAlgInfo final {
   {
     if (!buf_ || !sbuf_ || !pfinfo_ || !impl_info_)
     {
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       return false;
     }
 

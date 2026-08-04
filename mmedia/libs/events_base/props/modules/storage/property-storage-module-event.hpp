@@ -3,7 +3,6 @@
 \file       property-storage-module-event.hpp
 \date       22.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::modules::storage
@@ -62,4 +61,4 @@ class PropertyStorageModuleEvent : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::modules::storage
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::storage::PropertyStorageModuleEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::storage::PropertyStorageModuleEvent);

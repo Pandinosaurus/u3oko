@@ -3,7 +3,6 @@
 \file       wrapper-http-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_http
 */
 
 namespace libs::events_http::events
@@ -60,4 +59,4 @@ class WrapperHttpEvent : public BaseHttpEvent
 };
 }   // namespace libs::events_http::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::WrapperHttpEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::WrapperHttpEvent);

@@ -3,7 +3,6 @@
 file        libs-link-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.12.2016
-\project    u3_link
 \brief      Файл, определяет набор интерфейсов и типов для ядра
 */
 #include "../consts/libs-link-time-vals.hpp"

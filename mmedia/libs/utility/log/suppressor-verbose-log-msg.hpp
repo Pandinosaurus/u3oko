@@ -3,7 +3,6 @@
 \file       suppressor-verbose-log-msg.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       07.10.2024
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::log

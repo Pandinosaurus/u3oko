@@ -3,7 +3,6 @@
 \file       http2json-helper-funcs.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mhttp
 */
 
 namespace modules::mhttp::appl::helpers
@@ -27,7 +26,7 @@ http2json (const std::string& http, std::string& json)
     const auto beg_equal = http.find ('=', beg_pos);
     const auto beg_amper = http.find ('&', beg_equal);
 
-    U3_CHECK (std::string::npos != beg_equal, "convert http 2 json, equal not found");
+    U3_THROW_IF (std::string::npos != beg_equal, "convert http 2 json, equal not found");
 
     json += count_tags ? ", " : "";
     json += "\"";

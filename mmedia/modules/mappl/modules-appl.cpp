@@ -2,7 +2,6 @@
 \file       modules-appl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.05.2016
-\project    mappl
 */
 #include "module-appl-includes_int.hpp"
 #include "modules-appl.hpp"
@@ -38,7 +37,6 @@ process_cmd_line (std::int32_t argc, char* argv[])
   options.add_options () (::libs::link::consts::text::id_lib_name, boost::program_options::value< std::string > ());
   options.add_options () (::libs::link::consts::text::id_company_name, boost::program_options::value< std::string > ());
   options.add_options () (::libs::link::consts::text::id_appl_name, boost::program_options::value< std::string > ());
-  // options.add_options () (::libs::link::consts::text::id_subsys_name, boost::program_options::value< std::string > ());
   options.add_options () (::libs::link::consts::text::id_service_name, boost::program_options::value< std::string > ());
   options.add_options () (::libs::link::consts::text::id_delay_ms, boost::program_options::value< std::string > ());
 
@@ -93,7 +91,7 @@ auto
 find_default_appl_lib (const std::string& fullpath) -> std::string
 {
   boost::filesystem::path bpath (fullpath);
-  std::string             ret = "find_default_appl_lib-module-appl-not-found";
+  std::string             ret = "module-appl-lib-not-found";
 
   // EAI-REFACT
 #if (U3_BUILD_MODULES_AS_LIBS == 1)

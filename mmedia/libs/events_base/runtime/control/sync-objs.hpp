@@ -3,7 +3,6 @@
 \file       sync-objs.hpp
 \date       17.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::control
@@ -65,4 +64,4 @@ class SyncObjs : public RuntimeEvent
 };
 }   // namespace libs::events_base::runtime::control
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::control::SyncObjs);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::control::SyncObjs);

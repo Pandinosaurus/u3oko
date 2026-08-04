@@ -2,7 +2,6 @@
 \file       capture-desk-impl-win32.cpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
 #include "../../desk-vgen-includes_int.hpp"
 #include "helpers/hdc2rgb24_func.hpp"
@@ -10,6 +9,12 @@
 #include "capture-desk-impl-win32.hpp"
 
 #ifdef U3_OS_WIN32_DESKTOP
+
+namespace dlls::sources::desk_vgen::impls::win32::syn
+{
+using HandlerGdiObj = ::libs::utility::platforms::win32::HandlerGdiObj< HDC >;
+}
+
 
 namespace dlls::sources::desk_vgen::impls::win32
 {
@@ -21,10 +26,10 @@ CaptureDeskImplWin32::get_buf_int (
   constexpr std::int32_t dest_bits = 24;
 
   {
-    RECT                                                    window_rect  = { 0, 0, 0, 0 };
-    POINT                                                   offset_pos   = { 0, 0 };
-    const auto                                              display_name = props_info.props_->ext_vals_.at (consts::param_keys::display_name);
-    ::libs::utility::platforms::win32::HandlerGdiObj< HDC > hdc (CreateDCA ("DISPLAY", display_name.c_str (), nullptr, nullptr));
+    RECT               window_rect { 0, 0, 0, 0 };
+    POINT              offset_pos { 0, 0 };
+    const auto         display_name = props_info.props_->ext_vals_.at (consts::param_keys::display_name);
+    syn::HandlerGdiObj hdc (CreateDCA ("DISPLAY", display_name.c_str (), nullptr, nullptr));
 
     window_rect.right  = GetDeviceCaps (*hdc, HORZRES);
     window_rect.bottom = GetDeviceCaps (*hdc, VERTRES);
@@ -57,7 +62,7 @@ CaptureDeskImplWin32::get_buf_int (
 
 #  ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
     const auto window = GetDesktopWindow ();
-    U3_CHECK_WIN32_CALL (GetClientRect (window, &window_rect), "GetClientRect");
+    U3_THROW_IF_WIN32_CALL (GetClientRect (window, &window_rect), "GetClientRect");
 #  endif
 
     switch (props_info.capture_props_->capi_.type_capture_)
@@ -66,9 +71,9 @@ CaptureDeskImplWin32::get_buf_int (
       info.width_dest_  = props_info.capture_props_->capi_.width_;
       info.height_dest_ = props_info.capture_props_->capi_.height_;
 
-      U3_CHECK_WIN32_CALL (GetPhysicalCursorPos (&offset_pos), "GetCursorPos");
-      // U3_CHECK (PhysicalToLogicalPoint (window, &offset_pos), "PhysicalToLogicalPoint" + VTOLOG (GetLastError ()));
-      // U3_CHECK (LogicalToPhysicalPointForPerMonitorDPI (window, &offset_pos), "PhysicalToLogicalPointForPerMonitorDPI" + VTOLOG (GetLastError ()));
+      U3_THROW_IF_WIN32_CALL (GetPhysicalCursorPos (&offset_pos), "GetCursorPos");
+      // U3_THROW_IF (PhysicalToLogicalPoint (window, &offset_pos), "PhysicalToLogicalPoint" + VTOLOG (GetLastError ()));
+      // U3_THROW_IF (LogicalToPhysicalPointForPerMonitorDPI (window, &offset_pos), "PhysicalToLogicalPointForPerMonitorDPI" + VTOLOG (GetLastError ()));
 
       std::int32_t loc_x = offset_pos.x - info.width_dest_ / 2;
       std::int32_t loc_y = offset_pos.y - info.height_dest_ / 2;

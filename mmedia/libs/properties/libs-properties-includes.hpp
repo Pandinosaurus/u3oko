@@ -3,7 +3,6 @@
 file        libs-properties-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.12.2016
-\project    u3_properties_libs
 */
 #include "consts/libs-properties-const-vals.hpp"
 #include "consts/keys/libs-properties-keys.hpp"

@@ -3,7 +3,6 @@
 \file       user-id-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2026
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base
@@ -64,4 +63,4 @@ class UserIdEvent : virtual public events_base::OpsStatusEvent
 };
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::UserIdEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::UserIdEvent);

@@ -2,7 +2,6 @@
 \file       create-info.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_link
 */
 #include "_make/libs-link-includes_int.hpp"
 #include "create-info.hpp"
@@ -76,7 +75,7 @@ CreateInfo::CreateInfo (const vals_type& vals) :
 void
 CreateInfo::check () const
 {
-  // U3_CHECK (!args_.empty (), "check args");
+  // U3_THROW_IF (!args_.empty (), "check args");
 }
 
 

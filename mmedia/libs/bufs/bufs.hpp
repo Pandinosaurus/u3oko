@@ -3,7 +3,6 @@
 \file       bufs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.05.2016
-\project    u3_bufs
 \brief      Обявление структуры для группировки связанных буферов с данными
 */
 
@@ -38,8 +37,8 @@ class Bufs final
   using video_bufs_type = boost::unordered_flat_map< syn::off_buf_type, syn::IVideoBuf::ptr >;
   using flags_type      = ::libs::utility::utils::ValuesStorage< BufsFlags, bool, BufsFlags::max_bound, false >;
 
-  syn::off_buf_type       base_buf_index_ = syn::offs::raw;   //< Индекс базового буфера, который будет ответственен за свойства, общие для всего списка
-  mutable video_bufs_type childs_;                            //< Набор дочерних буферов
-  flags_type              flags_;                             //< Флаги, разделяемые между всеми буферами
+  syn::off_buf_type       base_buf_index_ { syn::offs::raw };   //< Индекс базового буфера, который будет ответственен за свойства, общие для всего списка
+  mutable video_bufs_type childs_;                              //< Набор дочерних буферов
+  flags_type              flags_;                               //< Флаги, разделяемые между всеми буферами
 };
 }   // namespace libs::bufs

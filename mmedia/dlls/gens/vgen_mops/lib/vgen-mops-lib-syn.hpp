@@ -3,7 +3,6 @@
 \file       vgen-mops-lib-syn.hpp
 \date       16.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vgen_mops_lib
 */
 
 namespace dlls::gens::vgen_mops::lib::syn

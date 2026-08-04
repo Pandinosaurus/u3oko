@@ -3,7 +3,6 @@
 \file       vec2image1.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs

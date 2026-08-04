@@ -3,7 +3,6 @@
 \file       capture-desk-impl-win32.hpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
 
 namespace dlls::sources::desk_vgen::impls::win32
@@ -16,6 +15,6 @@ class CaptureDeskImplWin32 final : public ::dlls::sources::desk_vgen::ICaptureDe
 
   private:
   // ICaptureDeskImpl
-  virtual void get_buf_int (const syn::SourceImplInfo& props_info, CaptureDeskInfo& info) override;
+  virtual void get_buf_int (const syn::SourceImplInfo&, CaptureDeskInfo&) override;
 };
 }   // namespace dlls::sources::desk_vgen::impls::win32

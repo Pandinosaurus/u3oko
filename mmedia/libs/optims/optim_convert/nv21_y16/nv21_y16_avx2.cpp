@@ -2,7 +2,6 @@
 \file       nv21_y16_avx2.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_optim_gen_convert
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -18,7 +17,7 @@ U3_SET_TARGET_CPU (avx2)
 void
 avx2 (::libs::optim::io::MCallInfo& info)
 {
-  U3_ASSERT_TODO_OPTIM;
+  U3_MARK_TODO;
   alu (info);
 }
 }   // namespace libs::optim::convert::nv21_y16

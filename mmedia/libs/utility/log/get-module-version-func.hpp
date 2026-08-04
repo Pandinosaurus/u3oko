@@ -3,7 +3,6 @@
 \file       get-module-version-func.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.10.2024
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::log

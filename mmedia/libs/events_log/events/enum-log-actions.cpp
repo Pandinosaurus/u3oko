@@ -2,7 +2,6 @@
 \file       enum-log-actions.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.06.2022
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -24,7 +23,7 @@ to_string (const LogActions& act) -> std::string
   case LogActions::unknown:
     return "unknown sessions";
   default:
-    U3_ASSERT_SIGNAL ("unknown LogActions");
+    U3_ASSERT_THROW ("unknown LogActions");
     break;
   }
   return "???";

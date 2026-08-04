@@ -3,7 +3,6 @@
 \file       base-gui-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::events
@@ -54,4 +53,4 @@ class BaseGUIEvent : public ::libs::events_base::Event
 };
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::BaseGUIEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::BaseGUIEvent);

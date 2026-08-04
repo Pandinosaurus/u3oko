@@ -3,7 +3,6 @@
 \file       mem-copy-raw-func.hpp
 \date       25.08.2016
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 \brief      Обявление функции копирования блока памяти для всей системы
 */
 

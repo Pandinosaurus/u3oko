@@ -3,7 +3,6 @@
 \file       all2hsl-dll-filter-dll.hpp
 \date       01.01.2016
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_all2hsl
 */
 
 namespace dlls::convertors::all2hsl

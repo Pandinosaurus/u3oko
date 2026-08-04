@@ -2,7 +2,6 @@
 \file       rect.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 #include "../../includes_int.hpp"
 #include "rect.hpp"
@@ -45,7 +44,7 @@ Rect::load (::pugi::xml_node& param) -> bool
 
   if (!width || !height)
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return false;
   }
 
@@ -55,6 +54,7 @@ Rect::load (::pugi::xml_node& param) -> bool
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 Rect::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -62,7 +62,8 @@ Rect::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (width_);
   arh& BOOST_SERIALIZATION_NVP (height_);
 }
+#endif
 }   // namespace libs::events::props::details
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::props::details::Rect);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::props::details::Rect);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events::props::details::Rect);

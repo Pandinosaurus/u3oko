@@ -2,7 +2,6 @@
 \file       path-usings-enum.cpp
 \date       18.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../events-base-includes_int.hpp"
 #include "path-usings-enum.hpp"

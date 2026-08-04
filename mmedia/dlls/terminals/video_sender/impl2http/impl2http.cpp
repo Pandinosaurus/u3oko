@@ -2,7 +2,6 @@
 \file       impl2http.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.03.2022
-\project    u3_video_sender_dll
 */
 #include "../video-sender-includes_int.hpp"
 #include "impl2http.hpp"

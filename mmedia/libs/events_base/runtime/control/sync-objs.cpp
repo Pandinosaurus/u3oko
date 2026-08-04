@@ -2,7 +2,6 @@
 \file       sync-objs.cpp
 \date       17.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "sync-objs.hpp"
@@ -146,7 +145,7 @@ SyncObjs::copy_int (const IEvent::craw_ptr src)
   obj_groups_ = dsrc->obj_groups_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 SyncObjs::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -157,7 +156,8 @@ SyncObjs::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::control
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::control::SyncObjs);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::control::SyncObjs);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::control::SyncObjs);

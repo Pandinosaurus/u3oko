@@ -3,7 +3,6 @@
 \file       isync-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 \brief      Объявление события синхронизации пересылки другого события
 */
 
@@ -53,4 +52,4 @@ class ISyncEvent : public IWrapBaseEvent
 };
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::ISyncEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::ISyncEvent);

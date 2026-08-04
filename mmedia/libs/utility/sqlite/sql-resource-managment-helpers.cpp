@@ -2,7 +2,6 @@
 \file       sqlite-call-helper-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.06.2022
-\project    mevents
 */
 #include "../utility-lib-includes_int.hpp"
 #include "sqlite3.h"

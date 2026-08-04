@@ -2,7 +2,6 @@
 \file       expanded-times.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "expanded-times.hpp"
@@ -56,7 +55,7 @@ ExpandedTimes::end () -> bool
 
   if (ops_.empty () || times_.empty () || ops_.size () != times_.size ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return false;
   }
 
@@ -69,7 +68,7 @@ ExpandedTimes::end () -> bool
   auto find_set = find_time (name.first);
   if (vals_.end () == find_set)
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return false;
   }
 
@@ -77,7 +76,7 @@ ExpandedTimes::end () -> bool
   auto  find_element = elements.find (name.second);
   if (elements.end () == find_element)
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     return false;
   }
 
@@ -97,7 +96,7 @@ ExpandedTimes::end_skip ()
 {
   if (ops_.empty () || times_.empty () || ops_.size () != times_.size ())
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
   }
 
   ops_.pop_back ();
@@ -176,12 +175,12 @@ ExpandedTimes::clear () -> bool
   bool res = true;
   if (!ops_.empty ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     res = false;
   }
   if (!times_.empty ())
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     res = false;
   }
   vals_.clear ();

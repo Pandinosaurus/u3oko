@@ -2,7 +2,6 @@
 \file       events-base-register_events_in_archives.cpp
 \date       10.02.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "events-base-includes_int.hpp"
 #include "events-base-register_events_in_archives.hpp"

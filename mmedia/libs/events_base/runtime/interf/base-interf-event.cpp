@@ -2,7 +2,6 @@
 \file       interf-correct-image-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "base-interf-event.hpp"
@@ -67,7 +66,7 @@ BaseInterfEvent::copy_int (const IEvent::craw_ptr src)
   available_ = dsrc->available_;
 }
 
-#ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseInterfEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -82,6 +81,6 @@ BaseInterfEvent::serialize (Archive& arh, const std::uint32_t /* file_version */
 }   // namespace libs::events_base::runtime::interf
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::BaseInterfEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::BaseInterfEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::interf::BaseInterfEvent);
 #endif

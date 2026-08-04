@@ -2,7 +2,6 @@
 \file       x16_x8_alu.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_optim_gen_convert
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

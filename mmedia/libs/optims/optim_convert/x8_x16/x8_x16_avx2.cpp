@@ -2,7 +2,6 @@
 \file       x8_x16_avx2.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_optim_gen_convert
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

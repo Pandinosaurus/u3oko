@@ -3,7 +3,6 @@
 \file       events-storage-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       22.07.2018
-\project    u3_events_storage
 */
 #include "events-storage-base-types.hpp"
 #include "consts/events-storage-const-vals.hpp"

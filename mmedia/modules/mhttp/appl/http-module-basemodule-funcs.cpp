@@ -2,9 +2,8 @@
 \file       http-module-basemodule-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.08.2018
-\project    mhttp
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../module-http-includes_int.hpp"
 #include "mmedia/dlls/terminals/video_sender/consts/video-sender-const-vals.hpp"
 #include "http-module-syn.hpp"
@@ -23,7 +22,7 @@ HttpModule::appl_init_int (const syn::InitApplication& appinfo)
 void
 HttpModule::init_links_int (const syn::InitApplication& appinfo)
 {
-  U3_XLOG_DBG ("HttpModule::init_links_int::---->");
+  U3_XLOG_DBG ("HttpModule::init_links_int:---->");
   auto lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
   auto temp_link = lproxy->impl ()->get_listen (
     ::libs::link::CreateInfo (
@@ -56,7 +55,7 @@ HttpModule::init_links_int (const syn::InitApplication& appinfo)
     revnt->set_start (true);
     links_[syn::mids::http2appl]->send_msg (evnt);
   }
-  U3_XLOG_DBG ("HttpModule::init_links_int::<----");
+  U3_XLOG_DBG ("HttpModule::init_links_int:<----");
 }
 
 
@@ -64,14 +63,14 @@ void
 HttpModule::init_proxys_int ()
 {
   super::init_proxys_int ();
-  U3_CHECK (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "check create block mem allocator");
+  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "check create block mem allocator");
 }
 
 
 auto
 HttpModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("HttpModule::deinit_int::---->")
+  U3_XLOG_MARK ("HttpModule::deinit_int:---->")
   if (links_[syn::mids::http2appl])
   {
     auto [evnt, revnt] = ::libs::iproperties::helpers::create_event< syn::ChangeStateSubSysLogEvent > ();
@@ -93,7 +92,7 @@ HttpModule::appl_deinit_int () -> bool
 
   links_[syn::mids::http2appl]->destroy ();
   links_.reset_link (syn::mids::http2appl);
-  U3_XLOG_MARK ("HttpModule::deinit_int::<----")
+  U3_XLOG_MARK ("HttpModule::deinit_int:<----")
   return true;
 }
 

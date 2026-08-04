@@ -3,7 +3,6 @@
 \file       defines-add-disable-move-copy.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       02.03.2022
-\project    u3_defines
 */
 
 #ifndef U3_ADD_DELETE_MOVE_COPY

@@ -3,7 +3,6 @@
 \file       enum-selector-impls.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.03.2022
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base

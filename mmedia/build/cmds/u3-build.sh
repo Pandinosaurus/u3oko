@@ -52,7 +52,7 @@ if [[ ! -v U3_GENERATOR ]]; then
     U3_GENERATOR=Unix Makefiles
 fi
 
-if [[ ! -v U3_COMMERCIAL_PART ]]; then
+if [[ -z ${U3_COMMERCIAL_PART} ]]; then
     U3_COMMERCIAL_PART=0
 fi
 
@@ -74,6 +74,7 @@ echo U3_EXT_PARAMS=${U3_EXT_PARAMS}
 echo U3_LIBS_PREFIX=${U3_LIBS_PREFIX}
 echo U3_GENERATOR=${U3_GENERATOR}
 echo U3_USE_GIT_HASH_FOR_MARK_BUILD=${U3_USE_GIT_HASH_FOR_MARK_BUILD}
+echo U3_COMMERCIAL_PART=${U3_COMMERCIAL_PART}
 
 cd ./../../
 

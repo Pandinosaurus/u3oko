@@ -2,7 +2,6 @@
 \file       base-error-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "base-error-event.hpp"
@@ -44,7 +43,7 @@ BaseErrorEvent::copy_int (const IEvent::craw_ptr src)
   info_ = dsrc->info_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseErrorEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -54,7 +53,8 @@ BaseErrorEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::error
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::error::BaseErrorEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::error::BaseErrorEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::error::BaseErrorEvent);

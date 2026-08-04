@@ -3,7 +3,6 @@
 \file       gen-vgen-filter-dll.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_gen_vgen
 */
 
 namespace dlls::sources::gen_vgen

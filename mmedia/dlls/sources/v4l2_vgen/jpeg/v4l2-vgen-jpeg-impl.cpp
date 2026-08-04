@@ -2,7 +2,6 @@
 \file       v4l2-vgen-jpeg-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
 #include "../v4l2-vgen-includes_int.hpp"
 #include "v4l2-vgen-jpeg-impl.hpp"
@@ -91,7 +90,7 @@ JpegImpl::init_device (const ::dlls::sources::gen_lib::SourceImplInfo& info)
   int           exit_code = EX_OK;
   MMAL_STATUS_T status    = MMAL_SUCCESS;
 
-  U3_CHECK (
+  U3_THROW_IF (
     MMAL_SUCCESS == helpers::create_encoder_comp_ (devstate_),
     "create jpeg encoder");
 
@@ -120,7 +119,7 @@ JpegImpl::init_device (const ::dlls::sources::gen_lib::SourceImplInfo& info)
   for (int q = 0; q < num; q++)
   {
     MMAL_BUFFER_HEADER_T* buf = mmal_queue_get (devstate_->encoder_pool_->queue);
-    U3_CHECK (buf, "Unable to get a required buf from pool queue ");
+    U3_THROW_IF (buf, "Unable to get a required buf from pool queue ");
     CHECK_STATUS (mmal_port_send_buf (eoutput_port, buf), "Unable to send a buf to encoder output port");
   }
 
@@ -156,7 +155,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
   bool          complete = false;
   DriverState*  devstate = ::libs::utility::casts::reinterpret_cast_helper< DriverState* > (port->userdata);
 
-  U3_CHECK (devstate, "Received a camera still buf callback with no state");
+  U3_THROW_IF (devstate, "Received a camera still buf callback with no state");
 
 
   int        bytes_written  = 0;
@@ -197,7 +196,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
       head->base_part_.sinfo_.width_  = width;
       head->base_part_.sinfo_.height_ = height;
       head->base_part_.sinfo_.stride_ = width;
-      head->cinfo_.nocolor_           = false;
+      head->props_.nocolor_           = false;
       // head->base_part_.size_compress_ = jpeg_frame_size_;
       // head->csize_                    = jpeg_frame_size_;
     }
@@ -238,8 +237,8 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
       // head->base_part_.sinfo_.height_ = lsrc.height_;
       // head->base_part_.sinfo_.stride_ = lsrc.width_ * (colored ? 3 : 1);
 
-      // head->cinfo_ = cinfo_.plane_;
-      // head->cinfo_.nocolor_ = colored ? false : true; //переопределяем по факту, т.к. у пользователя может быть установлено сжатие с цветом при его фактическом отсутствии и наоборот.
+      // head->props_ = props_.plane_;
+      // head->props_.nocolor_ = colored ? false : true; //переопределяем по факту, т.к. у пользователя может быть установлено сжатие с цветом при его фактическом отсутствии и наоборот.
 
       // std::copy(
       //   vcodec_mjpg::consts::guid_codec.get_vals().begin(),????
@@ -258,7 +257,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
   {
     MMAL_BUFFER_HEADER_T* new_buf = mmal_queue_get (devstate->encoder_pool_->queue);
 
-    U3_CHECK (new_buf, "received null buf");
+    U3_THROW_IF (new_buf, "received null buf");
     // and back to the port from there.
     if (new_buf)
     {
@@ -283,7 +282,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
     }
 
     // Enable the camera still output port and tell it its callback function
-    // U3_CHECK(MMAL_SUCCESS == mmal_port_enable(camera_video_port, ::encoder_buf_callback), "Failed to setup camera output");
+    // U3_THROW_IF(MMAL_SUCCESS == mmal_port_enable(camera_video_port, ::encoder_buf_callback), "Failed to setup camera output");
 #  ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
     // There is a possibility that shutter needs to be set each loop.
     MMAL_STATUS_T port_status = mmal_port_parameter_set_uint32 (
@@ -291,7 +290,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
       MMAL_PARAMETER_SHUTTER_SPEED,
       devstate_->cam_params_.shutter_speed);
 
-    U3_CHECK (MMAL_SUCCESS == helpers::mmal_status_to_int (port_status), "Unable to set shutter speed");
+    U3_THROW_IF (MMAL_SUCCESS == helpers::mmal_status_to_int (port_status), "Unable to set shutter speed");
 #  endif
     // Send all the bufs to the camera output port
     const std::int32_t num = mmal_queue_length (devstate_->encoder_pool_->queue);
@@ -300,7 +299,7 @@ JpegImpl::encoder_buf_callback (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
     {
       MMAL_BUFFER_HEADER_T* buf = mmal_queue_get (devstate_->encoder_pool_->queue);
 
-      U3_CHECK (buf, "Unable to get a required buf d from pool queue");
+      U3_THROW_IF (buf, "Unable to get a required buf d from pool queue");
       CHECK_STATUS (mmal_port_send_buf (camera_video_port, buf), "Unable to send a buf to camera output port");
     }
 

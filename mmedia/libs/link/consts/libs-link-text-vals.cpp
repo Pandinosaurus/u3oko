@@ -2,7 +2,6 @@
 \file       libs-link-text-vals.cpp
 \date       07.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_link
 \brief      Константы для конструирования ключей к различным частям реализации подсистемы сообщений
 */
 #include "../_make/libs-link-includes_int.hpp"

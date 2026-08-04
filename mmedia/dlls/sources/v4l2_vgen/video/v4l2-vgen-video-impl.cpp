@@ -2,7 +2,6 @@
 \file       v4l2-vgen-video-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
 #include "../v4l2-vgen-includes_int.hpp"
 #include "v4l2-vgen-video-impl.hpp"
@@ -282,7 +281,7 @@ VideoImpl::init_device (const ::dlls::sources::gen_lib::SourceImplInfo& info)
   for (int q = 0; q < num; q++)
   {
     MMAL_BUFFER_HEADER_T* buf = mmal_queue_get (devstate_->video_pool_->queue);
-    U3_CHECK (buf, "Unable to get a required buf from pool queue ");
+    U3_THROW_IF (buf, "Unable to get a required buf from pool queue ");
     CHECK_STATUS (mmal_port_send_buf (eoutput_port, buf), "Unable to send a buf to video output port");
   }
 
@@ -316,7 +315,7 @@ VideoImpl::buf_callback_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
   bool          complete = false;
   DriverState*  devstate = ::libs::utility::casts::reinterpret_cast_helper< DriverState* > (port->userdata);
 
-  U3_CHECK (devstate, "Received a camera still buf callback with no state");
+  U3_THROW_IF (devstate, "Received a camera still buf callback with no state");
 
   int        bytes_written  = 0;
   int        bytes_to_write = buf->length;
@@ -352,7 +351,7 @@ VideoImpl::buf_callback_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
       head->base_part_.sinfo_.width_  = width;
       head->base_part_.sinfo_.height_ = height;
       head->base_part_.sinfo_.stride_ = width;
-      head->cinfo_.nocolor_           = false;
+      head->props_.nocolor_           = false;
     }
 
     auto data = buf->get_buf ();
@@ -392,8 +391,8 @@ VideoImpl::buf_callback_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
       // head->base_part_.sinfo_.height_ = lsrc.height_;
       // head->base_part_.sinfo_.stride_ = lsrc.width_ * (colored ? 3 : 1);
 
-      // head->cinfo_ = cinfo_.plane_;
-      // head->cinfo_.nocolor_ = colored ? false : true; //переопределяем по
+      // head->props_ = props_.plane_;
+      // head->props_.nocolor_ = colored ? false : true; //переопределяем по
       // факту, т.к. у пользователя может быть установлено сжатие с цветом при
       // его фактическом отсутствии и наоборот.
 
@@ -414,7 +413,7 @@ VideoImpl::buf_callback_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
   {
     MMAL_BUFFER_HEADER_T* new_buf = mmal_queue_get (devstate->video_pool_->queue);
 
-    U3_CHECK (new_buf, "received null buf");
+    U3_THROW_IF (new_buf, "received null buf");
     // and back to the port from there.
     if (new_buf)
     {
@@ -443,7 +442,7 @@ VideoImpl::complete_bufs_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
     update_codec_props_int (port, buf);
   }
   // Enable the camera still output port and tell it its callback function
-  // U3_CHECK(MMAL_SUCCESS == mmal_port_enable(video_port, ::buf_callback), "Failed to setup camera output");
+  // U3_THROW_IF(MMAL_SUCCESS == mmal_port_enable(video_port, ::buf_callback), "Failed to setup camera output");
   // There is a possibility that shutter needs to be set each loop.
   // CHECK_STATUS( mmal_port_parameter_set_uint32( devstate_->cam_comp_->control, MMAL_PARAMETER_SHUTTER_SPEED, devstate_->cam_params_.shutter_speed), "Unable to set shutter speed");
 
@@ -473,7 +472,7 @@ VideoImpl::free_bufs_int (MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf)
   for (int indx = 0; indx < count_bufs; ++indx)
   {
     MMAL_BUFFER_HEADER_T* buf = mmal_queue_get (devstate_->video_pool_->queue);
-    U3_CHECK (buf, "Unable to get a required buf d from pool queue");
+    U3_THROW_IF (buf, "Unable to get a required buf d from pool queue");
     CHECK_STATUS (mmal_port_send_buf (video_port, buf), "Unable to send a buf to camera output port");
   }
   return;

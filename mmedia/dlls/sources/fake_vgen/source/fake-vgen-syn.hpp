@@ -3,7 +3,6 @@
 \file       fake-vgen-syn.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.09.2018
-\project    u3_fake_vgen
 */
 
 namespace dlls::sources::fake_vgen::syn

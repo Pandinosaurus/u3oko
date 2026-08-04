@@ -3,7 +3,6 @@
 \file       yuy22rgb.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -66,7 +65,7 @@ class CYUY22RgbAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::convert::yuy2_rgb24::alu);
       break;
     }

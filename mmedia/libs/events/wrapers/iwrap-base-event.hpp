@@ -3,7 +3,6 @@
 \file       iwrap-base-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 
 namespace libs::events
@@ -58,4 +57,4 @@ class IWrapBaseEvent : public IEvent
 };
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::IWrapBaseEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::IWrapBaseEvent);

@@ -3,7 +3,6 @@
 \file       header-iframe.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_codec_gen
 */
 
 namespace dlls::codecs::codec_gen
@@ -21,7 +20,7 @@ struct HeaderIFrame final {
   reset ()
   {
     base_part_.reset ();
-    cinfo_.reset ();
+    props_.reset ();
 
     base_part_.size_  = sizeof (HeaderIFrame);
     base_part_.style_ = Frames::iframe;
@@ -49,7 +48,7 @@ struct HeaderIFrame final {
   BaseHeaderFrame         base_part_;   //< Базовая (плоская) часть
   std::uint32_t           coff_  = 0;   //< Cмещение независимо сжатого потока
   std::uint32_t           csize_ = 0;   //< Размер независимо сжатого потока
-  syn::VideoCodecFlatProp cinfo_;       //< Установки кодека, используемые для данного кадра (и дальнешей последовательности кадров, зависящих от данного)
+  syn::VideoCodecFlatProp props_;       //< Установки кодека, используемые для данного кадра (и дальнешей последовательности кадров, зависящих от данного)
 };
 
 /// Функция сброса поля в текстовый вид

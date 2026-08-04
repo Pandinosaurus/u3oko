@@ -2,7 +2,6 @@
 \file       freq-video-noise-remover-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "freq-video-noise-remover-prop.hpp"
@@ -57,7 +56,7 @@ FreqVideoNoiseRemoverProp::copy_int (const IEvent::craw_ptr src)
   bufs_ = dsrc->bufs_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 FreqVideoNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -67,7 +66,8 @@ FreqVideoNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::noises::freq
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::freq::FreqVideoNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::freq::FreqVideoNoiseRemoverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::freq::FreqVideoNoiseRemoverProp);

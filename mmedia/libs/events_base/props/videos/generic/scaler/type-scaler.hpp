@@ -3,7 +3,6 @@
 \file       type-scaler.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       18.06.2022
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::scaler

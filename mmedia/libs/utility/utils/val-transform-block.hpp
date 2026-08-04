@@ -3,7 +3,6 @@
 \file       val-transform-block.hpp
 \date       11.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::utils

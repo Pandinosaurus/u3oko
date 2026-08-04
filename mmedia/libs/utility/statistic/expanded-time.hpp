@@ -3,7 +3,6 @@
 \file       expanded-time.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::statistic
@@ -33,4 +32,4 @@ void         tag_invoke (::boost::json::value_from_tag, ::boost::json::value& js
 ExpandedTime tag_invoke (::boost::json::value_to_tag< ExpandedTime >, const ::boost::json::value& jsn);
 }   // namespace libs::utility::statistic
 
-BOOST_CLASS_EXPORT_KEY (::libs::utility::statistic::ExpandedTime);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::utility::statistic::ExpandedTime);

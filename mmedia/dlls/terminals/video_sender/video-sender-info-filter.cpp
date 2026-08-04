@@ -2,7 +2,6 @@
 \file       video-sender-info-filter.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_video_sender_dll
 */
 #include "video-sender-includes_int.hpp"
 #include "video-sender-info-filter.hpp"

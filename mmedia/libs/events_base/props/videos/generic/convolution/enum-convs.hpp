@@ -3,7 +3,6 @@
 \file       enum-convs.hpp
 \date       14.06.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::convolution

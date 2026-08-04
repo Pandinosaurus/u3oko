@@ -3,7 +3,6 @@
 \file       out-channel-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.09.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::mix_mul::consts
@@ -35,4 +34,4 @@ void           tag_invoke (::boost::json::value_from_tag, ::boost::json::value& 
 OutChannelInfo tag_invoke (::boost::json::value_to_tag< OutChannelInfo >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::mix_mul
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::mix_mul::OutChannelInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::mix_mul::OutChannelInfo);

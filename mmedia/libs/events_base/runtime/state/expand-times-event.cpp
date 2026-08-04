@@ -2,7 +2,6 @@
 \file       expand-times-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "expand-times-event.hpp"
@@ -91,7 +90,7 @@ void
 ExpandTimesEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "ExpandTimesEvent::load_json_int: not implemented");
+  U3_ASSERT_SOFT (0, "ExpandTimesEvent::load_json_int: not implemented");
 }
 
 
@@ -143,7 +142,7 @@ ExpandTimesEvent::copy_int (const IEvent::craw_ptr src)
   source_id_ = dsrc->source_id_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ExpandTimesEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -154,7 +153,8 @@ ExpandTimesEvent::serialize (Archive& arh, const std::uint32_t /* file_version *
   arh& BOOST_SERIALIZATION_NVP (source_id_);
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::state
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::state::ExpandTimesEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::state::ExpandTimesEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::state::ExpandTimesEvent);

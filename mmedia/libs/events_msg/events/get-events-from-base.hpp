@@ -3,7 +3,6 @@
 \file       get-events-from-base.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.09.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_msg::events
@@ -75,4 +74,4 @@ class GetEventsFromBase : public BaseEventsMsg
 };
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::GetEventsFromBase);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::GetEventsFromBase);

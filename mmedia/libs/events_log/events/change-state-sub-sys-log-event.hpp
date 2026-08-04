@@ -3,7 +3,6 @@
 \file       change-state-sub-sys-log-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log::events
@@ -60,4 +59,4 @@ class ChangeStateSubSysLogEvent final : public InfoLogEvent
 };
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ChangeStateSubSysLogEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ChangeStateSubSysLogEvent);

@@ -4,7 +4,6 @@
 \brief      Class for checking CPU
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_helpers_lib
 */
 
 #ifdef U3_CPU_X86

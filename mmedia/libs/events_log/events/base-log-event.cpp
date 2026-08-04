@@ -2,7 +2,6 @@
 \file       base-log-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -26,7 +25,7 @@ BaseLogEvent::get_mid_int () const -> const ::libs::events::IEvent::hid_type&
 auto
 BaseLogEvent::text (const LogTexts& type) const -> std::string
 {
-  U3_ASSERT_SIGNAL ("call BaseLogEvent::text");
+  U3_ASSERT_THROW ("call BaseLogEvent::text");
   return std::string ("BaseLogEvent placeholder");
 }
 
@@ -45,7 +44,7 @@ BaseLogEvent::copy_int (const IEvent::craw_ptr src)
   super::copy_int (src);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -54,7 +53,8 @@ BaseLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::BaseLogEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::BaseLogEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::BaseLogEvent);

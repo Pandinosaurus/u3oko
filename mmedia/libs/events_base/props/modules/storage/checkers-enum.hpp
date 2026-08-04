@@ -3,7 +3,6 @@
 \file       checkers-enum.hpp
 \date       15.08.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::modules::storage

@@ -2,7 +2,6 @@
 \file       property-storage-module-event.cpp
 \date       22.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -48,14 +47,14 @@ PropertyStorageModuleEvent::clone_int (const ::libs::events::Deeps& deep) const 
 void
 PropertyStorageModuleEvent::load_json_int (const ::boost::json::object& obj)
 {
-  U3_ASSERT_NT (0, "???");
+  U3_ASSERT_SOFT (0, "???");
 }
 
 
 void
 PropertyStorageModuleEvent::save_json_int (::boost::json::object& obj) const
 {
-  U3_ASSERT_NT (0, "???");
+  U3_ASSERT_SOFT (0, "???");
 }
 
 
@@ -69,7 +68,7 @@ PropertyStorageModuleEvent::copy_int (const IEvent::craw_ptr src)
   check_ = dsrc->check_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 PropertyStorageModuleEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -80,7 +79,8 @@ PropertyStorageModuleEvent::serialize (Archive& arh, const std::uint32_t /* file
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::modules::storage
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::storage::PropertyStorageModuleEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::storage::PropertyStorageModuleEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::modules::storage::PropertyStorageModuleEvent);

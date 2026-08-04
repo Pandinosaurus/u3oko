@@ -2,7 +2,6 @@
 \file       all2hsl-dll-filter-dll-ifilter.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_all2hsl
 */
 #include "all2hsl-dll-includes_int.hpp"
 #include "all2hsl-dll-info-filter-dll.hpp"

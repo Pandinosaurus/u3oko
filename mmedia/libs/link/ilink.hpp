@@ -3,7 +3,6 @@
 \file       ilink.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_link
 */
 
 namespace libs::link
@@ -24,14 +23,19 @@ class ILink
 
   /// подключения к удаленной точки-серверу
   auto connect (const CreateInfo&) -> bool;
+
   /// запуск точки-сервера
   auto listen (const CreateInfo&) -> bool;
+
   /// удаление связи
   auto destroy (const LinkDestroys& = LinkDestroys::soft) noexcept -> bool;
+
   /// возвращает true если свзязь установлена
   auto is_connected () const -> bool;
+
   /// получение сообщение по связи
   auto received_msg () -> ::libs::events::IEvent::ptr;
+
   /// посылки сообщения через связь
   /// \param[in]  msg  передаваемое сообщение
   /// \param[in]  sync тип синхронизации вызова
@@ -39,8 +43,10 @@ class ILink
   /// \param[in]  id   опциональный идентификатор транзакции, к которое принадлежит данное сообщение
   /// \return     указатель на ответное сообщение или empty
   auto send_msg (const syn::IEvent::ptr&, const CallState& = {}) -> ::libs::events::IEvent::ptr;
+
   ///
   auto complite_msg (const syn::IEvent::ptr&, const StateProcessEvent&) -> void;
+
   ///
   auto get_imem () -> mem::IMem::raw_ptr;
 

@@ -2,9 +2,8 @@
 \file       get-events-from-base.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.09.2018
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
 #include "../events-msg-includes_int.hpp"
@@ -128,7 +127,7 @@ GetEventsFromBase::copy_int (const IEvent::craw_ptr src) -> void
   database_events_ = dsrc->database_events_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 GetEventsFromBase::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -143,7 +142,8 @@ GetEventsFromBase::serialize (Archive& arh, const std::uint32_t /* file_version 
   self_correct ();
   U3_XLOG_DBG ("GetEventsFromBase::serialize<-")
 }
+#endif
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::GetEventsFromBase);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::GetEventsFromBase);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_msg::events::GetEventsFromBase);

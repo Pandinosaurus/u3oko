@@ -2,9 +2,8 @@
 \file       log-module-files-work-funcs.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mlog
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../module-log-includes_int.hpp"
 #include "log-module.hpp"
 
@@ -37,14 +36,14 @@ LogModule::open_log_file ()
   const std::string file_log_path = ::libs::utility::files::make_path (path2logs_, std::to_string (indx_file_) + std::string (".log"));
   file_for_store_events_.open (file_log_path.c_str (), std::ios_base::out | std::ios_base::app);
 
-  U3_CHECK (file_for_store_events_.is_open (), ("open log file" + file_log_path).c_str ());
+  U3_THROW_IF (file_for_store_events_.is_open (), ("open log file" + file_log_path).c_str ());
 }
 
 
 void
 LogModule::delete_folders (const syn::list_folders_type& folders)
 {
-  U3_XLOG_DBG ("LogModule::delete_folders::---->" + VTOLOG (folders.size ()) + TOLOG (active_session_folder_));
+  U3_XLOG_DBG ("LogModule::delete_folders:---->" + VTOLOG (folders.size ()) + TOLOG (active_session_folder_));
   for (const auto& folder : folders)
   {
     U3_XLOG_DBG ("delete check" + TOLOG (folder.session_id_));

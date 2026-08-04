@@ -3,7 +3,6 @@
 \file       property-events-module-event.hpp
 \date       09.09.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::modules::events
@@ -63,4 +62,4 @@ class PropertyEventsModuleEvent final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::modules::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::events::PropertyEventsModuleEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::events::PropertyEventsModuleEvent);

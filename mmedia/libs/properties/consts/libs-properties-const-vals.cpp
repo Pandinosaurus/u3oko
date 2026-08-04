@@ -2,7 +2,6 @@
 \file       libs-properties-const-vals.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_properties_libs
 */
 #include "../libs-properties-includes_int.hpp"
 #include "libs-properties-const-vals.hpp"

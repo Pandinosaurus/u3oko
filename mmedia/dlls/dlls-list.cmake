@@ -46,8 +46,8 @@ include("${U3_PATH_ROOT}/dlls/codecs/vcodec_mjpg/_make/vcodec-mjpg-codecs-dlls.c
 include("${U3_PATH_ROOT}/dlls/codecs/vcodec_x264/_make/vcodec-x264-codecs-dlls.cmake")
 
 if(U3_COMMERCIAL_PART EQUAL 1)
-  include("${U3_PATH_ROOT}/dlls/codecs/vcodec_va/_make/vcodec-va-codecs-dlls.cmake")
-  include("${U3_PATH_ROOT}/dlls/codecs/vcodec_x265/_make/vcodec-x265-codecs-dlls.cmake")
+  #include("${U3_PATH_ROOT}/dlls/codecs/vcodec_va/_make/vcodec-va-codecs-dlls.cmake")
+  #include("${U3_PATH_ROOT}/dlls/codecs/vcodec_x265/_make/vcodec-x265-codecs-dlls.cmake")
   #include("${U3_PATH_ROOT}/dlls/codecs/vcodec_android/_make/vcodec-android-codecs-dlls.cmake")
   #include("${U3_PATH_ROOT}/dlls/codecs/vcodec_test/_make/vcodec-test-codecs-dlls.cmake")
 endif()

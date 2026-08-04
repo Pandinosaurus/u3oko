@@ -3,7 +3,6 @@
 \file       size.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::utils::impl
@@ -71,6 +70,7 @@ class Size : public ISize
   private:
   friend class boost::serialization::access;
 
+#if (U3_USE_BOOST_SERIALIZTION)
   template< class Archive >
   void
   serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -78,6 +78,7 @@ class Size : public ISize
     arh& U3_BOOST_SERIALIZE_MAKE_NVP ("olibsoevents_guioutilsoISize", ::libs::events_gui::utils::ISize);
     arh& BOOST_SERIALIZATION_NVP (info_);
   }
+#endif
 };
 
 
@@ -89,8 +90,8 @@ load (const pugi::xml_node& node, Size& res)
   pugi::xml_attribute width  = node.attribute ("width");
   pugi::xml_attribute height = node.attribute ("height");
 
-  U3_CHECK (!width.empty (), "failde width not empty");
-  U3_CHECK (!height.empty (), "height not empty");
+  U3_THROW_IF (!width.empty (), "failde width not empty");
+  U3_THROW_IF (!height.empty (), "height not empty");
 
   res.set (width.as_int (), height.as_int ());
 }

@@ -3,7 +3,6 @@
 \file       base-header-frame.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.10.2016
-\project    u3_codec_gen
 */
 
 namespace dlls::codecs::codec_gen

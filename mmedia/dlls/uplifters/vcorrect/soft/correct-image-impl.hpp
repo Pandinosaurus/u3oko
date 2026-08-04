@@ -3,7 +3,6 @@
 \file       correct-image-impl.hpp
 \date       01.01.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcorrect_vdd
 */
 
 namespace dlls::uplifters::vcorrect::soft::consts

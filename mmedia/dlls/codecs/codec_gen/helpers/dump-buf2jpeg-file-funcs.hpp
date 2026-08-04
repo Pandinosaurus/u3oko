@@ -3,7 +3,6 @@
 \file       dump-buf2jpeg-file-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       29.07.2018
-\project    u3_codec_funcs
 */
 
 namespace dlls::codecs::codec_gen::helpers

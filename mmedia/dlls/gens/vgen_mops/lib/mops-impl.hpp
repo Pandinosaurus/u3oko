@@ -3,7 +3,6 @@
 \file       mops-impl.hpp
 \date       01.10.2016
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vgen_mops_lib
 \brief      Объявление фильтра морфологических операций (МО)
 */
 

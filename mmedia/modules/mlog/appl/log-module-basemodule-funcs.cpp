@@ -2,9 +2,8 @@
 \file       log-module-basemodule-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mlog
 */
-#define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+#define U3_DBG_LOG_LEVEL_ENABLE
 #include "../module-log-includes_int.hpp"
 #include "log-module.hpp"
 
@@ -22,25 +21,25 @@ void
 LogModule::init_proxys_int ()
 {
   super::init_proxys_int ();
-  U3_CHECK (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
+  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
 }
 
 
 void
 LogModule::init_done_int ()
 {
-  U3_XLOG_DBG ("LogModule::init_done_int::---->");
+  U3_XLOG_DBG ("LogModule::init_done_int:---->");
   super::init_done_int ();
   make_dir_for_logs ();
   open_log_file ();
-  U3_XLOG_DBG ("LogModule::init_done_int::<----");
+  U3_XLOG_DBG ("LogModule::init_done_int:<----");
 }
 
 
 void
 LogModule::init_links_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("LogModule::init_links_int::---->");
+  U3_XLOG_DBG ("LogModule::init_links_int:---->");
   const std::string                        name_data = "";
   ::libs::ilink::LinkCreatorProxy::raw_ptr lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
   volatile auto                            ipstorage = ::libs::iproperties::helpers::get_storage ();
@@ -68,14 +67,14 @@ LogModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     links.set (syn::mids::log2appl, log2appl);
     logger_ = log2appl;
   }
-  U3_XLOG_DBG ("LogModule::init_links_int::<----");
+  U3_XLOG_DBG ("LogModule::init_links_int:<----");
 }
 
 
 auto
 LogModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("LogModule::deinit_int::---->")
+  U3_XLOG_MARK ("LogModule::deinit_int:---->")
   flush_events ();
 
   {
@@ -85,7 +84,7 @@ LogModule::appl_deinit_int () -> bool
 
   links_[syn::mids::log2appl]->destroy ();
   links_.reset_link (syn::mids::log2appl);
-  U3_XLOG_MARK ("LogModule::deinit_int::<----")
+  U3_XLOG_MARK ("LogModule::deinit_int:<----")
   return true;
 }
 

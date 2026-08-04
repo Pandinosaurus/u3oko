@@ -3,7 +3,6 @@
 \file       enum-writes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       29.07.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::codec

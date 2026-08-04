@@ -2,7 +2,6 @@
 \file       video-driver-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-driver-prop.hpp"
@@ -103,7 +102,7 @@ VideoDriverProp::copy_int (const IEvent::craw_ptr src)
   ext_vals_      = dsrc->ext_vals_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoDriverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -117,7 +116,8 @@ VideoDriverProp::serialize (Archive& arh, const std::uint32_t /* file_version */
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::driver
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::VideoDriverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::VideoDriverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::driver::VideoDriverProp);

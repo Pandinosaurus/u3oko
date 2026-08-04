@@ -2,7 +2,6 @@
 \file       node-id.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_core_lib
 */
 #include "../libs-cores-core-includes_int.hpp"
 #include "node-id.hpp"
@@ -71,6 +70,7 @@ NodeID::check () const -> bool
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 NodeID::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -78,7 +78,7 @@ NodeID::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (id_node_name_);
   arh& BOOST_SERIALIZATION_NVP (id_node_name_dll_);
 }
-
+#endif
 
 auto
 get_ext_graph_node_id (const NodeID& id) -> std::string
@@ -109,5 +109,5 @@ tag_invoke (::boost::json::value_to_tag< NodeID >, const ::boost::json::value& j
 }
 }   // namespace libs::core::graph
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::core::graph::NodeID);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::core::graph::NodeID);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::core::graph::NodeID);

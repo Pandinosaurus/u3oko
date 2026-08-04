@@ -4,7 +4,6 @@
 \date       01.01.2016
 \author     Erashov Anton erashov2026@proton.me
 \brief      Отладочные и вспогательные функции
-\project    u3_mems
 */
 #include "consts/mems-const-vals.hpp"
 #include "details/alloc-funcs.hpp"

@@ -3,7 +3,6 @@
 \file       log-module-syn.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mlog
 */
 
 namespace modules::mlog::appl::syn

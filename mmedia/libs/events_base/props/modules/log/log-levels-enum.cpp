@@ -2,7 +2,6 @@
 \file       log-levels-enum.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       02.03.2022
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

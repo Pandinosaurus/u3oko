@@ -2,7 +2,6 @@
 \file       doptim-dll-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_doptim_dll
 \brief      Модуль доступа к реализациям алгоритмов обработки данных
 */
 #include "doptim-includes_int.hpp"

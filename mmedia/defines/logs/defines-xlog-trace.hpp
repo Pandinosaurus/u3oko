@@ -3,7 +3,6 @@
 \file       defines-xlog-trace.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_defines
 */
 
 #ifndef U3_XLOG_IMPL
@@ -70,7 +69,7 @@
 #  endif
 
 #  ifndef U3_XLOG_DBG
-#    ifdef U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+#    ifdef U3_DBG_LOG_LEVEL_ENABLE
 #      define U3_XLOG_DBG(u3def_param) U3_XLOG_DEV (u3def_param);
 #    else
 #      define U3_XLOG_DBG(u3def_param)

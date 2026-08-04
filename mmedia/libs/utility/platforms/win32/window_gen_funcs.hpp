@@ -4,7 +4,6 @@
 \brief      Функции для работы с окнами
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::platforms::win32::send_message

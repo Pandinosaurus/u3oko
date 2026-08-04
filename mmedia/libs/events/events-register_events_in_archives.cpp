@@ -2,7 +2,6 @@
 \file       events-register_events_in_archives.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 #include "includes_int.hpp"
 #include "events-register_events_in_archives.hpp"

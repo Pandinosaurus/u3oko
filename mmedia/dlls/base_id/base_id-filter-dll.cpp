@@ -2,7 +2,6 @@
 \file       base_id-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.07.2018
-\project    u3_base_id_dll
 */
 #include "base_id-includes_int.hpp"
 #include "base_id-filter-dll.hpp"

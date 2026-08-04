@@ -2,9 +2,8 @@
 \file       ievent.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mevents
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "includes_int.hpp"
 #include "ievent.hpp"
 
@@ -55,7 +54,7 @@ IEvent::get_using_state () const -> const PropertyUsings&
 void
 IEvent::load_json (const std::string& prop)
 {
-  U3_XLOG_DBG ("IEvent::load_json::---->")
+  U3_XLOG_DBG ("IEvent::load_json:---->")
   ::boost::json::parse_options opt;
 
   opt.allow_comments        = true;
@@ -75,7 +74,7 @@ IEvent::load_json (const std::string& prop)
   const ::boost::json::object& obj = pr.get_object ();
   if (obj.empty ())
   {
-    U3_XLOG_ERROR ("кусшму obj.empty from prop");
+    U3_XLOG_ERROR ("obj.empty from prop");
     return;
   }
 
@@ -84,7 +83,7 @@ IEvent::load_json (const std::string& prop)
 
   load_json_int (obj);
   self_correct ();
-  U3_XLOG_DBG ("IEvent::load_json::<----")
+  U3_XLOG_DBG ("IEvent::load_json:<----")
 }
 
 
@@ -158,6 +157,7 @@ IEvent::is_failed_int () const -> bool
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 IEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -165,7 +165,8 @@ IEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
   // arh& BOOST_SERIALIZATION_NVP (property_name_);
   arh& BOOST_SERIALIZATION_NVP (state_);
 }
+#endif
 }   // namespace libs::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::IEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::IEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events::IEvent);

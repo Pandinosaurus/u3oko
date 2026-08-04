@@ -3,7 +3,6 @@
 \file       process-log-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log::events
@@ -72,4 +71,4 @@ class ProcessLogEvent final : public BaseLogEvent
 };
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ProcessLogEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ProcessLogEvent);

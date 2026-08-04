@@ -2,7 +2,6 @@
 \file       events-vals-enum.cpp
 \date       14.09.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../events-base-includes_int.hpp"
 #include "events-vals-enum.hpp"

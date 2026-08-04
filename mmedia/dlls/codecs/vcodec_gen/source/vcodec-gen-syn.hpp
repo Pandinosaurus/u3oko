@@ -3,7 +3,6 @@
 \file       vcodec-gen-syn.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcodec_gen
 */
 
 namespace dlls::codecs::vcodec_gen::syn
@@ -27,6 +26,7 @@ using ProxyBuf              = ::libs::optim::io::ProxyBuf;
 using IEvent                = ::libs::events::IEvent;
 using AddEvent2EventsMsg    = ::libs::events_msg::events::AddEvent2EventsMsg;
 using IMCaller              = ::libs::optim::mcalls::IMCaller;
+using CpuExts               = ::libs::utility::sys::cpu::CpuExts;
 
 namespace minor = ::libs::utility::uids::minor;
 }   // namespace dlls::codecs::vcodec_gen::syn

@@ -3,7 +3,6 @@
 \file       event-bufs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mevents
 */
 
 namespace libs::events::buf::syn
@@ -45,4 +44,4 @@ void      tag_invoke (::boost::json::value_from_tag, ::boost::json::value&, cons
 EventBufs tag_invoke (::boost::json::value_to_tag< EventBufs >, const ::boost::json::value&);
 }   // namespace libs::events::buf
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::buf::EventBufs);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::buf::EventBufs);

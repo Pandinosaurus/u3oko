@@ -3,7 +3,6 @@
 \file       base-nodes-data-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 
 namespace libs::events_media::events
@@ -65,4 +64,4 @@ class BaseNodesDataEvent : public BaseDataEvent
 };
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::BaseNodesDataEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::BaseNodesDataEvent);

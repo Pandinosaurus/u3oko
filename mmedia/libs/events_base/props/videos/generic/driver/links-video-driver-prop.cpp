@@ -2,7 +2,6 @@
 \file       links-video-driver-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "links-video-driver-prop.hpp"
@@ -32,7 +31,7 @@ void
 LinksVideoDriverProp::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "LinksVideoDriverProp::load_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "LinksVideoDriverProp::load_json_int:: wtf???");
 }
 
 
@@ -40,7 +39,7 @@ void
 LinksVideoDriverProp::save_json_int (::boost::json::object& obj) const
 {
   super::save_json_int (obj);
-  U3_ASSERT_NT (0, "LinksVideoDriverProp::save_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "LinksVideoDriverProp::save_json_int:: wtf???");
 }
 
 
@@ -54,7 +53,7 @@ LinksVideoDriverProp::copy_int (const IEvent::craw_ptr src)
   pdriver2mem_ = dsrc->pdriver2mem_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 LinksVideoDriverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -63,7 +62,8 @@ LinksVideoDriverProp::serialize (Archive& arh, const std::uint32_t /* file_versi
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::driver
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::LinksVideoDriverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::LinksVideoDriverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::driver::LinksVideoDriverProp);

@@ -4,7 +4,6 @@
 \date       10.09.2018
 \author     Erashov Anton erashov2026@proton.me
 
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::morph::syn
@@ -42,4 +41,4 @@ void                 tag_invoke (::boost::json::value_from_tag, ::boost::json::v
 MorphOperationParams tag_invoke (::boost::json::value_to_tag< MorphOperationParams >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::videos::generic::morph
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::morph::MorphOperationParams);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::morph::MorphOperationParams);

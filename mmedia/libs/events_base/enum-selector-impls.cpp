@@ -2,7 +2,6 @@
 \file       enum-selector-impls.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.03.2022
-\project    u3_events_base_lib
 */
 #include "events-base-includes_int.hpp"
 #include "enum-selector-impls.hpp"

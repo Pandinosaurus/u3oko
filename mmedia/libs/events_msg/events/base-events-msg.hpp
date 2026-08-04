@@ -3,7 +3,6 @@
 \file       base-events-msg.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_msg::events
@@ -53,4 +52,4 @@ class BaseEventsMsg : public ::libs::events_base::TimedEvent
 };
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::BaseEventsMsg);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::BaseEventsMsg);

@@ -3,7 +3,6 @@
 \file       work-with-string-bufs-funcs.hpp
 \date       23.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::strings::syn

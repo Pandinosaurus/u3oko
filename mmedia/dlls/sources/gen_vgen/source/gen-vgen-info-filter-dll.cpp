@@ -2,9 +2,8 @@
 \file       gen-vgen-info-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.05.2017
-\project    u3_gen_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "gen-vgen-includes_int.hpp"
 #include "gen-vgen-info-filter-dll.hpp"
 
@@ -67,7 +66,7 @@ InfoFilter::~InfoFilter ()
 void
 InfoFilter::sync_int (bool force)
 {
-  U3_LOG_DATA_DEV ("InfoFilter::sync_int::---->" + VTOLOG (force) + VTOLOG (synced_));
+  U3_LOG_DATA_DEV ("InfoFilter::sync_int:---->" + VTOLOG (force) + VTOLOG (synced_));
   if (synced_ && !force)
   {
     return;

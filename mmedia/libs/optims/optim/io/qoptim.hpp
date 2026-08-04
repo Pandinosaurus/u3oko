@@ -3,7 +3,6 @@
 \file       qoptim.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_optim_lib
 */
 
 namespace libs::optim::io
@@ -20,7 +19,7 @@ struct qoptim final {
   void
   check () const
   {
-    U3_CHECK (!id_.empty (), "empty id");
+    U3_THROW_IF (!id_.empty (), "empty id");
   }
 
   std::string id_ = {};   //<

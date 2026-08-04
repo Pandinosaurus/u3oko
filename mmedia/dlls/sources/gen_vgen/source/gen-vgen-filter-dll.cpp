@@ -2,9 +2,8 @@
 \file       gen-vgen-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_gen_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "gen-vgen-includes_int.hpp"
 #include "gen-vgen-info-filter-dll.hpp"
 #include "gen-vgen-filter-dll.hpp"
@@ -76,7 +75,7 @@ void
 Filter::thread_func_impl (std::uint32_t indx_thread)
 {
 #ifdef U3_OS_WIN32_DESKTOP
-  U3_CHECK (SUCCEEDED (CoInitializeEx (0, COINIT_MULTITHREADED)), "CoInitializeEx");   //  данная подсистема (COM) нужна, пока я использую DirectShow источники данных в адресном пространстве процесса под Win32
+  U3_THROW_IF (SUCCEEDED (CoInitializeEx (0, COINIT_MULTITHREADED)), "CoInitializeEx");   //  данная подсистема (COM) нужна, пока я использую DirectShow источники данных в адресном пространстве процесса под Win32
 #endif
 
   bool frame_loaded = true;

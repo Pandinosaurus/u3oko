@@ -3,7 +3,6 @@
 \file       rect.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mevents
 */
 
 namespace libs::events::props::details
@@ -30,4 +29,4 @@ class Rect
 };
 }   // namespace libs::events::props::details
 
-BOOST_CLASS_EXPORT_KEY (::libs::events::props::details::Rect);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events::props::details::Rect);

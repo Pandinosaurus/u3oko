@@ -2,7 +2,6 @@
 \file       VideoConvertProp.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-convert-prop.hpp"
@@ -24,7 +23,7 @@ str2size_type (const std::string& str) -> Src2DstEqs
   const auto find = conv.find (str);
   if (find == conv.end ())
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return Src2DstEqs::equal_dst;
   }
   return find->second;
@@ -45,7 +44,7 @@ str2atype (const std::string& str) -> Accuracys
   const auto find = conv.find (str);
   if (find == conv.end ())
   {
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     return Accuracys::usual;
   }
   return find->second;
@@ -123,7 +122,7 @@ VideoConvertProp::copy_int (const IEvent::craw_ptr src)
   atype_                = dsrc->atype_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoConvertProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -142,7 +141,8 @@ VideoConvertProp::serialize (Archive& arh, const std::uint32_t /* file_version *
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::convert
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convert::VideoConvertProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convert::VideoConvertProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::convert::VideoConvertProp);

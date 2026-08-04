@@ -3,7 +3,6 @@
 \file       generics-devents-includes_int.hpp
 \date       20.07.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_devents_dlls
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

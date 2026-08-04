@@ -3,7 +3,6 @@
 \file       change-graphs-data-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_media
 */
 
 namespace libs::events_media::events
@@ -70,4 +69,4 @@ class ChangeGraphsDataEvent : public BaseDataEvent
 };
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::ChangeGraphsDataEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::ChangeGraphsDataEvent);

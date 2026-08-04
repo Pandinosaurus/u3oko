@@ -3,7 +3,6 @@
 \file       rgb2hsl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -62,7 +61,7 @@ class CRgb2HSLAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::convert::hsl_vs_rgb::rgb24_to_hsl_alu);
       break;
     }

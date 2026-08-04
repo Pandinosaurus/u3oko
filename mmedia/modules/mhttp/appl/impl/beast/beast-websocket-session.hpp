@@ -3,7 +3,6 @@
 \file       beast-websocket-session.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.03.2026
-\project    mhttp
 \original   https://github.com/boostorg/beast/blob/develop/example/http/server/async/http_server_async.cpp
 */
 

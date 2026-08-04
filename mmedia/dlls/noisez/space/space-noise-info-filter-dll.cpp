@@ -2,7 +2,6 @@
 \file       space-noise-info-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.05.2017
-\project    u3_filter_space
 */
 #include "space-noise-includes_int.hpp"
 #include "space-noise-info-filter-dll.hpp"

@@ -3,7 +3,6 @@
 \file       get-runtime-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.07.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage::events
@@ -28,7 +27,8 @@ struct RuntimeStreamInfo {
   private:
   friend class boost::serialization::access;
 
-  // REFACT
+// REFACT
+#if (U3_USE_BOOST_SERIALIZTION)
   template< class Archive >
   void
   serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -38,6 +38,7 @@ struct RuntimeStreamInfo {
     arh& BOOST_SERIALIZATION_NVP (count_read_bytes_);
     arh& BOOST_SERIALIZATION_NVP (count_errors_);
   }
+#endif
 };
 
 
@@ -91,4 +92,4 @@ class GetRuntimeInfo : public BaseStorageEvent
 };
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::GetRuntimeInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::GetRuntimeInfo);

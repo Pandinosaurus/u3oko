@@ -2,7 +2,6 @@
 \file       morph-operation-params.cpp
 \date       08.03.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "morph-operation-params.hpp"
@@ -34,7 +33,7 @@ MorphOperationParams::self_test () const -> bool
   return true;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 MorphOperationParams::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -44,7 +43,7 @@ MorphOperationParams::serialize (Archive& arh, const std::uint32_t /* file_versi
   arh& BOOST_SERIALIZATION_NVP (bound_filling_);
   arh& BOOST_SERIALIZATION_NVP (val_filling_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const MorphOperationParams& src)
@@ -71,5 +70,5 @@ tag_invoke (::boost::json::value_to_tag< MorphOperationParams >, const ::boost::
 }
 }   // namespace libs::events_base::props::videos::generic::morph
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::morph::MorphOperationParams);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::morph::MorphOperationParams);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::morph::MorphOperationParams);

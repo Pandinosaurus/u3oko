@@ -2,9 +2,8 @@
 \file       gen-vgen-filter-dll-ictrldriverdshow.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_gen_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "gen-vgen-includes_int.hpp"
 #include "gen-vgen-info-filter-dll.hpp"
 #include "gen-vgen-filter-dll.hpp"
@@ -19,7 +18,7 @@ Filter::update_source_driver_exactly (InfoFilter* finfo, const std::string& impl
   U3_ASSERT (!impl_name.empty ());
 
   std::unique_lock< InfoFilter::sync_type > lock (finfo->wdmtx_, consts::ms_wait_capture_device);
-  U3_CHECK (lock.owns_lock (), "update source driver" + TOLOG (impl_name));
+  U3_THROW_IF (lock.owns_lock (), "update source driver" + TOLOG (impl_name));
 
   finfo->proxy2hardware_.init (impl_name);
 
@@ -40,13 +39,8 @@ Filter::update_source_driver_exactly (InfoFilter* finfo, const std::string& impl
 
   U3_ASSERT (finfo->links_props_.pdriver2buf_);
   U3_ASSERT (finfo->links_props_.pdriver2mem_);
-
-  driver->update_source_info (
-    ::dlls::sources::gen_lib::SourceImplInfo (
-      finfo->rprops_,
-      finfo->capture_props_,
-      &finfo->links_props_));
-
+  //::dlls::sources::gen_lib::SourceImplInfo
+  driver->update_source_info ({ finfo->rprops_, finfo->capture_props_, &finfo->links_props_ });
   driver->start ();
 }
 

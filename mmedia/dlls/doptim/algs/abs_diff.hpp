@@ -3,7 +3,6 @@
 \file       abs_diff.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -61,7 +60,7 @@ class CAbsDiffAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::ops::sub_abs_diff_alu);
       break;
     }

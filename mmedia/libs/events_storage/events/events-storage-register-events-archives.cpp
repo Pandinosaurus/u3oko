@@ -2,7 +2,6 @@
 \file       events-storage-register-events-archives.cpp
 \date       21.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_storage
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

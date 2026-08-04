@@ -3,7 +3,6 @@
 \file       sqlite-call-helper-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.09.2018
-\project    mevents
 */
 
 // old shit

@@ -3,7 +3,6 @@
 \file       v4l2-vgen-resource-holder.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
 
 // old shit
@@ -38,7 +37,7 @@ class ResourceHolder final
     try
     {
       camera_status_t res = ACAMERA_OK;
-      U3_CHECK_AVGEN (free_funct (resource_));
+      U3_THROW_IF_AVGEN (free_funct (resource_));
     }
     catch (const std::exception& excpt)
     {
@@ -78,7 +77,7 @@ class ResourceHolder final
   ResourceTType*
   operator->()
   {
-    U3_CHECK (resource_, "operator->");
+    U3_THROW_IF (resource_, "operator->");
     return resource_;
   }
 
@@ -86,7 +85,7 @@ class ResourceHolder final
   ResourceTType*
   operator* ()
   {
-    U3_CHECK (resource_, "operator*");
+    U3_THROW_IF (resource_, "operator*");
     return resource_;
   }
 

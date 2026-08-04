@@ -2,7 +2,6 @@
 \file       buf2module-info.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.03.2022
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "buf2module-info.hpp"
@@ -19,7 +18,7 @@ Buff2ModuleInfo::Buff2ModuleInfo (
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 Buff2ModuleInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -28,7 +27,7 @@ Buff2ModuleInfo::serialize (Archive& arh, const std::uint32_t /* file_version */
   arh& BOOST_SERIALIZATION_NVP (indx_buf_);
   arh& BOOST_SERIALIZATION_NVP (dest_module_id_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const Buff2ModuleInfo& src)
@@ -53,5 +52,5 @@ tag_invoke (::boost::json::value_to_tag< Buff2ModuleInfo >, const ::boost::json:
 }
 }   // namespace libs::events_base::props::base_id
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::base_id::Buff2ModuleInfo);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::base_id::Buff2ModuleInfo);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::base_id::Buff2ModuleInfo);

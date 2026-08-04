@@ -3,7 +3,6 @@
 \file       buf-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::mem
@@ -52,5 +51,5 @@ class BuffEvent : public RuntimeEvent
 }   // namespace libs::events_base::runtime::mem
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::mem::BuffEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::mem::BuffEvent);
 #endif

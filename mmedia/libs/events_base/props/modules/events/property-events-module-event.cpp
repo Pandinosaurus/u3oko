@@ -2,7 +2,6 @@
 \file       property-events-module-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../events-base-includes_int.hpp"
 #include "property-events-module-event.hpp"
@@ -48,7 +47,7 @@ void
 PropertyEventsModuleEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "PropertyEventsModuleEvent::load_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "PropertyEventsModuleEvent::load_json_int:: wtf???");
 }
 
 
@@ -56,7 +55,7 @@ void
 PropertyEventsModuleEvent::save_json_int (::boost::json::object& obj) const
 {
   super::save_json_int (obj);
-  U3_ASSERT_NT (0, "PropertyEventsModuleEvent::save_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "PropertyEventsModuleEvent::save_json_int:: wtf???");
 }
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
@@ -87,6 +86,7 @@ PropertyEventsModuleEvent::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 PropertyEventsModuleEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -95,7 +95,8 @@ PropertyEventsModuleEvent::serialize (Archive& arh, const std::uint32_t /* file_
   arh& BOOST_SERIALIZATION_NVP (vals_);
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::modules::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::events::PropertyEventsModuleEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::modules::events::PropertyEventsModuleEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::modules::events::PropertyEventsModuleEvent);

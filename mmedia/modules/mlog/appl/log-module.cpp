@@ -2,9 +2,8 @@
 \file       log_module.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mlog
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../module-log-includes_int.hpp"
 #include "log-module.hpp"
 
@@ -83,7 +82,7 @@ LogModule::process_info_log (syn::InfoLogEvent::raw_ptr props, const syn::IEvent
 void
 LogModule::process_change_state_process (syn::ChangeStateProcessEvent::raw_ptr props)
 {
-  U3_XLOG_MARK ("LogModule::process_change_state_process::---->" + VTOLOG (props->is_start ()));
+  U3_XLOG_MARK ("LogModule::process_change_state_process:---->" + VTOLOG (props->is_start ()));
   try
   {
     if (!props->is_start ())
@@ -109,7 +108,7 @@ LogModule::process_list_logs (syn::ProcessListLogsEvent::raw_ptr props)
   try
   {
     const auto action = props->get_action ();
-    U3_XLOG_DBG ("LogModule::process_list_logs::---->" + TOLOG (to_string (action)));
+    U3_XLOG_DBG ("LogModule::process_list_logs:---->" + TOLOG (to_string (action)));
     switch (action)
     {
     case ::libs::events_log::events::LogActions::delete_sessions: {

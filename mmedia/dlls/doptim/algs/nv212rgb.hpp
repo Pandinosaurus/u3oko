@@ -3,7 +3,6 @@
 \file       nv212rgb.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -64,7 +63,7 @@ class CNV212RgbAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::convert::nv21_rgb24::alu);
       break;
     }

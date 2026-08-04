@@ -3,7 +3,6 @@
 \file       log-levels-enum.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       22.02.2022
-\project    u3_events_log
 */
 
 namespace libs::events_base::props::modules::log

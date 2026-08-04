@@ -2,9 +2,8 @@
 \file       video-driver-capture-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../events-base-includes_int.hpp"
 #include "video-driver-capture-prop.hpp"
 
@@ -92,7 +91,7 @@ VideoDriverCaptureProp::copy_int (const IEvent::craw_ptr src)
   capi_.focus_               = dsrc->capi_.focus_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoDriverCaptureProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -114,7 +113,8 @@ VideoDriverCaptureProp::serialize (Archive& arh, const std::uint32_t /* file_ver
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::driver
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::VideoDriverCaptureProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::driver::VideoDriverCaptureProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::driver::VideoDriverCaptureProp);

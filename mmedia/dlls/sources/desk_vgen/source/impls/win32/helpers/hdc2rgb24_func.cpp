@@ -1,6 +1,6 @@
 /**
 \file     hdc2rgb24_func.cpp
-\brief    function for convert anybody hdc to rgb24, if needed buf relloc from ::base_funcs::mem::arealloc
+\brief    function for convert anybody hdc to rgb24, if needed buf relloc from ::base_funcs::mem::u3realloc
 \author   Erashov Anton erashov2026@proton.me
 \date     26.07.2016
 */
@@ -25,23 +25,23 @@ hdc2buf_alu (Hdc2BmpCallInfo& info)
   // получаем информацию от источника
   {
     auto loc_bitmap = ::libs::utility::casts::static_cast_helper< HBITMAP > (GetCurrentObject (info.source_hdc_, OBJ_BITMAP));
-    U3_CHECK_WIN32_STATE (loc_bitmap, "GetCurrentObject");
+    U3_THROW_IF_WIN32_STATE (loc_bitmap, "GetCurrentObject");
     memset (&bitmap_info, 0, sizeof (bitmap_info));
-    U3_CHECK_WIN32_CALL (GetObject (loc_bitmap, sizeof (bitmap_info), &bitmap_info), "GetObject");
+    U3_THROW_IF_WIN32_CALL (GetObject (loc_bitmap, sizeof (bitmap_info), &bitmap_info), "GetObject");
   }
 
   // проверка полученных параметров
   const std::int32_t loc_width  = bitmap_info.bmWidth;
   const std::int32_t loc_height = bitmap_info.bmHeight;
-  U3_CHECK_WIN32_STATE (loc_width > 0 && loc_height > 0, "source info" + VTOLOG (loc_width) + VTOLOG (loc_height));
+  U3_THROW_IF_WIN32_STATE (loc_width > 0 && loc_height > 0, "source info" + VTOLOG (loc_width) + VTOLOG (loc_height));
 
   const std::int32_t loc_support_hdc = GetDeviceCaps (info.source_hdc_, RASTERCAPS);
-  U3_CHECK_WIN32_STATE (loc_support_hdc & (RC_BITBLT | RC_DI_BITMAP), "raster caps RC_BITBLT | RC_DI_BITMAP not support");
+  U3_THROW_IF_WIN32_STATE (loc_support_hdc & (RC_BITBLT | RC_DI_BITMAP), "raster caps RC_BITBLT | RC_DI_BITMAP not support");
 
   // create temporarely hdc for system convert to RGB24
   ::libs::utility::platforms::win32::HandlerGdiObj< HBITMAP > temp_hbitmap;   // должен быть до temp_hdc
   ::libs::utility::platforms::win32::HandlerCompatibleDC      temp_hdc (info.source_hdc_);
-  U3_CHECK_WIN32_STATE (temp_hdc, "create dc" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()));
+  U3_THROW_IF_WIN32_STATE (temp_hdc, "create dc" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()));
 
   min_mem_size = U3_CAST_UINT32 ((loc_width * (info.dest_count_bits_ / 8)) * loc_height);
 
@@ -76,13 +76,13 @@ hdc2buf_alu (Hdc2BmpCallInfo& info)
       0,
       0));
 
-    U3_CHECK_WIN32_STATE (temp_hbitmap, "create dib section");
+    U3_THROW_IF_WIN32_STATE (temp_hbitmap, "create dib section");
   }
 
   temp_hdc.select_object (*temp_hbitmap);
 
   ret = BitBlt (*temp_hdc, 0, 0, loc_width, loc_height, info.source_hdc_, 0, 0, SRCCOPY) ? true : false;
-  U3_CHECK_WIN32_STATE (ret, "BitBlt");
+  U3_THROW_IF_WIN32_STATE (ret, "BitBlt");
 
   if (info.width_dest_ && info.height_dest_)
   {

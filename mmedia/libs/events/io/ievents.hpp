@@ -3,7 +3,6 @@
 \file       ievents.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 
 namespace libs::events::io
@@ -37,6 +36,7 @@ class IEvents
   /// \return     выходное событие или null, если преобразование невозможно
   virtual auto dcast (IEvent::craw_ptr, const hid_type&) -> const void* = 0;
 
+#if (U3_USE_BOOST_SERIALIZTION)
   /// Функция преобразования события в xml, внтури базового модуля
   /// \param[in]  src  входное событие
   /// \param[in]  xml   строка xml в формате boost::serialization
@@ -60,6 +60,7 @@ class IEvents
   /// \param[in]  dst  восстановленное выходное событие
   /// \return     true, при успехе
   virtual auto bin2event (std::istream&, IEvent::ptr&) -> bool = 0;
+#endif
 
   protected:
   IEvents ()          = default;

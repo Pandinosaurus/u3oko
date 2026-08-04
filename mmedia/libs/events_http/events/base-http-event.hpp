@@ -3,7 +3,6 @@
 \file       base-http-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_http
 */
 
 namespace libs::events_http::events
@@ -54,4 +53,4 @@ class BaseHttpEvent : public ::libs::events_base::TimedEvent
 };
 }   // namespace libs::events_http::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::BaseHttpEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_http::events::BaseHttpEvent);

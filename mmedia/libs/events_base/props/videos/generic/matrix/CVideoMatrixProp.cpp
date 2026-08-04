@@ -2,7 +2,6 @@
 \file       CVideoMatrixProp.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "CVideoMatrixProp.hpp"
@@ -35,7 +34,7 @@ CVideoMatrixProp::clone_int (const ::libs::events::Deeps& deep) const
   return std::m1ake_shared< CVideoMatrixProp > (*this);
 }
 
-
+#  if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 CVideoMatrixProp::serialize (Archive& ar, const std::uint32_t /* file_version */)
@@ -49,9 +48,10 @@ CVideoMatrixProp::serialize (Archive& ar, const std::uint32_t /* file_version */
   ar& BOOST_SERIALIZATION_NVP (folder_);
   return;
 }
+#  endif
 #endif
 }   // namespace libs::events_base::props::videos::generics::matrix
 
-// BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::props::videos::generic::matrix::CVideoMatrixProp );
-////BOOST_CLASS_EXPORT_KEY ();
+// U3_BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::props::videos::generic::matrix::CVideoMatrixProp );
+////U3_BOOST_CLASS_EXPORT_KEY ();
 // U3_BOOST_ADD_SERIALIZE_ARCH( ::libs::events_base::props::videos::generic::matrix::CVideoMatrixProp );

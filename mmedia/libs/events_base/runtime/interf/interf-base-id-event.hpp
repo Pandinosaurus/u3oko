@@ -3,7 +3,6 @@
 \file       interf-base-id-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       19.07.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::interf
@@ -54,5 +53,5 @@ class InterfBaseIdEvent : public BaseInterfEvent
 }   // namespace libs::events_base::runtime::interf
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::interf::InterfBaseIdEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::interf::InterfBaseIdEvent);
 #endif

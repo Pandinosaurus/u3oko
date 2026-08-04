@@ -2,7 +2,6 @@
 \file       rgb32-rgb24-alu.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       22.02.2026
-\project    u3_optim_gen_convert
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

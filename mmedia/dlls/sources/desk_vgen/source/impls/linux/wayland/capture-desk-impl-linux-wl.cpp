@@ -2,9 +2,8 @@
 \file       capture-desk-impl-linux-wl.cpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../desk-vgen-includes_int.hpp"
 #include "capture-desk-impl-linux-wl.hpp"
 
@@ -60,13 +59,13 @@ CaptureDeskImplLinux::get_buf_int (
 
   xlib_display_type display (XOpenDisplay (":0"));
   // Display* display = XOpenDisplay (":0");
-  U3_CHECK (display, "XOpenDisplay");
+  U3_THROW_IF (display, "XOpenDisplay");
   Window root = DefaultRootWindow (*display);
-  U3_CHECK (root, "DefaultRootWindow");
+  U3_THROW_IF (root, "DefaultRootWindow");
 
   XWindowAttributes attrs;   // = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
   memset (&attrs, 0, sizeof (attrs));
-  U3_CHECK (XGetWindowAttributes (*display, root, &attrs), "XGetWindowAttributes");
+  U3_THROW_IF (XGetWindowAttributes (*display, root, &attrs), "XGetWindowAttributes");
   U3_LOG_DATA_DBG (VTOLOG (attrs.width) + VTOLOG (attrs.height) + VTOLOG (attrs.border_width) + VTOLOG (attrs.x) + VTOLOG (attrs.y) + VTOLOG (attrs.depth));
   U3_LOG_DATA_DBG (PTR_TOLOG (attrs.visual) + VTOLOG (attrs.c_class) + VTOLOG (attrs.bit_gravity) + VTOLOG (attrs.win_gravity) + VTOLOG (attrs.backing_store) + VTOLOG (attrs.map_state));
   // InputOnly
@@ -98,12 +97,12 @@ CaptureDeskImplLinux::get_buf_int (
   Bool          override_redirect;     /* boolean value for override-redirect */
   Screen*       screen;                /* back pointer to correct screen */
 #    endif
-  U3_CHECK (attrs.width >= 0 && attrs.height >= 0 && attrs.border_width >= 0, VTOLOG (attrs.width) + VTOLOG (attrs.height) + VTOLOG (attrs.border_width));
+  U3_THROW_IF (attrs.width >= 0 && attrs.height >= 0 && attrs.border_width >= 0, VTOLOG (attrs.width) + VTOLOG (attrs.height) + VTOLOG (attrs.border_width));
   // xlib_image_type img (XGetImage (*display, root, 0, 0, attrs.width, attrs.height, AllPlanes, XYPixmap));
   // xlib_image_type img (XGetImage (*display, root, 0, 0, attrs.width, attrs.height, AllPlanes, ZPixmap));
   xlib_image_type img (XGetImage (*display, root, 0, 0, attrs.width, attrs.height, attrs.depth, XYPixmap));
   // XImage* img = XGetImage (*display, root, 0, 0, attrs.width, attrs.height, AllPlanes, XYPixmap);
-  U3_CHECK (img, "XGetImage");
+  U3_THROW_IF (img, "XGetImage");
   const auto bitspx         = (*img)->depth;
   const auto bytespx        = (bitspx >> 3);
   const auto aligned_width  = ::libs::utility::mem::align_value (attrs.width, 64, true);

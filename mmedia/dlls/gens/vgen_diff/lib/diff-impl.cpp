@@ -2,7 +2,6 @@
 \file       diff-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vgen_diff_lib
 */
 #include "vgen-diff-lib-includes_int.hpp"
 #include "diff-impl.hpp"

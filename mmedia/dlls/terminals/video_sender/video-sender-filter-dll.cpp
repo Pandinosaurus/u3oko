@@ -2,9 +2,8 @@
 \file       video-sender-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_video_sender_dll
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "video-sender-includes_int.hpp"
 #include "video-sender-info-filter.hpp"
 #include "video-sender-filter-dll.hpp"

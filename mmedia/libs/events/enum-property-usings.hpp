@@ -3,7 +3,6 @@
 \file       enum-property-usings.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 \brief      Объявление состояний "использование" свойства
 */
 

@@ -2,7 +2,6 @@
 \file       base64_encoding_funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2018
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "base64_encoding_funcs.hpp"

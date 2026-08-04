@@ -3,7 +3,6 @@
 \file       buf-video-convolution-prop.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::convolution::syn
@@ -53,4 +52,4 @@ void                     tag_invoke (::boost::json::value_from_tag, ::boost::jso
 BuffVideoConvolutionProp tag_invoke (::boost::json::value_to_tag< BuffVideoConvolutionProp >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::videos::generic::convolution
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::convolution::BuffVideoConvolutionProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::convolution::BuffVideoConvolutionProp);

@@ -3,7 +3,6 @@
 \file       memory-casts-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2026
-\project    u3_helpers_lib
 \brief      Функции преобразований, чтобы контролировать применение reinterpret_cast etc
 */
 

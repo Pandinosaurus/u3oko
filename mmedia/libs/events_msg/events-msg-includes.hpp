@@ -3,7 +3,6 @@
 \file       events-msg-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "events/base-events-msg.hpp"
 #include "events/wrapper-events-event.hpp"

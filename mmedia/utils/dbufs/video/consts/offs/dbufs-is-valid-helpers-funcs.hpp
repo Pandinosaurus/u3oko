@@ -3,7 +3,6 @@
 \file       dbufs-is-valid-helpers-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_dbufs
 \brief      Функция проверки корректности типа-индекса назначание буфера
 */
 

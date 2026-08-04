@@ -3,7 +3,6 @@
 \file       includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.05.2017
-\project    u3_events_log
 */
 #include "appll-part-log-info.hpp"
 

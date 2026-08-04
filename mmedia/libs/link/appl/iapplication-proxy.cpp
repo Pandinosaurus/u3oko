@@ -2,9 +2,8 @@
 \file       iapplication-proxy.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_link
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../_make/libs-link-includes_int.hpp"
 #include "mmedia/libs/proxy/proxy/link-proxy.hpp"
 #include "iapplication-proxy.hpp"
@@ -16,14 +15,14 @@ namespace libs::link::appl
 auto
 IApplicationProxy::impl () -> IApplication::raw_ptr
 {
-  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl::---->");
+  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl:---->");
   if (!impl_)
   {
-    U3_CHECK (creator_, "empty creator function");
+    U3_THROW_IF (creator_, "empty creator function");
     impl_ = creator_ ();
   }
-  U3_CHECK (impl_, "failed create impl module");
-  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl::<----");
+  U3_THROW_IF (impl_, "failed create impl module");
+  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl:<----");
   return impl_;
 }
 
@@ -32,7 +31,7 @@ IApplicationProxy::IApplicationProxy (
   const std::string& dll_path,
   const std::string& name_lib)
 {
-  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy::---->" + TOLOG (dll_path) + TOLOG (name_lib));
+  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy:---->" + TOLOG (dll_path) + TOLOG (name_lib));
   U3_ASSERT (!dll_path.empty ());
   U3_ASSERT (!name_lib.empty ());
 
@@ -67,14 +66,14 @@ IApplicationProxy::IApplicationProxy (
     lib_, ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl").c_str ());
 #endif
 
-  U3_CHECK (creator_, ("find create_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "create_impl")).c_str ());
-  U3_CHECK (erasor_, ("find delete_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl")).c_str ());
-  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy::<----" + TOLOG (dll_path) + TOLOG (name_lib));
+  U3_THROW_IF (creator_, ("find create_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "create_impl")).c_str ());
+  U3_THROW_IF (erasor_, ("find delete_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl")).c_str ());
+  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy:<----" + TOLOG (dll_path) + TOLOG (name_lib));
 }
 
 IApplicationProxy::~IApplicationProxy ()
 {
-  U3_ASSERT_NT (erasor_, "empty deleter function");
+  U3_ASSERT_SOFT (erasor_, "empty deleter function");
   if (erasor_)
   {
     erasor_ (impl_);

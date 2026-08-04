@@ -3,7 +3,6 @@
 \file       codec-browser.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcodec_gen
 \brief      Интерфейс объекта поиска кодеков в системе
 */
 

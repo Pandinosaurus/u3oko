@@ -3,7 +3,6 @@
 \file       dlls-includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_core_lib
 */
 #include "mmedia/libs/ilink/consts/vals.hpp"
 #include "mmedia/libs/events/includes.hpp"   //for events

@@ -3,7 +3,6 @@
 \file       icorrect-image.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::interf::interfaces
@@ -47,17 +46,13 @@ class ICorrectImage : public IBaseRuntimeInterf
   protected:
   ICorrectImage () = default;
 
-  syn::TransformInfo* transinfo_ = nullptr;   //< Указатель на текущий параметр при вызове функции transform
-  const syn::NodeID*  id_node_graph_;         //<
+  syn::TransformInfo* transinfo_ { nullptr };       //< Указатель на текущий параметр при вызове функции transform
+  const syn::NodeID*  id_node_graph_ { nullptr };   //<
 
   private:
   //  ICorrectImage interface
-  virtual void change_state_int (bool enable)                                             = 0;
-  virtual void update_correction_property_int (const syn::VideoCorrectProp::raw_ptr info) = 0;
-
-  virtual bool process_int (
-    syn::IVideoBuf::raw_ptr h16s,
-    syn::IVideoBuf::raw_ptr s16s,
-    syn::IVideoBuf::raw_ptr l16s) = 0;
+  virtual auto change_state_int (bool enable) -> void                                                          = 0;
+  virtual auto update_correction_property_int (const syn::VideoCorrectProp::raw_ptr info) -> void              = 0;
+  virtual auto process_int (syn::IVideoBuf::raw_ptr, syn::IVideoBuf::raw_ptr, syn::IVideoBuf::raw_ptr) -> bool = 0;
 };
 }   // namespace libs::events_base::runtime::interf::interfaces

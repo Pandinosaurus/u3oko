@@ -2,7 +2,6 @@
 \file       buf-event-video-scaler.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "buf-event-video-scaler.hpp"
@@ -22,7 +21,7 @@ EventBufsVideoScaler::EventBufsVideoScaler (const ::libs::events::buf::EventBufs
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 EventBufsVideoScaler::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -33,7 +32,7 @@ EventBufsVideoScaler::serialize (Archive& arh, const std::uint32_t /* file_versi
   arh& BOOST_SERIALIZATION_NVP (dst_rect_);
   arh& BOOST_SERIALIZATION_NVP (koeff_pow2_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const EventBufsVideoScaler& src)
@@ -64,5 +63,5 @@ tag_invoke (::boost::json::value_to_tag< EventBufsVideoScaler >, const ::boost::
 }
 }   // namespace libs::events_base::props::videos::generic::scaler
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::scaler::EventBufsVideoScaler);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::scaler::EventBufsVideoScaler);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::scaler::EventBufsVideoScaler);

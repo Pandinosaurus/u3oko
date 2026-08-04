@@ -2,7 +2,6 @@
 \file     CVideoTextProp.cpp
 \author   Erashov Anton erashov2026@proton.me
 \date     01.01.2017
-\project  u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "CVideoTextProp.hpp"
@@ -28,7 +27,7 @@ CVideoTextProp::clone_int (const ::libs::events::Deeps& deep) const
   return std::m1ake_shared< CVideoTextProp > (*this);
 }
 
-
+#  if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 CVideoTextProp::serialize (Archive& ar, const std::uint32_t /* file_version */)
@@ -38,9 +37,10 @@ CVideoTextProp::serialize (Archive& ar, const std::uint32_t /* file_version */)
 
   return;
 }
+#  endif
 #endif
 }   // namespace libs::events_base::props::videos::generics::text
 
-// BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::props::videos::generic::text::CVideoTextProp );
-////BOOST_CLASS_EXPORT_KEY ();
+// U3_BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::props::videos::generic::text::CVideoTextProp );
+////U3_BOOST_CLASS_EXPORT_KEY ();
 // U3_BOOST_ADD_SERIALIZE_ARCH( ::libs::events_base::props::videos::generic::text::CVideoTextProp );

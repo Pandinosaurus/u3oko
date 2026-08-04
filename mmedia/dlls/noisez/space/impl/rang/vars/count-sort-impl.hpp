@@ -3,7 +3,6 @@
 \file       count-sort-impl.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_filter_space
 */
 
 namespace dlls::noisez::space::impl::rang::vars

@@ -3,7 +3,6 @@
 \file       buf-allocator-proxy.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_dbufs
 */
 
 #if (U3_BUILD_MODULES_AS_LIBS == 1)

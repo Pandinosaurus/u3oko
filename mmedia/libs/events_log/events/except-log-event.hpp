@@ -3,7 +3,6 @@
 \file       except-log-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log::events
@@ -55,4 +54,4 @@ class ExceptLogEvent final : public InfoLogEvent
 };
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ExceptLogEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::ExceptLogEvent);

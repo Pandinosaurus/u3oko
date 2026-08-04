@@ -3,7 +3,6 @@
 \file       id2buf-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       13.09.2018
-\project    mhttp
 */
 
 // old shit

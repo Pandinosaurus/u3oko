@@ -1,7 +1,6 @@
 ﻿/**
 \file       frame-done.cpp
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "frame-done.hpp"
@@ -34,7 +33,7 @@ FrameDone::copy_int (const IEvent::craw_ptr src)
   super::copy_int (src);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 FrameDone::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -43,7 +42,8 @@ FrameDone::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::runtime::video
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::video::FrameDone);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::video::FrameDone);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::video::FrameDone);

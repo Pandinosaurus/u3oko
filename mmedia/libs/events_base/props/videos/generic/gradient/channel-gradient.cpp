@@ -2,7 +2,6 @@
 \file       channel-gradient.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       28.05.2022
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "type-gradient.hpp"
@@ -17,7 +16,7 @@ ChannelGradient::ChannelGradient (const Gradients& type) :
   std::ranges::fill (vals_, 0);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ChannelGradient::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -29,7 +28,7 @@ ChannelGradient::serialize (Archive& arh, const std::uint32_t /* file_version */
   arh& BOOST_SERIALIZATION_NVP (string_vals_);
   arh& BOOST_SERIALIZATION_NVP (future_ext_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const ChannelGradient& src)
@@ -61,5 +60,5 @@ tag_invoke (::boost::json::value_to_tag< ChannelGradient >, const ::boost::json:
 }
 }   // namespace libs::events_base::props::videos::generic::gradient
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::gradient::ChannelGradient);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::gradient::ChannelGradient);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::gradient::ChannelGradient);

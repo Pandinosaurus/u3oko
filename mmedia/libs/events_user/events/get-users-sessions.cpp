@@ -2,7 +2,6 @@
 \file       get-users-sessions.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.07.2018
-\project    u3_events_user
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -68,7 +67,7 @@ GetUsersSessions::copy_int (const IEvent::craw_ptr src)
   sessions_ = dsrc->sessions_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 GetUsersSessions::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -78,7 +77,8 @@ GetUsersSessions::serialize (Archive& arh, const std::uint32_t /* file_version *
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::GetUsersSessions);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::GetUsersSessions);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_user::events::GetUsersSessions);

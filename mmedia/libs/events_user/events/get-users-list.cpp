@@ -2,7 +2,6 @@
 \file       get-users-list.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       23.06.2026
-\project    u3_events_user
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -47,7 +46,7 @@ GetUsersList::copy_int (const IEvent::craw_ptr src)
   users_ids_ = dsrc->users_ids_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 GetUsersList::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -57,7 +56,8 @@ GetUsersList::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::GetUsersList);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::GetUsersList);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_user::events::GetUsersList);

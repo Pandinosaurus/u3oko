@@ -2,9 +2,8 @@
 \file       fake-vgen-source-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.06.2016
-\project    u3_fake_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "includes_int.hpp"
 #include "fake-vgen-source-impl.hpp"
 
@@ -19,7 +18,7 @@ SourceImpl::SourceImpl ()
 
 SourceImpl::~SourceImpl ()
 {
-  U3_CHECK_NT (free_int (), "SourceImpl::~SourceImpl");
+  U3_TEST (free_int (), "SourceImpl::~SourceImpl");
 }
 
 
@@ -56,7 +55,7 @@ SourceImpl::get_sources_int (std::vector< syn::DataSourceInfo >& sources)
 void
 SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* events)
 {
-  U3_XLOG_DBG ("SourceImpl::get_raw_data_int::---->")
+  U3_XLOG_DBG ("SourceImpl::get_raw_data_int:---->")
   auto& buf = (*bufs)[::utils::dbufs::video::consts::offs::raw];
   U3_ASSERT (buf);
 
@@ -71,7 +70,7 @@ SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* eve
       props->capi_.width_, props->capi_.height_, 0, px_format));
 
   auto it_make_func = gen_funcs_.find (px_format);
-  U3_CHECK (it_make_func != gen_funcs_.end (), "null make buffer func fake camera");
+  U3_THROW_IF (it_make_func != gen_funcs_.end (), "null make buffer func fake camera");
   buf->set_format (px_format);
   auto& make_func = it_make_func->second;
 
@@ -88,7 +87,7 @@ SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* eve
   ++indx_bcomp_;
   ++frame_counter_;
   time_last_frame_ = now_time;
-  U3_XLOG_DBG ("SourceImpl::get_raw_data_int::<----")
+  U3_XLOG_DBG ("SourceImpl::get_raw_data_int:<----")
 }
 
 

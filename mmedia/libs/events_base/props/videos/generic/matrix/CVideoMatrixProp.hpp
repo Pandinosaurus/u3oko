@@ -3,7 +3,6 @@
 \file   CVideoMatrixProp.hpp
 \author   Erashov Anton erashov2026@proton.me
 \date   01.01.2017
-\project  u3_events_base_lib
 */
 
 // old shit
@@ -44,4 +43,4 @@ class CVideoMatrixProp : virtual public events_base::Event
 #endif
 }   // namespace libs::events_base::props::videos::generics::matrix
 
-// BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::matrix::CVideoMatrixProp);
+// U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::matrix::CVideoMatrixProp);

@@ -3,7 +3,6 @@
 \file       appll-part-log-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log::syn
@@ -37,4 +36,4 @@ struct AppllPartLogInfo final {
 };
 }   // namespace libs::events_log
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_log::AppllPartLogInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_log::AppllPartLogInfo);

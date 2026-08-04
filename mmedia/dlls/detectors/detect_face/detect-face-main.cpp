@@ -2,7 +2,6 @@
 \file       detect-face-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_detect_face
 \brief      Модуль детекции лица на основе dlib
 */
 #include "detect-face-includes_int.hpp"

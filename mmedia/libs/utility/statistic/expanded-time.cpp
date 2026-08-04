@@ -2,7 +2,6 @@
 \file       expanded-time.cpp
 \date       10.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "expanded-time.hpp"
@@ -19,7 +18,7 @@ ExpandedTime::operator+= (const ExpandedTime& val) -> ExpandedTime&
   return *this;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ExpandedTime::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -29,8 +28,7 @@ ExpandedTime::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (sum_);
   arh& BOOST_SERIALIZATION_NVP (count_);
 }
-
-
+#endif
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const NodeID& src)
@@ -132,5 +130,5 @@ tag_invoke (
 }
 }   // namespace libs::utility::statistic
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::utility::statistic::ExpandedTime);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::utility::statistic::ExpandedTime);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::utility::statistic::ExpandedTime);

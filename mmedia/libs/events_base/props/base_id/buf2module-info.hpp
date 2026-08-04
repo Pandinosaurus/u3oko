@@ -3,7 +3,6 @@
 \file       buf2module-info.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.09.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::base_id::syn
@@ -43,4 +42,4 @@ void            tag_invoke (::boost::json::value_from_tag, ::boost::json::value&
 Buff2ModuleInfo tag_invoke (::boost::json::value_to_tag< Buff2ModuleInfo >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::base_id
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::base_id::Buff2ModuleInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::base_id::Buff2ModuleInfo);

@@ -2,7 +2,6 @@
 \file       SizeChangedEvent.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_gui
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -64,7 +63,7 @@ SizeChangedEvent::copy_int (const IEvent::craw_ptr src)
   size_ = dsrc->size_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 SizeChangedEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -72,7 +71,8 @@ SizeChangedEvent::serialize (Archive& arh, const std::uint32_t /* file_version *
   arh& U3_BOOST_SERIALIZE_MAKE_NVP ("olibsoevents_guioeventsoBaseGUIEvent", super);
   // ar & BOOST_SERIALIZATION_NVP( size_ );
 }
+#endif
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::SizeChangedEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::SizeChangedEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_gui::events::SizeChangedEvent);

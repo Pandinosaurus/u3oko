@@ -2,9 +2,8 @@
 \file       median-time-filter-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../../events-base-includes_int.hpp"
 #include "median-time-filter-prop.hpp"
 
@@ -26,7 +25,7 @@ str2sort (const std::string& val) -> Sortings
   auto finger = val2val.find (val);
   if (val2val.end () == finger)
   {
-    U3_ASSERT_SIGNAL_NT ("failed find sorting type by name" + TOLOG (val));
+    U3_MARK ("failed find sorting type by name" + TOLOG (val));
     finger = val2val.find ("default");
   }
   return finger->second;
@@ -105,6 +104,7 @@ MedianTimeFilterProp::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 MedianTimeFilterProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -119,7 +119,7 @@ MedianTimeFilterProp::serialize (Archive& arh, const std::uint32_t /* file_versi
 
   self_correct ();
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const Sortings& src)
@@ -135,5 +135,5 @@ tag_invoke (::boost::json::value_to_tag< Sortings >, const ::boost::json::value&
 }
 }   // namespace libs::events_base::props::videos::noises::time::ext
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::ext::MedianTimeFilterProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::ext::MedianTimeFilterProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::time::ext::MedianTimeFilterProp);

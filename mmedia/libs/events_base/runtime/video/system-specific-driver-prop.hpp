@@ -3,7 +3,6 @@
 \file       system-specific-driver-prop.hpp
 \date       08.06.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::video
@@ -54,4 +53,4 @@ class SystemSpecificDriverProp final : public RuntimeEvent
 };
 }   // namespace libs::events_base::runtime::video
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::video::SystemSpecificDriverProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::runtime::video::SystemSpecificDriverProp);

@@ -3,7 +3,6 @@
 \file       all2rgb-dll-syn.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_all2rgb
 */
 
 namespace dlls::convertors::all2rgb::syn

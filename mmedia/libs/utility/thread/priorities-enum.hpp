@@ -3,7 +3,6 @@
 \file       priorities-enum.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.05.2022
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::thread

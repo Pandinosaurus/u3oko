@@ -2,7 +2,6 @@
 \file       codec-generic.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_codec_gen
 */
 #include "codec-gen-includes_int.hpp"
 #include "codec-generic.hpp"
@@ -13,6 +12,7 @@ void
 CodecGeneric::init (const InfoGenCodec& info)
 {
   init_int (info);
+  pthreads_ = ::libs::iproperties::helpers::get_shared_prop_os ()->get_mcalls_lockfree ();
 }
 
 

@@ -3,7 +3,6 @@
 \file       buf_helpers_funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_optim_lib
 */
 
 namespace libs::optim::mcalls::helpers

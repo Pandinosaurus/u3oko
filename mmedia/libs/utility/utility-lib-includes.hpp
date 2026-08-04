@@ -3,7 +3,6 @@
 \file       utility-lib-includes.hpp
 \date       10.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "consts/utility-lib-const-vals.hpp"
 

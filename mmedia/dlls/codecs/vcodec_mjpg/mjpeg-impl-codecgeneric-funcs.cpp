@@ -2,7 +2,6 @@
 \file       mjpeg-impl-codecgeneric-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_vcodec_mjpg
 */
 #include "vcodec-mjpg-includes_int.hpp"
 #include "mjpeg-impl.hpp"
@@ -14,14 +13,14 @@ namespace dlls::codecs::vcodec_mjpg
 void
 MjpegImpl::set_codec_info_int (const syn::VideoCodecProp* cinfo)
 {
-  cinfo_.copy (cinfo);
+  props_.copy (cinfo);
 }
 
 
 void
-MjpegImpl::get_codec_info_int (syn::VideoCodecProp* ret_info)
+MjpegImpl::get_codec_info_int (syn::VideoCodecProp* info)
 {
-  ret_info->copy (&cinfo_);
+  info->copy (&props_);
 }
 
 
@@ -69,10 +68,10 @@ MjpegImpl::code_int (
   syn::TransformInfo::tevents_type* events) -> bool
 {
   U3_LOG_DATA_DBG ("MjpegImpl::code_int:---->");
-  const syn::IVideoBuf::raw_ptr  obuf = (*dst)[cinfo_.bufs_.indx_dbuf_];
+  const syn::IVideoBuf::raw_ptr  obuf = (*dst)[props_.bufs_.indx_dbuf_];
   const syn::IVideoBuf::craw_ptr hbuf = (*src)[utils::dbufs::video::consts::offs::hue];
   const syn::IVideoBuf::craw_ptr sbuf = (*src)[utils::dbufs::video::consts::offs::sat];
-  const syn::IVideoBuf::craw_ptr lbuf = (*src)[cinfo_.bufs_.indx_sbuf_];
+  const syn::IVideoBuf::craw_ptr lbuf = (*src)[props_.bufs_.indx_sbuf_];
   U3_ASSERT (lbuf);
 
   const auto lbuf_width  = lbuf->get_dim_var (::utils::dbufs::video::Dims::width);
@@ -89,7 +88,7 @@ MjpegImpl::code_int (
 
   std::int32_t out_size    = 0;
   const bool   exist_color = thbuf.self_test () && tsbuf.self_test ();
-  const bool   use_color   = exist_color && !cinfo_.plane_.nocolor_;
+  const bool   use_color   = exist_color && !props_.plane_.nocolor_;
 
   if (use_color)
   {
@@ -149,10 +148,10 @@ MjpegImpl::decode_int (
   ::libs::bufs::Bufs*               dst,
   syn::TransformInfo::tevents_type* events) -> bool
 {
-  const syn::IVideoBuf::craw_ptr compbuf   = (*src)[cinfo_.bufs_.indx_sbuf_];
+  const syn::IVideoBuf::craw_ptr compbuf   = (*src)[props_.bufs_.indx_sbuf_];
   const auto                     compsize  = (*compbuf)[::utils::dbufs::MemVars::size_data];
   const auto*                    head      = ::libs::utility::casts::reinterpret_cast_helper< const syn::HeaderIFrame* > (utils::dbufs::video::helpers::get_const_data (compbuf));
-  const bool                     use_color = !head->cinfo_.nocolor_;
+  const bool                     use_color = !head->props_.nocolor_;
   const auto&                    base_head = head->base_part_;
   const auto&                    info_head = base_head.sinfo_;
 
@@ -169,10 +168,10 @@ MjpegImpl::decode_int (
     return false;
   }
 
-  auto* const dbuf = (*dst)[cinfo_.bufs_.indx_dbuf_];
+  auto* const dbuf = (*dst)[props_.bufs_.indx_dbuf_];
   if (!dbuf)
   {
-    // U3_LOG_DATA_WRN ("receive invalid destination buf, skip" + TOLOG (cinfo_.bufs_.indx_dbuf_));
+    // U3_LOG_DATA_WRN ("receive invalid destination buf, skip" + TOLOG (props_.bufs_.indx_dbuf_));
     return false;
   }
 

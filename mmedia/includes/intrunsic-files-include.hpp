@@ -3,7 +3,6 @@
 \file       intrunsic-files-include.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_includes
 */
 
 #ifdef U3_COMPILER_MSC

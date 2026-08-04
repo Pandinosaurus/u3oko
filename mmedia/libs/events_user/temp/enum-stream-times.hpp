@@ -4,7 +4,6 @@
 \file       enum-stream-times.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       12.08.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage

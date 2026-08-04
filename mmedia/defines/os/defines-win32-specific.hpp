@@ -3,7 +3,6 @@
 \file       defines-win32-specific.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 */
 
 #ifdef U3_COMPILER_MSC

@@ -2,7 +2,6 @@
 \file       vcodec-gen-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vcodec_gen
 */
 #include "vcodec-gen-includes_int.hpp"
 #include "vcodec-gen-info-filter-dll.hpp"

@@ -2,7 +2,6 @@
 \file       window_gen_funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../utility-lib-includes_int.hpp"
 
@@ -22,10 +21,10 @@ send (
   bool         enable_block_call)
 {
   DWORD_PTR res = S_OK;
-  U3_CHECK (is_valid (wnd), "failed");
+  U3_THROW_IF (is_valid (wnd), "failed");
   //  23.11.2016 пробую так решить проблему разружения состояния объекта при ожиданни в синронизирующих функциях данного типа внутри обработки
   //  сообщения от внешнего агента, в ситуации когда пришло еще одно внешнее сообщение
-  U3_CHECK_WIN32_CALL (0 != SendMessageTimeout (wnd, msg, wparam, lparam, enable_block_call ? SMTO_BLOCK : SMTO_NORMAL, timeout, &res), "SendMessageTimeout");
+  U3_THROW_IF_WIN32_CALL (0 != SendMessageTimeout (wnd, msg, wparam, lparam, enable_block_call ? SMTO_BLOCK : SMTO_NORMAL, timeout, &res), "SendMessageTimeout");
 }
 }   // namespace libs::utility::platforms::win32::send_message
 
@@ -35,16 +34,7 @@ namespace libs::utility::platforms::win32
 bool
 is_valid (HWND hwnd)
 {
-  if (!hwnd)
-  {
-    return false;
-  }
-
-  if (!::IsWindow (hwnd))
-  {
-    return false;
-  }
-  return true;
+  return !hwnd || !::IsWindow (hwnd) ? false : true;
 }
 
 
@@ -68,7 +58,7 @@ register_window_class (const WNDCLASSEX* lpwcx)
     {
       if (((last_error = GetLastError ()) != 0))
       {
-        U3_ASSERT_SIGNAL ("failed");
+        U3_ASSERT_THROW ("failed");
       }
     }
   }
@@ -79,14 +69,14 @@ void
 destroy_window (HWND wnd)
 {
   std::uint32_t dw1 = 0;
-  U3_CHECK (is_valid (wnd), "failed");
+  U3_THROW_IF (is_valid (wnd), "failed");
   // если данное окно нашего потока просто удаляем его иначе посылаем сообщение
   // окну с требованием удалить себя
   if (GetCurrentThreadId () == GetWindowThreadProcessId (wnd, 0))
   {
     if (DestroyWindow (wnd) == false)
     {
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       dw1 = GetLastError ();
     }
   }
@@ -120,14 +110,26 @@ create_window (
   void*         lpParam,
   const TCHAR*  add_info)
 {
-  HWND ret = 0;
-
   if ((0 == lpClassName) || (0 == hInstance))
   {
     return 0;
   }
 
-  U3_CHECK_WIN32_CALL (0 != (ret = CreateWindowEx (dwExStyle, lpClassName, lpWindowName, dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam)), "CreateWindowEx");
+  const HWND ret = CreateWindowEx (
+    dwExStyle,
+    lpClassName,
+    lpWindowName,
+    dwStyle,
+    x,
+    y,
+    nWidth,
+    nHeight,
+    hWndParent,
+    hMenu,
+    hInstance,
+    lpParam);
+
+  U3_THROW_IF_WIN32_CALL (0 == ret, "CreateWindowEx");
   return ret;
 }
 
@@ -135,13 +137,13 @@ create_window (
 void
 reset_link (HWND hwnd)
 {
-  U3_CHECK (is_valid (hwnd), "failed");
+  U3_THROW_IF (is_valid (hwnd), "failed");
 
   SetLastError (0);
 
   if (SetWindowLong (hwnd, GWLP_USERDATA, 0) == 0)
   {
-    U3_CHECK (0 == GetLastError (), "failed SetWindowLong");
+    U3_THROW_IF (0 == GetLastError (), "failed SetWindowLong");
   }
 }
 
@@ -149,14 +151,14 @@ reset_link (HWND hwnd)
 void
 add_link (HWND hwnd, const CREATESTRUCT* info)
 {
-  U3_CHECK (info, "failed");
-  U3_CHECK (is_valid (hwnd), "failed");
-  U3_CHECK (info->lpCreateParams, "failed")
+  U3_THROW_IF (info, "failed");
+  U3_THROW_IF (is_valid (hwnd), "failed");
+  U3_THROW_IF (info->lpCreateParams, "failed")
 
   SetLastError (0);
   if (SetWindowLongPtr (hwnd, GWLP_USERDATA, ::libs::utility::casts::reinterpret_cast_helper< LONG_PTR > (info->lpCreateParams)) == 0)
   {
-    U3_CHECK (0 == GetLastError (), "failed SetWindowLongPtr");
+    U3_THROW_IF (0 == GetLastError (), "failed SetWindowLongPtr");
   }
 }
 }   // namespace libs::utility::platforms::win32

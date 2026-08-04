@@ -3,7 +3,6 @@
 \file       vgen-mops-info-filter-dll.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2017
-\project    u3_vgen_mops
 \brief      Включаемый файл для морфологических операций
 */
 

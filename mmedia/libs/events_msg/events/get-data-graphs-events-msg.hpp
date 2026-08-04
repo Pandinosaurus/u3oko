@@ -3,7 +3,6 @@
 \file       get-data-graphs-events-msg.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       05.06.2022
-\project    u3_events_base_lib
 */
 
 namespace libs::events_msg::events
@@ -60,4 +59,4 @@ class GetDataGraphsEventsMsg : public BaseEventsMsg
 };
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::GetDataGraphsEventsMsg);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::GetDataGraphsEventsMsg);

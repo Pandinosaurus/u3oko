@@ -3,7 +3,6 @@
 \file       impl_as_frends.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_core_lib
 */
 
 namespace libs::icore::impl::var1::graph

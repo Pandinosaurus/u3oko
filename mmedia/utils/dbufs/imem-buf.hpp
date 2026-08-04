@@ -3,7 +3,6 @@
 \file       imem-buf.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.08.2018
-\project    u3_dbufs
 */
 
 namespace utils::dbufs::allocator
@@ -26,7 +25,7 @@ class IMemBuf : public IBuf
   virtual ~IMemBuf () = default;
 
   auto
-  getraw_buf () const -> ::libs::utility::mem::IBlockMem::ptr
+  get_block () const -> ::libs::utility::mem::IBlockMem::ptr
   {
     return raw_block_;
   }
@@ -55,7 +54,7 @@ class IMemBuf : public IBuf
   virtual auto get_buf_int () -> std::uint8_t* override;
   virtual auto get_cbuf_int () const -> const std::uint8_t* override;
 
-  auto ialloc (const mem_var_type&) -> void;
+  auto resize (const mem_var_type&) -> void;
   auto flush () -> void;
 
   IMemBuf () = default;

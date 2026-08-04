@@ -3,7 +3,6 @@
 \file       vcodec-gen-proxy.hpp
 \date       17.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_proxy_libs
 */
 // EAI-REFACT
 // #include "mmedia/dlls/codecs/vcodec_gen/source/vcodec-gen-includes.hpp"

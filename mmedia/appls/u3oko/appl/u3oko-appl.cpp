@@ -2,9 +2,8 @@
 \file       benchmark-appl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3oko
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../appls-u3oko-includes_int.hpp"
 #include "u3oko-appl.hpp"
 
@@ -27,7 +26,7 @@ U3OkoAppl::appl_init_int (const syn::InitApplication& info)
 void
 U3OkoAppl::init_links_int (const syn::InitApplication& info)
 {
-  U3_XLOG_DBG ("U3OkoAppl::init_links_int::---->");
+  U3_XLOG_DBG ("U3OkoAppl::init_links_int:---->");
   super::init_links_int (info);
 
   //  Устанавливаем свойства логирования
@@ -36,7 +35,7 @@ U3OkoAppl::init_links_int (const syn::InitApplication& info)
   //  Устанавливаем свойства хранилища
   U3_XLOG_DBG ("U3OkoAppl::init_links_int:: pt2");
   links_[syn::mids::appl2storage]->send_msg (appl_event_props_.storage_module_);
-  U3_XLOG_DBG ("U3OkoAppl::init_links_int::<----");
+  U3_XLOG_DBG ("U3OkoAppl::init_links_int:<----");
 }
 
 

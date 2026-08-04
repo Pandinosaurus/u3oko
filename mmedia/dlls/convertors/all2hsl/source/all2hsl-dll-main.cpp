@@ -2,7 +2,6 @@
 \file       all2hsl-dll-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_all2hsl
 \brief      Модуль преобразование RGB24->HSL
 */
 #include "all2hsl-dll-includes_int.hpp"

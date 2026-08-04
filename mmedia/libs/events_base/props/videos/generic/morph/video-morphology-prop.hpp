@@ -3,7 +3,6 @@
 \file       video-morphology-prop.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::morph
@@ -57,4 +56,4 @@ class VideoMorphologyProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::videos::generic::morph
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::morph::VideoMorphologyProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::morph::VideoMorphologyProp);

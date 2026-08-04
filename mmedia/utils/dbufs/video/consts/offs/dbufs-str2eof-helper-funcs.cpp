@@ -2,7 +2,6 @@
 \file       dbufs-str2eof-helper-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.03.2022
-\project    u3_dbufs
 */
 #include "../../../dbufs-includes_int.hpp"
 #include "dbufs-str2eof-helper-funcs.hpp"

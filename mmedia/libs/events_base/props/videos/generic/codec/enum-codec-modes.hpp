@@ -3,7 +3,6 @@
 \file       enum-codec-modes.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::codec

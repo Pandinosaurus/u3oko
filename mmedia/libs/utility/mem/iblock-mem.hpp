@@ -3,7 +3,6 @@
 \file       iblock-mem.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_mems
 \brief      Файл интерфейса для выделения выровненных блоков памяти
 */
 
@@ -49,7 +48,7 @@ class IBlockMem
   get_capacity () const
   {
     auto ret = get_capacity_int ();
-    U3_CHECK_NT (ret <= consts::max_memory_block_size, "unusual memory block size" + VTOLOG (ret) + VTOLOG (consts::max_memory_block_size));
+    U3_TEST (ret <= consts::max_memory_block_size, "unusual memory block size" + VTOLOG (ret) + VTOLOG (consts::max_memory_block_size));
     return ret;
   }
 
@@ -57,14 +56,14 @@ class IBlockMem
   get_size () const
   {
     const auto ret = get_size_int ();
-    U3_CHECK (ret <= get_capacity_int (), "invalid state memory" + VTOLOG (get_capacity_int ()) + VTOLOG (ret));
+    U3_THROW_IF (ret <= get_capacity_int (), "invalid state memory" + VTOLOG (get_capacity_int ()) + VTOLOG (ret));
     return ret;
   }
 
   void
   set_size (const size_type& size)
   {
-    U3_CHECK (size <= get_capacity_int (), "capacity too small" + VTOLOG (get_capacity_int ()) + VTOLOG (size));
+    U3_THROW_IF (size <= get_capacity_int (), "capacity too small" + VTOLOG (get_capacity_int ()) + VTOLOG (size));
     set_size_int (size);
   }
 
@@ -72,7 +71,7 @@ class IBlockMem
   resize (const size_type& size)
   {
     resize_int (size);
-    U3_CHECK (get_capacity () >= size, "resize failed");
+    U3_THROW_IF (get_capacity () >= size, "resize failed");
   }
 
   protected:

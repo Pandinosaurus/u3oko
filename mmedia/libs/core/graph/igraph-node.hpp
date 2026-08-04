@@ -3,7 +3,6 @@
 \file       igraph-node.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_core_lib
 \brief      Объявление интерфейса объекта графа по обработке данных
 */
 

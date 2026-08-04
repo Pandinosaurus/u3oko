@@ -3,7 +3,6 @@
 \file       libs-optims-optim-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_optim_lib
 */
 #include "mmedia/libs/optims/s16bit/optim_s16bit_generic/includes.hpp"
 

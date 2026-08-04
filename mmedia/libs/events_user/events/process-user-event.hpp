@@ -3,7 +3,6 @@
 \file       process-user-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.07.2018
-\project    u3_events_user
 */
 
 namespace libs::events_user::events
@@ -69,4 +68,4 @@ class ProcessUserEvent : public BaseUserEvent
 };
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::ProcessUserEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::ProcessUserEvent);

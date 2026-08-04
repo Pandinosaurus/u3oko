@@ -2,7 +2,6 @@
 \file       base-id-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       18.07.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "base-id-prop.hpp"
@@ -37,7 +36,7 @@ BaseIdProp::load_json_int (const ::boost::json::object& obj)
   super::load_json_int (obj);
 
   source_name_ = obj.at ("source_name").as_string ();
-  buf2modules_ = ::boost::json::value_to< buf2module_infos_type > (obj.at ("buf2modules"));
+  buf2modules_ = ::boost::json::value_to< buf_infos_type > (obj.at ("buf2modules"));
 }
 
 
@@ -82,6 +81,7 @@ BaseIdProp::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseIdProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -92,7 +92,8 @@ BaseIdProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::base_id
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::base_id::BaseIdProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::base_id::BaseIdProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::base_id::BaseIdProp);

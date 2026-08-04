@@ -2,7 +2,6 @@
 \file       process-helper-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "process-helper-funcs.hpp"
@@ -27,7 +26,7 @@ get_start_time () -> std::int64_t
     FILETIME tkernel;
     FILETIME tuser;
 
-    U3_CHECK (GetProcessTimes (GetCurrentProcess (), &tcreate, &texit, &tkernel, &tuser), "call GetProcessTimes");
+    U3_THROW_IF (GetProcessTimes (GetCurrentProcess (), &tcreate, &texit, &tkernel, &tuser), "call GetProcessTimes");
     ret = (U3_CAST_INT64 (tcreate.dwHighDateTime) << 32) | tcreate.dwLowDateTime;
   }
 #else

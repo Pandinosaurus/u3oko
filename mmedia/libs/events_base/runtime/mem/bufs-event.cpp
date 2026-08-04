@@ -2,7 +2,6 @@
 \file       bufs-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "bufs-event.hpp"
@@ -71,7 +70,7 @@ BufsEvent::copy_int (const IEvent::craw_ptr src)
 {
   const auto* dsrc = ::libs::iproperties::helpers::dbg_check_copy_event< BufsEvent > (src);
   super::copy_int (src);
-  U3_ASSERT_SIGNAL ("unimplemented");
+  U3_ASSERT_THROW ("unimplemented");
 }
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
@@ -87,5 +86,5 @@ BufsEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 #endif
 }   // namespace libs::events_base::runtime::mem
 
-// BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::runtime::mem::BufsEvent );
+// U3_BOOST_CLASS_EXPORT_IMPLEMENT( ::libs::events_base::runtime::mem::BufsEvent );
 // U3_BOOST_ADD_SERIALIZE_ARCH( ::libs::events_base::runtime::mem::BufsEvent );

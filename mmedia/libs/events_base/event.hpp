@@ -3,7 +3,6 @@
 \file       event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base
@@ -60,5 +59,7 @@ class Event : public ::libs::events::IEvent
 };
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::Event);
-BOOST_CLASS_TRACKING (::libs::events_base::Event, boost::serialization::track_always);
+#if (U3_USE_BOOST_SERIALIZTION)
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::Event);
+U3_BOOST_CLASS_TRACKING (::libs::events_base::Event, boost::serialization::track_always);
+#endif

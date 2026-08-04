@@ -2,7 +2,6 @@
 \file       expanded-times-helpers.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../utility-lib-includes_int.hpp"
 #include "mmedia/libs/ilink/consts/libs-ilink-const-vals.hpp"

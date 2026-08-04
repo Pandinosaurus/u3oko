@@ -2,7 +2,6 @@
 \file       base-data-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_media
 \brief      Реализация базового класса события модуля обработки данных
 */
 #include "mmedia/includes/control-defines-includes.hpp"
@@ -52,7 +51,7 @@ BaseDataEvent::copy_int (const IEvent::craw_ptr src)
   super::copy_int (src);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -61,7 +60,8 @@ BaseDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::BaseDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::BaseDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::BaseDataEvent);

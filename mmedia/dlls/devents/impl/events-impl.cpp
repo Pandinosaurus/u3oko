@@ -2,9 +2,8 @@
 \file       events-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.07.2017
-\project    u3_devents_dlls
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../generics-devents-includes_int.hpp"
 #include "events-impl.hpp"
 
@@ -12,7 +11,7 @@ namespace dlls::devents::impl
 {
 EventsImpl::EventsImpl ()
 {
-  U3_XLOG_DBG ("EventsImpl::EventsImpl::---->");
+  U3_XLOG_DBG ("EventsImpl::EventsImpl:---->");
   lock_type lock (mtx_);
   make_event_funcs ();
 }
@@ -21,7 +20,7 @@ EventsImpl::EventsImpl ()
 auto
 EventsImpl::get (const hid_type& eid) -> syn::IEvent::ptr
 {
-  U3_XLOG_DBG ("EventsImpl::get::---->" + STOLOG (eid));
+  U3_XLOG_DBG ("EventsImpl::get:---->" + STOLOG (eid));
   lock_type lock (mtx_);
   auto      itf = gen_func_events_.find (id_event_type { eid });
   if (gen_func_events_.end () == itf)
@@ -41,7 +40,7 @@ EventsImpl::get (const hid_type& eid) -> syn::IEvent::ptr
     U3_XLOG_MARK ("dllevents" + STOLOG (id) + VTOLOG (counter_create_events_[id]));
   }
 #endif
-  U3_XLOG_DBG ("EventsImpl::get::<----" + STOLOG (eid) + PTR_TOLOG (ret.get ()));
+  U3_XLOG_DBG ("EventsImpl::get:<----" + STOLOG (eid) + PTR_TOLOG (ret.get ()));
   return ret;
 }
 
@@ -90,6 +89,7 @@ EventsImpl::dcast (syn::IEvent::craw_ptr src, const hid_type& eid) -> const void
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 auto
 EventsImpl::event2xml (syn::IEvent::ptr& src, std::string& xml) -> bool
 {
@@ -167,12 +167,12 @@ EventsImpl::bin2event (std::istream& bin, syn::IEvent::ptr& dst) -> bool
   }
   return true;
 }
-
+#endif
 
 auto
 EventsImpl::dbg_state_dump () -> void
 {
-  U3_XLOG_DEV ("EventsImpl::dbg_state_dump::---->");
+  U3_XLOG_DEV ("EventsImpl::dbg_state_dump:---->");
   for (const auto& [eid, efunc] : cast_func_events_)
   {
     U3_XLOG_DEV (FSTOLOG (eid));

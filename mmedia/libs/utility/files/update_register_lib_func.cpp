@@ -2,7 +2,6 @@
 \file       update_register_lib_func.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "update_register_lib_func.hpp"

@@ -2,7 +2,6 @@
 \file       appll-part-log-info.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -33,7 +32,7 @@ AppllPartLogInfo::AppllPartLogInfo (
   }
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 AppllPartLogInfo::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -45,7 +44,8 @@ AppllPartLogInfo::serialize (Archive& arh, const std::uint32_t /* file_version *
   arh& BOOST_SERIALIZATION_NVP (file_);
   arh& BOOST_SERIALIZATION_NVP (line_);
 }
+#endif
 }   // namespace libs::events_log
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::AppllPartLogInfo);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::AppllPartLogInfo);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::AppllPartLogInfo);

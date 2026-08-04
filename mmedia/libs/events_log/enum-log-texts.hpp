@@ -3,7 +3,6 @@
 \file       enum-log-texts.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log

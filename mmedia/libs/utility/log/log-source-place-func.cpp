@@ -2,7 +2,6 @@
 \file       log-source-place-func.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.04.2026
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "log-source-place-func.hpp"

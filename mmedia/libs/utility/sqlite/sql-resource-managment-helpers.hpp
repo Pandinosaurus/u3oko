@@ -3,7 +3,6 @@
 \file       sql-resource-managment-helpers.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.06.2022
-\project    mevents
 */
 
 // old shit

@@ -4,7 +4,6 @@
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
 
-\project    u3_desk_vgen
 */
 
 namespace dlls::sources::desk_vgen::impls::android

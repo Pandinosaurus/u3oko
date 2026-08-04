@@ -2,7 +2,6 @@
 \file       replace_strings_in_files_func.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       25.10.2024
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "libs-helpers-files-includes.hpp"

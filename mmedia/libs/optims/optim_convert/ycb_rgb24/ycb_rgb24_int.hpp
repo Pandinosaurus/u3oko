@@ -3,7 +3,6 @@
 \file       ycb_rgb24_int.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       30.07.2018
-\project    u3_optim_gen_convert
 */
 
 namespace libs::optim::convert::ycb_rgb24

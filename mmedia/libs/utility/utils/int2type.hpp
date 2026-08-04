@@ -3,7 +3,6 @@
 \file       int2type.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 
 // EAI-REFACT old shit
@@ -115,12 +114,14 @@ class Int2Type
     return val_;
   }
 
+#if (U3_USE_BOOST_SERIALIZTION)
   template< class Archive >
   void
   serialize (Archive& arh, const std::uint32_t /* file_version */)
   {
     arh& BOOST_SERIALIZATION_NVP (val_);
   }
+#endif
 
   private:
   TTBase val_ { def_value };   //<

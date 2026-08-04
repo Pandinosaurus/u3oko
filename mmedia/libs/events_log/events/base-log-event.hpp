@@ -3,7 +3,6 @@
 \file       base-log-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_log
 */
 
 namespace libs::events_log::events
@@ -48,4 +47,4 @@ class BaseLogEvent : public ::libs::events_base::TimedEvent
 };
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::BaseLogEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_log::events::BaseLogEvent);

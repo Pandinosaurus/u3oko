@@ -2,7 +2,6 @@
 \file       interf-codec-image-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "interf-codec-image-event.hpp"
@@ -66,6 +65,6 @@ InterfCodecImageEvent::serialize (Archive& arh, const std::uint32_t /* file_vers
 }   // namespace libs::events_base::runtime::interf
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::InterfCodecImageEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::interf::InterfCodecImageEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::interf::InterfCodecImageEvent);
 #endif

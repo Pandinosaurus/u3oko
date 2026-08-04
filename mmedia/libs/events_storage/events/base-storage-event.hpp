@@ -3,7 +3,6 @@
 \file       base-http-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.07.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage::events
@@ -54,4 +53,4 @@ class BaseStorageEvent : public ::libs::events_base::TimedEvent
 };
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::BaseStorageEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_storage::events::BaseStorageEvent);

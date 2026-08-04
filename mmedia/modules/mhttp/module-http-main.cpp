@@ -2,7 +2,6 @@
 \file       module-http-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mhttp
 \brief      Модуль http сервера
 */
 #include "module-http-includes_int.hpp"
@@ -19,7 +18,7 @@ factory_impl_mhttp (::libs::link::appl::IApplication::raw_ptr impl, bool create)
   std::scoped_lock  lock (httpsinc);
   if (create)
   {
-    U3_ASSERT_NT (nullptr == impl, PTR_TOLOG (impl));
+    U3_ASSERT_SOFT (nullptr == impl, PTR_TOLOG (impl));
     if (!httpappl)
     {
       httpappl = new ::modules::mhttp::appl::HttpModule;
@@ -28,16 +27,16 @@ factory_impl_mhttp (::libs::link::appl::IApplication::raw_ptr impl, bool create)
   }
   else
   {
-    U3_ASSERT_NT (impl, PTR_TOLOG (impl));
-    U3_ASSERT_NT (impl == httpappl, PTR_TOLOG (impl));
-    U3_ASSERT_NT (httpappl, PTR_TOLOG (httpappl));
+    U3_ASSERT_SOFT (impl, PTR_TOLOG (impl));
+    U3_ASSERT_SOFT (impl == httpappl, PTR_TOLOG (impl));
+    U3_ASSERT_SOFT (httpappl, PTR_TOLOG (httpappl));
     --count_httprefs;
     if (count_httprefs <= 0 && httpappl)
     {
       delete httpappl;
       httpappl = nullptr;
     }
-    U3_ASSERT_NT (count_httprefs >= 0, PTR_TOLOG (httpappl));
+    U3_ASSERT_SOFT (count_httprefs >= 0, PTR_TOLOG (httpappl));
   }
   return httpappl;
 }

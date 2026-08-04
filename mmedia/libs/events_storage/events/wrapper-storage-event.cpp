@@ -2,7 +2,6 @@
 \file       wrapper-storage-event.cpp
 \date       21.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_storage
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -54,7 +53,7 @@ WrapperStorageEvent::copy_int (const IEvent::craw_ptr src)
   int_ = dsrc->int_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 WrapperStorageEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -64,7 +63,8 @@ WrapperStorageEvent::serialize (Archive& arh, const std::uint32_t /* file_versio
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_storage::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_storage::events::WrapperStorageEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_storage::events::WrapperStorageEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_storage::events::WrapperStorageEvent);

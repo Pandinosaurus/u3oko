@@ -2,9 +2,8 @@
 \file       convert-json-funcs.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       10.06.2022
-\project    u3_helpers_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../utility-lib-includes_int.hpp"
 #include "convert-json-helper-funcs.hpp"
 

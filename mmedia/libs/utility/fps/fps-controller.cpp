@@ -3,7 +3,6 @@
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
 \brief      Object for control frame rate action
-\project    u3_helpers_lib
 */
 #include "../utility-lib-includes_int.hpp"
 #include "fps-controller.hpp"

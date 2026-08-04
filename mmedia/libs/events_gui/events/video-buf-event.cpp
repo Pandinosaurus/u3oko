@@ -2,7 +2,6 @@
 \file       video-buf-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_events_gui
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -82,7 +81,7 @@ VideoBufEvent::copy_int (const IEvent::craw_ptr src)
   id_  = dsrc->id_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoBufEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -92,7 +91,8 @@ VideoBufEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (id_);
   U3_THROW_EXCEPT ("try serializate VideoBufEvent");
 }
+#endif
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::VideoBufEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::VideoBufEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_gui::events::VideoBufEvent);

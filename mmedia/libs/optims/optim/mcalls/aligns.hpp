@@ -3,7 +3,6 @@
 \file       aligns.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_optim_lib
 */
 
 namespace libs::optim::mcalls
@@ -22,8 +21,8 @@ struct Aligns final {
   void
   self_test () const
   {
-    U3_CHECK (::libs::optim::mcalls::helpers::check_mcall_align (ax_), "x unaligned" + VTOLOG (ax_));
-    U3_CHECK (::libs::optim::mcalls::helpers::check_mcall_align (ay_), "y unaligned" + VTOLOG (ay_));
+    U3_THROW_IF (::libs::optim::mcalls::helpers::check_mcall_align (ax_), "x unaligned" + VTOLOG (ax_));
+    U3_THROW_IF (::libs::optim::mcalls::helpers::check_mcall_align (ay_), "y unaligned" + VTOLOG (ay_));
   }
 
   std::uint32_t ax_ { 16 };   //< Выравнивание  по горизонтали в пикселях для всех буферов

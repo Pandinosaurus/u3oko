@@ -3,7 +3,6 @@
 \file       mix-mul-prop.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::mix_mul
@@ -56,4 +55,4 @@ class MixMulProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::mix_mul
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::mix_mul::MixMulProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::mix_mul::MixMulProp);

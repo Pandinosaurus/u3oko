@@ -2,7 +2,6 @@
 \file       load-codec-from-file-funcs.cpp
 \date       14.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcodec_gen
 */
 #include "../vcodec-gen-includes_int.hpp"
 #include "load-codec-from-file-funcs.hpp"
@@ -43,9 +42,9 @@ load_codec_from_file (
     info.lib_, make_name_function (file_name, consts::func_name_get_info));
 #endif
 
-  U3_CHECK (info.create_codec_, "empty info.create_codec_");
-  U3_CHECK (info.free_codec_, "empty info.free_codec_");
-  U3_CHECK (info.get_codec_info_, "empty info.get_codec_info_");
-  U3_CHECK (info.check (), "failed load codec" + TOLOG (file_name) + TOLOG (full_path));
+  U3_THROW_IF (info.create_codec_, "empty info.create_codec_");
+  U3_THROW_IF (info.free_codec_, "empty info.free_codec_");
+  U3_THROW_IF (info.get_codec_info_, "empty info.get_codec_info_");
+  U3_THROW_IF (info.check (), "failed load codec" + TOLOG (file_name) + TOLOG (full_path));
 }
 }   // namespace dlls::codecs::vcodec_gen::helpers

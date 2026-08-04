@@ -3,7 +3,6 @@
 \file       swap-buf-data-by-rows-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_dbufs
 */
 
 namespace utils::dbufs::video::helpers
@@ -11,7 +10,7 @@ namespace utils::dbufs::video::helpers
 inline void
 swap_buf_data_by_rows (IVideoBuf::raw_ptr buf)
 {
-  U3_CHECK (buf, "try fill null buf");
+  U3_THROW_IF (buf, "try fill null buf");
   if (!buf->get_buf () || !(*buf)[MemVars::size_buf] || buf->get_flag (BufFlags::empty))
   {
     return;

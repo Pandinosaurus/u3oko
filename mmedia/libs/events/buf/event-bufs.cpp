@@ -2,7 +2,6 @@
 \file       event-bufs.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 #include "../includes_int.hpp"
 #include "event-bufs.hpp"
@@ -21,8 +20,8 @@ EventBufs::EventBufs (
 void
 EventBufs::check (bool check_src, bool check_dst)
 {
-  U3_CHECK (!check_src || utils::dbufs::video::consts::offs::invalid != indx_sbuf_, "invalid src");
-  U3_CHECK (!check_dst || utils::dbufs::video::consts::offs::invalid != indx_dbuf_, "invalid dst");
+  U3_THROW_IF (!check_src || utils::dbufs::video::consts::offs::invalid != indx_sbuf_, "invalid src");
+  U3_THROW_IF (!check_dst || utils::dbufs::video::consts::offs::invalid != indx_dbuf_, "invalid dst");
   check_int ();
   correct_int ();
 }
@@ -40,6 +39,7 @@ EventBufs::correct_int ()
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 EventBufs::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -47,7 +47,7 @@ EventBufs::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (indx_sbuf_);
   arh& BOOST_SERIALIZATION_NVP (indx_dbuf_);
 }
-
+#endif
 
 void
 tag_invoke (
@@ -74,5 +74,5 @@ tag_invoke (::boost::json::value_to_tag< EventBufs >, const ::boost::json::value
 }
 }   // namespace libs::events::buf
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::buf::EventBufs);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events::buf::EventBufs);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events::buf::EventBufs);

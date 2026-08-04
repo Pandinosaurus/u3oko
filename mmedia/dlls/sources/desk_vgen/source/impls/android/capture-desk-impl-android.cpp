@@ -2,7 +2,6 @@
 \file       capture-desk-impl-android.cpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
 #include "../../desk-vgen-includes_int.hpp"
 #include "capture-desk-impl-android.hpp"
@@ -17,7 +16,7 @@ CaptureDeskImplAndroid::get_buf_int (const syn::SourceImplInfo& props_info, Capt
   U3_LOG_DATA_DEV ("CaptureDeskImplAndroid::get_buf_int");
   // void* bits = nullptr;
   // int   fd   = open ("/dev/graphics/fb0", O_RDWR);
-  // U3_CHECK (fd >= 0, "open /dev/graphics/fb0");
+  // U3_THROW_IF (fd >= 0, "open /dev/graphics/fb0");
   // close (fd);
 
 #  ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
@@ -82,7 +81,7 @@ CaptureDeskImplAndroid::get_buf_int (const syn::SourceImplInfo& props_info, Capt
     RECT       window_rect;
     POINT      offset_pos = { 0, 0 };
 
-    U3_CHECK (GetClientRect (window, &window_rect), "GetClientRect" + VTOLOG (GetLastError ()));
+    U3_THROW_IF (GetClientRect (window, &window_rect), "GetClientRect" + VTOLOG (GetLastError ()));
 
     switch (props_info.capture_props_->type_capture_)
     {
@@ -90,9 +89,9 @@ CaptureDeskImplAndroid::get_buf_int (const syn::SourceImplInfo& props_info, Capt
       width_dest  = props_info.capture_props_->width_;
       height_dest = props_info.capture_props_->height_;
 
-      U3_CHECK (GetPhysicalCursorPos (&offset_pos), "GetCursorPos" + VTOLOG (GetLastError ()));
-      // U3_CHECK (PhysicalToLogicalPoint (window, &offset_pos), "PhysicalToLogicalPoint" + VTOLOG (GetLastError ()));
-      // U3_CHECK (LogicalToPhysicalPointForPerMonitorDPI (window, &offset_pos), "PhysicalToLogicalPointForPerMonitorDPI" + VTOLOG (GetLastError ()));
+      U3_THROW_IF (GetPhysicalCursorPos (&offset_pos), "GetCursorPos" + VTOLOG (GetLastError ()));
+      // U3_THROW_IF (PhysicalToLogicalPoint (window, &offset_pos), "PhysicalToLogicalPoint" + VTOLOG (GetLastError ()));
+      // U3_THROW_IF (LogicalToPhysicalPointForPerMonitorDPI (window, &offset_pos), "PhysicalToLogicalPointForPerMonitorDPI" + VTOLOG (GetLastError ()));
 
       int loc_x = offset_pos.x;
       int loc_y = offset_pos.y;

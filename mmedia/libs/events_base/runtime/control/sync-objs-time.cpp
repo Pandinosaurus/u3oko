@@ -2,7 +2,6 @@
 \file       sync-objs-time.cpp
 \date       17.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "sync-objs-time.hpp"

@@ -2,7 +2,6 @@
 /**
 \file       size-changed-event.hpp
 \date       01.01.2017
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::events
@@ -58,4 +57,4 @@ class SizeChangedEvent : public BaseGUIEvent
 };
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::SizeChangedEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::SizeChangedEvent);

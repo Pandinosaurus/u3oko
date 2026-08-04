@@ -2,7 +2,6 @@
 \file       video-convolution-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "video-convolution-prop.hpp"
@@ -56,7 +55,7 @@ VideoConvolutionProp::copy_int (const IEvent::craw_ptr src)
   bufs_ = dsrc->bufs_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoConvolutionProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -66,7 +65,8 @@ VideoConvolutionProp::serialize (Archive& arh, const std::uint32_t /* file_versi
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::generic::convolution
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convolution::VideoConvolutionProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convolution::VideoConvolutionProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::convolution::VideoConvolutionProp);

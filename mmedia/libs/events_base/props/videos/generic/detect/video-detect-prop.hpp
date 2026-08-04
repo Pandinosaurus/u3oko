@@ -3,7 +3,6 @@
 \file       video-detect-prop.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::detect::syn
@@ -75,4 +74,4 @@ class VideoDetectProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::videos::generic::detect
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::detect::VideoDetectProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::detect::VideoDetectProp);

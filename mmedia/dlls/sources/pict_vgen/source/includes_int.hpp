@@ -3,7 +3,6 @@
 \file       includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_pict_vgen
 */
 #include "../../../dlls-includes_int.hpp"
 #include "mmedia/dlls/sources/vgen_lib/gen-lib-includes.hpp"

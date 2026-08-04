@@ -3,7 +3,6 @@
 \file       gen-lib-syn.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.06.2018
-\project    u3_vgen_lib
 */
 
 namespace dlls::sources::gen_lib::syn

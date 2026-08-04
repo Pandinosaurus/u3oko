@@ -3,7 +3,6 @@
 \file       uyvy2rgb.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       28.03.2026
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -34,7 +33,7 @@ class CUYVY2RgbAlg final : public IOptimAlg
       sel_.set (::libs::optim::convert::uyvy_rgb24::alu);
       break;
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::convert::uyvy_rgb24::alu);
       break;
     }

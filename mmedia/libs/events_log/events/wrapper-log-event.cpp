@@ -2,7 +2,6 @@
 \file       wrapper-log-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_log
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -53,7 +52,7 @@ WrapperLogEvent::copy_int (const IEvent::craw_ptr src)
   int_ = dsrc->int_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 WrapperLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -63,7 +62,8 @@ WrapperLogEvent::serialize (Archive& arh, const std::uint32_t /* file_version */
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_log::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::WrapperLogEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_log::events::WrapperLogEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_log::events::WrapperLogEvent);

@@ -3,7 +3,6 @@
 \file       ops-status-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base
@@ -61,5 +60,7 @@ class OpsStatusEvent : virtual public events_base::Event
 };
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::OpsStatusEvent);
-BOOST_CLASS_TRACKING (::libs::events_base::OpsStatusEvent, boost::serialization::track_always);
+#if (U3_USE_BOOST_SERIALIZTION)
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::OpsStatusEvent);
+U3_BOOST_CLASS_TRACKING (::libs::events_base::OpsStatusEvent, boost::serialization::track_always);
+#endif

@@ -2,9 +2,8 @@
 \file       buf-video-time-noise-remover-prop.cpp
 \date       01.07.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../events-base-includes_int.hpp"
 #include "buf-video-time-noise-remover-prop.hpp"
 
@@ -46,7 +45,7 @@ BuffVideoTimeNoiseRemoverProp::copy_int (const IEvent::craw_ptr src)
   impl_info_ = ::libs::iproperties::helpers::clone_event (dsrc->impl_info_.get ());
 }
 #endif
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BuffVideoTimeNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -54,7 +53,7 @@ BuffVideoTimeNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* f
   arh& U3_BOOST_SERIALIZE_MAKE_NVP ("olibsoeventsobufoEventBufs", super);
   arh& BOOST_SERIALIZATION_NVP (impl_info_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const BuffVideoTimeNoiseRemoverProp& src)
@@ -91,5 +90,5 @@ tag_invoke (::boost::json::value_to_tag< BuffVideoTimeNoiseRemoverProp >, const 
 }
 }   // namespace libs::events_base::props::videos::noises::time
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::BuffVideoTimeNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::BuffVideoTimeNoiseRemoverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::time::BuffVideoTimeNoiseRemoverProp);

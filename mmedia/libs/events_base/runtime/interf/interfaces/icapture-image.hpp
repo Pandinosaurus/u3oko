@@ -3,7 +3,6 @@
 \file       icapture-image.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       17.08.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::interf::interfaces
@@ -45,9 +44,9 @@ class ICaptureImage : public IBaseRuntimeInterf
 
   private:
   //  ICaptureImage interface
-  virtual void change_state_int (bool enable)                                                          = 0;
-  virtual void update_capture_property_int (const syn::VideoDriverCaptureProp::raw_ptr info)           = 0;
-  virtual void update_driver_property_int (const syn::VideoDriverProp::raw_ptr info)                   = 0;
-  virtual void update_system_specific_property_int (const syn::SystemSpecificDriverProp::raw_ptr info) = 0;
+  virtual auto change_state_int (bool) -> void                                                            = 0;
+  virtual auto update_capture_property_int (const syn::VideoDriverCaptureProp::raw_ptr) -> void           = 0;
+  virtual auto update_driver_property_int (const syn::VideoDriverProp::raw_ptr) -> void                   = 0;
+  virtual auto update_system_specific_property_int (const syn::SystemSpecificDriverProp::raw_ptr) -> void = 0;
 };
 }   // namespace libs::events_base::runtime::interf::interfaces

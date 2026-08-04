@@ -3,7 +3,6 @@
 \file       l2rgb.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.11.2016
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -62,7 +61,7 @@ class CL2RgbAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::convert::l_vs_rgb::l_to_rgb24_alu);
       break;
     }

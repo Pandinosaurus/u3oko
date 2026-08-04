@@ -3,7 +3,6 @@
 \file       iblock-mem-allocator.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_mems
 */
 
 namespace utils::mems
@@ -21,10 +20,10 @@ class IBlockMemAllocator
   /// Функция выделения блока памяти с выравниваем
   /// \param[in]  size размер памяти под данные
   /// \return     указатель на блок памяти
-  virtual auto alloc (const size_type& size) -> ::libs::utility::mem::IBlockMem::ptr = 0;
+  virtual auto alloc (const size_type&) -> ::libs::utility::mem::IBlockMem::ptr = 0;
 
   /// Функция трассировки статуса памяти системы в данном процессе
-  virtual auto dump_memory_status () -> std::string = 0;
+  virtual auto get_memory_status () -> std::string = 0;
 
   protected:
   IBlockMemAllocator ()          = default;

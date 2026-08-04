@@ -3,7 +3,6 @@
 \file       base-id-interf.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       19.07.2018
-\project    u3_base_id_dll
 */
 
 namespace dlls::base_id
@@ -18,14 +17,14 @@ class BaseIdInterf final : public ::libs::events_base::runtime::interf::interfac
   BaseIdInterf ()          = default;
   virtual ~BaseIdInterf () = default;
 
-  bool                      is_correction_property_update () const;
-  syn::BaseIdProp::craw_ptr get_base_property () const;
+  auto is_correction_property_update () const -> bool;
+  auto get_base_property () const -> syn::BaseIdProp::craw_ptr;
 
   private:
-  virtual void                         change_state_int (bool enable) override;
-  virtual void                         update_property_int (const syn::IEvent::craw_ptr info) override;
-  virtual buf2module_infos_type        get_module_infos_int (const syn::off_buf_type& indx_buf) const override;
-  virtual const syn::source_name_type& get_source_name_int () const override;
+  virtual auto change_state_int (bool) -> void override;
+  virtual auto update_property_int (const ::libs::events::IEvent::craw_ptr) -> void override;
+  virtual auto get_module_infos_int (const syn::off_buf_type& indx_buf) const -> buf_infos_type override;
+  virtual auto get_source_name_int () const -> const syn::source_name_type& override;
 
   mutable bool    update_ = false;   //<
   syn::BaseIdProp props_;            //<

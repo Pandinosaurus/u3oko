@@ -2,10 +2,9 @@
 \file       space-noise-filter-dll.cpp
 \date       26.07.2016
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_filter_space
 \brief      Файл реализации фильтрации в пространственной области
 */
-#define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+#define U3_DBG_LOG_LEVEL_ENABLE
 // #include "memory"
 #include "space-noise-includes_int.hpp"
 #include "space-noise-filter-dll.hpp"

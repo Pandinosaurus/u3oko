@@ -2,7 +2,6 @@
 \file       add-event2events-msg.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.09.2018
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -91,7 +90,7 @@ void
 AddEvent2EventsMsg::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "AddEvent2EventsMsg::load_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "AddEvent2EventsMsg::load_json_int:: wtf???");
 }
 
 
@@ -99,7 +98,7 @@ void
 AddEvent2EventsMsg::save_json_int (::boost::json::object& obj) const
 {
   super::save_json_int (obj);
-  U3_ASSERT_NT (0, "AddEvent2EventsMsg::save_json_int:: wtf???");
+  U3_ASSERT_SOFT (0, "AddEvent2EventsMsg::save_json_int:: wtf???");
 }
 
 
@@ -114,7 +113,7 @@ AddEvent2EventsMsg::copy_int (const IEvent::craw_ptr src)
   add_event_  = dsrc->add_event_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 AddEvent2EventsMsg::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -126,7 +125,8 @@ AddEvent2EventsMsg::serialize (Archive& arh, const std::uint32_t /* file_version
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::AddEvent2EventsMsg);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::AddEvent2EventsMsg);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_msg::events::AddEvent2EventsMsg);

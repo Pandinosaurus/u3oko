@@ -2,7 +2,6 @@
 \file       block-mem-allocator.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_mems
 */
 #include "../mems-includes_int.hpp"
 #include "block-mem-allocator.hpp"
@@ -122,7 +121,7 @@ BlockMemAllocator::alloc (const size_type& size) -> syn::IBlockMem::ptr
 
 
 auto
-BlockMemAllocator::dump_memory_status () -> std::string
+BlockMemAllocator::get_memory_status () -> std::string
 {
   lock_type lock (mtx_);
   return dump_status_int ();

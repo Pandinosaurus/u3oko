@@ -2,7 +2,6 @@
 \file       detect-move-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_detect_move
 */
 #include "detect-move-includes_int.hpp"
 #include "detect-move-info-filter-dll.hpp"

@@ -2,7 +2,6 @@
 \file       buf-video-convolution-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "buf-video-convolution-prop.hpp"
@@ -45,9 +44,9 @@ BuffVideoConvolutionProp::BuffVideoConvolutionProp (
 void
 BuffVideoConvolutionProp::check_int ()
 {
-  U3_CHECK (core_size_ >= 3, "size core less 3");
-  U3_CHECK (core_size_ <= 11, "size core large 11");
-  U3_CHECK (Convs::skip == convolution_type_ || Convs::use_exist != convolution_type_ || core_vals_.size () == U3_CAST_SIZE_T (core_size_ * core_size_), "invalid vals core" + VTOLOG (core_size_ * core_size_) + "!=" + VTOLOG (core_vals_.size ()));
+  U3_THROW_IF (core_size_ >= 3, "size core less 3");
+  U3_THROW_IF (core_size_ <= 11, "size core large 11");
+  U3_THROW_IF (Convs::skip == convolution_type_ || Convs::use_exist != convolution_type_ || core_vals_.size () == U3_CAST_SIZE_T (core_size_ * core_size_), "invalid vals core" + VTOLOG (core_size_ * core_size_) + "!=" + VTOLOG (core_vals_.size ()));
 }
 
 
@@ -63,7 +62,7 @@ BuffVideoConvolutionProp::correct_int ()
   }
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BuffVideoConvolutionProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -75,7 +74,7 @@ BuffVideoConvolutionProp::serialize (Archive& arh, const std::uint32_t /* file_v
   arh& BOOST_SERIALIZATION_NVP (convolution_type_);
   arh& BOOST_SERIALIZATION_NVP (use_module_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const BuffVideoConvolutionProp& src)
@@ -114,5 +113,5 @@ tag_invoke (::boost::json::value_to_tag< BuffVideoConvolutionProp >, const ::boo
 }
 }   // namespace libs::events_base::props::videos::generic::convolution
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convolution::BuffVideoConvolutionProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::convolution::BuffVideoConvolutionProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::convolution::BuffVideoConvolutionProp);

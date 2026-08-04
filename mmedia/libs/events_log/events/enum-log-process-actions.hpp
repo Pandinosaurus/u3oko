@@ -3,7 +3,6 @@
 \file       enum-log-process-actions.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       09.09.2018
-\project    u3_events_log
 */
 
 namespace libs::events_log::events

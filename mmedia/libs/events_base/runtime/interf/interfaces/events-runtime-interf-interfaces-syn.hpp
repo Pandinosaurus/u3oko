@@ -3,7 +3,6 @@
 \file       events-runtime-interf-interfaces-syn.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       17.03.2026
-\project    u3_events_base_lib
 */
 // EAI-REFACT forward
 namespace libs::icore::impl::var1::obj::dll
@@ -23,6 +22,7 @@ using VideoDriverProp          = ::libs::events_base::props::videos::generic::dr
 using SystemSpecificDriverProp = ::libs::events_base::runtime::video::SystemSpecificDriverProp;
 using VideoCodecProp           = ::libs::events_base::props::videos::generic::codec::VideoCodecProp;
 using VideoCorrectProp         = ::libs::events_base::props::videos::generic::correct::VideoCorrectProp;
+using IBuf                     = ::utils::dbufs::IBuf;
 using IVideoBuf                = ::utils::dbufs::video::IVideoBuf;
 using TransformInfo            = ::libs::icore::impl::var1::obj::dll::TransformInfo;
 using NodeID                   = ::libs::core::graph::NodeID;

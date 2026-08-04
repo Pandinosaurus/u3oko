@@ -2,7 +2,6 @@
 \file       detect-face-info-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_detect_face
 */
 #include "detect-face-includes_int.hpp"
 #include "detect-face-info-filter-dll.hpp"

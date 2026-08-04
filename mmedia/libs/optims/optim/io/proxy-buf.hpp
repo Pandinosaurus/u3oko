@@ -3,7 +3,6 @@
 \file       proxy-buf.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_optim_lib
 */
 
 #ifndef U3_CAST_CPROXY_BUFF
@@ -150,10 +149,10 @@ struct ProxyBuf final {
       return;
     }
     // Эти проверки не должны выбрасывать исключения, т.к. это допустимая ситуация во внешней логике
-    // U3_CHECK_NT (stride_, "zero stride: " << info);
-    // U3_CHECK_NT (width_, "zero width: " << info);
-    // U3_CHECK_NT (height_, "zero height: " << info);
-    U3_CHECK (width_ <= stride_, "stride less width: " + VTOLOG (width_) + ">" + VTOLOG (stride_) + " " + info);
+    // U3_TEST (stride_, "zero stride: " << info);
+    // U3_TEST (width_, "zero width: " << info);
+    // U3_TEST (height_, "zero height: " << info);
+    U3_THROW_IF (width_ <= stride_, "stride less width: " + VTOLOG (width_) + ">" + VTOLOG (stride_) + " " + info);
   }
 
   bool
@@ -207,16 +206,16 @@ struct ProxyBuf final {
   get_line (std::uint32_t indx, bool unsafe = false)
   {
     U3_ASSERT (!const_data_);
-    U3_CHECK (buf_, "buf_:");
-    U3_CHECK (indx < height_, "indx < height_:" + VTOLOG (indx) + VTOLOG (height_));
+    U3_THROW_IF (buf_, "buf_:");
+    U3_THROW_IF (indx < height_, "indx < height_:" + VTOLOG (indx) + VTOLOG (height_));
     return U3_CAST_CPROXY_BUFF< std::int16_t* > (ubuf () + stride_ * indx);
   }
 
   const std::int16_t*
   get_cline (std::uint32_t indx, bool unsafe = false) const
   {
-    U3_CHECK (buf_, "buf_:");
-    U3_CHECK (indx < height_, "indx < height_:" + VTOLOG (indx) + VTOLOG (height_));
+    U3_THROW_IF (buf_, "buf_:");
+    U3_THROW_IF (indx < height_, "indx < height_:" + VTOLOG (indx) + VTOLOG (height_));
     return U3_CAST_CPROXY_BUFF< const std::int16_t* > (ubuf () + stride_ * indx);
   }
 

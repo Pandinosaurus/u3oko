@@ -3,7 +3,6 @@
 \file       mouse-button-down-event.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_gui
 */
 
 namespace libs::events_gui::events
@@ -63,4 +62,4 @@ class MouseButtonDownEvent : public BaseGUIEvent
 };
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::MouseButtonDownEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_gui::events::MouseButtonDownEvent);

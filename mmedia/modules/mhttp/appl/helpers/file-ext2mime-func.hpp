@@ -3,7 +3,6 @@
 \file       file-ext2mime-func.hpp
 \date       15.02.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    mhttp
 */
 
 namespace modules::mhttp::appl::helpers

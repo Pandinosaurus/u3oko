@@ -3,12 +3,11 @@
 \file       module-log-includes.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mlog
 */
 // EAI-REFACT
 #include "mmedia/libs/proxy/proxy/ievents-proxy.hpp"
 
-#include "to-log20-funcs.hpp"
+#include "to-log.hpp"
 
 #include "defines/defines-helper-http-log-calls.hpp"
 #include "defines/defines-helper-events-log-calls.hpp"

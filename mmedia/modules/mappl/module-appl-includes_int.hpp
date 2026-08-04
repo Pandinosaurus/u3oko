@@ -3,7 +3,6 @@
 \file       module-appl-includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mappl
 */
 #include "../modules-includes_int.hpp"
 #include "module-appl-includes.hpp"

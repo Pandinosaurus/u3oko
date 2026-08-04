@@ -2,9 +2,8 @@
 \file       mjpeg-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_vcodec_mjpg
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "vcodec-mjpg-includes_int.hpp"
 #include "mjpeg-impl.hpp"
 #include "mmedia/dlls/doptim/algs/all_algs.hpp"
@@ -13,8 +12,6 @@ namespace dlls::codecs::vcodec_mjpg
 {
 MjpegImpl::MjpegImpl ()
 {
-  pthreads_ = ::libs::iproperties::helpers::get_shared_prop_os ()->get_mcalls_lockfree ();
-  simd_     = ::libs::utility::sys::cpu::CpuExts::usual;
 }
 
 
@@ -40,7 +37,7 @@ MjpegImpl::update_coder (const unsigned long max_size)
   if (!hjpeg_)
   {
     hjpeg_ = tjInitCompress ();
-    U3_CHECK_TURBO_JPEG (hjpeg_, "tjInitCompress");
+    U3_THROW_IF_TURBO_JPEG (hjpeg_, "tjInitCompress");
   }
 
   if (!jpeg_buf_ || max_size > size_jpeg_buf_)
@@ -66,7 +63,7 @@ MjpegImpl::update_decoder ()
   }
 
   hjpeg_ = tjInitDecompress ();
-  U3_CHECK_TURBO_JPEG (hjpeg_, "tjInitDecompress");
+  U3_THROW_IF_TURBO_JPEG (hjpeg_, "tjInitDecompress");
 }
 
 
@@ -110,10 +107,10 @@ MjpegImpl::comp_iframe (
     &jpeg_buf_,
     &jpeg_size,
     out_format,
-    cinfo_.plane_.quality_,
+    props_.plane_.quality_,
     TJFLAG_NOREALLOC | TJFLAG_FASTDCT | TJFLAG_BOTTOMUP);
 
-  U3_CHECK_TURBO_JPEG_RET (-1 != res_jpeg, "tjCompress2", false);
+  U3_THROW_IF_TURBO_JPEG_RET (-1 != res_jpeg, "tjCompress2", false);
   ::libs::utility::mem::mem_copy_raw (jpeg_buf_, dbuf + out_size, jpeg_size);
 
   head->csize_ = jpeg_size;
@@ -130,8 +127,8 @@ MjpegImpl::comp_iframe (
   base_size.height_          = lsrc.height_;
   base_size.stride_          = lsrc.width_ * (colored ? 3 : 1);
 
-  head->cinfo_          = cinfo_.plane_;
-  head->cinfo_.nocolor_ = colored ? false : true;   // переопределяем по факту, т.к. у пользователя может быть установлено сжатие с цветом при его фактическом отсутствии и наоборот.
+  head->props_          = props_.plane_;
+  head->props_.nocolor_ = colored ? false : true;   // переопределяем по факту, т.к. у пользователя может быть установлено сжатие с цветом при его фактическом отсутствии и наоборот.
 
   // libs::utility::utils::cuuid_to_buf (::libs::utility::uids::codecs::mjpeg, head->base_part_.guid_);
   head->base_part_.guid_ = ::libs::utility::uids::minor::id_val::mjpeg;
@@ -195,11 +192,11 @@ MjpegImpl::decomp_iframe (
       std::int32_t jpeg_subsamp = 0;
       std::int32_t jpeg_px      = 0;
 
-      U3_CHECK_TURBO_JPEG (0 == tjDecompressHeader3 (hjpeg_, cdata, src_size_res, &jpeg_width, &jpeg_height, &jpeg_subsamp, &jpeg_px), "tjDecompressHeader3");
+      U3_THROW_IF_TURBO_JPEG (0 == tjDecompressHeader3 (hjpeg_, cdata, src_size_res, &jpeg_width, &jpeg_height, &jpeg_subsamp, &jpeg_px), "tjDecompressHeader3");
       temp_buf_->set_format (convert_jpeg2guid_px_format (jpeg_px));
     }
 
-    const auto request_pixel_format = cinfo_.plane_.nocolor_ ? TJPF_GRAY : (head->cinfo_.nocolor_ ? TJPF_GRAY : TJPF_RGB);
+    const auto request_pixel_format = props_.plane_.nocolor_ ? TJPF_GRAY : (head->props_.nocolor_ ? TJPF_GRAY : TJPF_RGB);
 
     codec_error = tjDecompress2 (
       hjpeg_,
@@ -212,7 +209,7 @@ MjpegImpl::decomp_iframe (
       request_pixel_format,
       0);
 
-    U3_CHECK_TURBO_JPEG (0 == codec_error, "tjDecompress2");
+    U3_THROW_IF_TURBO_JPEG (0 == codec_error, "tjDecompress2");
 
     const auto px_format  = temp_buf_->get_format ();
     const auto stride_res = info_head.width_ * ::libs::utility::uids::helpers::get_count_bytes_from_format (px_format);

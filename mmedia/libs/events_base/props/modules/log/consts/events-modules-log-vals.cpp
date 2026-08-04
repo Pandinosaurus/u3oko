@@ -2,7 +2,6 @@
 \file       events-modules-log-vals.cpp
 \date       07.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

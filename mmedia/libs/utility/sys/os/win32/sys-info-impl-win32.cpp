@@ -2,7 +2,6 @@
 \file       sys-info-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../../utility-lib-includes_int.hpp"
 #include "sys-info-impl.hpp"
@@ -23,7 +22,7 @@ get_os_info ()
 
   if (!GetVersionExA (&info))
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     ret = "GetVersionEx failed";
     ret += ::libs::utility::consts::new_line;
     return ret;
@@ -54,7 +53,7 @@ get_mem_info ()
 
   if (!GlobalMemoryStatusEx (&info))
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     ret = "GlobalMemoryStatusEx failed";
     ret += ::libs::utility::consts::new_line;
     return ret;
@@ -101,7 +100,7 @@ get_display_info ()
 
   if (!hwnd)
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     ret += ".";
     ret += ::libs::utility::consts::new_line;
     return ret;
@@ -111,7 +110,7 @@ get_display_info ()
 
   if (!hdc)
   {
-    U3_ASSERT_SIGNAL_NT ("failed");
+    U3_MARK ("failed");
     ret += ".";
     ret += ::libs::utility::consts::new_line;
     return ret;
@@ -159,7 +158,7 @@ get_display_info ()
   }
 
   ret += ::libs::utility::consts::new_line;
-  U3_CHECK (ReleaseDC (hwnd, hdc), "release dc");
+  U3_THROW_IF (ReleaseDC (hwnd, hdc), "release dc");
   return ret;
 }
 
@@ -195,7 +194,7 @@ SysInfoImpl::get (const HardwareType& type) const
     break;
 #  endif
   default:
-    U3_ASSERT_SIGNAL ("failed");
+    U3_ASSERT_THROW ("failed");
     break;
   }
   return ret;

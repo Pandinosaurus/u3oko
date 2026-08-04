@@ -3,7 +3,6 @@
 \file       events-impl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.07.2017
-\project    u3_devents_dlls
 */
 
 namespace dlls::devents::impl
@@ -57,10 +56,12 @@ class EventsImpl final : public ::libs::events::io::IEvents
   virtual auto get (const hid_type&) -> syn::IEvent::ptr override;
   virtual auto clone (const syn::IEvent::craw_ptr, const ::libs::events::Deeps&) -> syn::IEvent::ptr override;
   virtual auto dcast (syn::IEvent::craw_ptr, const hid_type&) -> const void* override;
+#if (U3_USE_BOOST_SERIALIZTION)
   virtual auto event2xml (syn::IEvent::ptr&, std::string&) -> bool override;
   virtual auto xml2event (const std::string&, syn::IEvent::ptr&) -> bool override;
   virtual auto event2bin (syn::IEvent::ptr&, std::ostream&) -> bool override;
   virtual auto bin2event (std::istream&, syn::IEvent::ptr&) -> bool override;
+#endif
 
   private:
   auto make_event_funcs () -> void;
@@ -82,7 +83,7 @@ class EventsImpl final : public ::libs::events::io::IEvents
     U3_XLOG_DBG ("add create func event to gloabl table" + STOLOG (TTEvent::gen_get_mid ()));
     cast_func_events_[id_event_type { TTEvent::gen_get_mid () }] = [] (syn::IEvent::craw_ptr src) -> const void* {
       auto* res = dynamic_cast< typename TTEvent::craw_ptr > (src);
-      U3_XLOG_DBG ("cast to::---->" + STOLOG (TTEvent::gen_get_mid ()) + PTR_TOLOG (src) + PTR_TOLOG (res));
+      U3_XLOG_DBG ("cast to:---->" + STOLOG (TTEvent::gen_get_mid ()) + PTR_TOLOG (src) + PTR_TOLOG (res));
       return res;
     };
   }

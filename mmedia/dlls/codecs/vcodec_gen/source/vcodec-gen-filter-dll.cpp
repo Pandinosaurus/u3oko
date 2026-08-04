@@ -2,9 +2,8 @@
 \file       vcodec-gen-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_vcodec_gen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "vcodec-gen-includes_int.hpp"
 #include "mmedia/dlls/doptim/algs/all_algs.hpp"
 #include "vcodec-gen-filter-dll.hpp"
@@ -343,7 +342,7 @@ Filter::update_int ()
   }
 
   finfo_.file_info_.create_codec_ (&finfo_.dll_codec_);
-  U3_CHECK (finfo_.dll_codec_, "create codec" + finfo_.rprops_->preferred_impl_);
+  U3_THROW_IF (finfo_.dll_codec_, "create codec" + finfo_.rprops_->preferred_impl_);
 
   {
     codec_gen::InfoGenCodec iinfo;

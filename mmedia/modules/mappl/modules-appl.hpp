@@ -3,7 +3,6 @@
 \file       modules-appl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.05.2017
-\project    mappl
 */
 
 namespace modules::mappl

@@ -2,9 +2,8 @@
 \file       video-sender-transform-func.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_video_sender_dll
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "video-sender-includes_int.hpp"
 #include "video-sender-info-filter.hpp"
 #include "video-sender-filter-dll.hpp"
@@ -42,9 +41,9 @@ Filter::transform_int (syn::TransformInfo& info)
     return;
   }
 
-  U3_CHECK (helper, "null helper");
-  U3_CHECK (info.ibuf_, "null ptr buf");
-  U3_CHECK (*info.ibuf_, "null buf");
+  U3_THROW_IF (helper, "null helper");
+  U3_THROW_IF (info.ibuf_, "null ptr buf");
+  U3_THROW_IF (*info.ibuf_, "null buf");
 
   auto& bufs = (*info.ibuf_);
   if (bufs->get_flag (::libs::bufs::BufsFlags::empty))

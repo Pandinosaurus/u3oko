@@ -2,9 +2,8 @@
 \file       capture-desk-impl-mac.cpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../desk-vgen-includes_int.hpp"
 #include "capture-desk-impl-mac.hpp"
 

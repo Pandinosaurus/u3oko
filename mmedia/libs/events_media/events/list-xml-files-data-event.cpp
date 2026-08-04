@@ -2,7 +2,6 @@
 \file       list-xml-files-data-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -19,7 +18,7 @@ DataGraphFolderInfoType::DataGraphFolderInfoType (
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 DataGraphFolderInfoType::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -27,7 +26,7 @@ DataGraphFolderInfoType::serialize (Archive& arh, const std::uint32_t /* file_ve
   arh& BOOST_SERIALIZATION_NVP (folder_name_);
   arh& BOOST_SERIALIZATION_NVP (graph_state_);
 }
-
+#endif
 
 ListXmlFilesDataEvent::ListXmlFilesDataEvent (const Acessor& pha, data_graph_infos_types data_graph_infos) :
   data_graph_states_ (std::move (data_graph_infos))
@@ -67,7 +66,7 @@ void
 ListXmlFilesDataEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "ListXmlFilesDataEvent::load_json_int::not support");
+  U3_ASSERT_SOFT (0, "ListXmlFilesDataEvent::load_json_int::not support");
 }
 
 
@@ -95,7 +94,7 @@ ListXmlFilesDataEvent::copy_int (const IEvent::craw_ptr src)
   data_graph_states_ = dsrc->data_graph_states_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ListXmlFilesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -105,10 +104,11 @@ ListXmlFilesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_vers
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::DataGraphFolderInfoType);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::DataGraphFolderInfoType);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::DataGraphFolderInfoType);
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ListXmlFilesDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ListXmlFilesDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::ListXmlFilesDataEvent);

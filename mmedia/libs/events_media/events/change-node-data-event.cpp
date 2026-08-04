@@ -2,7 +2,6 @@
 \file       change-node-data-event.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -146,7 +145,7 @@ ChangeNodeDataEvent::copy_int (const IEvent::craw_ptr src)
   events_  = dsrc->events_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 ChangeNodeDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -158,7 +157,8 @@ ChangeNodeDataEvent::serialize (Archive& arh, const std::uint32_t /* file_versio
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ChangeNodeDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::ChangeNodeDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::ChangeNodeDataEvent);

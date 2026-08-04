@@ -3,7 +3,6 @@
 \file       enum-stream-actions.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.08.2018
-\project    u3_events_storage
 */
 
 namespace libs::events_storage

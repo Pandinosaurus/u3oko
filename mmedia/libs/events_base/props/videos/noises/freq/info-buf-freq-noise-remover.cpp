@@ -2,7 +2,6 @@
 \file       info-buf-freq-noise-remover.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "info-buf-freq-noise-remover.hpp"
@@ -28,7 +27,7 @@ InfoBuffFreqNoiseRemover::InfoBuffFreqNoiseRemover (const ::libs::events::buf::E
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 InfoBuffFreqNoiseRemover::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -37,7 +36,7 @@ InfoBuffFreqNoiseRemover::serialize (Archive& arh, const std::uint32_t /* file_v
   arh& BOOST_SERIALIZATION_NVP (bound_x_plus_y_);
   arh& BOOST_SERIALIZATION_NVP (dwt_koeff2_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const InfoBuffFreqNoiseRemover& src)
@@ -71,5 +70,5 @@ tag_invoke (::boost::json::value_to_tag< InfoBuffFreqNoiseRemover >, const ::boo
 }
 }   // namespace libs::events_base::props::videos::noises::freq
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::freq::InfoBuffFreqNoiseRemover);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::freq::InfoBuffFreqNoiseRemover);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::freq::InfoBuffFreqNoiseRemover);

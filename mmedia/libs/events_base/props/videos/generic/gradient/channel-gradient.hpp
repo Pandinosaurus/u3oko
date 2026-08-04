@@ -3,7 +3,6 @@
 \file       channel-gradient.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       28.05.2022
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::gradient
@@ -30,4 +29,4 @@ void            tag_invoke (::boost::json::value_from_tag, ::boost::json::value&
 ChannelGradient tag_invoke (::boost::json::value_to_tag< ChannelGradient >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::videos::generic::gradient
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::gradient::ChannelGradient);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::gradient::ChannelGradient);

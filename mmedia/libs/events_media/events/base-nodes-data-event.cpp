@@ -2,9 +2,8 @@
 \file       BaseNodesDataEvent.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
 #include "../includes_int.hpp"
@@ -79,7 +78,7 @@ BaseNodesDataEvent::copy_int (const IEvent::craw_ptr src)
   id_graph_ = dsrc->id_graph_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseNodesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -89,7 +88,8 @@ BaseNodesDataEvent::serialize (Archive& arh, const std::uint32_t /* file_version
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::BaseNodesDataEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_media::events::BaseNodesDataEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_media::events::BaseNodesDataEvent);

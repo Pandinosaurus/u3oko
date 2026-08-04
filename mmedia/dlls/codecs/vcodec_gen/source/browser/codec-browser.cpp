@@ -2,7 +2,6 @@
 \file       codec-browser.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vcodec_gen
 \brief      Реализация объекта для поиска кодеков в системе
 */
 #include "../vcodec-gen-includes_int.hpp"

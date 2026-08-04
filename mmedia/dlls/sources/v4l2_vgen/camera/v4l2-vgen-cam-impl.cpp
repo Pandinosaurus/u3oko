@@ -2,9 +2,8 @@
 \file       v4l2-vgen-cam-impl.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../v4l2-vgen-includes_int.hpp"
 // EAI-REFACT
 #include <cstddef>
@@ -22,7 +21,7 @@ void
 CamImpl::sync_runtime_props (const syn::VideoDriverCaptureProp &capprops)
 {
   const auto fourcc = ::libs::utility::uids::helpers::idval2fourcc (capprops.capi_.px_format_);
-  U3_CHECK (v4l2capture_, "before sync runtime props" + VTOLOG (capprops.capi_.width_) + VTOLOG (capprops.capi_.height_) + VTOLOG (capprops.capi_.fps_) + VTOLOG (fourcc));
+  U3_THROW_IF (v4l2capture_, "before sync runtime props" + VTOLOG (capprops.capi_.width_) + VTOLOG (capprops.capi_.height_) + VTOLOG (capprops.capi_.fps_) + VTOLOG (fourcc));
   capparams_ = capprops.capi_;
 
   const auto runtime_width         = v4l2capture_->getWidth ();

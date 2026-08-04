@@ -3,7 +3,6 @@
 \file       node-graph-info.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 
 namespace libs::events_media::events
@@ -33,4 +32,4 @@ void          tag_invoke (::boost::json::value_from_tag, ::boost::json::value& j
 NodeGraphInfo tag_invoke (::boost::json::value_to_tag< NodeGraphInfo >, const ::boost::json::value& jvs);
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::NodeGraphInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::NodeGraphInfo);

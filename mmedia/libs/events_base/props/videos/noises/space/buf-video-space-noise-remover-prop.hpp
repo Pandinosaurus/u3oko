@@ -3,7 +3,6 @@
 \file       buf-video-space-noise-remover-prop.hpp
 \date       01.04.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 namespace libs::events_base::props::videos::noises::space::syn
 {
@@ -42,4 +41,4 @@ void                           tag_invoke (::boost::json::value_from_tag, ::boos
 BuffVideoSpaceNoiseRemoverProp tag_invoke (::boost::json::value_to_tag< BuffVideoSpaceNoiseRemoverProp >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::videos::noises::space
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::space::BuffVideoSpaceNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::space::BuffVideoSpaceNoiseRemoverProp);

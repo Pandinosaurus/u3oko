@@ -3,7 +3,6 @@
 \file       lib-proxy-includes_int.hpp
 \date       15.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_proxy_libs
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"

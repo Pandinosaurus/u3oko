@@ -2,7 +2,6 @@
 \file       module-log-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mlog
 \brief      Модуль логирования
 */
 #include "module-log-includes_int.hpp"
@@ -30,9 +29,9 @@ delete_impl_mpl_mlog (::libs::link::appl::IApplication::raw_ptr appl)
 {
   std::scoped_lock lock (g_sinc);
 
-  U3_ASSERT_NT (appl, PTR_TOLOG (appl));
-  U3_ASSERT_NT (appl == g_appl, PTR_TOLOG (appl));
-  U3_ASSERT_NT (g_appl, PTR_TOLOG (g_appl));
+  U3_ASSERT_SOFT (appl, PTR_TOLOG (appl));
+  U3_ASSERT_SOFT (appl == g_appl, PTR_TOLOG (appl));
+  U3_ASSERT_SOFT (g_appl, PTR_TOLOG (g_appl));
 
   if (counter_refs_ <= 1)
   {

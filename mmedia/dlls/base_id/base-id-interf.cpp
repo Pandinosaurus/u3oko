@@ -2,9 +2,8 @@
 \file       base-id-interf.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.03.2022
-\project    u3_base_id_dll
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "base_id-includes_int.hpp"
 #include "base-id-interf.hpp"
 
@@ -40,9 +39,9 @@ BaseIdInterf::update_property_int (const syn::IEvent::craw_ptr info)
 
 
 auto
-BaseIdInterf::get_module_infos_int (const syn::off_buf_type& indx_buf) const -> BaseIdInterf::buf2module_infos_type
+BaseIdInterf::get_module_infos_int (const syn::off_buf_type& indx_buf) const -> BaseIdInterf::buf_infos_type
 {
-  buf2module_infos_type ret;
+  buf_infos_type ret;
 
   for (const auto& info : props_.buf2modules_)
   {

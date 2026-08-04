@@ -3,7 +3,6 @@
 \file       pict-vgen-syn.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.03.2026
-\project    u3_pict_vgen
 */
 
 namespace dlls::sources::pict_vgen::syn

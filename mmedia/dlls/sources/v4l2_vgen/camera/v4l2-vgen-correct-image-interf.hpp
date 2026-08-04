@@ -3,7 +3,6 @@
 \file       v4l2-vgen-correct-image-interf.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
 
 // old shit

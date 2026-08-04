@@ -3,7 +3,6 @@
 \file       replace_strings_in_files_func.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       25.10.2024
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::files

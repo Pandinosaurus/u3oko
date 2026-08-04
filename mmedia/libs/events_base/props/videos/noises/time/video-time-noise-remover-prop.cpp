@@ -2,9 +2,8 @@
 \file       video-time-noise-remover-prop.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../../events-base-includes_int.hpp"
 #include "video-time-noise-remover-prop.hpp"
 
@@ -72,7 +71,7 @@ VideoTimeNoiseRemoverProp::self_correct_int ()
 {
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 VideoTimeNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -87,7 +86,8 @@ VideoTimeNoiseRemoverProp::serialize (Archive& arh, const std::uint32_t /* file_
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base::props::videos::noises::time
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::VideoTimeNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::time::VideoTimeNoiseRemoverProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::time::VideoTimeNoiseRemoverProp);

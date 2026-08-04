@@ -3,7 +3,6 @@
 \file       log-module.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    mlog
 */
 
 namespace modules::mlog::appl
@@ -56,7 +55,7 @@ class LogModule final : public ::libs::ilink::appl::leaf::LeafModule
   syn::InfoLogSession::id_session_type active_session_folder_;   //< Имя директории с логами текущего сеанса работы системы
   std::string                          path2logs_;               //< Директория с логами текущего сеанса работы системы
   std::fstream                         file_for_store_events_;   //< Текущий файл с логом
-  std::uint64_t                        indx_file_ = 0;           //< Индекс текущего файла с логом
+  std::uint64_t                        indx_file_ { 0 };         //< Индекс текущего файла с логом
   syn::suppressor_type                 suppressor_;              //< Для подавляния повторных сообщений
 };
 }   // namespace modules::mlog::appl

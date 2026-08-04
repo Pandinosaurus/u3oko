@@ -3,7 +3,6 @@
 \file       generic-thread-func.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.12.2016
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::thread::syn

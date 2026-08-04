@@ -2,7 +2,6 @@
 \file       pict-vgen-const-vals.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       05.08.2024
-\project    u3_pict_vgen
 */
 #include "../includes_int.hpp"
 #include "pict-vgen-const-vals.hpp"

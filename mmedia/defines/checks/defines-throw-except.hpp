@@ -3,7 +3,6 @@
 \file       defines-throw-except.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 */
 
 /// Макрос для стандартной генерации исключения, в данной реализации используем исключение boost

@@ -2,7 +2,6 @@
 \file       block-mem.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_mems
 */
 #include "../mems-includes_int.hpp"
 #include "block-mem.hpp"
@@ -11,9 +10,9 @@ namespace utils::mems::impl
 {
 BlockMem::BlockMem (const size_type size)
 {
-  U3_CHECK (size > 0, "BlockMem, zero size for alloc");
-  details::aalloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
-  U3_CHECK (buf_, "failed alloc buf");
+  U3_THROW_IF (size > 0, "BlockMem, zero size for alloc");
+  details::u3alloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
+  U3_THROW_IF (buf_, "failed alloc buf");
   mem_size_ = size;
 }
 
@@ -22,7 +21,7 @@ BlockMem::~BlockMem ()
 {
   if (buf_)
   {
-    details::afree (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_));
+    details::u3free (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_));
     buf_      = nullptr;
     mem_size_ = 0;
   }
@@ -81,8 +80,8 @@ BlockMem::resize_int (const BlockMem::size_type size)
   mem_size_  = 0;
   data_size_ = 0;
 
-  details::arealloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
-  U3_CHECK (buf_, "failed alloc buf");
+  details::u3realloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
+  U3_THROW_IF (buf_, "failed alloc buf");
   mem_size_ = size;
 }
 }   // namespace utils::mems::impl

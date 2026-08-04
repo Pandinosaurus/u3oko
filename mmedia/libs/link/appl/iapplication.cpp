@@ -2,9 +2,8 @@
 \file       iapplication.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.11.2016
-\project    u3_link
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../_make/libs-link-includes_int.hpp"
 #include "iapplication.hpp"
 
@@ -13,7 +12,7 @@ namespace libs::link::appl
 void
 IApplication::appl_init (const InitApplication& info)
 {
-  U3_XLOG_DBG ("IApplication::appl_init::---->" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
+  U3_XLOG_DBG ("IApplication::appl_init:---->" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
   U3_ASSERT (!init_)
   U3_ASSERT (info.check ())
 
@@ -28,7 +27,7 @@ IApplication::appl_init (const InitApplication& info)
   init_done_int ();
 
   init_ = true;
-  U3_XLOG_DBG ("IApplication::appl_init::<----" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
+  U3_XLOG_DBG ("IApplication::appl_init:<----" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
 }
 
 

@@ -3,7 +3,6 @@
 \file       wrapper-events-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_msg::events
@@ -58,4 +57,4 @@ class WrapperEventsEvent : public BaseEventsMsg
 };
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::WrapperEventsEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_msg::events::WrapperEventsEvent);

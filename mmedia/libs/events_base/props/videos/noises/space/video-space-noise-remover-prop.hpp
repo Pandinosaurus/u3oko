@@ -3,7 +3,6 @@
 \file       video-space-noise-remover-prop.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::noises::space
@@ -57,4 +56,4 @@ class VideoSpaceNoiseRemoverProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::videos::noises::space
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::space::VideoSpaceNoiseRemoverProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::noises::space::VideoSpaceNoiseRemoverProp);

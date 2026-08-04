@@ -2,7 +2,6 @@
 \file       arm_cpu.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 #include "../../../utility-lib-includes_int.hpp"
 #include "arm_cpu.hpp"
@@ -33,7 +32,7 @@ bool
 get_all_info_cpu (SupportExtensionCPU &ret)
 {
   ret.reset ();
-  U3_CHECK_NT (get_exts_cpu (ret), "get_all_info_cpu");
+  U3_TEST (get_exts_cpu (ret), "get_all_info_cpu");
   ret.id_cpu_ = get_text_about_cpu ();
   return true;
 }

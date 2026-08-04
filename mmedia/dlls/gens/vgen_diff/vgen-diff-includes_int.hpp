@@ -3,7 +3,6 @@
 \file       vgen-diff-includes_int.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_vgen_diff
 */
 #include "../../dlls-includes_int.hpp"
 

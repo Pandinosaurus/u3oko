@@ -2,7 +2,6 @@
 \file       load_file2mem_func.cpp
 \date       23.02.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_lib_helpers
 */
 #include "../utility-lib-includes_int.hpp"
 #include "libs-helpers-files-includes.hpp"

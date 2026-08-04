@@ -2,7 +2,6 @@
 \file       median-space-filter-prop.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../../events-base-includes_int.hpp"
 #include "median-space-filter-prop.hpp"
@@ -26,7 +25,7 @@ to_string (const Sortings& val) -> const std::string&
   auto finger = val2val.find (val);
   if (val2val.end () == finger)
   {
-    U3_ASSERT_SIGNAL_NT ("failed find name sorting type");
+    U3_MARK ("failed find name sorting type");
     finger = val2val.find (Sortings::usual);
   }
   return finger->second;
@@ -50,7 +49,7 @@ str2sort (const std::string& str) -> Sortings
   auto finger = str2sort.find (str);
   if (str2sort.end () == finger)
   {
-    U3_ASSERT_SIGNAL_NT ("failed find sorting type by name " + TOLOG (str));
+    U3_MARK ("failed find sorting type by name " + TOLOG (str));
     finger = str2sort.find ("default");
   }
   return finger->second;
@@ -135,7 +134,7 @@ MedianSpaceFilterProp::copy_int (const IEvent::craw_ptr src)
   use_cond_buf_   = dsrc->use_cond_buf_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 MedianSpaceFilterProp::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -153,7 +152,7 @@ MedianSpaceFilterProp::serialize (Archive& arh, const std::uint32_t /* file_vers
 
   self_correct ();
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const Sortings& src)
@@ -169,5 +168,5 @@ tag_invoke (::boost::json::value_to_tag< Sortings >, const ::boost::json::value&
 }
 }   // namespace libs::events_base::props::videos::noises::space::ext
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::ext::MedianSpaceFilterProp);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::noises::space::ext::MedianSpaceFilterProp);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::noises::space::ext::MedianSpaceFilterProp);

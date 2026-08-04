@@ -3,7 +3,6 @@
 \file       pict-vgen-source-impl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_pict_vgen
 */
 
 namespace dlls::sources::pict_vgen
@@ -32,7 +31,7 @@ struct LoadedImage final {
     bppx_ (bppx),
     data_ (std::move (data))
   {
-    U3_CHECK (width_ >= 0 && height_ >= 0 && bppx_ >= 0 && bppx_ <= 8, "invalid parameters");
+    U3_THROW_IF (width_ >= 0 && height_ >= 0 && bppx_ >= 0 && bppx_ <= 8, "invalid parameters");
   }
 
   LoadedImage (LoadedImage&& src)

@@ -2,7 +2,6 @@
 \file       MouseButtonUpEvent.cpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_gui
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -80,7 +79,7 @@ MouseButtonUpEvent::copy_int (const IEvent::craw_ptr src)
   pos_  = dsrc->pos_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 MouseButtonUpEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -89,7 +88,8 @@ MouseButtonUpEvent::serialize (Archive& arh, const std::uint32_t /* file_version
   arh& BOOST_SERIALIZATION_NVP (type_);
   // ar & BOOST_SERIALIZATION_NVP( pos_ );
 }
+#endif
 }   // namespace libs::events_gui::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::MouseButtonUpEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_gui::events::MouseButtonUpEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_gui::events::MouseButtonUpEvent);

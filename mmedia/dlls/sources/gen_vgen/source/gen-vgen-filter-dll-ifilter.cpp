@@ -2,9 +2,8 @@
 \file       gen-vgen-filter-dll-ifilter.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       26.07.2016
-\project    u3_gen_vgen
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "gen-vgen-includes_int.hpp"
 #include "memory"
 #include "mmedia/libs/utility/thread/generic-thread-func.hpp"

@@ -3,7 +3,6 @@
 \file       video-sender-filter-dll.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       06.03.2016
-\project    u3_video_sender_dll
 */
 
 namespace dlls::terminals::video_sender

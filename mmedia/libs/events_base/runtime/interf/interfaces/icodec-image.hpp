@@ -3,7 +3,6 @@
 \file       icodec-image.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::runtime::interf::interfaces
@@ -18,8 +17,7 @@ class ICodecImage : public IBaseRuntimeInterf
 
   virtual ~ICodecImage () = default;
 
-  /// Функция возвращает индентификатор кодека, который поддерживается данной реализацией
-  /// MPEG/x264/etc
+  /// Функция возвращает индентификатор кодека, который поддерживается данной реализацией MPEG/x264/etc
   /// \return идентификатор формата из ::libs::utility::uids::codecs
   const id_format_type&
   get_id_format () const
@@ -42,7 +40,7 @@ class ICodecImage : public IBaseRuntimeInterf
   }
 
   void
-  decode_image (const std::uint8_t* info, const std::int32_t size_info, ::utils::dbufs::IBuf::raw_ptr buf)
+  decode_image (const std::uint8_t* info, const std::int32_t size_info, syn::IBuf::raw_ptr buf)
   {
     U3_ASSERT (info);
     U3_ASSERT (size_info > 0);
@@ -55,9 +53,9 @@ class ICodecImage : public IBaseRuntimeInterf
 
   private:
   //  ICodecImage interface
-  virtual void                  code_image_int (::utils::dbufs::IBuf::raw_ptr buf)                                                           = 0;
-  virtual void                  decode_image_int (const std::uint8_t* info, const std::int32_t size_info, ::utils::dbufs::IBuf::raw_ptr buf) = 0;
-  virtual const id_format_type& get_id_format_int () const                                                                                   = 0;
-  virtual void                  update_codec_property_int (const syn::VideoCodecProp::raw_ptr info)                                          = 0;
+  virtual auto code_image_int (syn::IBuf::raw_ptr) -> void                                            = 0;
+  virtual auto decode_image_int (const std::uint8_t*, const std::int32_t, syn::IBuf::raw_ptr) -> void = 0;
+  virtual auto get_id_format_int () const -> const id_format_type&                                    = 0;
+  virtual auto update_codec_property_int (const syn::VideoCodecProp::raw_ptr) -> void                 = 0;
 };
 }   // namespace libs::events_base::runtime::interf::interfaces

@@ -3,7 +3,6 @@
 \file       defines-add-super-type.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_defines
 \brief      Объявление вспомогательного макроса для декларирования типа на суперкласс внутри производного
 */
 

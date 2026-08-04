@@ -2,7 +2,6 @@
 \file       type-gradient.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       14.06.2022
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "type-gradient.hpp"

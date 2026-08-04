@@ -3,7 +3,6 @@
 \file       path-info.hpp
 \date       22.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::modules::storage::consts
@@ -40,4 +39,4 @@ void     tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, c
 PathInfo tag_invoke (::boost::json::value_to_tag< PathInfo >, const ::boost::json::value& jvs);
 }   // namespace libs::events_base::props::modules::storage
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::storage::PathInfo);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::modules::storage::PathInfo);

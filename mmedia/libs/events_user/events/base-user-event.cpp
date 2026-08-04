@@ -2,7 +2,6 @@
 \file       base-user-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       21.07.2018
-\project    u3_events_user
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -37,7 +36,7 @@ BaseUserEvent::copy_int (const IEvent::craw_ptr src)
   super::copy_int (src);
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 BaseUserEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -46,7 +45,8 @@ BaseUserEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::BaseUserEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_user::events::BaseUserEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_user::events::BaseUserEvent);

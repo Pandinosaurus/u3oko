@@ -3,7 +3,6 @@
 \file       video-scaler-prop.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 
 namespace libs::events_base::props::videos::generic::scaler
@@ -57,4 +56,4 @@ class VideoScalerProp final : virtual public events_base::Event
 };
 }   // namespace libs::events_base::props::videos::generic::scaler
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::scaler::VideoScalerProp);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_base::props::videos::generic::scaler::VideoScalerProp);

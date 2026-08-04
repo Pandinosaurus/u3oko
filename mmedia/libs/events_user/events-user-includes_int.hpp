@@ -3,7 +3,6 @@
 \file       events-user-includes_int.hpp
 \date       21.07.2018
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_user
 */
 #include "mmedia/libs/ilink/consts/libs-ilink-const-vals.hpp"
 #include "mmedia/libs/events/includes.hpp"

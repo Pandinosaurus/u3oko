@@ -2,7 +2,6 @@
 \file       events-buf-info.cpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../../../events-base-includes_int.hpp"
 #include "events-buf-info-motion-est.hpp"
@@ -27,12 +26,12 @@ EventBufsMotionEst::EventBufsMotionEst (const ::libs::events::buf::EventBufs& bu
 void
 EventBufsMotionEst::check_int ()
 {
-  U3_CHECK (min_error_ >= 0.0F, "min large 0");
-  U3_CHECK (max_error_ > 0.0F, "max less 0");
-  U3_CHECK (min_error_ < max_error_, "min large max");
-  U3_CHECK (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "invalid blok size");
-  U3_CHECK (size_search_ > 0, "size search less 0");
-  U3_CHECK (size_search_ <= 126, "size search large 126");   // 127 reserved for invalid
+  U3_THROW_IF (min_error_ >= 0.0F, "min large 0");
+  U3_THROW_IF (max_error_ > 0.0F, "max less 0");
+  U3_THROW_IF (min_error_ < max_error_, "min large max");
+  U3_THROW_IF (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "invalid blok size");
+  U3_THROW_IF (size_search_ > 0, "size search less 0");
+  U3_THROW_IF (size_search_ <= 126, "size search large 126");   // 127 reserved for invalid
 }
 
 
@@ -52,6 +51,7 @@ EventBufsMotionEst::correct_int ()
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 EventBufsMotionEst::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -63,7 +63,7 @@ EventBufsMotionEst::serialize (Archive& arh, const std::uint32_t /* file_version
   arh& BOOST_SERIALIZATION_NVP (size_search_);
   arh& BOOST_SERIALIZATION_NVP (search_vecs_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag tag, ::boost::json::value& jvs, const EventBufsMotionEst& src)
@@ -102,5 +102,5 @@ tag_invoke (::boost::json::value_to_tag< EventBufsMotionEst >, const ::boost::js
 }
 }   // namespace libs::events_base::props::videos::generic::motion_est
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::motion_est::EventBufsMotionEst);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::props::videos::generic::motion_est::EventBufsMotionEst);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::props::videos::generic::motion_est::EventBufsMotionEst);

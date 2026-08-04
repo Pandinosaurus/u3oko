@@ -3,7 +3,6 @@
 \file       cuuid.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::utils
@@ -69,4 +68,4 @@ struct hash< ::libs::utility::utils::cuuid > {
 };
 }   // namespace boost
 
-BOOST_CLASS_EXPORT_KEY (::libs::utility::utils::cuuid);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::utility::utils::cuuid);

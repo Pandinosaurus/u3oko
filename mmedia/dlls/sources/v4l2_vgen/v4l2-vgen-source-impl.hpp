@@ -3,7 +3,6 @@
 \file       v4l2-vgen-source-impl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       20.02.2026
-\project    u3_v4l2_vgen
 */
 
 namespace dlls::sources::v4l2_vgen

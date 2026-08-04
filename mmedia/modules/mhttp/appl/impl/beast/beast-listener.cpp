@@ -2,10 +2,9 @@
 \file       beast-listener.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       31.03.2026
-\project    mhttp
 \original   https://github.com/boostorg/beast/blob/develop/example/http/server/async/http_server_async.cpp
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "../../../module-http-includes_int.hpp"
 #include "mmedia/dlls/terminals/video_sender/consts/video-sender-const-vals.hpp"
 #include "../../http-module-syn.hpp"

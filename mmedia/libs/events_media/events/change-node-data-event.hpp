@@ -3,7 +3,6 @@
 \file       change-node-data-event.hpp
 \date       01.08.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_media
 */
 
 namespace libs::events_media::events
@@ -80,4 +79,4 @@ class ChangeNodeDataEvent : public BaseNodesDataEvent
 };
 }   // namespace libs::events_media::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::ChangeNodeDataEvent);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_media::events::ChangeNodeDataEvent);

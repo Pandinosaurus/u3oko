@@ -3,7 +3,6 @@
 \file       ihardware-correct.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_vgen_lib
 */
 
 namespace dlls::sources::gen_lib::interfs
@@ -46,7 +45,7 @@ class IHardwareCorrect final : public syn::ICorrectImage
   }
 
   virtual bool
-  process_int (syn::IVideoBuf::raw_ptr h16, syn::IVideoBuf::raw_ptr s16, syn::IVideoBuf::raw_ptr l16) override
+  process_int (syn::IVideoBuf::raw_ptr, syn::IVideoBuf::raw_ptr, syn::IVideoBuf::raw_ptr) override
   {
     // Вся работа идет аппаратно.
     return false;

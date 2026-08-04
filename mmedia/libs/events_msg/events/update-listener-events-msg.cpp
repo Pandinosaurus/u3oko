@@ -2,7 +2,6 @@
 \file       update-listener-events-msg.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       17.09.2018
-\project    u3_events_base_lib
 */
 #include "mmedia/includes/control-defines-includes.hpp"
 #include "mmedia/includes/includes.hpp"
@@ -138,7 +137,7 @@ UpdateListenerEventsMsg::copy_int (const IEvent::craw_ptr src)
   action_      = dsrc->action_;
 }
 
-
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 UpdateListenerEventsMsg::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -150,7 +149,8 @@ UpdateListenerEventsMsg::serialize (Archive& arh, const std::uint32_t /* file_ve
 
   self_correct ();
 }
+#endif
 }   // namespace libs::events_msg::events
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::UpdateListenerEventsMsg);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_msg::events::UpdateListenerEventsMsg);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_msg::events::UpdateListenerEventsMsg);

@@ -3,7 +3,6 @@
 \file       dbufs-str2eof-helper-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2018
-\project    u3_dbufs
 */
 
 namespace utils::dbufs::video::consts::offs

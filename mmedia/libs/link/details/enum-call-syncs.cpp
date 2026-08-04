@@ -2,7 +2,6 @@
 \file       enum-call-syncs.cpp
 \date       04.03.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_link
 */
 #include "../_make/libs-link-includes_int.hpp"
 #include "enum-call-syncs.hpp"

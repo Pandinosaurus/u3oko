@@ -3,7 +3,6 @@
 \file       module-http-includes.hpp
 \date       01.05.2017
 \author     Erashov Anton erashov2026@proton.me
-\project    mhttp
 */
 #define BOOST_SPIRIT_THREADSAFE
 #include <boost/property_tree/json_parser.hpp>

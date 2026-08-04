@@ -3,7 +3,6 @@
 \file       defines-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2016
-\project    u3_includes
 \brief      Базовые определения для включения во все файлы сборки
 */
 #include "../defines/logs/defines-xlog-trace.hpp"

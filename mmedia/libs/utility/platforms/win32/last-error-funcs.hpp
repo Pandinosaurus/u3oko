@@ -3,7 +3,6 @@
 \file       last-error-funcs.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       11.08.2024
-\project    u3_helpers_lib
 */
 
 namespace libs::utility::platforms::win32
@@ -32,15 +31,15 @@ last_error2string (unsigned long error)
   return std::string (buf, size);
 }
 
-#ifndef U3_CHECK_WIN32_CALL
-#  define U3_CHECK_WIN32_CALL(x, minfo) U3_CHECK (x, minfo + " error" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IF_WIN32_CALL
+#  define U3_THROW_IF_WIN32_CALL(x, minfo) U3_THROW_IF (x, minfo + " error" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 
-#ifndef U3_CHECK_WIN32_CALL_NT
-#  define U3_CHECK_WIN32_CALL_NT(x, minfo) U3_CHECK_NT (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IF_WIN32_CALL_NT
+#  define U3_THROW_IF_WIN32_CALL_NT(x, minfo) U3_TEST (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 
-#ifndef U3_CHECK_WIN32_STATE
-#  define U3_CHECK_WIN32_STATE(x, minfo) U3_CHECK (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IF_WIN32_STATE
+#  define U3_THROW_IF_WIN32_STATE(x, minfo) U3_THROW_IF (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 }   // namespace libs::utility::platforms::win32

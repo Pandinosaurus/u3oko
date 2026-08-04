@@ -2,13 +2,13 @@
 \file       sync-objs-group.cpp
 \date       17.03.2026
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_events_base_lib
 */
 #include "../../events-base-includes_int.hpp"
 #include "sync-objs-group.hpp"
 
 namespace libs::events_base::runtime::control
 {
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 SyncObjsGroup::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -17,7 +17,7 @@ SyncObjsGroup::serialize (Archive& arh, const std::uint32_t /* file_version */)
   // arh& BOOST_SERIALIZATION_NVP (time_point_);
   arh& BOOST_SERIALIZATION_NVP (action_);
 }
-
+#endif
 
 void
 tag_invoke (::boost::json::value_from_tag, ::boost::json::value& jvs, const SyncObjsGroup& src)
@@ -45,5 +45,5 @@ tag_invoke (::boost::json::value_to_tag< SyncObjsGroup >, const ::boost::json::v
 }
 }   // namespace libs::events_base::runtime::control
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::control::SyncObjsGroup);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::runtime::control::SyncObjsGroup);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::runtime::control::SyncObjsGroup);

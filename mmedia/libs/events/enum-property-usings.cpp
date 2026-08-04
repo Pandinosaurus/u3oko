@@ -2,7 +2,6 @@
 \file       enum-property-usings.cpp
 \date       18.04.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    mevents
 */
 #include "includes_int.hpp"
 #include "enum-property-usings.hpp"

@@ -3,7 +3,6 @@
 \file       get-users-sessions.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       24.07.2018
-\project    u3_events_user
 */
 
 namespace libs::events_user::events
@@ -29,6 +28,7 @@ struct RuntimeStreamInfo {
   private:
   friend class boost::serialization::access;
 
+#  if (U3_USE_BOOST_SERIALIZTION)
   // REFACT
   template< class Archive >
   void
@@ -39,6 +39,7 @@ struct RuntimeStreamInfo {
     arh& BOOST_SERIALIZATION_NVP (count_read_bytes_);
     arh& BOOST_SERIALIZATION_NVP (count_errors_);
   }
+#  endif
 };
 #endif
 
@@ -98,4 +99,4 @@ class GetUsersSessions : public BaseUserEvent
 };
 }   // namespace libs::events_user::events
 
-BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::GetUsersSessions);
+U3_BOOST_CLASS_EXPORT_KEY (::libs::events_user::events::GetUsersSessions);

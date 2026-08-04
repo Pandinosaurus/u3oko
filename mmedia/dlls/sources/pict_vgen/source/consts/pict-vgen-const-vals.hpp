@@ -3,7 +3,6 @@
 \file       pict-vgen-const-vals.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       05.08.2024
-\project    u3_pict_vgen
 */
 
 namespace dlls::sources::pict_vgen::consts

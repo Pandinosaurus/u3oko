@@ -2,9 +2,8 @@
 \file       all2rgb-dll-filter-dll.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_all2rgb
 */
-// #define U3_USE_DBG_LOG_LEVEL_FOR_THIS_UNITE
+// #define U3_DBG_LOG_LEVEL_ENABLE
 #include "all2rgb-dll-includes_int.hpp"
 #include "all2rgb-dll-info-filter-dll.hpp"
 #include "all2rgb-dll-filter-dll.hpp"
@@ -93,7 +92,7 @@ Filter::get_func_for_format (const syn::id_val& format) -> ::libs::optim::io::hi
   }
   if (syn::id_val::rgb32 == format)
   {
-    U3_CHECK (!mono, "result mono for rgb32");
+    U3_THROW_IF (!mono, "result mono for rgb32");
     return &rgb32_to_rgb24_;
   }
   U3_LOG_DATA_ERROR ("unknown pixel format");

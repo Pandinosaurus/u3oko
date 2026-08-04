@@ -2,7 +2,6 @@
 \file       all2rgb-dll-main.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.05.2017
-\project    u3_all2rgb
 \brief      Модуль преобразования всех форматов в RGB24
 */
 #include "all2rgb-dll-includes_int.hpp"

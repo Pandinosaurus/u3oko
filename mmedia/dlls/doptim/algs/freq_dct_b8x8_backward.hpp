@@ -3,7 +3,6 @@
 \file       freq_dct_b8x8_backward.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_doptim_dll
 */
 
 namespace dlls::doptim::impl::algs
@@ -60,7 +59,7 @@ class CFreqDCT8x8BackwardAlg final : public IOptimAlg
       break;
 #endif
     default:
-      U3_ASSERT_SIGNAL_NT ("failed");
+      U3_MARK ("failed");
       sel_.set (::libs::optim::s16bit::freq::dct::b8x8::backward::alu);
       break;
     }

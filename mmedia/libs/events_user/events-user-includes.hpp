@@ -3,7 +3,6 @@
 \file       events-user-includes.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       22.07.2018
-\project    u3_events_user
 */
 #include "events-user-syn.hpp"
 #include "events-user-base-types.hpp"

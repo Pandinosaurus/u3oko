@@ -3,7 +3,6 @@
 \file       capture-desk-impl-linux-wl.hpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
 #if defined(U3_OS_GNU_LINUX) || defined(U3_OS_RASPBERRY) || defined(U3_OS_ORANGE_PI)
 
@@ -32,7 +31,7 @@ class CaptureDeskImplLinux : public ::dlls::sources::desk_vgen::ICaptureDeskImpl
 
   private:
   // ICaptureDeskImpl
-  virtual void get_buf_int (const syn::SourceImplInfo& props_info, CaptureDeskInfo& info) override;
+  virtual void get_buf_int (const syn::SourceImplInfo&, CaptureDeskInfo&) override;
 
   void thread_func ();
 

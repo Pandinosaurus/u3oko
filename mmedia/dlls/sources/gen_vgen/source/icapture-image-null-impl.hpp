@@ -3,7 +3,6 @@
 \file       icapture-image-null-impl.hpp
 \author     Erashov Anton erashov2026@proton.me
 \date       17.08.2018
-\project    u3_gen_vgen
 */
 
 namespace dlls::sources::gen_vgen

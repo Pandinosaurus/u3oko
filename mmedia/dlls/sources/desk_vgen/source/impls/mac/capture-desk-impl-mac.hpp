@@ -3,7 +3,6 @@
 \file       capture-desk-impl-mac.hpp
 \date       16.05.2022
 \author     Erashov Anton erashov2026@proton.me
-\project    u3_desk_vgen
 */
 
 #ifdef U3_OS_MACX_DESKTOP

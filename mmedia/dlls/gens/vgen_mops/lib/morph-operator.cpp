@@ -2,7 +2,6 @@
 \file       morph-operator.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       16.07.2018
-\project    u3_vgen_mops_lib
 */
 #include "vgen-mops-lib-includes_int.hpp"
 #include "morph-operator.hpp"

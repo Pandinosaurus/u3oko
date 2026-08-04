@@ -2,7 +2,6 @@
 \file       ops-status-event.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
-\project    u3_events_base_lib
 */
 #include "events-base-includes_int.hpp"
 #include "ops-status-event.hpp"
@@ -60,7 +59,7 @@ void
 OpsStatusEvent::load_json_int (const ::boost::json::object& obj)
 {
   super::load_json_int (obj);
-  U3_ASSERT_NT (0, "OpsStatusEvent::load_json_int: not implemented");
+  U3_ASSERT_SOFT (0, "OpsStatusEvent::load_json_int: not implemented");
 }
 
 
@@ -85,6 +84,7 @@ OpsStatusEvent::copy_int (const IEvent::craw_ptr src)
 }
 
 
+#if (U3_USE_BOOST_SERIALIZTION)
 template< class Archive >
 void
 OpsStatusEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
@@ -94,7 +94,8 @@ OpsStatusEvent::serialize (Archive& arh, const std::uint32_t /* file_version */)
   arh& BOOST_SERIALIZATION_NVP (ops_json_info_);
   self_correct ();
 }
+#endif
 }   // namespace libs::events_base
 
-BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::OpsStatusEvent);
+U3_BOOST_CLASS_EXPORT_IMPLEMENT (::libs::events_base::OpsStatusEvent);
 U3_BOOST_ADD_SERIALIZE_ARCH (::libs::events_base::OpsStatusEvent);

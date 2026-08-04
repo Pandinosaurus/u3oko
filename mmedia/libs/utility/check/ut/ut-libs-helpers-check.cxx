@@ -2,7 +2,6 @@
 \file       ut-libs-helpers-check.cxx
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2026
-\project    u3_helpers_lib
 
 U3_COMMERCIAL_PART_SOURCE
 */
