@@ -15,14 +15,13 @@ namespace libs::link::appl
 auto
 IApplicationProxy::impl () -> IApplication::raw_ptr
 {
-  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl:---->");
+  U3_CALL_TRACE_DBG;
   if (!impl_)
   {
-    U3_THROW_IF (creator_, "empty creator function");
+    U3_THROW_IFN (creator_, "empty creator function");
     impl_ = creator_ ();
   }
-  U3_THROW_IF (impl_, "failed create impl module");
-  U3_XLOG_DBG ("IApplicationProxy::implIApplicationProxy::impl:<----");
+  U3_THROW_IFN (impl_, "failed create impl module");
   return impl_;
 }
 
@@ -31,7 +30,7 @@ IApplicationProxy::IApplicationProxy (
   const std::string& dll_path,
   const std::string& name_lib)
 {
-  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy:---->" + TOLOG (dll_path) + TOLOG (name_lib));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (dll_path) + TOLOG (name_lib));
   U3_ASSERT (!dll_path.empty ());
   U3_ASSERT (!name_lib.empty ());
 
@@ -66,9 +65,8 @@ IApplicationProxy::IApplicationProxy (
     lib_, ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl").c_str ());
 #endif
 
-  U3_THROW_IF (creator_, ("find create_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "create_impl")).c_str ());
-  U3_THROW_IF (erasor_, ("find delete_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl")).c_str ());
-  U3_XLOG_DBG ("IApplicationProxy::IApplicationProxy:<----" + TOLOG (dll_path) + TOLOG (name_lib));
+  U3_THROW_IFN (creator_, ("find create_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "create_impl")).c_str ());
+  U3_THROW_IFN (erasor_, ("find delete_impl from lib, " + cpath.string () + ", " + ::libs::utility::dlls::make_func_name_lib (name_lib, "delete_impl")).c_str ());
 }
 
 IApplicationProxy::~IApplicationProxy ()

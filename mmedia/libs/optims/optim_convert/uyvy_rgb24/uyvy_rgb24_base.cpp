@@ -17,14 +17,14 @@ get_params (
   const ::libs::optim::io::ProxyBuf** yuy2,
   ::libs::optim::io::ProxyBuf**       rgb24)
 {
-  U3_THROW_IF (1 == info.srcs_.size (), "src not equal 1");
-  U3_THROW_IF (1 == info.dsts_.size (), "dsts not equal 1");
+  U3_THROW_IFN (1 == info.srcs_.size (), "src not equal 1");
+  U3_THROW_IFN (1 == info.dsts_.size (), "dsts not equal 1");
 
   *yuy2  = &info.srcs_[0];
   *rgb24 = &info.dsts_[0];
 
-  U3_THROW_IF (*yuy2, "tmpy yuy2");
-  U3_THROW_IF (rgb24, "empty rgb24");
+  U3_THROW_IFN (*yuy2, "tmpy yuy2");
+  U3_THROW_IFN (rgb24, "empty rgb24");
 
   (*yuy2)->check ("yuy2 convert::yuy2_rgb24");
   (*rgb24)->check ("rgb24 convert::yuy2_rgb24");

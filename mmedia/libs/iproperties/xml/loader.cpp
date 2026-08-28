@@ -56,8 +56,8 @@ Loader::load (
   try
   {
     U3_ASSERT (!file_name.empty ());
-    U3_THROW_IF (impl_->get (file_name, path_type, bmem), ("load file: " + file_name).c_str ());
-    // U3_THROW_IF( bmem->get() && bmem->get_size(), ("load file, empty bmem,"  + file_name ).c_str() );
+    U3_THROW_IFN (impl_->get (file_name, path_type, bmem), ("load file: " + file_name).c_str ());
+    // U3_THROW_IFN( bmem->get() && bmem->get_size(), ("load file, empty bmem,"  + file_name ).c_str() );
   }
   catch (const std::exception& excpt)
   {

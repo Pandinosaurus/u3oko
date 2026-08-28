@@ -22,6 +22,16 @@ make_call_place_info (const char* file, std::int32_t line)
   return ret;
 }
 
+/// Макрос для стандартной генерации исключения, в данной реализации используем исключение boost
+#ifndef U3_THROW_EXCEPT
+#  define U3_THROW_EXCEPT(u3def_param)                                     \
+    {                                                                      \
+      std::stringstream sexcpt;                                            \
+      sexcpt << (u3def_param);                                             \
+      BOOST_THROW_EXCEPTION (std::runtime_error (sexcpt.str ().c_str ())); \
+    }
+#endif
+
 #if defined(U3_CNTRL_DEBUG) || defined(U3_CNTRL_RELEASE_ASSERT)
 
 #  ifndef U3_ASSERT_IMPL
@@ -52,21 +62,6 @@ make_call_place_info (const char* file, std::int32_t line)
       }
 #  endif
 
-#  ifndef U3_MARK
-#    define U3_MARK(u3def_info)                                                                          \
-      {                                                                                                  \
-        U3_XLOG_ASSERT (u3def_info + std::string (".....") + make_call_place_info (__FILE__, __LINE__)); \
-      }
-#  endif
-
-#  ifndef U3_MARK_I64
-#    define U3_MARK_I64 U3_MARK ("ASSERT-MARK-I64")
-#  endif
-
-#  ifndef U3_MARK_TODO
-#    define U3_MARK_TODO U3_MARK ("ASSERT-TODO")
-#  endif
-
 #else
 #  ifndef U3_ASSERT
 #    define U3_ASSERT(u3def_cond)
@@ -74,13 +69,5 @@ make_call_place_info (const char* file, std::int32_t line)
 
 #  ifndef U3_ASSERT_THROW
 #    define U3_ASSERT_THROW(u3def_info)
-#  endif
-
-#  ifndef U3_MARK_I64
-#    define U3_MARK_I64
-#  endif
-
-#  ifndef U3_MARK_TODO
-#    define U3_MARK_TODO
 #  endif
 #endif

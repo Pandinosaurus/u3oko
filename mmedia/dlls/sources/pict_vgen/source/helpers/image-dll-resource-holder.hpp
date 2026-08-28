@@ -9,7 +9,7 @@ namespace dlls::sources::pict_vgen::helpers
 {
 template<
   typename TTRes,
-  void (__stdcall* free_funct) (TTRes*) >
+  void (__stdcall* free_func) (TTRes*) >
 class ResourceHolder final
 {
   public:
@@ -43,7 +43,7 @@ class ResourceHolder final
     {
       try
       {
-        free_funct (val_);
+        free_func (val_);
       }
       catch (const std::exception& excpt)
       {
@@ -79,7 +79,7 @@ class ResourceHolder final
   TTRes*
   operator* ()
   {
-    U3_THROW_IF (val_, "operator*");
+    U3_THROW_IFN (val_, "operator*");
     return val_;
   }
 

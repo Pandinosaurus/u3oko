@@ -14,7 +14,7 @@ class MorphOperator final
   MorphOperator ()  = default;
   ~MorphOperator () = default;
 
-  U3_ADD_DELETE_MOVE_COPY (MorphOperator);
+  U3_ADD_DELETE_MOVE_COPY (MorphOperator)
 
   auto init () -> void;
   void set_transform_info (syn::TransformInfo*);

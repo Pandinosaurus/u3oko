@@ -28,7 +28,7 @@ void
 ObjSourceImplProxy::init (const std::string& impl_name)
 {
   clear ();
-  U3_THROW_IF (!impl_name.empty (), "empty impl name for capture");
+  U3_THROW_IFN (!impl_name.empty (), "empty impl name for capture");
   const std::string path      = ::libs::iproperties::appl_paths::get_current_lib_folder ();
   const std::string full_path = ::libs::utility::files::make_path (path, ::libs::utility::dlls::decorate_dll_name (impl_name));
 
@@ -39,15 +39,15 @@ ObjSourceImplProxy::init (const std::string& impl_name)
   func_free_ = ::libs::proxy::get_free_source_func (impl_name);
 #else
   func_get_ = ::boost::dll::import_symbol< gen_lib::get_source_func_type > (
-    impl_dll_, ::libs::utility::dlls::make_func_name_lib (impl_name, gen_lib::consts::name_get_funct));
+    impl_dll_, ::libs::utility::dlls::make_func_name_lib (impl_name, gen_lib::consts::name_get_func));
 
   func_free_ = ::boost::dll::import_symbol< gen_lib::free_source_func_type > (
-    impl_dll_, ::libs::utility::dlls::make_func_name_lib (impl_name, gen_lib::consts::name_free_funct));
+    impl_dll_, ::libs::utility::dlls::make_func_name_lib (impl_name, gen_lib::consts::name_free_func));
 #endif
 
-  U3_THROW_IF (func_get_ && func_free_, "get funct");
-  U3_THROW_IF (func_get_ (&impl_), "create impl");
-  U3_THROW_IF (impl_, "create func return empty impl");
+  U3_THROW_IFN (func_get_ && func_free_, "get funct");
+  U3_THROW_IFN (func_get_ (&impl_), "create impl");
+  U3_THROW_IFN (impl_, "create func return empty impl");
   impl_->init ();
 }
 

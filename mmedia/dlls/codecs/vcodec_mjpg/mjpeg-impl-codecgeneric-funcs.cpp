@@ -67,7 +67,6 @@ MjpegImpl::code_int (
   ::libs::bufs::Bufs*               dst,
   syn::TransformInfo::tevents_type* events) -> bool
 {
-  U3_LOG_DATA_DBG ("MjpegImpl::code_int:---->");
   const syn::IVideoBuf::raw_ptr  obuf = (*dst)[props_.bufs_.indx_dbuf_];
   const syn::IVideoBuf::craw_ptr hbuf = (*src)[utils::dbufs::video::consts::offs::hue];
   const syn::IVideoBuf::craw_ptr sbuf = (*src)[utils::dbufs::video::consts::offs::sat];
@@ -137,7 +136,6 @@ MjpegImpl::code_int (
   const bool ret = comp_iframe (use_color, tout_buf, out_size);
   U3_ASSERT (out_size > 0);
   obuf->set_mem_var (::utils::dbufs::MemVars::size_data, out_size);
-  U3_LOG_DATA_DBG ("MjpegImpl::code_int:<----");
   return ret;
 }
 

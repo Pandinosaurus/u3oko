@@ -17,10 +17,10 @@ using InfoBuffVideoDiffProp = ::libs::events_base::props::videos::gens::diff::In
 using IVideoBuf             = ::utils::dbufs::video::IVideoBuf;
 using AddEvent2EventsMsg    = ::libs::events_msg::events::AddEvent2EventsMsg;
 using DetectViolation       = ::libs::events_base::runtime::video::DetectViolation;
-using TransformInfo         = ::libs::icore::impl::var1::obj::dll::TransformInfo;
-using CallInterfInfo        = ::libs::icore::impl::var1::obj::dll::CallInterfInfo;
-using FilterInfo            = ::libs::icore::impl::var1::obj::FilterInfo;
-using ConnectInfo           = ::libs::icore::impl::var1::obj::ConnectInfo;
+using TransformInfo         = ::libs::icore::impl::base::obj::dll::TransformInfo;
+using CallInterfInfo        = ::libs::icore::impl::base::obj::dll::CallInterfInfo;
+using FilterInfo            = ::libs::icore::impl::base::obj::FilterInfo;
+using ConnectInfo           = ::libs::icore::impl::base::obj::ConnectInfo;
 using DiffImpl              = ::dlls::gens::vgen_diff::lib::DiffImpl;
 using MopsImpl              = ::dlls::gens::vgen_mops::lib::MopsImpl;
 }   // namespace dlls::detectors::detect_move::syn

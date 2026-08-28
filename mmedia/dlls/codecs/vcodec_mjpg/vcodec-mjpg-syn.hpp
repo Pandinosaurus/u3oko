@@ -8,7 +8,7 @@
 namespace dlls::codecs::vcodec_mjpg::syn
 {
 using VideoCodecProp = ::libs::events_base::props::videos::generic::codec::VideoCodecProp;
-using TransformInfo  = ::libs::icore::impl::var1::obj::dll::TransformInfo;
+using TransformInfo  = ::libs::icore::impl::base::obj::dll::TransformInfo;
 using VideoCodecProp = ::libs::events_base::props::videos::generic::codec::VideoCodecProp;
 using IVideoBuf      = ::utils::dbufs::video::IVideoBuf;
 using StatisticInfo  = ::dlls::codecs::codec_gen::StatisticInfo;

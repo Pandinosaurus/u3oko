@@ -92,7 +92,7 @@ Filter::get_func_for_format (const syn::id_val& format) -> ::libs::optim::io::hi
   }
   if (syn::id_val::rgb32 == format)
   {
-    U3_THROW_IF (!mono, "result mono for rgb32");
+    U3_THROW_IFN (!mono, "result mono for rgb32");
     return &rgb32_to_rgb24_;
   }
   U3_LOG_DATA_ERROR ("unknown pixel format");
@@ -108,10 +108,10 @@ Filter::get_out_format_from_format (const syn::id_val& format) -> syn::id_val
 
 
 void
-Filter::init_pts (::libs::icore::impl::var1::obj::ConnectInfo* info)
+Filter::init_pts (::libs::icore::impl::base::obj::ConnectInfo* info)
 {
   info->count_ins_ = 1;
-  info->ins_[0].set_info (true, ::libs::icore::impl::var1::obj::Points::input);
+  info->ins_[0].set_info (true, ::libs::icore::impl::base::obj::Points::input);
 
   info->count_outs_ = 1;
   info->outs_[0].set_info (true);

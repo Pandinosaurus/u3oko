@@ -8,8 +8,8 @@
 namespace dlls::gens::vgen_diff
 {
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter ()          = default;
@@ -18,7 +18,7 @@ class Filter final :
   private:
   //  internal typess
   using off2bufs_type = boost::unordered_flat_map< ::utils::dbufs::video::consts::offs::off_buf_type, ::utils::dbufs::video::IVideoBuf::ptr >;
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
   virtual auto load_int (syn::FilterInfo*, const ::pugi::xml_named_node_iterator&) -> void override;

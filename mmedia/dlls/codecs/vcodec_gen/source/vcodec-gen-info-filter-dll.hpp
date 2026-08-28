@@ -7,7 +7,7 @@
 
 namespace dlls::codecs::vcodec_gen
 {
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   public:
   //  ext types
   using icodec_type  = std::array< syn::VideoCodecProp, 4 >;

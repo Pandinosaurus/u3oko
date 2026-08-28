@@ -7,28 +7,47 @@
 */
 
 #ifdef U3_CNTRL_FORCE_SKIP_CHECK_CALL
-#  define U3_THROW_IF(u3def_cond, u3def_minfo)
-#  define U3_TEST(u3def_cond, u3def_mfino)
+#  ifndef U3_THROW_IF
+#    define U3_THROW_IF(u3def_cond, u3def_minfo)
+#  endif
+#  ifndef U3_THROW_IFN
+#    define U3_THROW_IFN(u3def_cond, u3def_minfo)
+#  endif
+#  ifndef U3_TEST
+#    define U3_TEST(u3def_cond, u3def_mfino)
+#  endif
+#  ifndef U3_THROW_IMPL
+#    define U3_THROW_IMPL(u3def_info)
+#  endif
+#  ifndef U3_TEST_IMPL
+#    define U3_TEST_IMPL(u3def_info)
+#  endif
 #else
 
-#  ifndef U3_ASSERT_CHECK_CALL
-#    define U3_ASSERT_CHECK_CALL(u3def_info) U3_ASSERT_THROW (std::string ("CHECK-FAILED: ") + u3def_info)
-#  endif
-
-#  ifndef U3_ASSERT_CHECK_CALL_NT
-#    define U3_ASSERT_CHECK_CALL_NT(u3def_info) U3_MARK (std::string ("CHECK-FAILED-SOFT: ") + u3def_info)
+#  ifndef U3_THROW_IMPL
+#    define U3_THROW_IMPL(u3def_info) U3_ASSERT_THROW (std::string ("CHECK-FAILED:") + u3def_info)
 #  endif
 
 #  define U3_THROW_IF(u3def_cond, u3def_minfo) \
-    if (!(u3def_cond))                         \
+    if (u3def_cond)                            \
     {                                          \
-      U3_ASSERT_CHECK_CALL (u3def_minfo);      \
+      U3_THROW_IMPL (u3def_minfo);             \
     }
 
-#  define U3_TEST(u3def_cond, u3def_minfo)   \
-    if (!(u3def_cond))                       \
-    {                                        \
-      U3_ASSERT_CHECK_CALL_NT (u3def_minfo); \
+#  define U3_THROW_IFN(u3def_cond, u3def_minfo) \
+    if (!(u3def_cond))                          \
+    {                                           \
+      U3_THROW_IMPL (u3def_minfo);              \
+    }
+
+#  ifndef U3_TEST_IMPL
+#    define U3_TEST_IMPL(u3def_info) U3_MARK (std::string ("TEST-FAILED:") + u3def_info)
+#  endif
+
+#  define U3_TEST(u3def_cond, u3def_minfo) \
+    if (!(u3def_cond))                     \
+    {                                      \
+      U3_TEST_IMPL (u3def_minfo);          \
     }
 
 #endif

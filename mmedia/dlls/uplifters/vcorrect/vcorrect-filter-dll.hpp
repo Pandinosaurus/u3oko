@@ -10,8 +10,8 @@ namespace dlls::uplifters::vcorrect
 {
 /// Модуль для коррекции базовых свойств изображения (насыщенность/тон/яркость.etc)
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter ();
@@ -19,7 +19,7 @@ class Filter final :
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
   virtual auto load_int (syn::FilterInfo*, const ::pugi::xml_named_node_iterator&) -> void override;

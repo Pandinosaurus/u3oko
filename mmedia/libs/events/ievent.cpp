@@ -54,7 +54,7 @@ IEvent::get_using_state () const -> const PropertyUsings&
 void
 IEvent::load_json (const std::string& prop)
 {
-  U3_XLOG_DBG ("IEvent::load_json:---->")
+  U3_CALL_TRACE_DBG;
   ::boost::json::parse_options opt;
 
   opt.allow_comments        = true;
@@ -83,7 +83,6 @@ IEvent::load_json (const std::string& prop)
 
   load_json_int (obj);
   self_correct ();
-  U3_XLOG_DBG ("IEvent::load_json:<----")
 }
 
 

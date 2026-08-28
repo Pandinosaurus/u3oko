@@ -14,6 +14,7 @@ namespace modules::mevents::appl
 void
 free_error_callback (void* parg, int code, const char* msg)
 {
+  U3_CALL_TRACE_DBG;
   auto*             parent     = ::libs::utility::casts::reinterpret_cast_helper< EventsModule* > (parg);
   const std::string error_text = std::string (msg) + ", " + std::to_string (code);
   parent->error_callback (error_text);
@@ -22,7 +23,7 @@ free_error_callback (void* parg, int code, const char* msg)
 
 EventsModule::EventsModule ()
 {
-  U3_XLOG_DBG ("EventsModule::EventsModule:---->");
+  U3_CALL_TRACE_DBG;
   text_id_module_ = ::libs::ilink::consts::id_events;
 #if (U3_COMMERCIAL_PART == 1)
   impl_ = std::make_unique< impls::sqlite::SqliteEventModuleImpl > ();
@@ -86,7 +87,7 @@ EventsModule::process_update_listener (
   syn::IEvent::ptr&                     msg,
   syn::UpdateListenerEventsMsg::raw_ptr props)
 {
-  U3_LOG_EVENTS_DBG ("EventsModule::process_update_listener:->");
+  U3_CALL_TRACE_DBG;
   try
   {
     switch (props->get_action ())
@@ -113,11 +114,11 @@ EventsModule::process_update_listener (
 auto
 process_error (syn::IEvent::ptr& msg, const std::string_view info) noexcept -> void
 {
-  U3_XLOG_DEV ("EventsModule::process_error:---->" + STOLOG (info));
+  U3_CALL_TRACE;
   try
   {
     auto* props = ::libs::iproperties::helpers::cast_event< syn::OpsStatusEvent > (msg);
-    U3_THROW_IF (props, "failed cast to OpsStatusEvent for return error" + STOLOG (info));
+    U3_THROW_IFN (props, "failed cast to OpsStatusEvent for return error" + STOLOG (info));
     props->set_ops_status (::libs::events_base::OpsStatus::failed);
     props->set_ops_info (std::string (info));
   }
@@ -125,6 +126,5 @@ process_error (syn::IEvent::ptr& msg, const std::string_view info) noexcept -> v
   {
     U3_LOG_EVENTS_EXCEPT (excpt.what ());
   }
-  U3_XLOG_DEV ("EventsModule::process_error:<----");
 }
 }   // namespace modules::mevents::appl

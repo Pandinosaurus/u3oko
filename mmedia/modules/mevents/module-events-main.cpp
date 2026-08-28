@@ -49,7 +49,7 @@ factory_impl_mevents (::libs::link::appl::IApplication::raw_ptr impl, bool creat
 extern "C" BOOST_SYMBOL_EXPORT auto
 create_impl_mpl_mevents () -> ::libs::link::appl::IApplication::raw_ptr
 {
-  U3_XLOG_DBG ("create_impl_mevents:---->");
+  U3_CALL_TRACE_DBG;
   return modules::mevents::appl::factory_impl_mevents (nullptr, true);
 }
 

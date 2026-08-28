@@ -24,6 +24,5 @@ struct InitApplication final {
   std::string company_name_ { consts::text::defaults::company_name };   //< Имя компании-разработчика модуля
   std::string appl_name_ { consts::text::defaults::appl_name };         //< Имя приложения
   std::string lib_name_ {};                                             //< Имя файла с разделяемым кодом, который содержит в себе модуль приложения
-  // std::string subsys_name_ {};                                          //< Имя подсистемы, приложения
 };
 }   // namespace libs::link::appl

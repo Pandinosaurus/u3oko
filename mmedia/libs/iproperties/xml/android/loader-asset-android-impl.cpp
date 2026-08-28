@@ -20,7 +20,7 @@ LoaderAssetAndroidImpl::LoaderAssetAndroidImpl (const InitLoaderInfo& info) :
   syn::ISharedProperty::lock_type lock (osinfo->get_sync ());
 
   asset_manager_ = osinfo->get_aappl_lockfree ()->activity->assetManager;
-  U3_THROW_IF (asset_manager_, "empty asset_manager_");
+  U3_THROW_IFN (asset_manager_, "empty asset_manager_");
 }
 
 
@@ -46,7 +46,7 @@ LoaderAssetAndroidImpl::enum_items_struct (
   AAssetDir*        cur_folder = AAssetManager_openDir (asset_manager_, cur_root.c_str ());
 
   U3_XLOG_MARK ("LoaderAssetAndroidImpl::enum_items_struct enum asset struct from" + TOLOG (cur_root))
-  U3_THROW_IF (cur_folder, "open asset folder " + cur_root);
+  U3_THROW_IFN (cur_folder, "open asset folder " + cur_root);
 
   AAssetDir_rewind (cur_folder);
   do

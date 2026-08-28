@@ -71,18 +71,16 @@ Event::clone_int (const ::libs::events::Deeps& deep) const -> ::libs::events::IE
 void
 Event::load_json_int (const ::boost::json::object& obj)
 {
-  U3_XLOG_DBG ("Event::load_json_int:---->" + TOLOG (boost::json::serialize (obj)));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (boost::json::serialize (obj)));
   // gextp_json_ = ::libs::utility::json::get_string (obj.at ("gextp_json"));
-  U3_XLOG_DBG ("Event::load_json_int:<----");
 }
 
 
 void
 Event::save_json_int (::boost::json::object& obj) const
 {
-  U3_XLOG_DBG ("Event::save_json_int:---->" + TOLOG (boost::json::serialize (obj)));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (boost::json::serialize (obj)));
   // obj["gextp_json"] = ::libs::utility::json::to_string (gextp_json_);
-  U3_XLOG_DBG ("Event::save_json_int:<----");
 }
 
 

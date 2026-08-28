@@ -11,10 +11,10 @@ namespace utils::dbufs::video::impl
 void
 check_dims (const VideoBuf::dim_type width, const VideoBuf::dim_type height)
 {
-  U3_THROW_IF (width >= consts::min_width, "width less consts::min_width" + VTOLOG (width) + VTOLOG (consts::min_width));
-  U3_THROW_IF (width <= consts::max_width, "width large consts::max_width" + VTOLOG (width) + VTOLOG (consts::max_width));
-  U3_THROW_IF (height >= consts::min_height, "height less consts::min_height" + VTOLOG (height) + VTOLOG (consts::min_height));
-  U3_THROW_IF (height <= consts::max_height, "height large consts::max_height" + VTOLOG (height) + VTOLOG (consts::max_height));
+  U3_THROW_IF (width < consts::min_width, "width less consts::min_width" + VTOLOG (width) + VTOLOG (consts::min_width));
+  U3_THROW_IF (width > consts::max_width, "width large consts::max_width" + VTOLOG (width) + VTOLOG (consts::max_width));
+  U3_THROW_IF (height < consts::min_height, "height less consts::min_height" + VTOLOG (height) + VTOLOG (consts::min_height));
+  U3_THROW_IF (height > consts::max_height, "height large consts::max_height" + VTOLOG (height) + VTOLOG (consts::max_height));
 }
 
 
@@ -210,8 +210,8 @@ VideoBuf::buf_alloc_int (const AllocParams& info)
   // дополнительно всегда выделяем снизу несколько строк, чтобы гарантировать нормальную работу деления буфера на рабочие потоки
   alloc_size += stride * ::libs::optim::s16bit::conv::consts::bufs::max_align_block_by_y_for_algs;
 
-  U3_THROW_IF (alloc_size > 0, "received invalid size for alloc" + VTOLOG (alloc_size));
-  U3_THROW_IF (info.geom_dims_[Dims::stride] <= stride, "calculated stride too small" + VTOLOG (info.geom_dims_[Dims::stride]) + VTOLOG (stride) + VTOLOG (conv_support));
+  U3_THROW_IFN (alloc_size > 0, "received invalid size for alloc" + VTOLOG (alloc_size));
+  U3_THROW_IFN (info.geom_dims_[Dims::stride] <= stride, "calculated stride too small" + VTOLOG (info.geom_dims_[Dims::stride]) + VTOLOG (stride) + VTOLOG (conv_support));
 
   resize (alloc_size);
   set_mem_var_int (MemVars::size_data, size_data);

@@ -7,8 +7,8 @@
 #include "base_id-includes_int.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vdd_base_id () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vdd_base_id () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret (new ::dlls::base_id::Filter);
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret (new ::dlls::base_id::Filter);
   return ret;
 }

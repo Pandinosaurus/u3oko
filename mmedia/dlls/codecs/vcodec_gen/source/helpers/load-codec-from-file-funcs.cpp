@@ -9,9 +9,9 @@
 namespace dlls::codecs::vcodec_gen::helpers
 {
 auto
-make_name_function (const std::string& lib_name, const std::string& prefix_funct) -> std::string
+make_name_function (const std::string& lib_name, const std::string& prefix_func) -> std::string
 {
-  return prefix_funct + "_" + libs::utility::dlls::undecorate_dll_name (lib_name);
+  return prefix_func + "_" + libs::utility::dlls::undecorate_dll_name (lib_name);
 }
 
 
@@ -42,9 +42,9 @@ load_codec_from_file (
     info.lib_, make_name_function (file_name, consts::func_name_get_info));
 #endif
 
-  U3_THROW_IF (info.create_codec_, "empty info.create_codec_");
-  U3_THROW_IF (info.free_codec_, "empty info.free_codec_");
-  U3_THROW_IF (info.get_codec_info_, "empty info.get_codec_info_");
-  U3_THROW_IF (info.check (), "failed load codec" + TOLOG (file_name) + TOLOG (full_path));
+  U3_THROW_IFN (info.create_codec_, "empty info.create_codec_");
+  U3_THROW_IFN (info.free_codec_, "empty info.free_codec_");
+  U3_THROW_IFN (info.get_codec_info_, "empty info.get_codec_info_");
+  U3_THROW_IFN (info.check (), "failed load codec" + TOLOG (file_name) + TOLOG (full_path));
 }
 }   // namespace dlls::codecs::vcodec_gen::helpers

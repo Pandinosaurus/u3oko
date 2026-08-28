@@ -21,7 +21,7 @@ void
 CamImpl::sync_runtime_props (const syn::VideoDriverCaptureProp &capprops)
 {
   const auto fourcc = ::libs::utility::uids::helpers::idval2fourcc (capprops.capi_.px_format_);
-  U3_THROW_IF (v4l2capture_, "before sync runtime props" + VTOLOG (capprops.capi_.width_) + VTOLOG (capprops.capi_.height_) + VTOLOG (capprops.capi_.fps_) + VTOLOG (fourcc));
+  U3_THROW_IFN (v4l2capture_, "before sync runtime props" + VTOLOG (capprops.capi_.width_) + VTOLOG (capprops.capi_.height_) + VTOLOG (capprops.capi_.fps_) + VTOLOG (fourcc));
   capparams_ = capprops.capi_;
 
   const auto runtime_width         = v4l2capture_->getWidth ();

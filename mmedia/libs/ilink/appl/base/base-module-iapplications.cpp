@@ -13,7 +13,7 @@ namespace libs::ilink::appl::base
 void
 BaseModule::appl_init_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_THROW_IF (!sys_info_, "!sys_info_");
+  U3_THROW_IFN (!sys_info_, "!sys_info_");
   sys_info_ = ::libs::utility::sys::get_impl ();
 }
 
@@ -21,7 +21,7 @@ BaseModule::appl_init_int (const ::libs::link::appl::InitApplication& info)
 void
 BaseModule::init_appl_folders_int ()
 {
-  U3_THROW_IF (!paths_, "!sys_info_");
+  U3_THROW_IFN (!paths_, "!sys_info_");
   paths_ = std::make_shared< ::libs::iproperties::appl_paths::AppPaths > ();
   paths_->load_paths (appl_info_);
 }
@@ -30,7 +30,7 @@ BaseModule::init_appl_folders_int ()
 void
 BaseModule::init_appl_data_int ()
 {
-  U3_XLOG_DBG ("BaseModule::init_appl_data_int:---->" + TOLOG (text_id_module_));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (text_id_module_));
   load_events_props ();
   update_events_props ();
 }
@@ -39,14 +39,12 @@ BaseModule::init_appl_data_int ()
 void
 BaseModule::init_proxys_int ()
 {
-  U3_XLOG_DBG ("BaseModule::init_proxys_int:---->" + TOLOG (text_id_module_));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (text_id_module_));
+  U3_THROW_IFN (all2mem_ = syn::BlockMemAllocatorProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2mem");
+  U3_THROW_IFN (all2buf_ = syn::BufAllocatorProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2buf");
+  U3_THROW_IFN (all2optim_ = ::libs::proxy::IOptimProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2optim");
+  U3_THROW_IFN (all2events_ = ::libs::proxy::IEventsProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2events");
 
-  U3_THROW_IF (all2mem_ = syn::BlockMemAllocatorProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2mem");
-  U3_THROW_IF (all2buf_ = syn::BufAllocatorProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2buf");
-  U3_THROW_IF (all2optim_ = ::libs::proxy::IOptimProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2optim");
-  U3_THROW_IF (all2events_ = ::libs::proxy::IEventsProxy::instance (paths_->get_path (syn::Paths::bins)), "null all2events");
-
-#if 1
   {
     U3_XLOG_DBG ("BaseModule::init_proxys_int:: update shared propertyes");
     auto orinfo = ::libs::iproperties::helpers::cast_prop_demons ();
@@ -59,8 +57,6 @@ BaseModule::init_proxys_int ()
   }
 
   appl_event_props_.init ();
-#endif
-  U3_XLOG_DBG ("BaseModule::init_proxys_int:<----");
 }
 
 

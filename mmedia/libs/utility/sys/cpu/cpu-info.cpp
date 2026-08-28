@@ -36,9 +36,9 @@ CpuInfo::CpuInfo ()
   std::ranges::copy (std::ranges::reverse_view (ext_cpu_ranged_), back_inserter (all_ext_));
 
 #ifdef U3_CPU_X86
-  U3_THROW_IF (x86::get_all_info_cpu (exts_), "get info cpu");
+  U3_THROW_IFN (x86::get_all_info_cpu (exts_), "get info cpu");
 #elif defined(U3_CPU_ARM)
-  U3_THROW_IF (arm::get_all_info_cpu (exts_), "failde get info cpu");
+  U3_THROW_IFN (arm::get_all_info_cpu (exts_), "failde get info cpu");
 #else
 #  error "unknow cpu"
 #endif

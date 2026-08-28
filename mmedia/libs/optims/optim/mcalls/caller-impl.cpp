@@ -18,7 +18,7 @@ std::atomic< std::uint32_t > CallerImpl::impl_counter_ = 0;
 CallerImpl::CallerImpl ()
 {
   lock_type lock (mtx_);
-  U3_THROW_IF (impl_counter_ >= 0 && impl_counter_ <= 1, VTOLOG (impl_counter_));
+  U3_THROW_IFN (impl_counter_ >= 0 && impl_counter_ <= 1, VTOLOG (impl_counter_));
   ++impl_counter_;
   max_threads_ = 1;
   create_threads ();
@@ -27,11 +27,10 @@ CallerImpl::CallerImpl ()
 
 CallerImpl::~CallerImpl ()
 {
-  U3_XLOG_DBG ("CallerImpl::~CallerImpl:---->");
+  U3_CALL_TRACE_DBG;
   lock_type lock (mtx_);
   --impl_counter_;
   stop_and_wait_threads ();
-  U3_XLOG_DBG ("CallerImpl::~CallerImpl:<----");
 }
 
 
@@ -44,7 +43,7 @@ get_count_work_threads_by_count_cpu (unsigned long val) -> unsigned long
 // EAI-REFACT
 void
 get_thread_per_height (
-  const MTFuncInfo&             funct,
+  const MTFuncInfo&             func,
   ::libs::optim::io::MCallInfo& info,
   const std::uint16_t           athreads,
   std::uint32_t&                thread_per_height,
@@ -76,7 +75,7 @@ get_thread_per_height (
       }
 
       selected_src_height = src.height_;
-      ::libs::optim::mcalls::helpers::split_height (athreads, funct.src_align_.ay_, selected_src_height, thread_per_height_src);
+      ::libs::optim::mcalls::helpers::split_height (athreads, func.src_align_.ay_, selected_src_height, thread_per_height_src);
       find_fulled_buf = true;
       break;
     }
@@ -96,7 +95,7 @@ get_thread_per_height (
 
       ::libs::optim::mcalls::helpers::split_height (
         athreads,
-        funct.dst_align_.ay_,
+        func.dst_align_.ay_,
         selected_dst_height,
         thread_per_height_dst);
 
@@ -124,8 +123,8 @@ get_thread_per_height (
 
 
 void
-get_count_threads_funct (
-  const MTFuncInfo&   funct,
+get_count_threads_func (
+  const MTFuncInfo&   func,
   io::MCallInfo&      info,
   const std::uint16_t max_threads,
   std::uint16_t&      athreads)
@@ -151,19 +150,19 @@ get_count_threads_funct (
     }
   }
 
-  athreads = U3_CAST_UINT16 (::libs::utility::utils::ret_check_bound< std::uint32_t > (athreads, 1, min_src_height / funct.src_align_.ay_));
-  athreads = U3_CAST_UINT16 (::libs::utility::utils::ret_check_bound< std::uint32_t > (athreads, 1, min_dst_height / funct.dst_align_.ay_));
+  athreads = U3_CAST_UINT16 (::libs::utility::utils::ret_check_bound< std::uint32_t > (athreads, 1, min_src_height / func.src_align_.ay_));
+  athreads = U3_CAST_UINT16 (::libs::utility::utils::ret_check_bound< std::uint32_t > (athreads, 1, min_dst_height / func.dst_align_.ay_));
   athreads = U3_CAST_UINT16 (::libs::utility::utils::ret_check_bound< std::uint32_t > (athreads, 1, max_threads));
 }
 
 // EAI-REFACT
 void
 CallerImpl::mthreads_call_int (
-  const MTFuncInfo&             funct,
+  const MTFuncInfo&             func,
   ::libs::optim::io::MCallInfo& info,
   std::uint16_t                 athreads)
 {
-  funct.self_test ();
+  func.self_test ();
 
   if (0 == max_threads_)
   {
@@ -179,7 +178,7 @@ CallerImpl::mthreads_call_int (
   U3_ASSERT (athreads > 0);
 
   //  Тестовый запуск потоков при пустой функции
-  if (funct.is_empty ())
+  if (func.is_empty ())
   {
     sinfo_.bstart_->arrive_and_wait ();
     sinfo_.bstart_->arrive_and_wait ();
@@ -187,7 +186,7 @@ CallerImpl::mthreads_call_int (
   }
 
   //  Ищем минимальный размер буфера среди всех переданных, как источников, так и приемников результата.
-  get_count_threads_funct (funct, info, max_threads_, athreads);
+  get_count_threads_func (func, info, max_threads_, athreads);
 
   thread_funcs_.assign (max_threads_, io::mtcall_func ());
 
@@ -199,7 +198,7 @@ CallerImpl::mthreads_call_int (
     call.params_ = info.params_;
   }
 
-  U3_THROW_IF (info.dsts_.size () || info.srcs_.size (), "useless call without data" + VTOLOG (info.dsts_.size ()) + VTOLOG (info.srcs_.size ()));
+  U3_THROW_IFN (info.dsts_.size () || info.srcs_.size (), "useless call without data" + VTOLOG (info.dsts_.size ()) + VTOLOG (info.srcs_.size ()));
 
   std::uint32_t thread_per_height   = 0;
   std::uint32_t selected_src_height = 0;
@@ -208,7 +207,7 @@ CallerImpl::mthreads_call_int (
 
   // вычисляем количество рабочих потоков на основе выравнивания данных в алгоритме и размеров буферов
   get_thread_per_height (
-    funct,
+    func,
     info,
     athreads,
     thread_per_height,
@@ -246,7 +245,7 @@ CallerImpl::mthreads_call_int (
 
         if (new_add.buf ())
         {
-          const std::uint32_t macro_height      = new_add.height_ / funct.src_align_.ay_;
+          const std::uint32_t macro_height      = new_add.height_ / func.src_align_.ay_;
           const std::uint32_t height_prev_block = macro_height / thread_per_height;
           std::uint32_t       height_cur_block  = height_prev_block;
 
@@ -259,9 +258,9 @@ CallerImpl::mthreads_call_int (
           }
 
           new_add.width_  = new_add.width_ / width_macro;
-          new_add.height_ = height_cur_block * funct.src_align_.ay_;
+          new_add.height_ = height_cur_block * func.src_align_.ay_;
 
-          std::uint32_t off_rows = indxy * height_prev_block * funct.src_align_.ay_;
+          std::uint32_t off_rows = indxy * height_prev_block * func.src_align_.ay_;
           std::uint32_t off_cols = static_cast< unsigned long > (indxx * new_add.width_) * sizeof (std::int16_t);
           std::uint32_t off_src  = off_rows * new_add.stride_ + off_cols;
 
@@ -274,10 +273,10 @@ CallerImpl::mthreads_call_int (
       for (const io::ProxyBuf& cbuf : info.dsts_)
       {
         io::ProxyBuf new_add = cbuf;
-        U3_THROW_IF (new_add.buf (), "new add buf empty");
+        U3_THROW_IFN (new_add.buf (), "new add buf empty");
         if (new_add.buf ())
         {
-          const std::uint32_t macro_height      = new_add.height_ / funct.dst_align_.ay_;
+          const std::uint32_t macro_height      = new_add.height_ / func.dst_align_.ay_;
           const std::uint32_t height_prev_block = macro_height / thread_per_height;
           std::uint32_t       height_cur_block  = height_prev_block;
 
@@ -290,9 +289,9 @@ CallerImpl::mthreads_call_int (
           }
 
           new_add.width_  = new_add.width_ / width_macro;
-          new_add.height_ = height_cur_block * funct.dst_align_.ay_;
+          new_add.height_ = height_cur_block * func.dst_align_.ay_;
 
-          std::uint32_t off_rows = indxy * height_prev_block * funct.dst_align_.ay_ * funct.dest_mul_koeffy_ / funct.dest_div_koeffy_;
+          std::uint32_t off_rows = indxy * height_prev_block * func.dst_align_.ay_ * func.dest_mul_koeffy_ / func.dest_div_koeffy_;
           std::uint32_t off_cols = static_cast< unsigned long > (indxx * new_add.width_) * sizeof (std::int16_t);
           std::uint32_t off_src  = off_rows * new_add.stride_ + off_cols;
 
@@ -302,7 +301,7 @@ CallerImpl::mthreads_call_int (
         ccall.dsts_.push_back (new_add);
       }
 
-      thread_funcs_[thread_indx] = funct.pfunc_->get ();
+      thread_funcs_[thread_indx] = func.pfunc_->get ();
       ++thread_indx;
     }
   }
@@ -317,10 +316,10 @@ CallerImpl::mthreads_call_int (
 void
 CallerImpl::stop_and_wait_threads ()
 {
-  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads:---->");
+  U3_CALL_TRACE;
   try
   {
-    MTFuncInfo    fake_funct;
+    MTFuncInfo    fake_func;
     io::MCallInfo fake_info;
     io::ProxyBuf  proxy;
 
@@ -332,7 +331,7 @@ CallerImpl::stop_and_wait_threads ()
 
     fake_info.dsts_.push_back (proxy);
 
-    mthreads_call_int (fake_funct, fake_info, 0);
+    mthreads_call_int (fake_func, fake_info, 0);
 
     for (auto& thread : threads_)
     {
@@ -352,14 +351,13 @@ CallerImpl::stop_and_wait_threads ()
   }
 
   max_threads_ = 0;
-  U3_XLOG_MARK ("CallerImpl::stop_and_wait_threads:<----");
 }
 
 
 void
 CallerImpl::create_threads ()
 {
-  U3_XLOG_DBG ("CallerImpl::create_threads:---->");
+  U3_CALL_TRACE_DBG;
   sinfo_.bstart_       = std::make_unique< MTFuncSharedInfo::barier_type > (max_threads_ + 1);
   sinfo_.exit_request_ = false;
 
@@ -370,14 +368,13 @@ CallerImpl::create_threads ()
   for (std::uint16_t thread_indx = 0; thread_indx < max_threads_; ++thread_indx)
   {
     threads_.emplace_back (
-      ::libs::utility::thread::generic_thread_funct< CallerImpl >,
+      ::libs::utility::thread::generic_thread_func< CallerImpl >,
       libs::properties::vers::links::mids::mdata2appl,
       this,
       thread_indx);
   }
 
   U3_ASSERT (threads_.size () == max_threads_);
-  U3_XLOG_DBG ("CallerImpl::create_threads:<----");
 }
 
 

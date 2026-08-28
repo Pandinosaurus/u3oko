@@ -129,7 +129,7 @@ SourceImpl::print_images2buf (utils::dbufs::video::IVideoBuf::ptr& genimage)
     {
       auto* srcline = image_info.data_->get () + static_cast< ptrdiff_t > (iy * srcstride) + static_cast< ptrdiff_t > (offfirst * image_info.bppx_);
       auto* dstline = dstbuf + cpwidth * 3 + static_cast< ptrdiff_t > (iy * capstride);
-      U3_THROW_IF (srcline, "get scan file rgb24 image" + VTOLOG (iy));
+      U3_THROW_IFN (srcline, "get scan file rgb24 image" + VTOLOG (iy));
       ::libs::utility::mem::mem_copy_raw (srcline, dstline, cpstride);
     }
 

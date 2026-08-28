@@ -26,12 +26,12 @@ EventBufsMotionEst::EventBufsMotionEst (const ::libs::events::buf::EventBufs& bu
 void
 EventBufsMotionEst::check_int ()
 {
-  U3_THROW_IF (min_error_ >= 0.0F, "min large 0");
-  U3_THROW_IF (max_error_ > 0.0F, "max less 0");
-  U3_THROW_IF (min_error_ < max_error_, "min large max");
-  U3_THROW_IF (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "invalid blok size");
-  U3_THROW_IF (size_search_ > 0, "size search less 0");
-  U3_THROW_IF (size_search_ <= 126, "size search large 126");   // 127 reserved for invalid
+  U3_THROW_IFN (min_error_ >= 0.0F, "min large 0");
+  U3_THROW_IFN (max_error_ > 0.0F, "max less 0");
+  U3_THROW_IFN (min_error_ < max_error_, "min large max");
+  U3_THROW_IFN (8 == size_block_ || 16 == size_block_ || 32 == size_block_, "invalid blok size");
+  U3_THROW_IFN (size_search_ > 0, "size search less 0");
+  U3_THROW_IFN (size_search_ <= 126, "size search large 126");   // 127 reserved for invalid
 }
 
 

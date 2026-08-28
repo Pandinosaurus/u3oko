@@ -9,8 +9,8 @@
 #include "all2hsl-dll-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vcd_all2hsl () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vcd_all2hsl () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret (new ::dlls::convertors::all2hsl::Filter);
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret (new ::dlls::convertors::all2hsl::Filter);
   return ret;
 }

@@ -14,7 +14,7 @@ using send_func_type = std::function< bool (const NodeID& obj_info, IGraphNode::
 /// Интерфейс графа обработки данных. Все функции интерфейса потокобезопасны
 class IGraph
 {
-  friend class ::libs::icore::impl::var1::graph::Graph;
+  friend class ::libs::icore::impl::base::graph::Graph;
 
   public:
   //  ext types

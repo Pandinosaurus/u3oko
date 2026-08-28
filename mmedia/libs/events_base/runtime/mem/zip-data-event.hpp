@@ -29,8 +29,8 @@ class ZipDataEvent : public RuntimeEvent
   U3_ADD_DELETE_MOVE_COPY (ZipDataEvent)
 
   explicit ZipDataEvent (const Acessor& = Acessor (0));
-  explicit ZipDataEvent (::utils::dbufs::video::IVideoBuf::raw_ptr, const number_buf_type& number_buf = 0, id_buf_type id = "");
-  ZipDataEvent (zip_buf_type&& buf, std::size_t size, const number_buf_type& number_buf = 0, const id_buf_type& id = "");
+  explicit ZipDataEvent (::utils::dbufs::video::IVideoBuf::raw_ptr, const number_buf_type& = 0, id_buf_type = "");
+  ZipDataEvent (zip_buf_type&&, std::size_t, const number_buf_type& = 0, const id_buf_type& = "");
   virtual ~ZipDataEvent () = default;
 
   static constexpr auto
@@ -53,10 +53,10 @@ class ZipDataEvent : public RuntimeEvent
   private:
   U3_ADD_SUPER_CLASS (::libs::events_base::runtime::RuntimeEvent)
 
-  zip_buf_type    zip_buf_;             //< Буфер с данными, связанный с событием
-  std::size_t     size_zip_buf_ = 0;    //< Размер буфера
-  id_buf_type     id_zip_buf_;          //< Опциональный идентификатор буфера
-  number_buf_type number_zip_buf_ {};   //< Опциональный порядковый номер буфера
+  zip_buf_type    zip_buf_;              //< Буфер с данными, связанный с событием
+  std::size_t     size_zip_buf_ { 0 };   //< Размер буфера
+  id_buf_type     id_zip_buf_;           //< Опциональный идентификатор буфера
+  number_buf_type number_zip_buf_ {};    //< Опциональный порядковый номер буфера
 
   friend class boost::serialization::access;
 

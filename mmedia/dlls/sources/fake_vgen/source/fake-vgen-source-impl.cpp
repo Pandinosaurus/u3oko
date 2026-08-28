@@ -55,7 +55,7 @@ SourceImpl::get_sources_int (std::vector< syn::DataSourceInfo >& sources)
 void
 SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* events)
 {
-  U3_XLOG_DBG ("SourceImpl::get_raw_data_int:---->")
+  U3_CALL_TRACE_DBG;
   auto& buf = (*bufs)[::utils::dbufs::video::consts::offs::raw];
   U3_ASSERT (buf);
 
@@ -70,7 +70,7 @@ SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* eve
       props->capi_.width_, props->capi_.height_, 0, px_format));
 
   auto it_make_func = gen_funcs_.find (px_format);
-  U3_THROW_IF (it_make_func != gen_funcs_.end (), "null make buffer func fake camera");
+  U3_THROW_IFN (it_make_func != gen_funcs_.end (), "null make buffer func fake camera");
   buf->set_format (px_format);
   auto& make_func = it_make_func->second;
 
@@ -87,7 +87,6 @@ SourceImpl::get_raw_data_int (syn::pkeys2bufs_type& bufs, syn::tevents_type* eve
   ++indx_bcomp_;
   ++frame_counter_;
   time_last_frame_ = now_time;
-  U3_XLOG_DBG ("SourceImpl::get_raw_data_int:<----")
 }
 
 
@@ -109,7 +108,7 @@ void
 SourceImpl::update_source_info_int (const syn::SourceImplInfo& info)
 {
   const auto& px_format = srcimpinfo_.capture_props_->capi_.px_format_;
-  U3_LOG_DATA_DEV ("SourceImpl::update_source_info_int:---->" + ::libs::utility::uids::helpers::get_readable_name (px_format));
+  U3_CALL_TRACE_INFO (::libs::utility::uids::helpers::get_readable_name (px_format));
   if (!gen_funcs_[px_format])
   {
     U3_LOG_DATA_WRN ("try use unsupported format fake camera: " + ::libs::utility::uids::helpers::get_readable_name (px_format));

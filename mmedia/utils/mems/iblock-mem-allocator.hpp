@@ -15,7 +15,7 @@ class IBlockMemAllocator
   using size_type = ::libs::utility::mem::IBlockMem::size_type;
 
   U3_ADD_POINTERS_TO_SELF (IBlockMemAllocator)
-  U3_ADD_DELETE_MOVE_COPY (IBlockMemAllocator);
+  U3_ADD_DELETE_MOVE_COPY (IBlockMemAllocator)
 
   /// Функция выделения блока памяти с выравниваем
   /// \param[in]  size размер памяти под данные

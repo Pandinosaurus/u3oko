@@ -9,7 +9,7 @@
 #include "mmedia/libs/events_gui/includes.hpp"
 #include "mmedia/modules/mgui/io/includes.hpp"
 #include "mmedia/dlls/sources/vgen_lib/gen-lib-includes.hpp"
-#include "mmedia/libs/icore/impl/var1/libs-icore-impl-var1-includes.hpp"
+#include "mmedia/libs/icore/impl/base/libs-icore-impl-base-includes.hpp"
 
 #include "obj-source-impl-proxy.hpp"
 #include "mmedia/modules/mlog/module-log-includes.hpp"

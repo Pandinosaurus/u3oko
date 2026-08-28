@@ -7,8 +7,8 @@
 #include "module-log-includes_int.hpp"
 
 static std::mutex                                g_sinc;
-static volatile std::int32_t                     counter_refs_ = 0;
-static ::libs::link::appl::IApplication::raw_ptr g_appl        = nullptr;
+static volatile std::int32_t                     counter_refs_ { 0 };
+static ::libs::link::appl::IApplication::raw_ptr g_appl { nullptr };
 
 extern "C" BOOST_SYMBOL_EXPORT auto
 create_impl_mpl_mlog () -> ::libs::link::appl::IApplication::raw_ptr
@@ -29,10 +29,7 @@ delete_impl_mpl_mlog (::libs::link::appl::IApplication::raw_ptr appl)
 {
   std::scoped_lock lock (g_sinc);
 
-  U3_ASSERT_SOFT (appl, PTR_TOLOG (appl));
-  U3_ASSERT_SOFT (appl == g_appl, PTR_TOLOG (appl));
-  U3_ASSERT_SOFT (g_appl, PTR_TOLOG (g_appl));
-
+  ::libs::utility::checks::assert_soft (appl && appl == g_appl, PTR_TOLOG (appl) + PTR_TOLOG (g_appl));
   if (counter_refs_ <= 1)
   {
     delete g_appl;

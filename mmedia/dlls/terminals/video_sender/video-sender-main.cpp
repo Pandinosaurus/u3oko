@@ -9,8 +9,8 @@
 #include "video-sender-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vts_video_sender () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vts_video_sender () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret (new ::dlls::terminals::video_sender::Filter);
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret (new ::dlls::terminals::video_sender::Filter);
   return ret;
 }

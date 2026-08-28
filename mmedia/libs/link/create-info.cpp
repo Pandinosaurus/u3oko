@@ -53,7 +53,7 @@ CreateInfo::CreateInfo (const vals_type& vals) :
                    { consts::text::id_code_runs, details::CodeRuns::usual },
                    { consts::text::id_server_side, false } } }
 {
-  U3_XLOG_DEV ("CreateInfo::CreateInfo:---->" + VTOLOG (link_params_.size ()) + VTOLOG (vals.size ()));
+  U3_CALL_TRACE_INFO (VTOLOG (link_params_.size ()) + VTOLOG (vals.size ()));
   link_params_.reserve (link_params_.size () + vals.size ());
   for (const auto& [key, val] : vals)
   {
@@ -68,14 +68,13 @@ CreateInfo::CreateInfo (const vals_type& vals) :
 
   link_params_.insert_or_assign (consts::text::id_name_queue2dest, msg2dest);
   link_params_.insert_or_assign (consts::text::id_name_shared_mem, name_shared_mem);
-  U3_XLOG_DEV ("CreateInfo::CreateInfo:<----" + VTOLOG (link_params_.size ()) + VTOLOG (vals.size ()));
 }
 
 
 void
 CreateInfo::check () const
 {
-  // U3_THROW_IF (!args_.empty (), "check args");
+  // U3_THROW_IFN (!args_.empty (), "check args");
 }
 
 

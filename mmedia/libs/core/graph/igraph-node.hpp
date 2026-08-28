@@ -11,9 +11,9 @@ namespace libs::core::graph
 /// Интерфейс объекта в графе по обработке данных
 class IGraphNode
 {
-  friend class ::libs::icore::impl::var1::graph::Graph;
-  friend class ::libs::icore::impl::var1::obj::ObjGraph;
-  friend class ::libs::icore::impl::var1::obj::IGraphNodeExt;
+  friend class ::libs::icore::impl::base::graph::Graph;
+  friend class ::libs::icore::impl::base::obj::ObjGraph;
+  friend class ::libs::icore::impl::base::obj::IGraphNodeExt;
 
   public:
   // ext types

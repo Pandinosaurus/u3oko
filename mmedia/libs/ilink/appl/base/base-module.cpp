@@ -17,13 +17,12 @@ BaseModule::BaseModule ()
 
 BaseModule::~BaseModule ()
 {
-  U3_XLOG_DBG ("BaseModule::~BaseModule:---->");
+  U3_CALL_TRACE_DBG;
   // debug
   links_.reset ();
   paths_.reset ();
   mthreads_.reset ();
   logger_.reset ();
-  U3_XLOG_DBG ("BaseModule::~BaseModule:<----");
 }
 
 
@@ -60,7 +59,7 @@ update_template_for_application (const std::string& path2folder, const std::stri
 void
 BaseModule::load_events_props ()
 {
-  U3_XLOG_DBG ("BaseModule::load_events_props:---->" + TOLOG (text_id_module_));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (text_id_module_));
   const std::string                        name ("sign-ready-init-appl.xml");
   ::libs::iproperties::xml::InitLoaderInfo helper_info (paths_);
   ::libs::iproperties::xml::Loader         helper_xml (helper_info);
@@ -98,7 +97,7 @@ BaseModule::load_events_props ()
 void
 BaseModule::update_events_props ()
 {
-  U3_XLOG_DBG ("BaseModule::update_events_props:---->" + TOLOG (text_id_module_));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (text_id_module_));
   auto*                           orinfo = ::libs::iproperties::helpers::get_shared_prop_os ();
   syn::ISharedProperty::lock_type lock (orinfo->get_sync ());
   if (orinfo->get_appl_lockfree ())
@@ -106,7 +105,7 @@ BaseModule::update_events_props ()
     return;
   }
 
-  U3_XLOG_DBG ("BaseModule::update_events_props:: real work" + TOLOG (text_id_module_));
+  U3_XLOG_DBG ("BaseModule::update_events_props: real work" + TOLOG (text_id_module_));
   auto* main_appl = ::libs::iproperties::helpers::cast_event< syn::ApplicationProp > (appl_event_props_.main_appl_properties_);
   auto* log_appl  = ::libs::iproperties::helpers::cast_event< syn::PropertyLogModuleEvent > (appl_event_props_.module_log_);
   auto* info_cpu  = ::libs::iproperties::helpers::cast_event< syn::InfoCPUEvent > (appl_event_props_.info_cpu_);

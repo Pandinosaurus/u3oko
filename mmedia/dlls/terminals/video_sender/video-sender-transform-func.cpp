@@ -41,9 +41,9 @@ Filter::transform_int (syn::TransformInfo& info)
     return;
   }
 
-  U3_THROW_IF (helper, "null helper");
-  U3_THROW_IF (info.ibuf_, "null ptr buf");
-  U3_THROW_IF (*info.ibuf_, "null buf");
+  U3_THROW_IFN (helper, "null helper");
+  U3_THROW_IFN (info.ibuf_, "null ptr buf");
+  U3_THROW_IFN (*info.ibuf_, "null buf");
 
   auto& bufs = (*info.ibuf_);
   if (bufs->get_flag (::libs::bufs::BufsFlags::empty))

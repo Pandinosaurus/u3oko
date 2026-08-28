@@ -15,6 +15,8 @@ class ICore
 {
   public:
   // ext types
+  using out_wgraphs_type = std::list< graph::IGraph::weak_ptr >;
+
   U3_ADD_POINTERS_TO_SELF (ICore)
   U3_ADD_DELETE_MOVE_COPY (ICore)
 
@@ -33,7 +35,7 @@ class ICore
   }
 
   auto
-  get_graphs (std::list< graph::IGraph::weak_ptr >& graphs) -> void
+  get_graphs (out_wgraphs_type& graphs) -> void
   {
     return get_graphs_int (graphs);
   }
@@ -44,8 +46,8 @@ class ICore
 
   private:
   //  ICore interface
-  virtual auto create_graph_int () -> graph::IGraph::weak_ptr                 = 0;
-  virtual auto get_graphs_int (std::list< graph::IGraph::weak_ptr >&) -> void = 0;
-  virtual auto delete_graph_int (graph::IGraph::weak_ptr) -> bool             = 0;
+  virtual auto create_graph_int () -> graph::IGraph::weak_ptr     = 0;
+  virtual auto get_graphs_int (out_wgraphs_type&) -> void         = 0;
+  virtual auto delete_graph_int (graph::IGraph::weak_ptr) -> bool = 0;
 };
 }   // namespace libs::core

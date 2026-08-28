@@ -10,8 +10,8 @@ namespace dlls::noisez::space
 {
 /// Узел графа обработки данных для фильтрации изображения в простраственной области
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter ()          = default;
@@ -19,10 +19,10 @@ class Filter final :
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
-  virtual void load_int (::libs::icore::impl::var1::obj::FilterInfo*, const ::pugi::xml_named_node_iterator&) override;
+  virtual void load_int (::libs::icore::impl::base::obj::FilterInfo*, const ::pugi::xml_named_node_iterator&) override;
   virtual void transform_int (syn::TransformInfo&) override;
   virtual void call_int (syn::CallInterfInfo&) override;
 

@@ -9,8 +9,8 @@ namespace dlls::detectors::detect_face
 {
 ///  Фильтр детектирования лица
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter () = default;
@@ -18,7 +18,7 @@ class Filter final :
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
   virtual auto load_int (syn::FilterInfo* info, const ::pugi::xml_named_node_iterator& node) -> void override;

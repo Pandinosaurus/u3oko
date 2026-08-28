@@ -12,7 +12,7 @@ class FpsController final
 {
   public:
   //  ext types
-  U3_ADD_DELETE_MOVE_COPY (FpsController);
+  U3_ADD_DELETE_MOVE_COPY (FpsController)
 
   using time_type     = boost::posix_time::ptime;
   using duration_type = boost::posix_time::time_duration;

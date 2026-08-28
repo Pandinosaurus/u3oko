@@ -10,9 +10,9 @@ namespace utils::mems::impl
 {
 BlockMem::BlockMem (const size_type size)
 {
-  U3_THROW_IF (size > 0, "BlockMem, zero size for alloc");
+  U3_THROW_IFN (size > 0, "BlockMem, zero size for alloc");
   details::u3alloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
-  U3_THROW_IF (buf_, "failed alloc buf");
+  U3_THROW_IFN (buf_, "failed alloc buf");
   mem_size_ = size;
 }
 
@@ -81,7 +81,7 @@ BlockMem::resize_int (const BlockMem::size_type size)
   data_size_ = 0;
 
   details::u3realloc (::libs::utility::casts::reinterpret_cast_helper< void** > (&buf_), size);
-  U3_THROW_IF (buf_, "failed alloc buf");
+  U3_THROW_IFN (buf_, "failed alloc buf");
   mem_size_ = size;
 }
 }   // namespace utils::mems::impl

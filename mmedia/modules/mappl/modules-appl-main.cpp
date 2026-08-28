@@ -21,7 +21,7 @@ void
 signal_stop_process (int signal)
 {
   static std::atomic< std::uint32_t > stop_counter = 0;
-  U3_XLOG_DBG ("signal_stop_process:---->" + VTOLOG (signal) + VTOLOG (stop_counter));
+  U3_CALL_TRACE_INFO_DBG (VTOLOG (signal) + VTOLOG (stop_counter));
   if (::modules::mappl::g_module_appl && ::modules::mappl::g_module_appl->impl () && 0 == stop_counter)
   {
     U3_XLOG_MARK ("start stoping process:" + VTOLOG (signal));
@@ -32,7 +32,6 @@ signal_stop_process (int signal)
     std::abort ();   // debug
   }
   ++stop_counter;
-  U3_XLOG_DBG ("signal_stop_process:<----" + VTOLOG (signal) + VTOLOG (stop_counter));
 }
 
 
@@ -56,7 +55,7 @@ signal_abort_process (int signal)
 void
 prepare_process ()
 {
-  U3_XLOG_DBG ("prepare_process:---->");
+  U3_CALL_TRACE_DBG;
   ::libs::ilink::appl::base::register_events_for_module ();
   auto istorage = ::libs::iproperties::helpers::get_storage ();
 
@@ -85,7 +84,6 @@ prepare_process ()
 #else
 #  error select OS
 #endif
-  U3_XLOG_DBG ("prepare_process:<----");
 }
 
 
@@ -93,9 +91,9 @@ void
 init_process (int argc, char* argv[])
 {
   const std::string curfolder = ::libs::iproperties::appl_paths::get_current_folder ();
-  U3_XLOG_MARK ("init_process:---->" + VTOLOG (argc) + TOLOG (curfolder));
+  U3_CALL_TRACE_INFO (VTOLOG (argc) + TOLOG (curfolder));
   ::modules::mappl::up_links (curfolder, argc, argv);
-  U3_THROW_IF (::modules::mappl::check_process (), "call check_process");
+  U3_THROW_IFN (::modules::mappl::check_process (), "call check_process");
 
   ::modules::mappl::g_module_appl = std::make_shared< ::libs::link::appl::IApplicationProxy > (curfolder, ::modules::mappl::g_init_appl.lib_name_);
   ::modules::mappl::g_module_appl->impl ()->appl_init (::modules::mappl::g_init_appl);
@@ -112,66 +110,61 @@ work_process ()
 void
 deinit_impl_application ()
 {
-  U3_XLOG_MARK ("deinit_impl_application:---->");
+  U3_CALL_TRACE;
   auto applimpl = ::modules::mappl::g_module_appl->impl ();
   U3_ASSERT (applimpl);
   applimpl->appl_deinit ();
-  U3_XLOG_MARK ("deinit_impl_application:<----");
 }
 
 
 void
 deinit_properties ()
 {
-  U3_XLOG_MARK ("deinit_properties:---->");
+  U3_CALL_TRACE;
   const auto& istorage = ::libs::iproperties::helpers::get_storage ();
   U3_ASSERT (istorage);
   istorage->reset_prop (::libs::properties::consts::keys::shared_os_property);
   // istorage->reset_prop ( ::libs::properties::consts::keys::demons_property );
-  U3_XLOG_DBG ("deinit_properties:<----");
 }
 
 
 void
 deinit_links ()
 {
-  U3_XLOG_MARK ("deinit_links:---->");
+  U3_CALL_TRACE;
   ::libs::ilink::LinkCreatorProxy::raw_ptr lproxy = ::libs::ilink::LinkCreatorProxy::instance ();
   U3_ASSERT (lproxy);
   // lproxy->impl ()->close_all ();
-  U3_XLOG_MARK ("deinit_links:<----");
 }
 
 
 void
 deinit_process ()
 {
-  U3_XLOG_MARK ("deinit_process:---->");
+  U3_CALL_TRACE;
   deinit_impl_application ();
   deinit_properties ();
   deinit_links ();
-  U3_XLOG_MARK ("deinit_process:<----");
 }
 
 
 void
 setup_signals_catch ()
 {
-  U3_XLOG_MARK ("setup_signals_catch:---->");
+  U3_CALL_TRACE;
   std::signal (SIGINT, signal_stop_process);
   std::signal (SIGTERM, signal_stop_process);
   std::signal (SIGILL, signal_abort_process);
   std::signal (SIGFPE, signal_abort_process);
   std::signal (SIGSEGV, signal_abort_process);
   std::signal (SIGABRT, signal_abort_process);
-  U3_XLOG_MARK ("setup_signals_catch:<----");
 }
 
 
 extern "C" BOOST_SYMBOL_EXPORT auto
 main_impl (int argc, char* argv[]) -> int
 {
-  U3_XLOG_MARK ("main_impl:---->");
+  U3_CALL_TRACE;
   int ret = 0;
 
   try
@@ -203,7 +196,6 @@ main_impl (int argc, char* argv[]) -> int
   }
 
   deinit_process ();
-  U3_XLOG_MARK ("main_impl:<----");
   return ret;
 }
 

@@ -28,8 +28,8 @@ update_register_lib (const std::string& path, bool need_reg)
 
   if (need_reg)
   {
-    reg_func_type reg_funct = ::libs::utility::casts::reinterpret_cast_helper< reg_func_type > (GetProcAddress (module, "DllRegisterServer"));
-    if (!reg_funct || FAILED ((*reg_funct) ()))
+    reg_func_type reg_func = ::libs::utility::casts::reinterpret_cast_helper< reg_func_type > (GetProcAddress (module, "DllRegisterServer"));
+    if (!reg_func || FAILED ((*reg_funct) ()))
     {
       U3_XLOG_ERROR ("register lib" + TOLOG (path));
       return false;
@@ -37,9 +37,9 @@ update_register_lib (const std::string& path, bool need_reg)
   }
   else
   {
-    unreg_func_type unreg_funct = ::libs::utility::casts::reinterpret_cast_helper< unreg_func_type > (GetProcAddress (module, "DllUnregisterServer"));
+    unreg_func_type unreg_func = ::libs::utility::casts::reinterpret_cast_helper< unreg_func_type > (GetProcAddress (module, "DllUnregisterServer"));
     U3_ASSERT (unreg_funct);
-    if (!unreg_funct || (FAILED ((*unreg_funct) ())))
+    if (!unreg_func || (FAILED ((*unreg_funct) ())))
     {
       U3_XLOG_ERROR ("unregister lib" + TOLOG (path));
       return false;

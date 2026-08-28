@@ -18,7 +18,7 @@ namespace libs::utility::thread
 /// \param[in]  indx_thread   индекс потока внутри каждой группы (по типу TTOps), опционально
 template< typename TTOps >
 void
-generic_thread_funct (const syn::key_storage_type& sval, TTOps* ops, const std::uint32_t indx_thread)
+generic_thread_func (const syn::key_storage_type& sval, TTOps* ops, const std::uint32_t indx_thread)
 {
   ::libs::utility::thread::set_thread_priority (std::this_thread::get_id (), ::libs::utility::thread::Priorities::normal);
 

@@ -5,7 +5,7 @@
 \date       17.03.2026
 */
 // EAI-REFACT forward
-namespace libs::icore::impl::var1::obj::dll
+namespace libs::icore::impl::base::obj::dll
 {
 struct TransformInfo;
 }
@@ -24,7 +24,7 @@ using VideoCodecProp           = ::libs::events_base::props::videos::generic::co
 using VideoCorrectProp         = ::libs::events_base::props::videos::generic::correct::VideoCorrectProp;
 using IBuf                     = ::utils::dbufs::IBuf;
 using IVideoBuf                = ::utils::dbufs::video::IVideoBuf;
-using TransformInfo            = ::libs::icore::impl::var1::obj::dll::TransformInfo;
+using TransformInfo            = ::libs::icore::impl::base::obj::dll::TransformInfo;
 using NodeID                   = ::libs::core::graph::NodeID;
 using off_buf_type             = ::utils::dbufs::video::consts::offs::off_buf_type;
 using source_name_type         = ::libs::events_base::props::base_id::source_name_type;

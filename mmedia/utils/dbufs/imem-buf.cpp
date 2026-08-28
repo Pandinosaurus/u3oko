@@ -17,7 +17,7 @@ IMemBuf::resize (const mem_var_type& size)
     raw_block_ = _imem->alloc (size);
   }
 
-  U3_THROW_IF (raw_block_, "get empty raw_block_");
+  U3_THROW_IFN (raw_block_, "get empty raw_block_");
   if (raw_block_->get_capacity () < size)
   {
     raw_block_->resize (size);
@@ -41,12 +41,12 @@ IMemBuf::set_mem_var_int (const MemVars& type, mem_var_type val)
   case MemVars::size_data:
     if (val > 0)
     {
-      U3_THROW_IF (val || raw_block_, "try set size_data to empty raw_block_");
-      U3_THROW_IF (val <= raw_block_->get_capacity (), VTOLOG (val) + VTOLOG (raw_block_->get_capacity ()));
+      U3_THROW_IFN (val || raw_block_, "try set size_data to empty raw_block_");
+      U3_THROW_IFN (val <= raw_block_->get_capacity (), VTOLOG (val) + VTOLOG (raw_block_->get_capacity ()));
     }
     break;
   case MemVars::offset_data:
-    U3_THROW_IF (val < (*this)[MemVars::size_buf] || 0 == val, "offset large size" + VTOLOG (val) + VTOLOG ((*this)[MemVars::size_buf]));
+    U3_THROW_IFN (val < (*this)[MemVars::size_buf] || 0 == val, "offset large size" + VTOLOG (val) + VTOLOG ((*this)[MemVars::size_buf]));
     break;
   case MemVars::size_buf:
     U3_XLOG_ERROR ("try set size_buf" + VTOLOG (val));

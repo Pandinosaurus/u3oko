@@ -14,7 +14,7 @@ namespace modules::mevents::appl
 void
 EventsModule::appl_init_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("EventsModule::appl_init_int:---->");
+  U3_CALL_TRACE_DBG;
   super::appl_init_int (info);
   check_process ();
 }
@@ -23,16 +23,16 @@ EventsModule::appl_init_int (const ::libs::link::appl::InitApplication& info)
 void
 EventsModule::init_proxys_int ()
 {
-  U3_XLOG_DBG ("EventsModule::init_proxys_int:---->");
+  U3_CALL_TRACE_DBG;
   super::init_proxys_int ();
-  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "create block mem allocator");
+  U3_THROW_IFN (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "create block mem allocator");
 }
 
 
 auto
 EventsModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("EventsModule::deinit_int:---->");
+  U3_CALL_TRACE;
   if (links_[syn::mids::events2appl])
   {
     auto [evnt, revnt] = ::libs::iproperties::helpers::create_event< syn::ChangeStateSubSysLogEvent > ();
@@ -54,7 +54,6 @@ EventsModule::appl_deinit_int () -> bool
 
   links_[syn::mids::events2appl]->destroy ();
   links_.reset_link (syn::mids::events2appl);
-  U3_XLOG_MARK ("EventsModule::deinit_int:<----");
   return true;
 }
 
@@ -62,7 +61,7 @@ EventsModule::appl_deinit_int () -> bool
 void
 EventsModule::init_links_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("EventsModule::init_links_int:---->");
+  U3_CALL_TRACE_DBG;
   const std::string name_data = "";
   auto              lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
   auto              temp_link = lproxy->impl ()->get_listen (
@@ -95,24 +94,22 @@ EventsModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     revnt->set_start (true);
     links_[syn::mids::events2appl]->send_msg (evnt);
   }
-  U3_XLOG_DBG ("EventsModule::init_links_int:<----");
 }   // namespace modules::mevents::appl
 
 
 void
 EventsModule::init_done_int ()
 {
-  U3_XLOG_DBG ("EventsModule::init_done_int:---->");
+  U3_CALL_TRACE_DBG;
   super::init_done_int ();
   impl_->start ();   // prepare_base ();
-  U3_XLOG_DBG ("EventsModule::init_done_int:<----");
 }
 
 
 void
 EventsModule::update_catch_funcs_int ()
 {
-  U3_XLOG_DBG ("EventsModule::update_catch_funcs_int:---->");
+  U3_CALL_TRACE_DBG;
   super::update_catch_funcs_int ();
 
   catch_funcs_[syn::ChangeStateProcessEvent::gen_get_mid ()] =

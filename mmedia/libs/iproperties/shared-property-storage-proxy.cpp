@@ -45,7 +45,7 @@ SharedPropertyStorageProxy::impl () -> syn::ISharedPropertyStorage::raw_ptr
 
 SharedPropertyStorageProxy::~SharedPropertyStorageProxy ()
 {
-  U3_XLOG_DEV ("SharedPropertyStorageProxy::~SharedPropertyStorageProxy:---->");
+  U3_CALL_TRACE_DBG;
   if (pimpl_)
   {
     U3_ASSERT_SOFT (pshm_, "empty shared memory object for SharedPropertyStorageProxy");
@@ -55,6 +55,5 @@ SharedPropertyStorageProxy::~SharedPropertyStorageProxy ()
     }
     pimpl_ = nullptr;
   }
-  U3_XLOG_DEV ("SharedPropertyStorageProxy::~SharedPropertyStorageProxy:<----");
 }
 }   // namespace libs::iproperties

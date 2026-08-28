@@ -99,7 +99,7 @@ SourceImpl::set_cpu_int (syn::CpuExts current_optim)
 void
 SourceImpl::update_source_info_int (const syn::SourceImplInfo& info)
 {
-  U3_LOG_DATA_DBG ("sync picter source:---->" + VTOLOG (info.capture_props_->capi_.width_) + VTOLOG (info.capture_props_->capi_.height_));
+  U3_CALL_TRACE_INFO_DBG (VTOLOG (info.capture_props_->capi_.width_) + VTOLOG (info.capture_props_->capi_.height_));
   source_impl_info_ = info;
   sync_internal_structures ();
 }

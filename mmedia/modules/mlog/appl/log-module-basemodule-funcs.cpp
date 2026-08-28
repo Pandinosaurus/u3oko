@@ -21,34 +21,33 @@ void
 LogModule::init_proxys_int ()
 {
   super::init_proxys_int ();
-  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
+  U3_THROW_IFN (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
 }
 
 
 void
 LogModule::init_done_int ()
 {
-  U3_XLOG_DBG ("LogModule::init_done_int:---->");
+  U3_CALL_TRACE_DBG;
   super::init_done_int ();
   make_dir_for_logs ();
   open_log_file ();
-  U3_XLOG_DBG ("LogModule::init_done_int:<----");
 }
 
 
 void
 LogModule::init_links_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("LogModule::init_links_int:---->");
-  const std::string                        name_data = "";
-  ::libs::ilink::LinkCreatorProxy::raw_ptr lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
-  volatile auto                            ipstorage = ::libs::iproperties::helpers::get_storage ();
-  volatile auto                            imstorage = ::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree ();
+  U3_CALL_TRACE_DBG;
+  const std::string name_data = "";
+  auto              lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
+  volatile auto     ipstorage = ::libs::iproperties::helpers::get_storage ();
+  volatile auto     imstorage = ::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree ();
 
   U3_MARK_UNUSED_HERE (ipstorage);
   U3_MARK_UNUSED_HERE (imstorage);
 
-  auto temp_link = ::libs::utility::check::ptr (lproxy->impl ()->get_listen (
+  auto temp_link = ::libs::utility::checks::ptr (lproxy->impl ()->get_listen (
     ::libs::link::CreateInfo (
       { { ::libs::link::consts::text::id_appl_name, "mpl_mlog" },
         { ::libs::link::consts::text::id_lib_name, "mpl_mlog" },
@@ -67,14 +66,13 @@ LogModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     links.set (syn::mids::log2appl, log2appl);
     logger_ = log2appl;
   }
-  U3_XLOG_DBG ("LogModule::init_links_int:<----");
 }
 
 
 auto
 LogModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("LogModule::deinit_int:---->")
+  U3_CALL_TRACE;
   flush_events ();
 
   {
@@ -84,7 +82,6 @@ LogModule::appl_deinit_int () -> bool
 
   links_[syn::mids::log2appl]->destroy ();
   links_.reset_link (syn::mids::log2appl);
-  U3_XLOG_MARK ("LogModule::deinit_int:<----")
   return true;
 }
 

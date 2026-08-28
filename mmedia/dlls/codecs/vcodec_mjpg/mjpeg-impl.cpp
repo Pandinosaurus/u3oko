@@ -37,7 +37,7 @@ MjpegImpl::update_coder (const unsigned long max_size)
   if (!hjpeg_)
   {
     hjpeg_ = tjInitCompress ();
-    U3_THROW_IF_TURBO_JPEG (hjpeg_, "tjInitCompress");
+    U3_THROW_IFN_TURBO_JPEG (hjpeg_, "tjInitCompress");
   }
 
   if (!jpeg_buf_ || max_size > size_jpeg_buf_)
@@ -63,7 +63,7 @@ MjpegImpl::update_decoder ()
   }
 
   hjpeg_ = tjInitDecompress ();
-  U3_THROW_IF_TURBO_JPEG (hjpeg_, "tjInitDecompress");
+  U3_THROW_IFN_TURBO_JPEG (hjpeg_, "tjInitDecompress");
 }
 
 
@@ -110,7 +110,7 @@ MjpegImpl::comp_iframe (
     props_.plane_.quality_,
     TJFLAG_NOREALLOC | TJFLAG_FASTDCT | TJFLAG_BOTTOMUP);
 
-  U3_THROW_IF_TURBO_JPEG_RET (-1 != res_jpeg, "tjCompress2", false);
+  U3_THROW_IFN_TURBO_JPEG_RET (-1 != res_jpeg, "tjCompress2", false);
   ::libs::utility::mem::mem_copy_raw (jpeg_buf_, dbuf + out_size, jpeg_size);
 
   head->csize_ = jpeg_size;
@@ -192,7 +192,7 @@ MjpegImpl::decomp_iframe (
       std::int32_t jpeg_subsamp = 0;
       std::int32_t jpeg_px      = 0;
 
-      U3_THROW_IF_TURBO_JPEG (0 == tjDecompressHeader3 (hjpeg_, cdata, src_size_res, &jpeg_width, &jpeg_height, &jpeg_subsamp, &jpeg_px), "tjDecompressHeader3");
+      U3_THROW_IFN_TURBO_JPEG (0 == tjDecompressHeader3 (hjpeg_, cdata, src_size_res, &jpeg_width, &jpeg_height, &jpeg_subsamp, &jpeg_px), "tjDecompressHeader3");
       temp_buf_->set_format (convert_jpeg2guid_px_format (jpeg_px));
     }
 
@@ -209,7 +209,7 @@ MjpegImpl::decomp_iframe (
       request_pixel_format,
       0);
 
-    U3_THROW_IF_TURBO_JPEG (0 == codec_error, "tjDecompress2");
+    U3_THROW_IFN_TURBO_JPEG (0 == codec_error, "tjDecompress2");
 
     const auto px_format  = temp_buf_->get_format ();
     const auto stride_res = info_head.width_ * ::libs::utility::uids::helpers::get_count_bytes_from_format (px_format);

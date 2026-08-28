@@ -25,7 +25,7 @@ void
 SourceImpl::start_int ()
 {
   frame_counter_ = 0;
-  U3_THROW_IF (v4l2_init_, "not init device, skip restart");
+  U3_THROW_IFN (v4l2_init_, "not init device, skip restart");
   start_capture ();
 }
 
@@ -130,7 +130,7 @@ SourceImpl::get_raw_data_int (
     const auto now = std::chrono::high_resolution_clock::now ();
     if (icapture_->is_capture_property_update ())
     {
-      U3_LOG_DATA_MARK ("update capture property:---->" + PTR_TOLOG (srcimpinfo_.capture_props_));
+      U3_CALL_TRACE_INFO (PTR_TOLOG (srcimpinfo_.capture_props_));
       srcimpinfo_.capture_props_ = icapture_->get_capture_property ();
       last_time_restart_         = now - consts::ms_timeout_recreate_device;
       camera_error_              = 0xFF;

@@ -12,7 +12,7 @@ namespace libs::link::appl
 void
 IApplication::appl_init (const InitApplication& info)
 {
-  U3_XLOG_DBG ("IApplication::appl_init:---->" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
+  U3_CALL_TRACE_INFO_DBG (TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
   U3_ASSERT (!init_)
   U3_ASSERT (info.check ())
 
@@ -27,7 +27,6 @@ IApplication::appl_init (const InitApplication& info)
   init_done_int ();
 
   init_ = true;
-  U3_XLOG_DBG ("IApplication::appl_init:<----" + TOLOG (info.service_name_) + TOLOG (info.company_name_) + TOLOG (info.appl_name_) + TOLOG (info.lib_name_));
 }
 
 

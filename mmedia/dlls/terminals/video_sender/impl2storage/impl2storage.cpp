@@ -60,7 +60,7 @@ Impl2Storage::open_stream ()
 
   auto us_evnt   = ::libs::iproperties::helpers::cast_event< syn::UpdateStream > (evnt);
   active_stream_ = us_evnt->stream_id_;
-  U3_THROW_IF (!active_stream_.empty (), "received null stread_id for write data");
+  U3_THROW_IFN (!active_stream_.empty (), "received null stread_id for write data");
 #endif
 }
 

@@ -35,9 +35,9 @@ class HttpModule final : public ::libs::ilink::appl::leaf::LeafModule
   //  internal typess
   U3_ADD_SUPER_CLASS (::libs::ilink::appl::leaf::LeafModule)
 
-  using sync_type     = std::mutex;
-  using lock_type     = std::scoped_lock< sync_type >;
-  using ids2bufs_type = boost::unordered_flat_map< std::string, Id2BufInfo >;
+  using sync_type = std::mutex;
+  using lock_type = std::scoped_lock< sync_type >;
+  // using ids2bufs_type = boost::unordered_flat_map< std::string, Id2BufInfo >;
 
   //  IApplication overrides
   virtual auto init_appl_data_int () -> void override;

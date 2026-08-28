@@ -8,24 +8,19 @@
 
 namespace libs::utility::log
 {
-inline auto
+auto
 clear_func_name (const std::string_view func_name) -> std::string_view
 {
-#if 1
-  return "";
-  return func_name;
-#else
   const auto beg = func_name.find ("(");
   if (std::string::npos != beg && beg)
   {
     return func_name.substr (0, beg);
   }
   return func_name;
-#endif
 }
 
 
-inline auto
+auto
 clear_file_name (const std::string_view file_name) -> std::string_view
 {
   constexpr auto len_mmedia = sizeof ("mmedia");

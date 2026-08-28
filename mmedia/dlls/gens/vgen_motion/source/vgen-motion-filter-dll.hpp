@@ -9,8 +9,8 @@
 namespace dlls::gens::vgen_motion
 {
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter ()          = default;
@@ -19,14 +19,14 @@ class Filter final :
   private:
   //  internal typess
   using off_buf2buf_type = boost::unordered_flat_map< ::utils::dbufs::video::consts::offs::off_buf_type, syn::IVideoBuf::ptr >;
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
-  virtual void load_int (::libs::icore::impl::var1::obj::FilterInfo*, const ::pugi::xml_named_node_iterator&) override;
-  virtual void transform_int (::libs::icore::impl::var1::obj::dll::TransformInfo&) override;
-  virtual void call_int (::libs::icore::impl::var1::obj::dll::CallInterfInfo&) override;
+  virtual void load_int (::libs::icore::impl::base::obj::FilterInfo*, const ::pugi::xml_named_node_iterator&) override;
+  virtual void transform_int (::libs::icore::impl::base::obj::dll::TransformInfo&) override;
+  virtual void call_int (::libs::icore::impl::base::obj::dll::CallInterfInfo&) override;
 
-  void init_pts (::libs::icore::impl::var1::obj::ConnectInfo*);
+  void init_pts (::libs::icore::impl::base::obj::ConnectInfo*);
   auto itransform () -> void;
   void make_motion_est_buf (syn::EventBufsMotionEst&, const syn::IVideoBuf&, const syn::IVideoBuf&, syn::IVideoBuf&);
 

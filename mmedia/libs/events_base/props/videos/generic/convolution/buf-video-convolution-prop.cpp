@@ -44,9 +44,9 @@ BuffVideoConvolutionProp::BuffVideoConvolutionProp (
 void
 BuffVideoConvolutionProp::check_int ()
 {
-  U3_THROW_IF (core_size_ >= 3, "size core less 3");
-  U3_THROW_IF (core_size_ <= 11, "size core large 11");
-  U3_THROW_IF (Convs::skip == convolution_type_ || Convs::use_exist != convolution_type_ || core_vals_.size () == U3_CAST_SIZE_T (core_size_ * core_size_), "invalid vals core" + VTOLOG (core_size_ * core_size_) + "!=" + VTOLOG (core_vals_.size ()));
+  U3_THROW_IFN (core_size_ >= 3, "size core less 3");
+  U3_THROW_IFN (core_size_ <= 11, "size core large 11");
+  U3_THROW_IFN (Convs::skip == convolution_type_ || Convs::use_exist != convolution_type_ || core_vals_.size () == U3_CAST_SIZE_T (core_size_ * core_size_), "invalid vals core" + VTOLOG (core_size_ * core_size_) + "!=" + VTOLOG (core_vals_.size ()));
 }
 
 

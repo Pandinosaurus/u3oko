@@ -11,7 +11,7 @@
 #include "mmedia/includes/includes.hpp"
 #include "../modules-includes_int.hpp"
 #include "mmedia/dlls/terminals/video_sender/consts/video-sender-const-vals.hpp"
-#include "mmedia/libs/icore/impl/var1/libs-icore-impl-var1-includes.hpp"
+#include "mmedia/libs/icore/impl/base/libs-icore-impl-base-includes.hpp"
 
 #include "mmedia/dlls/codecs/codec_funcs/codec-funcs-includes.hpp"
 #include "mmedia/dlls/codecs/codec_funcs/bitgen/codec-funcs-bitgen-includes.hpp"

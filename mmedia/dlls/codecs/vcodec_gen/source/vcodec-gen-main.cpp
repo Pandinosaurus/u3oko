@@ -8,8 +8,8 @@
 #include "vcodec-gen-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vdd_vcodec_gen () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vdd_vcodec_gen () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret = new ::dlls::codecs::vcodec_gen::Filter;
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret = new ::dlls::codecs::vcodec_gen::Filter;
   return ret;
 }

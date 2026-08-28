@@ -19,7 +19,7 @@ struct qoptim final {
   void
   check () const
   {
-    U3_THROW_IF (!id_.empty (), "empty id");
+    U3_THROW_IF (id_.empty (), "empty id");
   }
 
   std::string id_ = {};   //<

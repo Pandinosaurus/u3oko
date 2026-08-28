@@ -12,7 +12,7 @@ namespace libs::ilink::appl
 void
 EventPropsForApplication::init ()
 {
-  U3_XLOG_DBG ("EventPropsForApplication::init:---->");
+  U3_CALL_TRACE_DBG;
   main_appl_properties_ = ::libs::iproperties::helpers::create_event< syn::ApplicationProp > ().first;
   info_cpu_             = ::libs::iproperties::helpers::create_event< syn::InfoCPUEvent > ().first;
   module_log_           = ::libs::iproperties::helpers::create_event< syn::PropertyLogModuleEvent > ().first;

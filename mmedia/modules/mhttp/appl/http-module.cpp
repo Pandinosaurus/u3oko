@@ -12,7 +12,7 @@ namespace modules::mhttp::appl
 {
 HttpModule::HttpModule ()
 {
-  U3_XLOG_DBG ("HttpModule::HttpModule:---->");
+  U3_CALL_TRACE_DBG;
   try
   {
     isys_ = ::libs::iproperties::helpers::get_shared_prop_os ();
@@ -27,7 +27,6 @@ HttpModule::HttpModule ()
   {
     U3_LOG_HTTP_EXCEPT (excpt.what ());
   }
-  U3_XLOG_DBG ("HttpModule::HttpModule:<----");
 }
 
 
@@ -55,7 +54,6 @@ HttpModule::load_def_resource2mem ()
 void
 HttpModule::delete_rw_copy ()
 {
-  U3_XLOG_DBG ("HttpModule::delete_rw_copy:---->");
   if (!temp_folder_.empty ())
   {
     //  Удаляем старые временные данные.
@@ -65,18 +63,15 @@ HttpModule::delete_rw_copy ()
     }
     temp_folder_.clear ();
   }
-  U3_XLOG_DBG ("HttpModule::delete_rw_copy:<----");
 }
 
 
 void
 HttpModule::prepare_resources ()
 {
-  U3_XLOG_DBG ("HttpModule::prepare_resources:---->");
   delete_rw_copy ();
   create_rw_copy ();
   // load_def_resource2mem ();
-  U3_XLOG_DBG ("HttpModule::prepare_resources:<----");
 }
 
 
@@ -100,7 +95,7 @@ HttpModule::create_rw_copy ()
 void
 HttpModule::process_change_state_process (syn::ChangeStateProcessEvent::raw_ptr props)
 {
-  U3_XLOG_DBG ("HttpModule::process_change_state_process:---->");
+  U3_CALL_TRACE_DBG;
   try
   {
     if (!props->is_start ())
@@ -120,7 +115,6 @@ HttpModule::process_change_state_process (syn::ChangeStateProcessEvent::raw_ptr 
   {
     U3_LOG_HTTP_EXCEPT (excpt.what ());
   }
-  U3_XLOG_DBG ("HttpModule::process_change_state_process:<----");
 }
 
 
@@ -142,16 +136,16 @@ HttpModule::process_zip_data_event (syn::ZipDataEvent::raw_ptr props)
         U3_LOG_HTTP_WRN ("max size limit send data1" + VTOLOG (sending_size) + VTOLOG (consts::max_size_sending_data));
         U3_LOG_HTTP_WRN ("max size limit send data2" + VTOLOG (skip_state_.skip_send_request_) + VTOLOG (skip_state_.skip_send_bytes_));
       }
-      U3_THROW_IF (U3_CAST_INT64 (buf.size ()) <= consts::max_size_sending_data, "max sending size too small" + VTOLOG (buf.size ()) + VTOLOG (consts::max_size_sending_data));
+      U3_THROW_IFN (U3_CAST_INT64 (buf.size ()) <= consts::max_size_sending_data, "max sending size too small" + VTOLOG (buf.size ()) + VTOLOG (consts::max_size_sending_data));
       return;
     }
 
     const auto  off_data  = helpers::get_offset_iframe (buf.data ());
     const auto& source_id = props->get_id ();
     auto        tempbuf   = std::vector< char > { buf.data (), buf.data () + buf.size () };
-    U3_THROW_IF (off_data <= 255, "off_data <= 255" + VTOLOG (off_data));
-    U3_THROW_IF (U3_CAST_INT32 (source_id.length ()) <= off_data, "source_id.length () <= off_data" + VTOLOG (source_id.length ()) + VTOLOG (off_data));
-    U3_THROW_IF (source_id.length () <= 253, "source_id.length () <= 253" + VTOLOG (source_id.length ()));
+    U3_THROW_IFN (off_data <= 255, "off_data <= 255" + VTOLOG (off_data));
+    U3_THROW_IFN (U3_CAST_INT32 (source_id.length ()) <= off_data, "source_id.length () <= off_data" + VTOLOG (source_id.length ()) + VTOLOG (off_data));
+    U3_THROW_IFN (source_id.length () <= 253, "source_id.length () <= 253" + VTOLOG (source_id.length ()));
     constexpr std::uint32_t count_sizes = 2;
 
     tempbuf[0] = off_data;
@@ -175,7 +169,6 @@ HttpModule::debug ()
 auto
 HttpModule::process_http_request (const std::string& req, const std::string& body) -> HttpModule::process_res_type
 {
-  U3_XLOG_DBG ("HttpModule::process_http_request:---->" + TOLOG (req));
   // events
   if (std::regex_match (req, std::regex ("^/string$")))
   {
@@ -218,7 +211,6 @@ HttpModule::process_request_event_debug (
 auto
 HttpModule::process_request_event (const std::string&, const std::string& body) -> HttpModule::process_res_type
 {
-  U3_XLOG_DBG ("HttpModule::process_request_event:---->");
   syn::http::status bstatus = syn::http::status::ok;
 
   std::string mime = "text/plain";
@@ -242,8 +234,8 @@ HttpModule::process_request_event (const std::string&, const std::string& body) 
     const auto request        = ::libs::link::details::to_request (url_id_request);
     const auto xml_type_data  = "xml" == id_data ? true : false;
 
-    U3_THROW_IF (helpers::url_decode (url_id_event, id_event), "URL decode id event, " + url_id_event);
-    U3_THROW_IF (helpers::url_decode (url_xml_event, event_data), "URL decode utrl, " + url_xml_event);
+    U3_THROW_IFN (helpers::url_decode (url_id_event, id_event), "URL decode id event, " + url_id_event);
+    U3_THROW_IFN (helpers::url_decode (url_xml_event, event_data), "URL decode utrl, " + url_xml_event);
 
     const auto dbg_enable = process_request_event_debug (id_event, content, id_data);
     if (dbg_enable)
@@ -256,8 +248,8 @@ HttpModule::process_request_event (const std::string&, const std::string& body) 
     auto events_base = idemons->get_events_lockfree ();
     auto recv_event  = events_base->impl ()->get (id_event);
 
-    U3_THROW_IF (recv_event, "null decode event" + STOLOG (id_event));
-    U3_THROW_IF (id_event == recv_event->get_mid (), id_event + "!=" + STOLOG (recv_event->get_mid ()));
+    U3_THROW_IFN (recv_event, "null decode event" + STOLOG (id_event));
+    U3_THROW_IFN (id_event == recv_event->get_mid (), id_event + "!=" + STOLOG (recv_event->get_mid ()));
 
     if (syn::Calls::generate == request)
     {
@@ -273,7 +265,7 @@ HttpModule::process_request_event (const std::string&, const std::string& body) 
 #if (U3_USE_BOOST_SERIALIZTION)
         if (xml_type_data)
         {
-          U3_THROW_IF (::libs::iproperties::helpers::xml2event (event_data, recv_event), "convert to event" + TOLOG (event_data));
+          U3_THROW_IFN (::libs::iproperties::helpers::xml2event (event_data, recv_event), "convert to event" + TOLOG (event_data));
         }
         else
         {
@@ -345,7 +337,6 @@ get_resource_id_from_query (const std::string& query) -> std::string
 auto
 HttpModule::process_request_file (const std::string& req, const std::string& body) -> HttpModule::process_res_type
 {
-  U3_XLOG_DBG ("HttpModule::process_request_file:---->");
   lock_type lock (mtx_);
 
   impl::beast::handler_data_type::value_type mem;
@@ -391,13 +382,13 @@ HttpModule::process_request_file (const std::string& req, const std::string& bod
 void
 HttpModule::start_http_server ()
 {
-  U3_XLOG_DBG ("HttpModule::start_http_server:---->");
+  U3_CALL_TRACE_DBG;
   prepare_resources ();
   debug ();
 
   impl_state_.impl_thread_ = std::thread (
     [this] () -> void {
-      U3_XLOG_DEV ("HttpModule::start_http_server::thread---->");
+      U3_CALL_TRACE;
       try
       {
         const auto address  = boost::asio::ip::make_address ("0.0.0.0");
@@ -430,14 +421,13 @@ HttpModule::start_http_server ()
       {
         U3_LOG_HTTP_EXCEPT (excpt.what ());
       }
-      U3_XLOG_DEV ("HttpModule::start_http_server::thread<----");
     });
 
   impl_ssl_state_.impl_thread_ = std::thread (
     [this] () -> void {
-      U3_XLOG_DEV ("HttpModule::start_http_server::sslthread---->");
       try
       {
+        U3_CALL_TRACE;
         const auto address  = boost::asio::ip::make_address ("0.0.0.0");
         const auto endpoint = boost::asio::ip::tcp::endpoint { address, consts::ssl_port };
 
@@ -469,16 +459,14 @@ HttpModule::start_http_server ()
       {
         U3_LOG_HTTP_EXCEPT (excpt.what ());
       }
-      U3_XLOG_DEV ("HttpModule::start_http_server::sslthread<----");
     });
-  U3_XLOG_DBG ("HttpModule::start_http_server:<----");
 }
 
 
 void
 HttpModule::stop_http_server ()
 {
-  U3_XLOG_DEV ("HttpModule::stop_http_server:---->");
+  U3_CALL_TRACE;
   skip_state_.reset ();
   U3_XLOG_DEV ("stop http server");
   if (impl_state_.impl_)
@@ -494,6 +482,5 @@ HttpModule::stop_http_server ()
     U3_XLOG_DEV ("wait stop impl http thread");
     impl_ssl_state_.impl_thread_.join ();
   }
-  U3_XLOG_DEV ("HttpModule::stop_http_server:<----");
 }
 }   // namespace modules::mhttp::appl

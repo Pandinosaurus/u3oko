@@ -158,7 +158,7 @@ get_display_info ()
   }
 
   ret += ::libs::utility::consts::new_line;
-  U3_THROW_IF (ReleaseDC (hwnd, hdc), "release dc");
+  U3_THROW_IFN (ReleaseDC (hwnd, hdc), "release dc");
   return ret;
 }
 

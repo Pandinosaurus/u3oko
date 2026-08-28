@@ -13,7 +13,7 @@ namespace dlls::convertors::all2rgb
 {
 void
 Filter::load_int (
-  ::libs::icore::impl::var1::obj::FilterInfo* info,
+  ::libs::icore::impl::base::obj::FilterInfo* info,
   const ::pugi::xml_named_node_iterator&      node)
 {
   init_pts (&info->pts_);
@@ -53,7 +53,7 @@ is_valid_format (const syn::id_val& buf_format) -> bool
 
 
 void
-Filter::transform_int (::libs::icore::impl::var1::obj::dll::TransformInfo& info)
+Filter::transform_int (::libs::icore::impl::base::obj::dll::TransformInfo& info)
 {
   prepare_transform (info);
 
@@ -99,7 +99,7 @@ Filter::transform_int (::libs::icore::impl::var1::obj::dll::TransformInfo& info)
 
 
 void
-Filter::call_int (::libs::icore::impl::var1::obj::dll::CallInterfInfo& info)
+Filter::call_int (::libs::icore::impl::base::obj::dll::CallInterfInfo& info)
 {
   super::prepare_call (info);
   super::call_gen (info);

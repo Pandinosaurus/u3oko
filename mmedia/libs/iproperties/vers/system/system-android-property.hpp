@@ -77,9 +77,9 @@ class SystemAndroidProperty final : public ::libs::properties::ISharedProperty
   }
 
   void
-  set_func_gui_lockfree (std::function< gui_func_type > funct)
+  set_func_gui_lockfree (std::function< gui_func_type > func)
   {
-    pfunc_gui_ = funct;
+    pfunc_gui_ = func;
   }
 
   std::atomic_bool work_cycle_;   //<

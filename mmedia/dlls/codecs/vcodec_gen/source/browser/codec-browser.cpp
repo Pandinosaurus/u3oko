@@ -33,7 +33,7 @@ CodecBrowser::get_codec (const syn::minor::id_val& id) -> std::string
 void
 CodecBrowser::refresh_list_codecs ()
 {
-  U3_LOG_DATA_DEV ("CodecBrowser::refresh_list_codecs:---->" + VTOLOG (refreshed_));
+  U3_CALL_TRACE_INFO (VTOLOG (refreshed_));
   if (refreshed_)
   {
     return;
@@ -82,6 +82,5 @@ CodecBrowser::refresh_list_codecs ()
       }
     }
   }
-  U3_LOG_DATA_DEV ("CodecBrowser::refresh_list_codecs:<----");
 }
 }   // namespace dlls::codecs::vcodec_gen::browser

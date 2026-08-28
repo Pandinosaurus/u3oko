@@ -90,8 +90,8 @@ load (const pugi::xml_node& node, Size& res)
   pugi::xml_attribute width  = node.attribute ("width");
   pugi::xml_attribute height = node.attribute ("height");
 
-  U3_THROW_IF (!width.empty (), "failde width not empty");
-  U3_THROW_IF (!height.empty (), "height not empty");
+  U3_THROW_IFN (!width.empty (), "failde width not empty");
+  U3_THROW_IFN (!height.empty (), "height not empty");
 
   res.set (width.as_int (), height.as_int ());
 }

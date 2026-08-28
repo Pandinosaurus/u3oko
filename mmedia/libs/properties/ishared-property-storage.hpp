@@ -13,7 +13,7 @@ class ISharedPropertyStorage
   public:
   // ext types
   U3_ADD_POINTERS_TO_SELF (ISharedPropertyStorage)
-  U3_ADD_DELETE_MOVE_COPY (ISharedPropertyStorage);
+  U3_ADD_DELETE_MOVE_COPY (ISharedPropertyStorage)
 
   //  ISharedPropertyStorage interface
   virtual auto check (const consts::keys::key_property_type&) const -> bool                           = 0;

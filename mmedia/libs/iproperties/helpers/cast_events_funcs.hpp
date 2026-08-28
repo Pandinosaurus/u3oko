@@ -36,7 +36,7 @@ get_event_int (const ::libs::events::IEvent::hid_type& id, Args... args) -> ::li
 {
   auto impl = get_events_impl ();
   auto res  = impl->get (id);
-  U3_THROW_IF (res, " get_event_int:: failed" + std::string { id });
+  U3_THROW_IFN (res, " get_event_int:: failed" + std::string { id });
   auto* upres = ::libs::utility::casts::reinterpret_cast_helper< T* > (cast_event_int (res, id));
   upres->sync_event_props (args...);
   return res;
@@ -128,7 +128,7 @@ auto
 dbg_check_copy_event (const ::libs::events::IEvent::craw_ptr src) -> const TTEvent*
 {
   auto* res = ::libs::iproperties::helpers::cast_event< TTEvent > (src);
-  U3_THROW_IF (res, std::string ("invalid event type") + PTR_TOLOG (src) + " empty " + PTR_TOLOG (res));
+  U3_THROW_IFN (res, std::string ("invalid event type") + PTR_TOLOG (src) + " empty " + PTR_TOLOG (res));
   return res;
 }
 }   // namespace libs::iproperties::helpers

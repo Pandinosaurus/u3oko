@@ -14,7 +14,7 @@ IDemonsProperty::IDemonsProperty () = default;
 auto
 IDemonsProperty::get_mem_lockfree () const -> syn::BlockMemAllocatorProxy::raw_ptr
 {
-  U3_THROW_IF (all2mem_, "all2mem_");
+  U3_THROW_IFN (all2mem_, "all2mem_");
   return all2mem_;
 }
 
@@ -29,7 +29,7 @@ IDemonsProperty::set_mem_lockfree (syn::BlockMemAllocatorProxy::raw_ptr ptr)
 auto
 IDemonsProperty::get_bufs_lockfree () const -> syn::BufAllocatorProxy::raw_ptr
 {
-  U3_THROW_IF (all2buf_, "all2buf_");
+  U3_THROW_IFN (all2buf_, "all2buf_");
   return all2buf_;
 }
 
@@ -44,7 +44,7 @@ IDemonsProperty::set_bufs_lockfree (syn::BufAllocatorProxy::raw_ptr ptr)
 auto
 IDemonsProperty::get_optim_lockfree () const -> ::libs::proxy::IOptimProxy::raw_ptr
 {
-  U3_THROW_IF (all2optim_, "all2optim_");
+  U3_THROW_IFN (all2optim_, "all2optim_");
   return all2optim_;
 }
 
@@ -59,7 +59,7 @@ IDemonsProperty::set_optim_lockfree (::libs::proxy::IOptimProxy::raw_ptr ptr)
 auto
 IDemonsProperty::get_events_lockfree () const -> ::libs::proxy::IEventsProxy::raw_ptr
 {
-  U3_THROW_IF (all2mevents_, "all2mevents_")
+  U3_THROW_IFN (all2mevents_, "all2mevents_")
   return all2mevents_;
 }
 

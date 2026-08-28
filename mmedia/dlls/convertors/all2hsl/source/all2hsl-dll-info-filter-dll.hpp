@@ -8,7 +8,7 @@
 namespace dlls::convertors::all2hsl
 {
 /// Свойства данного фильтра по преобразованию форматов в HSL
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   public:
   InfoFilter ();
   virtual ~InfoFilter () = default;

@@ -22,8 +22,8 @@ struct SkipDataState final {
     std::swap (last_send_time_, temp.last_send_time_);
   }
 
-  std::uint64_t   skip_send_bytes_   = 0;                                            //<
-  std::uint64_t   skip_send_request_ = 0;                                            //<
-  time_point_type last_send_time_    = std::chrono::high_resolution_clock::now ();   //<
+  std::uint64_t   skip_send_bytes_ { 0 };                                           //<
+  std::uint64_t   skip_send_request_ { 0 };                                         //<
+  time_point_type last_send_time_ { std::chrono::high_resolution_clock::now () };   //<
 };
 }   // namespace modules::mhttp::appl

@@ -26,7 +26,7 @@ namespace libs::utility::files
 auto
 make_short_path (const std::string& path) -> std::string
 {
-  U3_THROW_IF (!path.empty (), "empty path");
+  U3_THROW_IFN (!path.empty (), "empty path");
 
 #ifdef U3_OS_WIN32_DESKTOP
   const auto req_size = GetShortPathNameA (path.c_str (), nullptr, 0);

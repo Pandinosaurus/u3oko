@@ -95,7 +95,7 @@ CorrectImageImpl::process_int (
   syn::IVideoBuf::raw_ptr s16s,
   syn::IVideoBuf::raw_ptr l16s) -> bool
 {
-  U3_XLOG_DBG ("CorrectImageImpl::process_int:---->");
+  U3_CALL_TRACE_DBG;
   if (!l16s || l16s->get_flag (::utils::dbufs::BufFlags::empty))
   {
     U3_LOG_DATA_WRN ("skip software correction, empty light buf");
@@ -139,7 +139,6 @@ CorrectImageImpl::process_int (
       }
     }
   }
-  U3_XLOG_DBG ("CorrectImageImpl::process_int:<----");
   return true;
 }
 

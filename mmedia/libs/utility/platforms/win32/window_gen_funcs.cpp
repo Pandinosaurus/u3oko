@@ -21,10 +21,10 @@ send (
   bool         enable_block_call)
 {
   DWORD_PTR res = S_OK;
-  U3_THROW_IF (is_valid (wnd), "failed");
+  U3_THROW_IFN (is_valid (wnd), "failed");
   //  23.11.2016 пробую так решить проблему разружения состояния объекта при ожиданни в синронизирующих функциях данного типа внутри обработки
   //  сообщения от внешнего агента, в ситуации когда пришло еще одно внешнее сообщение
-  U3_THROW_IF_WIN32_CALL (0 != SendMessageTimeout (wnd, msg, wparam, lparam, enable_block_call ? SMTO_BLOCK : SMTO_NORMAL, timeout, &res), "SendMessageTimeout");
+  U3_THROW_IFN_WIN32_CALL (0 != SendMessageTimeout (wnd, msg, wparam, lparam, enable_block_call ? SMTO_BLOCK : SMTO_NORMAL, timeout, &res), "SendMessageTimeout");
 }
 }   // namespace libs::utility::platforms::win32::send_message
 
@@ -69,7 +69,7 @@ void
 destroy_window (HWND wnd)
 {
   std::uint32_t dw1 = 0;
-  U3_THROW_IF (is_valid (wnd), "failed");
+  U3_THROW_IFN (is_valid (wnd), "failed");
   // если данное окно нашего потока просто удаляем его иначе посылаем сообщение
   // окну с требованием удалить себя
   if (GetCurrentThreadId () == GetWindowThreadProcessId (wnd, 0))
@@ -129,7 +129,7 @@ create_window (
     hInstance,
     lpParam);
 
-  U3_THROW_IF_WIN32_CALL (0 == ret, "CreateWindowEx");
+  U3_THROW_IFN_WIN32_CALL (0 == ret, "CreateWindowEx");
   return ret;
 }
 
@@ -137,13 +137,13 @@ create_window (
 void
 reset_link (HWND hwnd)
 {
-  U3_THROW_IF (is_valid (hwnd), "failed");
+  U3_THROW_IFN (is_valid (hwnd), "failed");
 
   SetLastError (0);
 
   if (SetWindowLong (hwnd, GWLP_USERDATA, 0) == 0)
   {
-    U3_THROW_IF (0 == GetLastError (), "failed SetWindowLong");
+    U3_THROW_IFN (0 == GetLastError (), "failed SetWindowLong");
   }
 }
 
@@ -151,14 +151,14 @@ reset_link (HWND hwnd)
 void
 add_link (HWND hwnd, const CREATESTRUCT* info)
 {
-  U3_THROW_IF (info, "failed");
-  U3_THROW_IF (is_valid (hwnd), "failed");
-  U3_THROW_IF (info->lpCreateParams, "failed")
+  U3_THROW_IFN (info, "failed");
+  U3_THROW_IFN (is_valid (hwnd), "failed");
+  U3_THROW_IFN (info->lpCreateParams, "failed")
 
   SetLastError (0);
   if (SetWindowLongPtr (hwnd, GWLP_USERDATA, ::libs::utility::casts::reinterpret_cast_helper< LONG_PTR > (info->lpCreateParams)) == 0)
   {
-    U3_THROW_IF (0 == GetLastError (), "failed SetWindowLongPtr");
+    U3_THROW_IFN (0 == GetLastError (), "failed SetWindowLongPtr");
   }
 }
 }   // namespace libs::utility::platforms::win32

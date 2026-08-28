@@ -18,6 +18,6 @@ struct InfoGenCodec {
   {
   }
 
-  ::libs::icore::impl::var1::obj::FilterInfo::raw_ptr codec_finfo_ = nullptr;   //<
+  ::libs::icore::impl::base::obj::FilterInfo::raw_ptr codec_finfo_ = nullptr;   //<
 };
 }   // namespace dlls::codecs::codec_gen

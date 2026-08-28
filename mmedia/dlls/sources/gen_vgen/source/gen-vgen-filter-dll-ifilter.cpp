@@ -31,7 +31,7 @@ Filter::load_int (syn::FilterInfo* info, const ::pugi::xml_named_node_iterator& 
   idata_source_impl_.init ();
 
   finfo_.recv_thread_ = std::make_unique< std::thread > (
-    ::libs::utility::thread::generic_thread_funct< Filter >,
+    ::libs::utility::thread::generic_thread_func< Filter >,
     libs::properties::vers::links::mids::mdata2appl,
     this,
     0U);
@@ -51,7 +51,7 @@ Filter::transform_int (syn::TransformInfo& info)
 void
 Filter::call_int (syn::CallInterfInfo& info)
 {
-  U3_LOG_DATA_DBG ("Filter::call_int:---->");
+  U3_CALL_TRACE_DBG;
   super::prepare_call (info);
   super::call_gen (info);
 }

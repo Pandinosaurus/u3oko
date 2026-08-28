@@ -54,7 +54,7 @@ void
 Filter::init_pts (syn::ConnectInfo* info)
 {
   info->count_ins_ = 1;
-  info->ins_[0].set_info (true, ::libs::icore::impl::var1::obj::Points::input);
+  info->ins_[0].set_info (true, ::libs::icore::impl::base::obj::Points::input);
 
   info->count_outs_ = 1;
   info->outs_[0].set_info (true);
@@ -164,7 +164,7 @@ Filter::save_buf2file (
   std::int32_t            quality,
   syn::IVideoBuf::raw_ptr psrc)
 {
-  U3_THROW_IF (quality >= 0 && quality <= 100, "check quality");
+  U3_THROW_IFN (quality >= 0 && quality <= 100, "check quality");
 
   const syn::ProxyBuf lsrc (temp_buf_.get (), "temp_buf dlls::detectors::detect_face");
   const std::uint8_t* cur_buf    = utils::dbufs::video::helpers::get_const_data (temp_buf_.get ());

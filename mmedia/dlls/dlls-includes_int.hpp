@@ -24,7 +24,7 @@
 #include "mmedia/libs/events_msg/events-msg-includes.hpp"
 #include "mmedia/libs/events_storage/events-storage-includes.hpp"
 
-#include "mmedia/libs/icore/impl/var1/libs-icore-impl-var1-includes.hpp"
+#include "mmedia/libs/icore/impl/base/libs-icore-impl-base-includes.hpp"
 #include "mmedia/libs/icore/libs-icore-includes.hpp"
 
 #include "mmedia/libs/optims/optims.hpp"

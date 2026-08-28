@@ -26,7 +26,7 @@ class IBlockMem
   using size_type = std::uint64_t;
 
   U3_ADD_POINTERS_TO_SELF (IBlockMem)
-  U3_ADD_DELETE_MOVE_COPY (IBlockMem);
+  U3_ADD_DELETE_MOVE_COPY (IBlockMem)
 
   virtual ~IBlockMem () = default;
 
@@ -56,14 +56,14 @@ class IBlockMem
   get_size () const
   {
     const auto ret = get_size_int ();
-    U3_THROW_IF (ret <= get_capacity_int (), "invalid state memory" + VTOLOG (get_capacity_int ()) + VTOLOG (ret));
+    U3_THROW_IFN (ret <= get_capacity_int (), "invalid state memory" + VTOLOG (get_capacity_int ()) + VTOLOG (ret));
     return ret;
   }
 
   void
   set_size (const size_type& size)
   {
-    U3_THROW_IF (size <= get_capacity_int (), "capacity too small" + VTOLOG (get_capacity_int ()) + VTOLOG (size));
+    U3_THROW_IFN (size <= get_capacity_int (), "capacity too small" + VTOLOG (get_capacity_int ()) + VTOLOG (size));
     set_size_int (size);
   }
 
@@ -71,7 +71,7 @@ class IBlockMem
   resize (const size_type& size)
   {
     resize_int (size);
-    U3_THROW_IF (get_capacity () >= size, "resize failed");
+    U3_THROW_IFN (get_capacity () >= size, "resize failed");
   }
 
   protected:

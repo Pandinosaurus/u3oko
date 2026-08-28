@@ -29,6 +29,6 @@ call_exec (
     nullptr,
     sql_error.update_as< char* > ());
 
-  U3_THROW_IF (SQLITE_OK == res, "sql " + info + ", " + cmd + std::string (":") + (sql_error.get_as< char* > () ? sql_error.get_as< char* > () : "?errsql?"));
+  U3_THROW_IFN (SQLITE_OK == res, "sql " + info + ", " + cmd + std::string (":") + (sql_error.get_as< char* > () ? sql_error.get_as< char* > () : "?errsql?"));
 }
 }   // namespace libs::utility::sqlite

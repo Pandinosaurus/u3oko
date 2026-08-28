@@ -7,7 +7,7 @@
 
 namespace dlls::gens::vgen_diff
 {
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 

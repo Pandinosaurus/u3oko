@@ -8,7 +8,7 @@
 namespace dlls::noisez::space
 {
 /// Структура для расширения постоянных свойств узла графа обработки данных для фильтрации изображения в пространственной области
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 

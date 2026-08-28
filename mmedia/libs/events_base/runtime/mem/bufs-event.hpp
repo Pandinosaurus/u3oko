@@ -45,8 +45,8 @@ class BufsEvent : public RuntimeEvent
   private:
   U3_ADD_SUPER_CLASS (RuntimeEvent)
 
-  ::libs::bufs::Bufs::ptr buf_;                //< Буфер с данными, связанный с событием
-  events_type*            events_ = nullptr;   //< Список событий, связанный с буфером
+  ::libs::bufs::Bufs::ptr buf_;                  //< Буфер с данными, связанный с событием
+  events_type*            events_ { nullptr };   //< Список событий, связанный с буфером
 
   // IEvent overrides
   virtual auto get_mid_int () const -> const ::libs::events::IEvent::hid_type& override;

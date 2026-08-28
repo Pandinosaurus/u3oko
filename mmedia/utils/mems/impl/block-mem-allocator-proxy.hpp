@@ -18,7 +18,7 @@ class BlockMemAllocatorProxy final
   using bcreate_func_type = std::function< create_func_type >;
 
   U3_ADD_POINTERS_TO_SELF (BlockMemAllocatorProxy)
-  U3_ADD_DELETE_MOVE_COPY (BlockMemAllocatorProxy);
+  U3_ADD_DELETE_MOVE_COPY (BlockMemAllocatorProxy)
 
   static BlockMemAllocatorProxy::raw_ptr
   instance (const std::string& dll_path = std::string (""))

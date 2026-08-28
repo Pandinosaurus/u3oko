@@ -110,7 +110,7 @@ class IStorageImpl
   void
   check_state_for_ops (const std::string& op) const
   {
-    U3_THROW_IF (ImplRuns::run == status_, "invalid status for operation" + TOLOG (op));
+    U3_THROW_IFN (ImplRuns::run == status_, "invalid status for operation" + TOLOG (op));
   }
 
   private:

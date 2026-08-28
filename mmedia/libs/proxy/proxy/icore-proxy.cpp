@@ -11,48 +11,48 @@
 #include "mmedia/libs/icore/libs-icore-includes.hpp"
 #include "icore-proxy.hpp"
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vcodec_gen () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vcd_all2hsl () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vcd_all2rgb () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vcodec_gen () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vcd_all2hsl () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vcd_all2rgb () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
 #if (U3_LIBS_ENABLE_DETECT_FACE_VDD == 1)
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_detect_face () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_detect_face () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 #endif
 
 #if (U3_LIBS_ENABLE_VDETECT1_VDD == 1)
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_detect_move () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_detect_move () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 #endif
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_freq_domain () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_freq_domain () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_space () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_time () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_base_id () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_conv3_11 () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_diff () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_mops () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_space () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vfn_time () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_base_id () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_conv3_11 () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_diff () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_mops () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsa_fixed () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsa_flow () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsa_fixed () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsa_flow () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsd_gen_vgen () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vcorrect () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vsd_gen_vgen () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vcorrect () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vgradient () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vhistogram () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vmatrix () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vsharper () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vtexter () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vut_vec2image () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vgradient () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vhistogram () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vmatrix () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vsharper () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdd_vtexter () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vut_vec2image () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vts_video_sender () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdm_mix_multiplier () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
-extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_motion () -> ::libs::icore::impl::var1::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vts_video_sender () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vdm_mix_multiplier () -> ::libs::icore::impl::base::obj::dll::IFilter*;
+extern "C" BOOST_SYMBOL_EXPORT auto create_impl_vgd_vgen_motion () -> ::libs::icore::impl::base::obj::dll::IFilter*;
 
 namespace libs::proxy
 {
 auto
-get_create_data_path_module_func (const std::string& plib_id) -> std::function< libs::icore::impl::var1::obj::dll::create_impl_func_type >
+get_create_data_path_module_func (const std::string& plib_id) -> std::function< libs::icore::impl::base::obj::dll::create_impl_func_type >
 {
   const auto lib_id = libs::utility::dlls::undecorate_dll_name (plib_id);
 

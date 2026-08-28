@@ -77,7 +77,7 @@ class Rect : public IRect
   check () const
   {
     pos_.check ();
-    U3_THROW_IF (size_.self_test (), "invalid size");
+    U3_THROW_IFN (size_.self_test (), "invalid size");
     return;
   }
 

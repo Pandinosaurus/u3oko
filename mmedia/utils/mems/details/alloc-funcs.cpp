@@ -18,7 +18,7 @@ namespace utils::mems::details
 void
 u3free (void** pptr)
 {
-  U3_ASSERT_SOFT (pptr, PTR_TOLOG (pptr));
+  ::libs::utility::checks::assert_soft (pptr, PTR_TOLOG (pptr));
   if (nullptr == pptr || nullptr == *pptr)
   {
     return;
@@ -34,7 +34,7 @@ u3free (void** pptr)
   }
   else
   {
-    U3_ASSERT_SOFT (vptr > offset, VTOLOG (vptr) + VTOLOG (offset));
+    ::libs::utility::checks::assert_soft (vptr > offset, VTOLOG (vptr) + VTOLOG (offset));
     auto* real_ptr = ::libs::utility::casts::reinterpret_cast_helper< void* > (vptr - offset);
     free (real_ptr);
   }
@@ -46,15 +46,13 @@ u3free (void** pptr)
 void
 u3alloc (void** pptr, const std::size_t size)
 {
-  U3_ASSERT_SOFT (pptr, PTR_TOLOG (pptr));
-  U3_ASSERT_SOFT (size > 0, VTOLOG (size));
-
+  ::libs::utility::checks::assert_soft (pptr && size > 0, PTR_TOLOG (pptr) + VTOLOG (size));
   if (0 == size || nullptr == pptr)
   {
     return;
   }
 
-  U3_ASSERT_SOFT (nullptr == *pptr, PTR_TOLOG (*pptr));
+  ::libs::utility::checks::assert_soft (nullptr == *pptr, PTR_TOLOG (*pptr));
   *pptr = nullptr;
 
   const std::size_t real_size   = size + static_cast< std::size_t > (consts::count_add_blocks * consts::size_align);
@@ -92,8 +90,8 @@ u3alloc (void** pptr, const std::size_t size)
 void
 u3realloc (void** pptr, const std::size_t size)
 {
-  U3_ASSERT_SOFT (pptr, PTR_TOLOG (pptr));
-  U3_ASSERT_SOFT (size > 0, VTOLOG (size));
+  ::libs::utility::checks::assert_soft (pptr, PTR_TOLOG (pptr));
+  ::libs::utility::checks::assert_soft (size > 0, VTOLOG (size));
   if (nullptr == pptr)
   {
     return;
@@ -111,11 +109,12 @@ u3realloc (void** pptr, const std::size_t size)
 
   void*       new_ptr   = nullptr;
   std::size_t size_copy = 0;
+
   u3alloc (&new_ptr, size);
 
   if (!new_ptr)
   {
-    U3_MARK ("FAILED u3alloc FUNCT" + VTOLOG (size));
+    ::libs::utility::checks::mark ("FAILED u3alloc FUNCT" + VTOLOG (size));
     u3free (pptr);
     return;
   }

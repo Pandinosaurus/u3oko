@@ -11,7 +11,7 @@ namespace libs::core::graph
 /// Запрашивается через вызов функции query из ObjGraph
 class IInterfGraphObj
 {
-  friend class ::libs::icore::impl::var1::obj::ObjGraph;
+  friend class ::libs::icore::impl::base::obj::ObjGraph;
 
   public:
   //  ext types

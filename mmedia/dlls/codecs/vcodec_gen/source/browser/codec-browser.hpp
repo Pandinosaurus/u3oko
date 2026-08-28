@@ -15,7 +15,7 @@ class CodecBrowser final
   CodecBrowser ()  = default;
   ~CodecBrowser () = default;
 
-  U3_ADD_DELETE_MOVE_COPY (CodecBrowser);
+  U3_ADD_DELETE_MOVE_COPY (CodecBrowser)
 
   /// Функция возвращает по идентификатору имя файла с кодеком или пусто
   /// \param[in]  id идентификатор кодека

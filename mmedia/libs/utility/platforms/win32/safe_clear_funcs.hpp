@@ -56,7 +56,7 @@ close (HANDLE& h)
     return;
   }
 
-  U3_THROW_IF_WIN32_CALL_NT (CloseHandle (h), "close handle");
+  U3_THROW_IFN_WIN32_CALL_NT (CloseHandle (h), "close handle");
   h = 0;
 }
 }   // namespace libs::utility::platforms::win32

@@ -44,7 +44,7 @@ TestStorageImpl::save_impl (const seance_type& info, const std::uint8_t* mem, co
 {
   auto& sinfo = get_seance_info (info);
   get_next_write_id_by_seance (info, sinfo);
-  U3_THROW_IF (save_data (info, sinfo, mem, size_mem), "save data to file");
+  U3_THROW_IFN (save_data (info, sinfo, mem, size_mem), "save data to file");
   return sinfo.cursor_;
 }
 
@@ -78,8 +78,8 @@ TestStorageImpl::get_next_write_id_by_seance (const seance_type& info, info_sean
     }
 
     dfile.open (file_path, std::ios::trunc | std::ios::binary | std::ios::out);
-    U3_THROW_IF (dfile.is_open (), "open data file" + TOLOG (file_path));
-    U3_THROW_IF (!dfile.bad (), "error state data file");
+    U3_THROW_IFN (dfile.is_open (), "open data file" + TOLOG (file_path));
+    U3_THROW_IFN (!dfile.bad (), "error state data file");
   }
 
   U3_ASSERT (sinfo.index_state_.is_valid ());

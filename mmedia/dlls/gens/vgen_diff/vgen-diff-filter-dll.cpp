@@ -11,7 +11,7 @@
 namespace dlls::gens::vgen_diff
 {
 void
-Filter::load_int (::libs::icore::impl::var1::obj::FilterInfo* info, const ::pugi::xml_named_node_iterator& node)
+Filter::load_int (::libs::icore::impl::base::obj::FilterInfo* info, const ::pugi::xml_named_node_iterator& node)
 {
   init_pts (&info->pts_);
   finfo_.load (node);
@@ -21,7 +21,7 @@ Filter::load_int (::libs::icore::impl::var1::obj::FilterInfo* info, const ::pugi
 
 
 void
-Filter::transform_int (::libs::icore::impl::var1::obj::dll::TransformInfo& info)
+Filter::transform_int (::libs::icore::impl::base::obj::dll::TransformInfo& info)
 {
   prepare_transform (info);
   if (::libs::events::PropertyUsings::disabled == finfo_.ef_props_.front ()->get_using_state ())
@@ -36,7 +36,7 @@ Filter::transform_int (::libs::icore::impl::var1::obj::dll::TransformInfo& info)
 
 
 void
-Filter::call_int (::libs::icore::impl::var1::obj::dll::CallInterfInfo& info)
+Filter::call_int (::libs::icore::impl::base::obj::dll::CallInterfInfo& info)
 {
   super::prepare_call (info);
   super::call_gen (info);
@@ -44,10 +44,10 @@ Filter::call_int (::libs::icore::impl::var1::obj::dll::CallInterfInfo& info)
 
 
 void
-Filter::init_pts (::libs::icore::impl::var1::obj::ConnectInfo* info)
+Filter::init_pts (::libs::icore::impl::base::obj::ConnectInfo* info)
 {
   info->count_ins_ = 1;
-  info->ins_[0].set_info (true, ::libs::icore::impl::var1::obj::Points::input);
+  info->ins_[0].set_info (true, ::libs::icore::impl::base::obj::Points::input);
 
   info->count_outs_ = 1;
   info->outs_[0].set_info (true);

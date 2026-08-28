@@ -39,8 +39,8 @@ Impl2Gui::fill_frame (const syn::TransformInfo& info, void* pmem) -> bool
     auto*      header = ::libs::utility::casts::reinterpret_cast_helper< ::modules::mgui::appl::io::VideoIO* > (pmem);
     const auto bbuf   = (**info.ibuf_)[utils::dbufs::video::consts::offs::lit];
 
-    U3_THROW_IF (header, "empty header video frame");
-    // U3_THROW_IF( header->check(), "check header video frame" );
+    U3_THROW_IFN (header, "empty header video frame");
+    // U3_THROW_IFN( header->check(), "check header video frame" );
 
     header->reset ();
     ++header->in_.counter_;
@@ -155,16 +155,16 @@ Impl2Gui::send_frame (
 
     if (finfo_.last_hmem_.check () && finfo_.last_hmem_.size_ < size_mem)
     {
-      U3_THROW_IF (helper->mem_free (finfo_.last_hmem_), "free mem");
+      U3_THROW_IFN (helper->mem_free (finfo_.last_hmem_), "free mem");
     }
 
     if (!finfo_.last_hmem_.check ())
     {
-      U3_THROW_IF (helper->mem_alloc (size_mem, finfo_.last_hmem_), "alloc mem for send to gui");
+      U3_THROW_IFN (helper->mem_alloc (size_mem, finfo_.last_hmem_), "alloc mem for send to gui");
     }
 
     U3_ASSERT (finfo_.last_hmem_.check ());
-    U3_THROW_IF (helper->mem_atomic_call (finfo_.last_hmem_, FillFrameHelper (this, info)), "call mem_atomic_call");
+    U3_THROW_IFN (helper->mem_atomic_call (finfo_.last_hmem_, FillFrameHelper (this, info)), "call mem_atomic_call");
 
     helper->s1end_msg (BaseGUIEvent::ptr (
       new ::libs::events_gui::events::MemBlockEvent (finfo_.last_hmem_, finfo_.rprops_->get_id ())));

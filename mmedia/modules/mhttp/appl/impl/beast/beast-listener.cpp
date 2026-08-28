@@ -65,14 +65,12 @@ listener::stop () -> void
 void
 listener::do_accept ()
 {
-  U3_XLOG_DBG ("listener::do_accept---->");
   // The new connection gets its own strand
   acceptor_.async_accept (
     boost::asio::make_strand (ioc_),
     boost::beast::bind_front_handler (
       &listener::on_accept,
       shared_from_this ()));
-  U3_XLOG_DBG ("listener::do_accept<----");
 }
 
 
@@ -81,7 +79,6 @@ listener::on_accept (
   boost::beast::error_code     ec,
   boost::asio::ip::tcp::socket socket)
 {
-  U3_XLOG_DBG ("listener::on_accept---->");
   if (ec)
   {
     u3beast_fail (ec, "listener::on_acceptaccept");

@@ -53,7 +53,7 @@ TestStorageImpl::load_int (const seance_type& info, const id_chunk_type& id, syn
 auto
 TestStorageImpl::save_int (const seance_type& info, syn::IBlockMem::craw_ptr mem) -> TestStorageImpl::id_chunk_type
 {
-  U3_THROW_IF (mem->get_size (), "try save empty data");
+  U3_THROW_IFN (mem->get_size (), "try save empty data");
   return save_impl (info, mem->get (), mem->get_size ());
 }
 
@@ -64,8 +64,8 @@ TestStorageImpl::save_int (
   const std::uint8_t* mem,
   const std::size_t   size_mem) -> TestStorageImpl::id_chunk_type
 {
-  U3_THROW_IF (mem, "try save empty data");
-  U3_THROW_IF (size_mem, "try save null data");
+  U3_THROW_IFN (mem, "try save empty data");
+  U3_THROW_IFN (size_mem, "try save null data");
   return save_impl (info, mem, size_mem);
 }
 

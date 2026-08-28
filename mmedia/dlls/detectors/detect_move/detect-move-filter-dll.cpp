@@ -33,7 +33,7 @@ void
 Filter::init_pts (syn::ConnectInfo* info)
 {
   info->count_ins_ = 1;
-  info->ins_[0].set_info (true, ::libs::icore::impl::var1::obj::Points::input);
+  info->ins_[0].set_info (true, ::libs::icore::impl::base::obj::Points::input);
 
   info->count_outs_ = 1;
   info->outs_[0].set_info (true);

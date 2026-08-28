@@ -8,8 +8,8 @@
 #include "vgen-mops-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vgd_vgen_mops () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vgd_vgen_mops () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret (new ::dlls::gens::vgen_mops::Filter);
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret (new ::dlls::gens::vgen_mops::Filter);
   return ret;
 }

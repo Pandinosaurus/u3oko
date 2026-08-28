@@ -10,7 +10,8 @@
 #include "casts/numeric-casts-funcs.hpp"
 #include "casts/saturation-casts-funcs.hpp"
 
-#include "check/check-ptr-funcs.hpp"
+#include "checks/check-state-funcs.hpp"
+#include "checks/check-ptr-funcs.hpp"
 
 #include "utils/int2type.hpp"
 #include "utils/cuuid.hpp"
@@ -89,6 +90,7 @@
 #include "log/log-source-place-func.hpp"
 #include "log/suppressor-verbose-log-msg.hpp"
 #include "log/get-module-version-func.hpp"
+#include "log/call-trace.hpp"
 
 #ifdef U3_DISABLE_AS_0_FOR_CLANG_TIDY
 // EAI-REFACT чтобы не тянуть зависимость от sqlite этот файл включается отдельно для каждого модуля, в котором есть потребность в sqlite.

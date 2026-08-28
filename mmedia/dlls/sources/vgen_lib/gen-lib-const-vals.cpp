@@ -8,6 +8,6 @@
 
 namespace dlls::sources::gen_lib::consts
 {
-const std::string name_get_funct  = "get_source";
-const std::string name_free_funct = "free_source";
+const std::string name_get_func  = "get_source";
+const std::string name_free_func = "free_source";
 }   // namespace dlls::sources::gen_lib::consts

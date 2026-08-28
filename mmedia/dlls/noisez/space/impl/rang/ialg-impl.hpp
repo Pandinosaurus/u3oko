@@ -13,7 +13,7 @@ class IAlgImpl
   public:
   //  ext types
   U3_ADD_POINTERS_TO_SELF (IAlgImpl)
-  U3_ADD_DELETE_MOVE_COPY (IAlgImpl);
+  U3_ADD_DELETE_MOVE_COPY (IAlgImpl)
 
   IAlgImpl ()          = default;
   virtual ~IAlgImpl () = default;

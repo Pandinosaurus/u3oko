@@ -12,8 +12,8 @@ namespace modules::mlog::appl
 void
 LogModule::make_dir_for_logs ()
 {
-  U3_ASSERT (path2logs_.empty ());
-  U3_ASSERT (path2sessions_.empty ());
+  ::libs::utility::checks::assert_hard (path2logs_.empty ());
+  ::libs::utility::checks::assert_hard (path2sessions_.empty ());
 
   const boost::posix_time::ptime sys_time = boost::posix_time::microsec_clock::universal_time ();
 
@@ -22,28 +22,28 @@ LogModule::make_dir_for_logs ()
   path2logs_             = ::libs::utility::files::make_path (path2sessions_, active_session_folder_);
 
   ::libs::utility::files::create_folder (path2logs_);
-  U3_ASSERT (!path2logs_.empty ());
-  U3_ASSERT (!path2sessions_.empty ());
+  ::libs::utility::checks::assert_hard (!path2logs_.empty ());
+  ::libs::utility::checks::assert_hard (!path2sessions_.empty ());
 }
 
 
 void
 LogModule::open_log_file ()
 {
-  U3_ASSERT (!file_for_store_events_.is_open ());
-  U3_ASSERT (!path2logs_.empty ());
+  ::libs::utility::checks::assert_hard (!file_for_store_events_.is_open ());
+  ::libs::utility::checks::assert_hard (!path2logs_.empty ());
 
   const std::string file_log_path = ::libs::utility::files::make_path (path2logs_, std::to_string (indx_file_) + std::string (".log"));
   file_for_store_events_.open (file_log_path.c_str (), std::ios_base::out | std::ios_base::app);
 
-  U3_THROW_IF (file_for_store_events_.is_open (), ("open log file" + file_log_path).c_str ());
+  ::libs::utility::checks::throw_ifn (file_for_store_events_.is_open (), ("open log file" + file_log_path).c_str ());
 }
 
 
 void
 LogModule::delete_folders (const syn::list_folders_type& folders)
 {
-  U3_XLOG_DBG ("LogModule::delete_folders:---->" + VTOLOG (folders.size ()) + TOLOG (active_session_folder_));
+  U3_CALL_TRACE_INFO_DBG (VTOLOG (folders.size ()) + TOLOG (active_session_folder_));
   for (const auto& folder : folders)
   {
     U3_XLOG_DBG ("delete check" + TOLOG (folder.session_id_));

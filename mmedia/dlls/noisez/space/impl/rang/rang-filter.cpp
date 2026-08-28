@@ -24,9 +24,9 @@ get_params (
 {
   iinfo.reset ();
 
-  U3_THROW_IF (3 == mcinfo.params_.evals_.size (), "invald size evals");
-  U3_THROW_IF (2 == mcinfo.srcs_.size (), "src not equal 2");
-  U3_THROW_IF (1 == mcinfo.dsts_.size (), "dsts not equal 1");
+  U3_THROW_IFN (3 == mcinfo.params_.evals_.size (), "invald size evals");
+  U3_THROW_IFN (2 == mcinfo.srcs_.size (), "src not equal 2");
+  U3_THROW_IFN (1 == mcinfo.dsts_.size (), "dsts not equal 1");
 
   iinfo.sbuf_ = &mcinfo.srcs_[0];
   iinfo.dbuf_ = &mcinfo.srcs_[1];
@@ -37,8 +37,8 @@ get_params (
   iinfo.impl_info_ = impl_info;
   *ppimpls         = boost::any_cast< RangFilter::algs_storage_type* > (mcinfo.params_.evals_[2]);
 
-  U3_THROW_IF (*ppimpls, "empty impls");
-  U3_THROW_IF (iinfo.check (), "check params");
+  U3_THROW_IFN (*ppimpls, "empty impls");
+  U3_THROW_IFN (iinfo.check (), "check params");
 }
 
 /// Вспомогательная функция для вызова реализации фильтрации в пуле потоков над частью изображения
@@ -53,7 +53,7 @@ ext_mcall (::libs::optim::io::MCallInfo& info)
   get_params (info, icall_info, impl_info, &pimpls);
   auto& algs = (*pimpls)[impl_info->sort_type_];
   // проверяем на рассинхронизацию, если пользователь изменил параметры рабочих потоков
-  U3_THROW_IF (info.thread_indx_ < algs.size (), "skip rang filter, parameters changed:" + VTOLOG (info.thread_indx_) + VTOLOG (algs.size ()) + TOLOG (to_string (impl_info->sort_type_)));
+  U3_THROW_IFN (info.thread_indx_ < algs.size (), "skip rang filter, parameters changed:" + VTOLOG (info.thread_indx_) + VTOLOG (algs.size ()) + TOLOG (to_string (impl_info->sort_type_)));
   algs.at (info.thread_indx_)->process (icall_info);
 }
 
@@ -80,7 +80,6 @@ RangFilter::transform_int (
   InfoFilter&                        finfo,
   ::libs::bufs::Bufs*                pbuf)
 {
-  U3_XLOG_DBG ("RangFilter::transform_int:---->");
   if (!temp_src_buf_)
   {
     temp_src_buf_ = ::libs::iproperties::helpers::cast_prop_demons ()->get_bufs_lockfree ()->impl ()->create (0);
@@ -89,7 +88,7 @@ RangFilter::transform_int (
   for (auto& bufs : finfo.rprops_->bufs_)
   {
     auto* impl_info = ::libs::iproperties::helpers::cast_event< syn::MedianSpaceFilterProp > (bufs.impl_info_);
-    U3_THROW_IF (impl_info, "empty syn::MedianSpaceFilterProp");
+    U3_THROW_IFN (impl_info, "empty syn::MedianSpaceFilterProp");
     if (libs::events_base::props::videos::noises::space::ext::Sortings::skip == impl_info->sort_type_)
     {
       continue;
@@ -134,8 +133,8 @@ RangFilter::transform_int (
     const auto indx_diff  = dbuf_valid ? impl_info->indx_cond_buf_ : syn::offs::temp2;
     auto       cdiff      = (*pbuf)[indx_diff];
 
-    U3_THROW_IF (!impl_info->use_cond_buf_ || syn::offs::invalid != indx_diff, "invalid indx diff buf");
-    U3_THROW_IF (!impl_info->use_cond_buf_ || cdiff, "invalid diff buf");
+    U3_THROW_IFN (!impl_info->use_cond_buf_ || syn::offs::invalid != indx_diff, "invalid indx diff buf");
+    U3_THROW_IFN (!impl_info->use_cond_buf_ || cdiff, "invalid diff buf");
 
     utils::dbufs::video::helpers::fill_edges (src);
 
@@ -175,7 +174,6 @@ RangFilter::transform_int (
 
     dst->set_mem_var (::utils::dbufs::MemVars::size_data, (*src)[::utils::dbufs::MemVars::size_data]);
   }
-  U3_XLOG_DBG ("RangFilter::transform_int:<----");
 }
 
 

@@ -20,8 +20,8 @@ EventBufs::EventBufs (
 void
 EventBufs::check (bool check_src, bool check_dst)
 {
-  U3_THROW_IF (!check_src || utils::dbufs::video::consts::offs::invalid != indx_sbuf_, "invalid src");
-  U3_THROW_IF (!check_dst || utils::dbufs::video::consts::offs::invalid != indx_dbuf_, "invalid dst");
+  U3_THROW_IFN (!check_src || utils::dbufs::video::consts::offs::invalid != indx_sbuf_, "invalid src");
+  U3_THROW_IFN (!check_dst || utils::dbufs::video::consts::offs::invalid != indx_dbuf_, "invalid dst");
   check_int ();
   correct_int ();
 }

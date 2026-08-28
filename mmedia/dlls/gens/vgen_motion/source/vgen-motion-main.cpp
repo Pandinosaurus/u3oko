@@ -8,8 +8,8 @@
 #include "vgen-motion-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vgd_vgen_motion () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vgd_vgen_motion () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
-  ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr ret (new ::dlls::gens::vgen_motion::Filter);
+  ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr ret (new ::dlls::gens::vgen_motion::Filter);
   return ret;
 }

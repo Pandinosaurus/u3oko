@@ -12,7 +12,7 @@ class IMCaller
   public:
   //  ext types
   U3_ADD_POINTERS_TO_SELF (IMCaller)
-  U3_ADD_DELETE_MOVE_COPY (IMCaller);
+  U3_ADD_DELETE_MOVE_COPY (IMCaller)
 
   virtual ~IMCaller () = default;
 

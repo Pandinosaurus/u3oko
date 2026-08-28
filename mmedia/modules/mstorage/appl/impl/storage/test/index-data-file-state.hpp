@@ -35,9 +35,9 @@ struct IndexDataFileState final {
       return false;
     }
 
-    U3_THROW_IF (indx_data_file_ <= consts::max_count_session_data_files, VTOLOG (indx_data_file_));
-    U3_THROW_IF (count_fragments_ <= consts::max_count_fragments_session_data_file, VTOLOG (count_fragments_));
-    U3_THROW_IF (count_fragments_ <= off_fragments_.size (), VTOLOG (count_fragments_));
+    U3_THROW_IFN (indx_data_file_ <= consts::max_count_session_data_files, VTOLOG (indx_data_file_));
+    U3_THROW_IFN (count_fragments_ <= consts::max_count_fragments_session_data_file, VTOLOG (count_fragments_));
+    U3_THROW_IFN (count_fragments_ <= off_fragments_.size (), VTOLOG (count_fragments_));
     return true;
   }
 

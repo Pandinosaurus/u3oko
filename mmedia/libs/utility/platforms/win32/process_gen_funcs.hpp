@@ -13,7 +13,7 @@ add_process_privilage ()
 {
   HANDLE htk = 0;
 
-  U3_THROW_IF (OpenProcessToken (GetCurrentProcess (), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &htk), "open process token");
+  U3_THROW_IFN (OpenProcessToken (GetCurrentProcess (), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &htk), "open process token");
   U3_ASSERT (htk);
 
   bool         res        = true;
@@ -49,6 +49,6 @@ add_process_privilage ()
 
   CloseHandle (htk);
   htk = 0;
-  U3_THROW_IF_WIN32_STATE (res, "CloseHandle");
+  U3_THROW_IFN_WIN32_STATE (res, "CloseHandle");
 }
 }   // namespace libs::utility::platforms::win32

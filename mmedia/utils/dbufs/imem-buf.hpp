@@ -20,7 +20,7 @@ class IMemBuf : public IBuf
   using fragments_type = std::list< mem_var_type >;
 
   U3_ADD_POINTERS_TO_SELF (IMemBuf)
-  U3_ADD_DELETE_MOVE_COPY (IMemBuf);
+  U3_ADD_DELETE_MOVE_COPY (IMemBuf)
 
   virtual ~IMemBuf () = default;
 

@@ -8,7 +8,7 @@
 #include "gen-vgen-filter-dll.hpp"
 
 extern "C" BOOST_SYMBOL_EXPORT auto
-create_impl_vsd_gen_vgen () -> ::libs::icore::impl::var1::obj::dll::IFilter::raw_ptr
+create_impl_vsd_gen_vgen () -> ::libs::icore::impl::base::obj::dll::IFilter::raw_ptr
 {
   return new ::dlls::sources::gen_vgen::Filter;
 }

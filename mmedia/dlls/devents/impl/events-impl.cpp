@@ -11,7 +11,6 @@ namespace dlls::devents::impl
 {
 EventsImpl::EventsImpl ()
 {
-  U3_XLOG_DBG ("EventsImpl::EventsImpl:---->");
   lock_type lock (mtx_);
   make_event_funcs ();
 }
@@ -20,12 +19,12 @@ EventsImpl::EventsImpl ()
 auto
 EventsImpl::get (const hid_type& eid) -> syn::IEvent::ptr
 {
-  U3_XLOG_DBG ("EventsImpl::get:---->" + STOLOG (eid));
+  U3_CALL_TRACE_INFO_DBG (STOLOG (eid));
   lock_type lock (mtx_);
   auto      itf = gen_func_events_.find (id_event_type { eid });
   if (gen_func_events_.end () == itf)
   {
-    U3_XLOG_ERROR ("function for create event by id not found" + STOLOG (eid));
+    U3_XLOG_ERROR ("func for create event by id not found" + STOLOG (eid));
     return {};
   }
 
@@ -40,7 +39,6 @@ EventsImpl::get (const hid_type& eid) -> syn::IEvent::ptr
     U3_XLOG_MARK ("dllevents" + STOLOG (id) + VTOLOG (counter_create_events_[id]));
   }
 #endif
-  U3_XLOG_DBG ("EventsImpl::get:<----" + STOLOG (eid) + PTR_TOLOG (ret.get ()));
   return ret;
 }
 
@@ -61,7 +59,7 @@ EventsImpl::dcast (syn::IEvent::raw_ptr src, const hid_type& eid)
   auto itf = cast_func_events_.find (id_event_type { eid });
   if (cast_func_events_.end () == itf)
   {
-    U3_LOG_DATA_ERROR ("function for cast id event not found" + STOLOG (eid) + PTR_TOLOG (this));
+    U3_LOG_DATA_ERROR ("func for cast id event not found" + STOLOG (eid) + PTR_TOLOG (this));
     return nullptr;
   }
 
@@ -79,7 +77,7 @@ EventsImpl::dcast (syn::IEvent::craw_ptr src, const hid_type& eid) -> const void
   auto itf = cast_func_events_.find (id_event_type { eid });
   if (cast_func_events_.end () == itf)
   {
-    U3_LOG_DATA_ERROR ("function for cast id event not found" + STOLOG (eid) + PTR_TOLOG (this));
+    U3_LOG_DATA_ERROR ("func for cast id event not found" + STOLOG (eid) + PTR_TOLOG (this));
     return nullptr;
   }
 
@@ -172,7 +170,6 @@ EventsImpl::bin2event (std::istream& bin, syn::IEvent::ptr& dst) -> bool
 auto
 EventsImpl::dbg_state_dump () -> void
 {
-  U3_XLOG_DEV ("EventsImpl::dbg_state_dump:---->");
   for (const auto& [eid, efunc] : cast_func_events_)
   {
     U3_XLOG_DEV (FSTOLOG (eid));

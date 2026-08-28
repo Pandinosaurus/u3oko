@@ -8,7 +8,7 @@
 namespace dlls::uplifters::vcorrect
 {
 /// Параметры модуля коррекции изображения
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 
@@ -22,7 +22,7 @@ struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFi
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::BaseInfoFilter)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::BaseInfoFilter)
 
   //  BaseInfoFilter overrides
   virtual auto load_int (const ::pugi::xml_named_node_iterator&) -> bool override;

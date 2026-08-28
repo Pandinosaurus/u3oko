@@ -8,7 +8,7 @@
 namespace dlls::detectors::detect_face
 {
 ///  Свойства фильтра по детектированию движения
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 

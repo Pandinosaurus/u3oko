@@ -21,8 +21,8 @@ struct Aligns final {
   void
   self_test () const
   {
-    U3_THROW_IF (::libs::optim::mcalls::helpers::check_mcall_align (ax_), "x unaligned" + VTOLOG (ax_));
-    U3_THROW_IF (::libs::optim::mcalls::helpers::check_mcall_align (ay_), "y unaligned" + VTOLOG (ay_));
+    U3_THROW_IFN (::libs::optim::mcalls::helpers::check_mcall_align (ax_), "x unaligned" + VTOLOG (ax_));
+    U3_THROW_IFN (::libs::optim::mcalls::helpers::check_mcall_align (ay_), "y unaligned" + VTOLOG (ay_));
   }
 
   std::uint32_t ax_ { 16 };   //< Выравнивание  по горизонтали в пикселях для всех буферов

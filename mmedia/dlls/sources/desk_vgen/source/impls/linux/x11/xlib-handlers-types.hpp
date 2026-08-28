@@ -26,7 +26,7 @@ class HandlerXLibObj final
   {
     if (obj_)
     {
-      free_funct (obj_);
+      free_func (obj_);
     }
   }
 
@@ -46,7 +46,7 @@ class HandlerXLibObj final
   {
     if (obj_)
     {
-      free_funct (obj_);
+      free_func (obj_);
     }
     obj_ = obj;
   }

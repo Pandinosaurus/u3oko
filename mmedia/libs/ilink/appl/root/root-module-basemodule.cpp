@@ -255,7 +255,7 @@ RootModule::appl_work_int ()
 auto
 RootModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_DBG ("RootModule::appl_deinit_int:---->")
+  U3_CALL_TRACE_DBG;
   bool ret = false;
 
   switch (deinit_stage_)
@@ -368,7 +368,6 @@ RootModule::appl_deinit_int () -> bool
     U3_ASSERT_THROW ("Unknown deinit stage" + VTOLOG (U3_CAST_UINT32_FORCE (deinit_stage_)));
     break;
   }
-  U3_XLOG_DBG ("RootModule::appl_deinit_int:<----")
   return ret;
 }
 
@@ -448,7 +447,6 @@ RootModule::update_catch_funcs_int ()
     if (forward)
     {
       auto* main_appl = ::libs::iproperties::helpers::cast_event< syn::ApplicationProp > (appl_event_props_.main_appl_properties_);
-      U3_XLOG_DEV ("copy:---->" + TOLOG (main_appl->get_messenger_impl ()) + PTR_TOLOG (main_appl));
       msg->copy (main_appl);
       return {};
     }
@@ -532,7 +530,7 @@ RootModule::update_catch_funcs_int ()
 void
 RootModule::init_proxys_int ()
 {
-  U3_XLOG_DBG ("RootModule::init_proxys_int:---->");
+  U3_CALL_TRACE_DBG;
   super::init_proxys_int ();
 #if 0
   {
@@ -548,16 +546,15 @@ RootModule::init_proxys_int ()
 
   U3_XLOG_DBG ("RootModule::init_proxys_int:: update appl event props");
   appl_event_props_.init ();
-  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "instance mem block allocator");
+  U3_THROW_IFN (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "instance mem block allocator");
 #endif
-  U3_XLOG_DBG ("RootModule::init_proxys_int:<----");
 }
 
 
 void
 RootModule::init_links_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("RootModule::init_links_int:--->");
+  U3_CALL_TRACE_DBG;
   auto*      main_appl = ::libs::iproperties::helpers::cast_event< syn::ApplicationProp > (appl_event_props_.main_appl_properties_.get ());
   const auto type_run  = main_appl->is_single_process () ? ::libs::link::details::CodeRuns::dll : ::libs::link::details::CodeRuns::appl;
   auto       lproxy    = LinkCreatorProxy::instance ();
@@ -585,7 +582,7 @@ RootModule::init_links_int (const ::libs::link::appl::InitApplication& info)
   std::uint32_t           create_counter    = 0;
   for (const auto& [dll_name, subsys_name, subsys_id, buf_size, link_id] : create_vals)
   {
-    U3_XLOG_DEV ("debug sleep:---->" + VTOLOG (create_counter) + TOLOG (dll_name));
+    U3_CALL_TRACE_INFO (VTOLOG (create_counter) + TOLOG (dll_name));
     std::this_thread::sleep_for (std::chrono::milliseconds (dbg_delay_process));
     U3_XLOG_DEV ("debug sleep:<----" + VTOLOG (create_counter) + TOLOG (dll_name));
     auto temp_link = iproxy->get_connect (
@@ -602,7 +599,6 @@ RootModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     ++create_counter;
   }
 
-  U3_XLOG_DEV ("shared links");
   //  Разделяем созданные интерфейсы между всей системой через объект "свойства"
   {
     // std::this_thread::sleep_for (std::chrono::milliseconds (dbg_delay_process));
@@ -661,6 +657,5 @@ RootModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     revnt->set_start (true);
     links_[link_id]->send_msg (evnt);
   }
-  U3_XLOG_DBG ("RootModule::init_links_int:<----");
 }
 }   // namespace libs::ilink::appl::root

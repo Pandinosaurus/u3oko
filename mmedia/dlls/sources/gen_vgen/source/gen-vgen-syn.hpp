@@ -17,11 +17,11 @@ using InterfCaptureImageEvent  = ::libs::events_base::runtime::interf::InterfCap
 using IVideoBuf                = ::utils::dbufs::video::IVideoBuf;
 using ListDevicesDataEvent     = ::libs::events_media::events::ListDevicesDataEvent;
 using IInterfGraphObj          = ::libs::core::graph::IInterfGraphObj;
-using IEmptyInterfObjGraph     = ::libs::icore::impl::var1::obj::interfs::IEmptyInterfObjGraph;
+using IEmptyInterfObjGraph     = ::libs::icore::impl::base::obj::interfs::IEmptyInterfObjGraph;
 using BufsEvent                = ::libs::events_base::runtime::mem::BufsEvent;
 using tevents_type             = ::dlls::sources::gen_lib::syn::tevents_type;
-using TransformInfo            = ::libs::icore::impl::var1::obj::dll::TransformInfo;
-using CallInterfInfo           = ::libs::icore::impl::var1::obj::dll::CallInterfInfo;
-using FilterInfo               = ::libs::icore::impl::var1::obj::FilterInfo;
-using ConnectInfo              = ::libs::icore::impl::var1::obj::ConnectInfo;
+using TransformInfo            = ::libs::icore::impl::base::obj::dll::TransformInfo;
+using CallInterfInfo           = ::libs::icore::impl::base::obj::dll::CallInterfInfo;
+using FilterInfo               = ::libs::icore::impl::base::obj::FilterInfo;
+using ConnectInfo              = ::libs::icore::impl::base::obj::ConnectInfo;
 }   // namespace dlls::sources::gen_vgen::syn

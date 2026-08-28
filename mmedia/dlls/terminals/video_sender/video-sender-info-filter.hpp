@@ -7,7 +7,7 @@
 
 namespace dlls::terminals::video_sender
 {
-struct InfoFilter : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 

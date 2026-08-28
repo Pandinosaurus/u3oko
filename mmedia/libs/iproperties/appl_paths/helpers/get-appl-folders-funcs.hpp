@@ -10,7 +10,7 @@ namespace libs::iproperties::appl_paths::helpers
 inline std::string
 get_appl_folder (const std::string& name_appl)
 {
-  U3_THROW_IF (!name_appl.empty (), "name_appl empty");
+  U3_THROW_IFN (!name_appl.empty (), "name_appl empty");
   std::string ret;
 
 #ifdef U3_OS_WIN32_DESKTOP

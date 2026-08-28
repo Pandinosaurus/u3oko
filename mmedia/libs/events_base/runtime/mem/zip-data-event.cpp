@@ -24,7 +24,8 @@ ZipDataEvent::ZipDataEvent (
   const number_buf_type&                    number_buf,
   id_buf_type                               id) :
 
-  size_zip_buf_ (zip_buf_.size ()), id_zip_buf_ (std::move (id)),
+  size_zip_buf_ (zip_buf_.size ()),
+  id_zip_buf_ (std::move (id)),
   number_zip_buf_ (number_buf)
 {
   utils::dbufs::video::helpers::copy_video_buf2vector (buf, zip_buf_);

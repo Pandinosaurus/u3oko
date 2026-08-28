@@ -7,7 +7,7 @@
 
 namespace dlls::detectors::detect_move
 {
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   InfoFilter ();
   virtual ~InfoFilter () = default;
 
@@ -21,7 +21,7 @@ struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFi
   private:
   auto init () -> void;
 
-  // overrides ::libs::icore::impl::var1::obj::dll::BaseInfoFilter
+  // overrides ::libs::icore::impl::base::obj::dll::BaseInfoFilter
   virtual auto sync_int (bool force) -> void override;
 };
 }   // namespace dlls::detectors::detect_move

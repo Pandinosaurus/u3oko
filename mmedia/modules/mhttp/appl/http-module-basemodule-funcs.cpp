@@ -22,7 +22,7 @@ HttpModule::appl_init_int (const syn::InitApplication& appinfo)
 void
 HttpModule::init_links_int (const syn::InitApplication& appinfo)
 {
-  U3_XLOG_DBG ("HttpModule::init_links_int:---->");
+  U3_CALL_TRACE_DBG;
   auto lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
   auto temp_link = lproxy->impl ()->get_listen (
     ::libs::link::CreateInfo (
@@ -55,7 +55,6 @@ HttpModule::init_links_int (const syn::InitApplication& appinfo)
     revnt->set_start (true);
     links_[syn::mids::http2appl]->send_msg (evnt);
   }
-  U3_XLOG_DBG ("HttpModule::init_links_int:<----");
 }
 
 
@@ -63,14 +62,14 @@ void
 HttpModule::init_proxys_int ()
 {
   super::init_proxys_int ();
-  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "check create block mem allocator");
+  U3_THROW_IFN (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "check create block mem allocator");
 }
 
 
 auto
 HttpModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("HttpModule::deinit_int:---->")
+  U3_CALL_TRACE_DBG;
   if (links_[syn::mids::http2appl])
   {
     auto [evnt, revnt] = ::libs::iproperties::helpers::create_event< syn::ChangeStateSubSysLogEvent > ();
@@ -92,7 +91,6 @@ HttpModule::appl_deinit_int () -> bool
 
   links_[syn::mids::http2appl]->destroy ();
   links_.reset_link (syn::mids::http2appl);
-  U3_XLOG_MARK ("HttpModule::deinit_int:<----")
   return true;
 }
 

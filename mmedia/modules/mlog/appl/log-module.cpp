@@ -1,5 +1,5 @@
 /**
-\file       log_module.cpp
+\file       log-module.cpp
 \author     Erashov Anton erashov2026@proton.me
 \date       01.01.2017
 */
@@ -12,7 +12,7 @@ namespace modules::mlog::appl
 auto
 make_suppressor_key (const syn::IEvent::ptr& val) -> std::string
 {
-  auto        evnt = ::libs::utility::check::ptr (::libs::iproperties::helpers::cast_event< syn::InfoLogEvent > (val));
+  auto        evnt = ::libs::utility::checks::ptr (::libs::iproperties::helpers::cast_event< syn::InfoLogEvent > (val));
   const auto& info = evnt->get_appl_info ();
   return evnt->text (::libs::events_log::LogTexts::text) + ":" + info.file_ + ":" + std::to_string (info.line_);
 }
@@ -33,7 +33,7 @@ LogModule::check_process ()
 void
 LogModule::add_msg_from_self (const std::string& info)
 {
-  U3_ASSERT (!info.empty ());
+  ::libs::utility::checks::assert_hard (!info.empty ());
   auto [evnt, revnt] = ::libs::iproperties::helpers::create_event< syn::InfoLogEvent > ();
 
   revnt->change_appl_info (
@@ -82,7 +82,7 @@ LogModule::process_info_log (syn::InfoLogEvent::raw_ptr props, const syn::IEvent
 void
 LogModule::process_change_state_process (syn::ChangeStateProcessEvent::raw_ptr props)
 {
-  U3_XLOG_MARK ("LogModule::process_change_state_process:---->" + VTOLOG (props->is_start ()));
+  U3_CALL_TRACE_INFO (VTOLOG (props->is_start ()));
   try
   {
     if (!props->is_start ())
@@ -108,7 +108,7 @@ LogModule::process_list_logs (syn::ProcessListLogsEvent::raw_ptr props)
   try
   {
     const auto action = props->get_action ();
-    U3_XLOG_DBG ("LogModule::process_list_logs:---->" + TOLOG (to_string (action)));
+    U3_CALL_TRACE_INFO_DBG (TOLOG (to_string (action)));
     switch (action)
     {
     case ::libs::events_log::events::LogActions::delete_sessions: {

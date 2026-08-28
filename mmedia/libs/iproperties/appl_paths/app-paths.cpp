@@ -14,7 +14,7 @@ void
 AppPaths::load_paths (const ::libs::link::appl::InitApplication& appl_info)
 {
   U3_XLOG_MARK ("update paths" + TOLOG (appl_info.appl_name_) + TOLOG (appl_info.company_name_) + TOLOG (appl_info.service_name_))
-  U3_THROW_IF (appl_info.check (), "failed appl_info.check")
+  U3_THROW_IFN (appl_info.check (), "failed appl_info.check")
 
   const auto appl_subfolder = ::libs::utility::files::make_path (appl_info.company_name_, appl_info.appl_name_);
   const auto service_path   = ::libs::iproperties::appl_paths::helpers::get_data_folder (appl_subfolder, appl_info.service_name_);

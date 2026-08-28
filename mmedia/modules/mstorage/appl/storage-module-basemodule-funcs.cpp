@@ -20,7 +20,7 @@ void
 StorageModule::init_proxys_int ()
 {
   super::init_proxys_int ();
-  U3_THROW_IF (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
+  U3_THROW_IFN (::libs::iproperties::helpers::cast_prop_demons ()->get_mem_lockfree (), "alloc mem proxy");
 }
 
 
@@ -34,7 +34,7 @@ StorageModule::init_done_int ()
 void
 StorageModule::init_links_int (const ::libs::link::appl::InitApplication& info)
 {
-  U3_XLOG_DBG ("StorageModule::init_links_int:---->");
+  U3_CALL_TRACE_DBG;
   auto                lproxy    = ::libs::ilink::LinkCreatorProxy::instance ();
   U3_MARK_UNUSED auto ipstorage = ::libs::iproperties::helpers::get_storage ();
 
@@ -71,14 +71,13 @@ StorageModule::init_links_int (const ::libs::link::appl::InitApplication& info)
     revnt->set_start (true);
     links_[syn::mids::storage2appl]->send_msg (evnt);
   }
-  U3_XLOG_DBG ("StorageModule::init_links_int:<----");
 }
 
 
 auto
 StorageModule::appl_deinit_int () -> bool
 {
-  U3_XLOG_MARK ("StorageModule::deinit_int:---->")
+  U3_CALL_TRACE;
   if (links_[syn::mids::storage2appl])
   {
     auto [evnt, revnt] = ::libs::iproperties::helpers::create_event< syn::ChangeStateSubSysLogEvent > ();
@@ -101,7 +100,6 @@ StorageModule::appl_deinit_int () -> bool
 
   links_[syn::mids::storage2appl]->destroy ();
   links_.reset_link (syn::mids::storage2appl);
-  U3_XLOG_MARK ("StorageModule::deinit_int:<----")
   return true;
 }
 

@@ -9,8 +9,8 @@ namespace dlls::sources::gen_vgen
 {
 /// Базовый фильтр захвата кадров из внешнего источника (http, ip, desktop, etc)
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   public:
   Filter ();
@@ -22,7 +22,7 @@ class Filter final :
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   // IFilter overrides
   virtual auto load_int (syn::FilterInfo* info, const ::pugi::xml_named_node_iterator& node) -> void override;
@@ -43,7 +43,7 @@ class Filter final :
   ::libs::optim::io::hioptim scale_;               //< Реализация алгоритма для масштабирования изображения
   ::libs::optim::io::hioptim flip_y_;              //< Реализация алгоритма для отображения изображения по вертикали
   syn::IEmptyInterfObjGraph  support_interf_;      //< Поле используется как флаг поддержки ряда интерфейсов
-  IDataSourceImpl            idata_source_impl_;   //< Реализация интерфейса libs::icore::impl::var1::obj::interfs::IDataSourceInterfObjGraph
+  IDataSourceImpl            idata_source_impl_;   //< Реализация интерфейса libs::icore::impl::base::obj::interfs::IDataSourceInterfObjGraph
   syn::tevents_type          events_from_impl_;    //< События, сгенерированные нижележайшем слоем. Передаются данным объектом в граф обработки данных
 
   static ::libs::utility::dlls::FreezerDlls frozen_dlls_;   //< Удерживаем в памяти все загруженные библиотеки, чтобы избегать сбоев при работе с событиями, которые были в них сгенерированы

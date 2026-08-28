@@ -31,15 +31,15 @@ last_error2string (unsigned long error)
   return std::string (buf, size);
 }
 
-#ifndef U3_THROW_IF_WIN32_CALL
-#  define U3_THROW_IF_WIN32_CALL(x, minfo) U3_THROW_IF (x, minfo + " error" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IFN_WIN32_CALL
+#  define U3_THROW_IFN_WIN32_CALL(x, minfo) U3_THROW_IFN (x, minfo + " error" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 
-#ifndef U3_THROW_IF_WIN32_CALL_NT
-#  define U3_THROW_IF_WIN32_CALL_NT(x, minfo) U3_TEST (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IFN_WIN32_CALL_NT
+#  define U3_THROW_IFN_WIN32_CALL_NT(x, minfo) U3_TEST (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 
-#ifndef U3_THROW_IF_WIN32_STATE
-#  define U3_THROW_IF_WIN32_STATE(x, minfo) U3_THROW_IF (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
+#ifndef U3_THROW_IFN_WIN32_STATE
+#  define U3_THROW_IFN_WIN32_STATE(x, minfo) U3_THROW_IFN (x, minfo + " error=" + ::libs::utility::platforms::win32::last_error2string (GetLastError ()))
 #endif
 }   // namespace libs::utility::platforms::win32

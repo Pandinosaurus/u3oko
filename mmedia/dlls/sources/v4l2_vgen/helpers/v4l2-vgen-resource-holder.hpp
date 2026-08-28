@@ -13,7 +13,7 @@ template< typename ResourceTType, camera_status_t (*free_funct) (ResourceTType*)
 class ResourceHolder final
 {
   public:
-  U3_ADD_DELETE_MOVE_COPY (ResourceHolder);
+  U3_ADD_DELETE_MOVE_COPY (ResourceHolder)
 
   explicit ResourceHolder (ResourceTType* val = nullptr) :
     resource_ (val)
@@ -37,7 +37,7 @@ class ResourceHolder final
     try
     {
       camera_status_t res = ACAMERA_OK;
-      U3_THROW_IF_AVGEN (free_funct (resource_));
+      U3_THROW_IFN_AVGEN (free_func (resource_));
     }
     catch (const std::exception& excpt)
     {
@@ -77,7 +77,7 @@ class ResourceHolder final
   ResourceTType*
   operator->()
   {
-    U3_THROW_IF (resource_, "operator->");
+    U3_THROW_IFN (resource_, "operator->");
     return resource_;
   }
 
@@ -85,7 +85,7 @@ class ResourceHolder final
   ResourceTType*
   operator* ()
   {
-    U3_THROW_IF (resource_, "operator*");
+    U3_THROW_IFN (resource_, "operator*");
     return resource_;
   }
 

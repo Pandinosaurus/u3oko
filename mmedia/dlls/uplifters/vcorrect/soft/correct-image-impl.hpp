@@ -23,7 +23,7 @@ namespace dlls::uplifters::vcorrect::soft
 class CorrectImageImpl final : public ::libs::events_base::runtime::interf::interfaces::ICorrectImage
 {
   public:
-  U3_ADD_DELETE_MOVE_COPY (CorrectImageImpl);
+  U3_ADD_DELETE_MOVE_COPY (CorrectImageImpl)
 
   CorrectImageImpl ();
   virtual ~CorrectImageImpl () = default;

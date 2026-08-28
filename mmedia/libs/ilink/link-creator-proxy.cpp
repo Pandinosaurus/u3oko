@@ -56,7 +56,7 @@ LinkCreatorProxy::LinkCreatorProxy () :
 
 LinkCreatorProxy::~LinkCreatorProxy ()
 {
-  U3_XLOG_DEV ("LinkCreatorProxy::~LinkCreatorProxy:---->");
+  U3_CALL_TRACE_DBG;
   if (pimpl_)
   {
     U3_ASSERT_SOFT (pshm_, "empty shared memory object for LinkCreatorProxy");
@@ -66,6 +66,5 @@ LinkCreatorProxy::~LinkCreatorProxy ()
     }
     pimpl_ = nullptr;
   }
-  U3_XLOG_DEV ("LinkCreatorProxy::~LinkCreatorProxy:<----");
 }
 }   // namespace libs::ilink

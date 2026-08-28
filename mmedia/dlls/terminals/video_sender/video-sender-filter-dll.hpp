@@ -14,8 +14,8 @@ class FillFrameHelper;
 /// Основной фильтр графа обработки данных для передачи обработанных зображений в другие модули
 /// Для примера, http server, gui etc
 class Filter final :
-  public ::libs::icore::impl::var1::obj::dll::IFilter,
-  protected ::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >
+  public ::libs::icore::impl::base::obj::dll::IFilter,
+  protected ::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >
 {
   friend class IsEmptyFrameHelper;
   friend class FillFrameHelper;
@@ -26,7 +26,7 @@ class Filter final :
 
   private:
   // internal types
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::FilterImpl< InfoFilter >)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::FilterImpl< InfoFilter >)
 
   using send_func_type       = std::function< void (syn::TransformInfo&, const syn::Buff2ModuleInfo::craw_ptr) >;
   using send_funcs_type      = boost::unordered_flat_map< syn::id_link_type, send_func_type >;

@@ -10,7 +10,7 @@ namespace dlls::sources::gen_vgen
 class Filter;
 
 /// Структура для группировки свойств фильтра захвата данных из источника (ipcam/webcam/ect)
-struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFilter {
+struct InfoFilter final : public ::libs::icore::impl::base::obj::dll::BaseInfoFilter {
   using sync_type = std::timed_mutex;
 
   friend class dlls::sources::gen_vgen::Filter;
@@ -22,7 +22,7 @@ struct InfoFilter final : public ::libs::icore::impl::var1::obj::dll::BaseInfoFi
   // internal types
   using list_keys2bufs_type = std::list< ::dlls::sources::gen_lib::syn::pkeys2bufs_type >;
 
-  U3_ADD_SUPER_CLASS (::libs::icore::impl::var1::obj::dll::BaseInfoFilter)
+  U3_ADD_SUPER_CLASS (::libs::icore::impl::base::obj::dll::BaseInfoFilter)
 
   //  BaseInfoFilter overrides
   virtual auto load_int (const ::pugi::xml_named_node_iterator&) -> bool override;

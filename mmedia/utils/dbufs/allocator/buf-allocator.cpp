@@ -79,7 +79,7 @@ void
 BufAllocator::clear ()
 {
   lock_type lock (mtx_);
-  U3_XLOG_DEV ("BufAllocator::clear:---->" + VTOLOG (bufs_.size ()));
+  U3_CALL_TRACE_INFO (VTOLOG (bufs_.size ()));
   U3_XLOG_DEV (TOLOG (dump_state_int ()));
 
   for (utils::dbufs::video::IVideoBuf::ptr& buf : bufs_)
@@ -92,7 +92,6 @@ BufAllocator::clear ()
   bufs_.clear ();
   counter_alloc_bufs_ = 0;
   counter_reuse_bufs_ = 0;
-  U3_XLOG_DEV ("BufAllocator::clear:<----");
 }
 
 
